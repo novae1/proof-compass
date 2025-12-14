@@ -1,0 +1,20 @@
+# Follow these instructions to set up your venv:
+# python3.12 -m venv pc
+# source pc/bin/activate
+# pip install -r requirements.txt
+
+accelerate
+datasets
+dspy
+google-genai
+huggingface-hub
+matplotlib
+mlflow
+numpy
+openai
+pandas
+pyarrow
+torch
+transformers
+tqdm
+hf_transfer
