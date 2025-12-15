@@ -196,8 +196,7 @@
   },
   "numbertheory_notEquiv2i2jasqbsqdiv8": {
     "formal_statement": "theorem numbertheory_notEquiv2i2jasqbsqdiv8 :\n  ¬ (∀ a b : ℤ, (∃ i j, a = 2*i ∧ b=2*j) ↔ (∃ k, a^2 + b^2 = 8*k)) := by",
-    "header": "",
-    "informal_statement": "Let $a$ and $b$ be two integer numbers. Show that the following statement is false: $a$ and $b$ are both even iff $8 \\mid a^2 + b^2$."
+    "header": ""
   },
   "mathd_algebra_156": {
     "formal_statement": "theorem mathd_algebra_156\n  (x y : ℝ)\n  (f g : ℝ → ℝ)\n  (h₀ : ∀t, f t = t^4)\n  (h₁ : ∀t, g t = 5 * t^2 - 6)\n  (h₂ : f x = g x)\n  (h₃ : f y = g y)\n  (h₄ : x^2 < y^2) :\n  y^2 - x^2 = 1 := by",
