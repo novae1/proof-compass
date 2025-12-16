@@ -1,14 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass
-
-DEFAULT_HEADER = """import Mathlib
-import Aesop
-
-set_option maxHeartbeats 0
-
-open BigOperators Real Nat Topology Rat
-
-"""
+from typing import Any
 
 @dataclass
 class Attempt:
@@ -16,7 +8,7 @@ class Attempt:
     success: bool
     raw_output: str
     parsed_proof: str
-    message: list
+    message: Any
     generation_time: float
     verification_time: float
 
@@ -48,14 +40,17 @@ class TheoremProcessor:
     def __init__(
         self,
         formal_statement: str,
-        header: str | None = None,
+        header: str,
         informal_statement: str | None = None,
+        nl_proof: str | None = None,
     ):
         self._formal_statement = formal_statement
+        if not header or not header.strip():
+            raise ValueError("TheoremProcessor.header must be a non-empty string.")
         self._header = header
         self._informal_statement = informal_statement
+        self._nl_proof = nl_proof
         self._attempts: list[Attempt] = []
-        self._solution: str | None = None
 
     @property
     def formal_statement(self) -> str:
@@ -63,26 +58,27 @@ class TheoremProcessor:
 
     @property
     def header(self) -> str:
-        return self._header or DEFAULT_HEADER
+        return self._header
 
     @property
     def informal_statement(self) -> str | None:
         return self._informal_statement
 
     @property
-    def solution(self) -> str | None:
-        return self._solution
+    def nl_proof(self) -> str | None:
+        return self._nl_proof
+
+    def get_solution(self) -> str | None:
+        for attempt in self._attempts:
+            if attempt.success:
+                return attempt.parsed_proof
+        return None
 
     def add_attempt(self, attempt: Attempt) -> None:
         self._attempts.append(attempt)
-        if attempt.success:
-            self._solution = attempt.parsed_proof
-
-    def add_solution(self, solution: str) -> None:
-        self._solution = solution
 
     def has_solution(self) -> bool:
-        return self._solution is not None
+        return self.get_solution() is not None
 
     def count_attempts(self) -> int:
         return len(self._attempts)
@@ -92,19 +88,19 @@ class TheoremProcessor:
             "formal_statement": self._formal_statement,
             "header": self._header,
             "informal_statement": self._informal_statement,
+            "nl_proof": self._nl_proof,
             "attempts": [attempt.to_dict() for attempt in self._attempts],
-            "solution": self._solution,
         }
 
     @staticmethod
     def from_dict(processor_dict: dict) -> TheoremProcessor:
         processor = TheoremProcessor(
             formal_statement=processor_dict["formal_statement"],
-            header=processor_dict.get("header"),
+            header=processor_dict["header"],
             informal_statement=processor_dict.get("informal_statement"),
+            nl_proof=processor_dict.get("nl_proof"),
         )
         processor._attempts = [
             Attempt.from_dict(att) for att in processor_dict.get("attempts", [])
         ]
-        processor._solution = processor_dict.get("solution")
         return processor

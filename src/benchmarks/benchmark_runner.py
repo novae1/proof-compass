@@ -4,10 +4,10 @@ import json
 from pathlib import Path
 from typing import Any, Mapping, Optional
 
-from ..verification.http_client import LeanHTTPClient
+from ..lean.http_client import LeanHTTPClient
 from ..core.problem_structure import TheoremProcessor
-from ..core.theorem_proving import synthesize_proof_attempts
-from ..generation.generation_params import GenerationParams
+from ..core.theorem_proving import synthesize_proof_attempts_many
+from ..prover_generation.generation_params import GenerationParams
 
 
 Benchmark = Mapping[str, Mapping[str, Any]]
@@ -22,10 +22,15 @@ def build_processors(benchmark: Benchmark) -> dict[str, TheoremProcessor]:
         except KeyError as exc:
             raise KeyError(f"Benchmark problem '{name}' is missing 'formal_statement'.") from exc
 
+        header = problem.get("header")
+        if not header or not str(header).strip():
+            raise KeyError(f"Benchmark problem '{name}' is missing a non-empty 'header'.")
+
         processors[name] = TheoremProcessor(
             formal_statement=formal_statement,
-            header=problem.get("header"),
+            header=str(header),
             informal_statement=problem.get("informal_statement"),
+            nl_proof=problem.get("nl_proof"),
         )
 
     return processors
@@ -46,25 +51,22 @@ def solve_benchmark(
     tokenizer,
     server_client: Optional[LeanHTTPClient],
     num_attempts: int,
+    model_id: str,
     generation_params: GenerationParams,
     checkpoint_path: Path | str,
 ) -> dict[str, TheoremProcessor]:
-    """Solve every problem in the benchmark and checkpoint after each one."""
+    """Solve every problem in the benchmark and checkpoint once at the end."""
     processors = build_processors(benchmark)
 
-    i = 0
-    for processor in processors.values():
-        
-        i += 1
-        synthesize_proof_attempts(
-            processor=processor,
-            model=model,
-            tokenizer=tokenizer,
-            server_client=server_client,
-            num_attempts=num_attempts,
-            generation_params=generation_params,
-        )
-        save_processors(processors, checkpoint_path)
-        print(i)
+    synthesize_proof_attempts_many(
+        processors=processors,
+        model=model,
+        tokenizer=tokenizer,
+        server_client=server_client,
+        model_id=model_id,
+        max_attempts_per_problem=num_attempts,
+        generation_params=generation_params,
+    )
+    save_processors(processors, checkpoint_path)
 
     return processors

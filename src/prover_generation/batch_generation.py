@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from typing import List
+from typing import TYPE_CHECKING, List, Sequence
 
-import torch
-from transformers import PreTrainedModel, PreTrainedTokenizerBase
+if TYPE_CHECKING:
+    from transformers import PreTrainedModel, PreTrainedTokenizerBase
 
 from .generation_params import GenerationParams
 
@@ -15,33 +15,36 @@ def _ensure_pad_token(tokenizer: PreTrainedTokenizerBase) -> int:
 
 
 def generate_batch(
-    prompt: str,
+    prompts: Sequence[str],
     model: PreTrainedModel,
     tokenizer: PreTrainedTokenizerBase,
     params: GenerationParams,
 ) -> List[str]:
-    """Generate multiple samples from a single prompt using HuggingFace Transformers."""
-    if params.batch_size <= 0:
-        raise ValueError("batch_size must be positive")
+    """Generate one sample per prompt using HuggingFace Transformers."""
+    import torch
+
+    if not prompts:
+        return []
 
     if tokenizer is None:
         raise ValueError("tokenizer is required for batch generation")
 
-    formatted_prompt = prompt
+    formatted_prompts = list(prompts)
     if hasattr(tokenizer, "apply_chat_template"):
-        formatted_prompt = tokenizer.apply_chat_template(
-            [{"role": "user", "content": prompt}],
-            tokenize=False,
-            add_generation_prompt=True,
-        )
-
-    prompts = [formatted_prompt] * params.batch_size
+        formatted_prompts = [
+            tokenizer.apply_chat_template(
+                [{"role": "user", "content": prompt}],
+                tokenize=False,
+                add_generation_prompt=True,
+            )
+            for prompt in prompts
+        ]
 
     pad_token_id = _ensure_pad_token(tokenizer)
     target_device = torch.device("cuda")
 
     encoded = tokenizer(
-        prompts,
+        formatted_prompts,
         return_tensors="pt",
         padding=True,
         truncation=True,
