@@ -13,7 +13,7 @@ from src.benchmarks.benchmark_runner import DEFAULT_HEADER
 MINIF2F_PATH = Path("benchmarks/processed/miniF2F_valid.json")
 OUTPUT_PATH = Path("benchmarks/processed/miniF2F_mathd_variants.json")
 MODEL_ID = "deepseek-ai/DeepSeek-Prover-V1.5-RL"
-WRONG_PROOF = "The value of 1 plus 1 is 2."
+WRONG_PROOF = "To prove that the identity in a group is unique, assume there are two identities, e1 and e2. Because e1 is an identity, e1 * e2 = e2. Because e2 is also an identity, e1 * e2 = e1. Since both results must be equal to the same expression, it follows that e1 = e2."
 
 
 def build_mathd_variants(

@@ -30,15 +30,6 @@ def generate_batch(
         raise ValueError("tokenizer is required for batch generation")
 
     formatted_prompts = list(prompts)
-    if hasattr(tokenizer, "apply_chat_template"):
-        formatted_prompts = [
-            tokenizer.apply_chat_template(
-                [{"role": "user", "content": prompt}],
-                tokenize=False,
-                add_generation_prompt=True,
-            )
-            for prompt in prompts
-        ]
 
     pad_token_id = _ensure_pad_token(tokenizer)
     target_device = torch.device("cuda")
