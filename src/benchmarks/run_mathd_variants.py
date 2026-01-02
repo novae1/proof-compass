@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 from typing import Mapping
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src.core.problem_structure import TheoremProcessor
@@ -18,8 +18,8 @@ from src.prover_generation.generation_params import GenerationParams
 
 Benchmark = Mapping[str, Mapping[str, object]]
 
-BENCHMARK_PATH = Path("benchmarks/processed/miniF2F_mathd_variants.json")
-CHECKPOINT_PATH = Path("experiments/mathd_runs/checkpoint.json")
+BENCHMARK_PATH = ROOT / "benchmarks/processed/miniF2F_mathd_variants.json"
+CHECKPOINT_PATH = ROOT / "experiments/mathd_runs/checkpoint.json"
 ATTEMPTS_PER_VARIANT = 4
 MICRO_BATCH_SIZE = 6
 TEMPERATURE = 1.0

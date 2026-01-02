@@ -2,14 +2,18 @@
 from __future__ import annotations
 
 import json
+import sys
 import time
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
 
 from src.lean.http_client import LeanHTTPClient
 from src.lean.checking import check_proof
 
-INPUT_PATH = Path("experiments/mathd_runs/checkpoint.json")
-OUTPUT_PATH = Path("experiments/mathd_runs/checkpoint_verified.json")
+INPUT_PATH = ROOT / "experiments/mathd_runs/checkpoint.json"
+OUTPUT_PATH = ROOT / "experiments/mathd_runs/checkpoint_verified.json"
 SERVER_URL = "http://localhost:1347"
 TIMEOUT_SECONDS = 20
 FALLBACK_HEADER = "set_option maxHeartbeats 0"
