@@ -18,3 +18,4 @@ torch
 transformers
 tqdm
 hf_transfer
+flask
