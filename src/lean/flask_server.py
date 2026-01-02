@@ -30,8 +30,8 @@ def initialize_repl():
 			except Exception as e:
 				logger.error(f"Error shutting down existing REPL: {str(e)}")
 
-		project_dir = r"C:\Users\novae\Documents\lean_test"
-		repl_path = r"C:\Users\novae\Documents\repl\.lake\build\bin\repl"
+		project_dir = "/home/nicolas/Documents/lean_project"
+		repl_path = "/home/nicolas/Documents/repl/.lake/build/bin/repl"
 		
 		repl = LeanREPL(project_dir, repl_path)
 		

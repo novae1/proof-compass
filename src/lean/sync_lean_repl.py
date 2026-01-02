@@ -67,7 +67,7 @@ class LeanREPL:
 
     def _create_process(self, project_dir: str, repl_path: str) -> subprocess.Popen:
         """Create and return the REPL subprocess."""
-        cmd = f'cmd /c "lake env {repl_path}"'
+        cmd = ["lake", "env", repl_path]
         logger.info(f"Creating process with command: {cmd}")
         
         process = subprocess.Popen(
