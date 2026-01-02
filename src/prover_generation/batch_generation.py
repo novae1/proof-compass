@@ -1,10 +1,6 @@
 from __future__ import annotations
-
-from typing import TYPE_CHECKING, List, Sequence
-
-if TYPE_CHECKING:
-    from transformers import PreTrainedModel, PreTrainedTokenizerBase
-
+import torch
+from transformers import PreTrainedModel, PreTrainedTokenizerBase
 from .generation_params import GenerationParams
 
 
@@ -15,20 +11,15 @@ def _ensure_pad_token(tokenizer: PreTrainedTokenizerBase) -> int:
 
 
 def generate_batch(
-    prompts: Sequence[str],
+    prompts: list[str],
     model: PreTrainedModel,
     tokenizer: PreTrainedTokenizerBase,
     params: GenerationParams,
-) -> List[str]:
+) -> list[str]:
     """Generate one sample per prompt using HuggingFace Transformers."""
-    import torch
-
     if not prompts:
         return []
-
-    if tokenizer is None:
-        raise ValueError("tokenizer is required for batch generation")
-
+    
     formatted_prompts = list(prompts)
 
     pad_token_id = _ensure_pad_token(tokenizer)
@@ -51,7 +42,7 @@ def generate_batch(
         pad_token_id=pad_token_id,
     )
 
-    generations: List[str] = []
+    generations: list[str] = []
     for idx in range(outputs.size(0)):
         generations.append(tokenizer.decode(outputs[idx], skip_special_tokens=True).strip())
 
