@@ -22,7 +22,12 @@ def generate_attempts(
     max_attempts: int,
     stop_on_success: bool = True,
 ) -> list[Attempt]:
-    """Generate and verify attempts for a single processor."""
+    """
+    Generate and verify attempts for a single processor.
+    It's greatly simplified compared to when we were directly dealing with multiple distinct theorems,
+    which loses a bit on performance but greatly improves flexibility.
+    Besides, there is virtually no loss in performance since we have to use small batch sizes for reasoning models.
+    """
     if params.micro_batch_size <= 0:
         raise ValueError("GenerationParams.micro_batch_size must be positive.")
 
