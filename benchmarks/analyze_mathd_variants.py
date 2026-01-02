@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from typing import Dict, Tuple
 
-CHECKPOINT_PATH = Path("experiments/mathd_runs/checkpoint.json")
+CHECKPOINT_PATH = Path("experiments/mathd_runs/checkpoint_verified.json")
 
 
 def _load_checkpoint(path: Path) -> dict:
