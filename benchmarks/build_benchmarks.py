@@ -5,7 +5,7 @@ import re
 import shutil
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]  # benchmarks/
+ROOT = Path(__file__).resolve().parent  # benchmarks/
 PROCESSED_DIR = ROOT / "processed"
 
 MINIF2F_DIR = ROOT / "miniF2F"
@@ -39,10 +39,17 @@ def build_minif2f(split: str) -> None:
     text = source.read_text(encoding="utf-8")
     benchmark: dict[str, dict[str, str]] = {}
 
+    header = """import Mathlib
+import Aesop
+
+set_option maxHeartbeats 0
+
+open BigOperators Real Nat Topology Rat"""
+
     for match in THEOREM_PATTERN.finditer(text):
         name = match.group(1)
         body = match.group(0)
-        benchmark[name] = {"formal_statement": clean_formal_statement(body), "header": ""}
+        benchmark[name] = {"formal_statement": clean_formal_statement(body), "header": header}
 
         json_path = json_source_dir / f"{name}.json"
         if json_path.exists():
