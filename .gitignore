@@ -2,4 +2,6 @@ models/
 __pycache__/
 .venv/
 prompt_examples/
+testing_stuff/
 keys.json
+AGENTS.md
