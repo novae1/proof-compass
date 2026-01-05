@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src.core.problem_structure import TheoremProcessor
-from src.core.theorem_proving import synthesize_proof_attempts_many
+from src.prover_generation.theorem_proving import synthesize_proof_attempts_many
 from src.lean.http_client import LeanHTTPClient
 from src.prover_generation.artifacts import load_artifacts
 from src.prover_generation.generation_params import GenerationParams

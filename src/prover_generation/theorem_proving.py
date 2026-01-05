@@ -3,12 +3,12 @@ from __future__ import annotations
 import time
 from typing import Optional
 
-from .problem_structure import Attempt, TheoremProcessor
+from ..core.problem_structure import Attempt, TheoremProcessor
 from ..lean import checking
 from ..lean.http_client import LeanHTTPClient
-from ..prover_generation.batch_generation import generate_batch
-from ..prover_generation.generation_params import GenerationParams
-from ..prover_generation.prompt_config import PromptConfig
+from .batch_generation import generate_batch
+from .generation_params import GenerationParams
+from .prompt_config import PromptConfig
 
 
 def generate_attempts(

@@ -7,7 +7,7 @@ from typing import Any, Mapping, Optional
 
 from ..lean.http_client import LeanHTTPClient
 from ..core.problem_structure import TheoremProcessor
-from ..core.theorem_proving import synthesize_proof_attempts_many
+from ..prover_generation.theorem_proving import synthesize_proof_attempts_many
 from ..prover_generation.generation_params import GenerationParams
 
 
