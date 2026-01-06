@@ -39,12 +39,10 @@ def verify_attempts(payload: dict, server_url: str) -> dict:
     client = LeanHTTPClient(server_url)
     total = len(payload)
 
-    for idx, problem_key in enumerate(sorted(payload), start=1):
+    for idx, problem_key in enumerate(payload, start=1):
         print(f"[{idx}/{total}] {problem_key}")
         processor = payload[problem_key]
         header = _strip_imports(str(processor.get("header", ""))).strip()
-        if not header:
-            raise ValueError(f"Problem '{problem_key}' is missing a header.")
 
         attempts = processor.get("attempts", [])
         for attempt in attempts:

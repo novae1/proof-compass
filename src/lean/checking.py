@@ -36,8 +36,13 @@ def check_proof(
     if not proof or not str(proof).strip():
         return False, "Proof provided was an empty string (probably a generation error)"
 
+    """
     if not header or not str(header).strip():
         return False, "A non-empty header is required for proof checking."
+    """
+    # This is not necessary, some problems don't require a header due to the
+    # bug I've encountered that forces me to remove all imports from headers
+    # but I might re-implement this in the future
 
     success, message = check_repl_status(server_client)
     if not success:
