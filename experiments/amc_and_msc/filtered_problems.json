@@ -1,0 +1,322 @@
+{
+  "miniF2F/amc12a_2019_p21": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2019_p21 (z : \u2102) (h\u2080 : z = (1 + Complex.I) / Real.sqrt 2) :\n  ((\u2211 k : \u2124 in Finset.Icc 1 12, z ^ k ^ 2) * (\u2211 k : \u2124 in Finset.Icc 1 12, 1 / z ^ k ^ 2)) = 36 := by"
+  },
+  "miniF2F/amc12a_2015_p10": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2015_p10 (x y : \u2124) (h\u2080 : 0 < y) (h\u2081 : y < x) (h\u2082 : x + y + x * y = 80) : x = 26 := by"
+  },
+  "miniF2F/amc12a_2008_p8": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2008_p8 (x y : \u211d) (h\u2080 : 0 < x \u2227 0 < y) (h\u2081 : y ^ 3 = 1)\n  (h\u2082 : 6 * x ^ 2 = 2 * (6 * y ^ 2)) : x ^ 3 = 2 * Real.sqrt 2 := by"
+  },
+  "miniF2F/amc12a_2009_p9": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2009_p9 (a b c : \u211d) (f : \u211d \u2192 \u211d) (h\u2080 : \u2200 x, f (x + 3) = 3 * x ^ 2 + 7 * x + 4)\n  (h\u2081 : \u2200 x, f x = a * x ^ 2 + b * x + c) : a + b + c = 2 := by"
+  },
+  "miniF2F/amc12a_2019_p9": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2019_p9 (a : \u2115 \u2192 \u211a) (h\u2080 : a 1 = 1) (h\u2081 : a 2 = 3 / 7)\n  (h\u2082 : \u2200 n, a (n + 2) = a n * a (n + 1) / (2 * a n - a (n + 1))) :\n  \u2191(a 2019).den + (a 2019).num = 8078 := by"
+  },
+  "miniF2F/amc12a_2008_p4": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2008_p4 : (\u220f k in Finset.Icc (1 : \u2115) 501, ((4 : \u211d) * k + 4) / (4 * k)) = 502 := by"
+  },
+  "miniF2F/amc12_2001_p9": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12_2001_p9 (f : \u211d \u2192 \u211d) (h\u2080 : \u2200 x > 0, \u2200 y > 0, f (x * y) = f x / y) (h\u2081 : f 500 = 3) :\n    f 600 = 5 / 2 := by"
+  },
+  "miniF2F/amc12_2000_p15": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12_2000_p15 (f : \u2102 \u2192 \u2102) (h\u2080 : \u2200 x, f (x / 3) = x ^ 2 + x + 1)\n  (h\u2081 : Fintype (f \u207b\u00b9' {7})) : (\u2211 y in (f \u207b\u00b9' {7}).toFinset, y / 3) = -1 / 9 := by"
+  },
+  "miniF2F/amc12a_2009_p5": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2009_p5 (x : \u211d) (h\u2080 : x ^ 3 - (x + 1) * (x - 1) * x = 5) : x ^ 3 = 125 := by"
+  },
+  "miniF2F/amc12b_2002_p11": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12b_2002_p11 (a b : \u2115) (h\u2080 : Nat.Prime a) (h\u2081 : Nat.Prime b) (h\u2082 : Nat.Prime (a + b))\n  (h\u2083 : Nat.Prime (a - b)) : Nat.Prime (a + b + (a - b + (a + b))) := by"
+  },
+  "miniF2F/amc12_2000_p5": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12_2000_p5 (x p : \u211d) (h\u2080 : x < 2) (h\u2081 : abs (x - 2) = p) : x - p = 2 - 2 * p := by"
+  },
+  "miniF2F/amc12a_2008_p2": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2008_p2 (x : \u211d) (h\u2080 : x * (1 / 2 + 2 / 3) = 1) : x = 6 / 7 := by"
+  },
+  "miniF2F/amc12a_2021_p7": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2021_p7 (x y : \u211d) : 1 \u2264 (x * y - 1) ^ 2 + (x + y) ^ 2 := by"
+  },
+  "miniF2F/amc12a_2002_p21": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2002_p21 (u : \u2115 \u2192 \u2115) (h\u2080 : u 0 = 4) (h\u2081 : u 1 = 7)\n    (h\u2082 : \u2200 n \u2265 2, u (n + 2) = (u n + u (n + 1)) % 10) :\n    \u2200 n, (\u2211 k in Finset.range n, u k) > 10000 \u2192 1999 \u2264 n := by"
+  },
+  "miniF2F/amc12b_2002_p6": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12b_2002_p6 (a b : \u211d) (h\u2080 : a \u2260 0 \u2227 b \u2260 0)\n  (h\u2081 : \u2200 x, x ^ 2 + a * x + b = (x - a) * (x - b)) : a = 1 \u2227 b = -2 := by"
+  },
+  "miniF2F/amc12a_2010_p22": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2010_p22 (x : \u211d) : 49 \u2264 \u2211 k:\u2124 in Finset.Icc 1 119, abs (\u2191k * x - 1) := by"
+  },
+  "miniF2F/amc12a_2017_p7": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2017_p7 (f : \u2115 \u2192 \u211d) (h\u2080 : f 1 = 2) (h\u2081 : \u2200 n, 1 < n \u2227 Even n \u2192 f n = f (n - 1) + 1)\n  (h\u2082 : \u2200 n, 1 < n \u2227 Odd n \u2192 f n = f (n - 2) + 2) : f 2017 = 2018 := by"
+  },
+  "miniF2F/amc12b_2021_p21": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12b_2021_p21 (S : Finset \u211d)\n  (h\u2080 : \u2200 x : \u211d, x \u2208 S \u2194 0 < x \u2227 x ^ (2 : \u211d) ^ Real.sqrt 2 = Real.sqrt 2 ^ (2 : \u211d) ^ x) :\n  (\u21912 \u2264 \u2211 k in S, k) \u2227 (\u2211 k in S, k) < 6 := by"
+  },
+  "miniF2F/amc12b_2004_p3": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12b_2004_p3 (x y : \u2115) (h\u2080 : 2 ^ x * 3 ^ y = 1296) : x + y = 8 := by"
+  },
+  "miniF2F/amc12a_2011_p18": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2011_p18 (x y : \u211d) (h\u2080 : abs (x + y) + abs (x - y) = 2) :\n  x ^ 2 - 6 * x + y ^ 2 \u2264 8 := by"
+  },
+  "miniF2F/amc12b_2003_p6": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12b_2003_p6 (a r : \u211d) (u : \u2115 \u2192 \u211d) (h\u2080 : \u2200 k, u k = a * r ^ k) (h\u2081 : u 1 = 2)\n  (h\u2082 : u 3 = 6) : u 0 = 2 / Real.sqrt 3 \u2228 u 0 = -(2 / Real.sqrt 3) := by"
+  },
+  "miniF2F/amc12_2001_p2": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12_2001_p2 (a b n : \u2115) (h\u2080 : 1 \u2264 a \u2227 a \u2264 9) (h\u2081 : 0 \u2264 b \u2227 b \u2264 9) (h\u2082 : n = 10 * a + b)\n  (h\u2083 : n = a * b + a + b) : b = 9 := by"
+  },
+  "miniF2F/amc12a_2009_p2": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2009_p2 : 1 + 1 / (1 + 1 / (1 + 1)) = (5 : \u211a) / 3 := by"
+  },
+  "miniF2F/amc12a_2013_p8": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2013_p8 (x y : \u211d) (h\u2080 : x \u2260 0) (h\u2081 : y \u2260 0) (h\u2082 : x \u2260 y)\n  (h\u2083 : x + 2 / x = y + 2 / y) : x * y = 2 := by"
+  },
+  "miniF2F/amc12b_2020_p5": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12b_2020_p5 (a b : \u2115) (h\u2080 : (5 : \u211a) / 8 * b = 2 / 3 * a + 7)\n  (h\u2081 : (b : \u211a) - 5 / 8 * b = a - 2 / 3 * a + 7) : a = 42 := by"
+  },
+  "miniF2F/amc12b_2003_p17": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12b_2003_p17 (x y : \u211d) (h\u2080 : 0 < x \u2227 0 < y) (h\u2081 : Real.log (x * y ^ 3) = 1)\n  (h\u2082 : Real.log (x ^ 2 * y) = 1) : Real.log (x * y) = 3 / 5 := by"
+  },
+  "miniF2F/amc12_2000_p11": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12_2000_p11 (a b : \u211d) (h\u2080 : a \u2260 0 \u2227 b \u2260 0) (h\u2081 : a * b = a - b) :\n    a / b + b / a - a * b = 2 := by"
+  },
+  "miniF2F/amc12b_2003_p9": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12b_2003_p9 (a b : \u211d) (f : \u211d \u2192 \u211d) (h\u2080 : \u2200 x, f x = a * x + b) (h\u2081 : f 6 - f 2 = 12) :\n    f 12 - f 2 = 30 := by"
+  },
+  "miniF2F/amc12a_2008_p15": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2008_p15 (k : \u2115) (h\u2080 : k = 2008 ^ 2 + 2 ^ 2008) : (k ^ 2 + 2 ^ k) % 10 = 6 := by"
+  },
+  "miniF2F/amc12a_2009_p15": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2009_p15 (n : \u2115) (h\u2080 : 0 < n)\n  (h\u2081 : (\u2211 k in Finset.Icc 1 n, \u2191k * Complex.I ^ k) = 48 + 49 * Complex.I) : n = 97 := by"
+  },
+  "miniF2F/amc12a_2013_p7": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2013_p7 (s : \u2115 \u2192 \u211d) (h\u2080 : \u2200 n, s (n + 2) = s (n + 1) + s n) (h\u2081 : s 9 = 110)\n    (h\u2082 : s 7 = 42) : s 4 = 10 := by"
+  },
+  "miniF2F/amc12a_2020_p21": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2020_p21 (S : Finset \u2115)\n  (h\u2080 : \u2200 n : \u2115, n \u2208 S \u2194 5 \u2223 n \u2227 Nat.lcm 5! n = 5 * Nat.gcd 10! n) : S.card = 48 := by"
+  },
+  "miniF2F/amc12a_2003_p1": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2003_p1 (u v : \u2115 \u2192 \u2115) (h\u2080 : \u2200 n, u n = 2 * n + 2) (h\u2081 : \u2200 n, v n = 2 * n + 1) :\n    ((\u2211 k in Finset.range 2003, u k) - \u2211 k in Finset.range 2003, v k) = 2003 := by"
+  },
+  "miniF2F/amc12a_2016_p2": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2016_p2 (x : \u211d) (h\u2080 : (10 : \u211d) ^ x * 100 ^ (2 * x) = 1000 ^ 5) : x = 3 := by"
+  },
+  "miniF2F/amc12a_2003_p25": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2003_p25 (a b : \u211d) (f : \u211d \u2192 \u211d) (h\u2080 : 0 < b)\n  (h\u2081 : \u2200 x, f x = Real.sqrt (a * x ^ 2 + b * x)) (h\u2082 : { x | 0 \u2264 f x } = f '' { x | 0 \u2264 f x }) :\n  a = 0 \u2228 a = -4 := by"
+  },
+  "miniF2F/amc12a_2010_p10": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2010_p10 (p q : \u211d) (a : \u2115 \u2192 \u211d) (h\u2080 : \u2200 n, a (n + 2) - a (n + 1) = a (n + 1) - a n)\n  (h\u2081 : a 1 = p) (h\u2082 : a 2 = 9) (h\u2083 : a 3 = 3 * p - q) (h\u2084 : a 4 = 3 * p + q) : a 2010 = 8041 := by"
+  },
+  "miniF2F/amc12a_2009_p25": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2009_p25 (a : \u2115 \u2192 \u211d) (h\u2080 : a 1 = 1) (h\u2081 : a 2 = 1 / Real.sqrt 3)\n  (h\u2082 : \u2200 n, 1 \u2264 n \u2192 a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1))) : abs (a 2009) = 0 := by"
+  },
+  "miniF2F/amc12a_2002_p12": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2002_p12 (f : \u211d \u2192 \u211d) (k : \u211d) (a b : \u2115) (h\u2080 : \u2200 x, f x = x ^ 2 - 63 * x + k)\n  (h\u2081 : f a = 0 \u2227 f b = 0) (h\u2082 : a \u2260 b) (h\u2083 : Nat.Prime a \u2227 Nat.Prime b) : k = 122 := by"
+  },
+  "miniF2F/amc12a_2020_p13": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2020_p13 (a b c : \u2115) (n : NNReal) (h\u2080 : n \u2260 1) (h\u2081 : 1 < a \u2227 1 < b \u2227 1 < c)\n  (h\u2082 : (n * (n * n ^ (1 / c)) ^ (1 / b)) ^ (1 / a) = (n ^ 25) ^ (1 / 36)) : b = 3 := by"
+  },
+  "miniF2F/amc12a_2010_p11": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2010_p11 (x b : \u211d) (h\u2080 : 0 < b) (h\u2081 : (7 : \u211d) ^ (x + 7) = 8 ^ x)\n  (h\u2082 : x = Real.logb b (7 ^ 7)) : b = 8 / 7 := by"
+  },
+  "miniF2F/amc12a_2003_p24": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2003_p24 :\n  IsGreatest { y : \u211d | \u2203 a b : \u211d, 1 < b \u2227 b \u2264 a \u2227 y = Real.logb a (a / b) + Real.logb b (b / a) }\n    0 := by"
+  },
+  "miniF2F/amc12a_2002_p1": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2002_p1 (f : \u2102 \u2192 \u2102) (h\u2080 : \u2200 x, f x = (2 * x + 3) * (x - 4) + (2 * x + 3) * (x - 6))\n  (h\u2081 : Fintype (f \u207b\u00b9' {0})) : (\u2211 y in (f \u207b\u00b9' {0}).toFinset, y) = 7 / 2 := by"
+  },
+  "miniF2F/amc12b_2002_p3": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12b_2002_p3 (S : Finset \u2115)\n  -- note: we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 n : \u2115, n \u2208 S \u2194 0 < n \u2227 Nat.Prime (n ^ 2 + 2 - 3 * n)) :\n  S.card = 1 := by"
+  },
+  "miniF2F/amc12a_2016_p3": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2016_p3 (f : \u211d \u2192 \u211d \u2192 \u211d)\n  (h\u2080 : \u2200 x, \u2200 (y) (_ : y \u2260 0), f x y = x - y * Int.floor (x / y)) :\n  f (3 / 8) (-(2 / 5)) = -(1 / 40) := by"
+  },
+  "miniF2F/amc12a_2017_p2": {
+    "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
+    "formal_statement": "theorem amc12a_2017_p2 (x y : \u211d) (h\u2080 : x \u2260 0) (h\u2081 : y \u2260 0) (h\u2082 : x + y = 4 * (x * y)) :\n  1 / x + 1 / y = 4 := by"
+  },
+  "MSC-180/05_003": {
+    "header": "import Mathlib\nopen Equiv\ndef excedances {n : \u2115} (\u03c0 : Perm (Fin n)) : Finset (Fin n) := Finset.univ.filter (fun i => \u03c0 i > i)\ndef eulerianNumber (n k : \u2115) : \u2115 := Fintype.card {\u03c0 : Perm (Fin n) | (excedances \u03c0).card = k}\ndef coexcedances {n : \u2115} (\u03c0 : Perm (Fin n)) : Finset (Fin n) := Finset.univ.filter (fun i => \u03c0 i < i)",
+    "formal_statement": "theorem excedance_coexcedance_dual {n : \u2115} (\u03c0 : Perm (Fin n))) : (excedances \u03c0).card = (coexcedances \u03c0\u207b\u00b9).card := by sorry"
+  },
+  "MSC-180/06_002": {
+    "header": "import Mathlib\n\nopen Polynomial Ideal\n\nvariable {p : \u2115} [Fact (Nat.Prime p)] {r n : \u2115}",
+    "formal_statement": "theorem finite_field_extension_construction (m : Polynomial (GaloisField p r)) (hirr : Irreducible m) (hdeg : natDegree m = n) : let Fq := GaloisField p r; let q := p ^ r; let K := Fq[X] \u29f8 span {m}; have is_max : (span {m} : Ideal Fq[X]).IsMaximal := PrincipalIdealRing.isMaximal_of_irreducible hirr; have field_inst : Field K := Ideal.Quotient.field (span {m}); have fintype_inst : Fintype K := by sorry; let u : K := Ideal.Quotient.mk (span {m}) X; Fintype.card K = q ^ n \u2227 (\u2200 (x : K), \u2203! (c : Fin n \u2192 Fq), x = \u2211 i : Fin n, c i \u2022 u ^ (i : \u2115)) \u2227 aeval u m = 0 := by sorry"
+  },
+  "MSC-180/08_001": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem homomorphism_agreement {R A B : Type*} [CommSemiring R] [Semiring A] [Semiring B] [Algebra R A] [Algebra R B] {X : Set A} (hgen : Algebra.adjoin R X = \u22a4) {\u03b1 \u03b2 : A \u2192\u2090[R] B} (h_agree : \u2200 x \u2208 X, \u03b1 x = \u03b2 x) : \u03b1 = \u03b2 := by sorry"
+  },
+  "MSC-180/08_002": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem unique_relative_complement {L : Type*} [DistribLattice L] {a b c : L} (hab : a \u2264 b) (hbc : b \u2264 c) : \u2200 (d\u2081 d\u2082 : L), a \u2264 d\u2081 \u2227 d\u2081 \u2264 c \u2227 d\u2081 \u2294 b = c \u2227 d\u2081 \u2293 b = a \u2192 a \u2264 d\u2082 \u2227 d\u2082 \u2264 c \u2227 d\u2082 \u2294 b = c \u2227 d\u2082 \u2293 b = a \u2192 d\u2081 = d\u2082 := by sorry"
+  },
+  "MSC-180/08_003": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem exists_element_with_maximal_order {G : Type*} [CommGroup G] [Fintype G] : \u2203 g : G, \u2200 x : G, orderOf x \u2223 orderOf g := by sorry"
+  },
+  "MSC-180/11_001": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem algebraic_number_property {l : \u2115} (\u03b3 : Fin l \u2192 \u2102) (hspan : Submodule.span \u211a (Set.range \u03b3) = Submodule.span \u211a (Set.range \u03b3)) (\u03b1 : \u2102) (h : \u2200 (x : \u2102), x \u2208 Submodule.span \u211a (Set.range \u03b3) \u2192 \u03b1 * x \u2208 Submodule.span \u211a (Set.range \u03b3)) : IsAlgebraic \u211a \u03b1 := by sorry"
+  },
+  "MSC-180/11_003": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem lifting_solutions {p a n : \u2115} [hp : Fact (Nat.Prime p)] (h_odd : p \u2260 2) (hpa : \u00acp \u2223 a) (hpn : \u00acp \u2223 n) (h_solvable : \u2203 x : ZMod p, x ^ n = a) : \u2200 e : \u2115, e \u2265 1 \u2192 (\u2203 y : ZMod (p^e), y^n = a) \u2227 Fintype.card {x : ZMod p // x^n = a} = Fintype.card {x : ZMod (p^e) // x^n = a} := by sorry"
+  },
+  "MSC-180/12_001": {
+    "header": "import Mathlib\nopen Polynomial",
+    "formal_statement": "theorem polynomial_division_algorithm {F : Type*} [Field F] (f g : Polynomial F) (hg : g \u2260 0) : \u2203 (q r : Polynomial F), f = g * q + r \u2227 (r = 0 \u2228 r.degree < g.degree) \u2227 \u2200 (q' r' : Polynomial F), (f = g * q' + r' \u2227 (r' = 0 \u2228 r'.degree < g.degree)) \u2192 q = q' \u2227 r = r' := by sorry"
+  },
+  "MSC-180/12_002": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem chinese_remainder_theorem {k : \u2115} (n : \u2115 \u2192 \u2115) (hpos : \u2200 i, 0 < i \u2192 i \u2264 k \u2192 n i > 0) (hcoprime : \u2200 i j, 0 < i \u2192 i \u2264 k \u2192 0 < j \u2192 j \u2264 k \u2192 i \u2260 j \u2192 Nat.Coprime (n i) (n j)) (a : \u2115 \u2192 \u2124) : \u2203 x : \u2124, \u2200 i, 0 < i \u2192 i \u2264 k \u2192 x \u2261 a i [ZMOD (n i)] \u2227 \u2200 y : \u2124, (\u2200 i, 0 < i \u2192 i \u2264 k \u2192 y \u2261 a i [ZMOD (n i)]) \u2192 x \u2261 y [ZMOD ((Finset.Icc 1 k).prod fun i => (n i : \u2124))] := by sorry"
+  },
+  "MSC-180/12_003": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem maximal_ideal_iff_quotient_field {R : Type*} [CommRing R] [Nontrivial R] (M : Ideal R) : M.IsMaximal \u2194 IsField (R \u29f8 M) := by sorry"
+  },
+  "MSC-180/14_001": {
+    "header": "import Mathlib\nopen Function",
+    "formal_statement": "theorem kernel_subgroup_and_isomorphism {G H : Type*} [AddCommGroup G] [AddCommGroup H] (\u03c6 : G \u2192+ H) : \u03c6.ker = {g | \u03c6 g = 0} \u2227 (Surjective \u03c6 \u2192 Nonempty (G \u29f8 \u03c6.ker \u2243+ H)) := by sorry"
+  },
+  "MSC-180/14_002": {
+    "header": "import Mathlib.Data.Real.Basic",
+    "formal_statement": "theorem curve_union : {(x, y, z) : \u211d \u00d7 \u211d \u00d7 \u211d | (x + y + z) * (x ^ 2 + y ^ 2 - z ^ 2) = 0} = {(x, y, z) | x + y + z = 0} \u222a {(x, y, z) | x ^ 2 + y ^ 2 - z ^ 2 = 0} := by sorry"
+  },
+  "MSC-180/14_003": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem root_multiplicity_factorization {\u03b1 : Type*} [Field \u03b1] {P : Polynomial \u03b1} {a : \u03b1} {k : \u2115} (h : multiplicity (X - C a) P = k) : \u2203 g : Polynomial \u03b1, P = (X - C a) ^ k * g \u2227 eval a g \u2260 0 := by sorry"
+  },
+  "MSC-180/15_001": {
+    "header": "import Mathlib\nopen Matrix",
+    "formal_statement": "theorem qr_factorization {n : \u2115} (A : Matrix (Fin n) (Fin n) \u2102) : \u2203 (Q : Matrix (Fin n) (Fin n) \u2102) (R : Matrix (Fin n) (Fin n) \u2102), A = Q * R \u2227 Q\u1d34 * Q = 1 \u2227 (\u2200 i j : Fin n, i > j \u2192 R i j = 0) \u2227 (IsUnit A.det \u2192 (\u2200 i, (R i i).re > 0 \u2227 (R i i).im = 0) \u2227 \u2200 (Q' R' : Matrix (Fin n) (Fin n) \u2102), (A = Q' * R' \u2227 Q'\u1d34 * Q' = 1 \u2227 \u2200 i j, i > j \u2192 R' i j = 0 \u2227 (\u2200 i, (R' i i).re > 0 \u2227 (R' i i).im = 0)) \u2192 Q' = Q \u2227 R' = R) := by sorry"
+  },
+  "MSC-180/15_003": {
+    "header": "import Mathlib\n\nopen Matrix",
+    "formal_statement": "theorem column_row_factorization {m n : \u2115} (A : Matrix (Fin m) (Fin n) \u2102) (hc : A.rank \u2265 1) : \u2203 (c : \u2115) (h : c = A.rank) (C : Matrix (Fin m) (Fin c) \u2102) (R : Matrix (Fin c) (Fin n) \u2102), A = C * R := by sorry"
+  },
+  "MSC-180/16_002": {
+    "header": "import Mathlib\nopen Polynomial\nvariable {k : Type*} [Field k] {A : Type*} [CommRing A] [Algebra k A] (u : A)",
+    "formal_statement": "theorem minimal_polynomial_unique : \u2203! (g : k[X]), g.Monic \u2227 (g.eval\u2082 (algebraMap k A) u = 0) \u2227 \u2200 (f : k[X]), f.Monic \u2192 f.eval\u2082 (algebraMap k A) u = 0 \u2192 degree g \u2264 degree f := by sorry"
+  },
+  "MSC-180/20_001": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem my_favorite_theorem {G : Type*} [CommGroup G] [Fintype G]\n    (hG : Fintype.card G \u2260 0) (p : \u2115) (hp : Nat.Prime p)\n    (hG1 : p \u2223 Fintype.card G) :\n    \u2203 x : G, orderOf x = p := by sorry"
+  },
+  "MSC-180/20_003": {
+    "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+    "formal_statement": "theorem my_favorite_theorem {G : Type*} [Group G] [IsCyclic G]\n  (H : Subgroup G) : IsCyclic H :=by sorry"
+  },
+  "MSC-180/26_002": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem exists_sup_of_bddAbove {A : Set \u211d} (hne : A.Nonempty) (hbd : BddAbove A) :\n    \u2203 s : \u211d, IsLUB A s := by sorry"
+  },
+  "MSC-180/28_003": {
+    "header": "import Mathlib\nopen MeasureTheory Metric Set\nvariable {d : \u2115}",
+    "formal_statement": "theorem outer_measure_additive_of_separated {E F : Set (Fin d \u2192 \u211d)} (h : \u2203 \u03b4 > 0, \u2200 x \u2208 E, \u2200 y \u2208 F, \u03b4 \u2264 dist x y) : MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) (E \u222a F) = MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) E + MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) F := by sorry"
+  },
+  "MSC-180/34_001": {
+    "header": "import Mathlib\nvariable {m\u2081 m\u2082 k : \u211d} (x\u2081 x\u2082 : \u211d \u2192 \u211d)",
+    "formal_statement": "theorem two_mass_spring_system : (\u2200 t, m\u2081 * (deriv^[2] x\u2081 t) = k * (x\u2082 t - x\u2081 t)) \u2227 (\u2200 t, m\u2082 * (deriv^[2] x\u2082 t) = -k * (x\u2082 t - x\u2081 t)) := by sorry"
+  },
+  "MSC-180/34_002": {
+    "header": "import Mathlib\n\nopen Real",
+    "formal_statement": "theorem potential_function_exact_ode {f g : \u211d \u2192 \u211d} (hf : Continuous f) (hg : Continuous g) : \u2203 (F : \u211d \u00d7 \u211d \u2192 \u211d) (C : \u211d), Differentiable \u211d F \u2227 (\u2200 (x y : \u211d), deriv (\u03bb x' => F (x', y)) x = f x) \u2227 (\u2200 (x y : \u211d), deriv (\u03bb y' => F (x, y')) y = g y) \u2227 (\u2200 (x y : \u211d), F (x, y) = \u222b t in 0..x, f t + \u222b t in 0..y, g t + C) := by sorry"
+  },
+  "MSC-180/34_003": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem brine_tank_system {V r : \u211d} (hV : V > 0) (hr : r > 0) : \u2200 (x\u2081 x\u2082 : \u211d \u2192 \u211d), (Differentiable \u211d x\u2081) \u2192 (Differentiable \u211d x\u2082) \u2192 (\u2200 t, deriv x\u2081 t = r / V * (x\u2082 t - x\u2081 t)) \u2227 (\u2200 t, deriv x\u2082 t = r / V * (x\u2081 t - x\u2082 t)) := by sorry"
+  },
+  "MSC-180/39_003": {
+    "header": "import Mathlib\nopen Filter ENNReal\nopen scoped Topology",
+    "formal_statement": "theorem power_series_recurrence_relation (C : \u2115 \u2192 \u211d) (R : \u211d) (hR : R > 0) (hconv : \u2200 x \u2208 Metric.ball 0 R, HasSum (\u03bb n => C n * x ^ n) (\u2211' n, C n * x ^ n)) (hsol : \u2200 x \u2208 Metric.ball 0 R, deriv^[2] (fun x => \u2211' n, C n * x ^ n) x + 3 * x * deriv (fun x => \u2211' n, C n * x ^ n) x + 3 * (\u2211' n, C n * x ^ n) = 0) : \u2200 k \u2265 2, k * C k + 3 * C (k - 2) = 0 := by sorry"
+  },
+  "MSC-180/40_003": {
+    "header": "import Mathlib\nopen Real Filter",
+    "formal_statement": "theorem convergence_of_log_series {a b : \u211d} (ha : a > 0) (hb : b > 1) : Summable (\u03bb n : \u2115 => (Real.log (n + 1))^a / (n + 1)^b) := by sorry"
+  },
+  "MSC-180/52_002": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem diameter_achieved_by_hull_vertices {n : \u2115} {S : Set (EuclideanSpace \u211d (Fin n))} \n    (h_finite : Set.Finite S) (h_nonempty : S.Nonempty) :\n    \u2203 x \u2208 (convexHull \u211d S).extremePoints \u211d, \u2203 y \u2208 (convexHull \u211d S).extremePoints \u211d, \n    dist x y = Metric.diam S := by sorry"
+  },
+  "MSC-180/60_002": {
+    "header": "import Mathlib\nopen scoped BigOperators",
+    "formal_statement": "theorem weierstrass_approximation (f : \u211d \u2192 \u211d) (hf : ContinuousOn f (Set.Icc 0 1)) (\u03b5 : \u211d) (h\u03b5 : \u03b5 > 0) : \u2203 (B : Polynomial \u211d), \u2200 x \u2208 Set.Icc 0 1, |B.eval x - f x| \u2264 \u03b5 := by sorry"
+  },
+  "MSC-180/65_001": {
+    "header": "import Mathlib\nopen Set",
+    "formal_statement": "theorem unique_root_of_nonzero_deriv {a b : \u211d} (hab : a < b) (f : \u211d \u2192 \u211d) (hf : ContinuousOn f (Icc a b)) (hderiv : \u2200 x \u2208 Ioo a b, DifferentiableAt \u211d f x) (hnonzero : \u2200 x \u2208 Ioo a b, deriv f x \u2260 0) : \u2200 (p q : \u211d), p \u2208 Icc a b \u2192 q \u2208 Icc a b \u2192 f p = 0 \u2192 f q = 0 \u2192 p = q := by sorry"
+  },
+  "MSC-180/65_003": {
+    "header": "import Mathlib\nopen Metric Set NNReal",
+    "formal_statement": "theorem lipschitz_from_bounded_deriv {f : \u211d \u2192 \u211d} {a b : \u211d} {L : \u211d\u22650} (hab : a \u2264 b) (hderiv : \u2200 x \u2208 Icc a b, DifferentiableAt \u211d f x) (hbounded : \u2200 x \u2208 Icc a b, \u2016deriv f x\u2016 \u2264 L) : LipschitzOnWith L f (Icc a b) := by sorry"
+  },
+  "MSC-180/68_002": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem bezout_identity (a b : \u2124) : \u2203 s t : \u2124, s * a + t * b = Int.gcd a b := by sorry"
+  },
+  "MSC-180/68_003": {
+    "header": "import Mathlib",
+    "formal_statement": "theorem divide_conquer_sort_bound {f : \u2115 \u2192 \u2115} (h_rec : \u2200 n \u2265 2, f n = f (n / 2) + f ((n + 1) / 2) + n - 1) (h_base : f 1 = 0) : True := by sorry"
+  },
+  "MSC-180/78_003": {
+    "header": "import Mathlib\nopen Real\nvariable (q l r \u03b5\u2080 : \u211d)\nvariable (hl : l > 0) (hr : r > 2 * l) (h\u03b5\u2080 : \u03b5\u2080 > 0)\nnoncomputable def quadrupole_moment : \u211d := 2 * q * l^2\nnoncomputable def quadrupole_field_strength : \u211d := 3 * quadrupole_moment q l / (4 * \u03c0 * \u03b5\u2080 * r^4)",
+    "formal_statement": "theorem quadrupole_field_theorem : quadrupole_field_strength q l r \u03b5\u2080 = 3 * (2 * q * l^2) / (4 * \u03c0 * \u03b5\u2080 * r^4) := by sorry"
+  },
+  "MSC-180/90_001": {
+    "header": "import Mathlib\nopen Metric Set",
+    "formal_statement": "theorem euclidean_ball_convex {E : Type*} [NormedAddCommGroup E] [NormedSpace \u211d E] (c : E) (r : \u211d) (hr : 0 \u2264 r) : Convex \u211d (ball c r) := by sorry"
+  },
+  "MSC-180/91_001": {
+    "header": "import Mathlib\nopen BigOperators\nnoncomputable def expected_utility {n : \u2115} (u : Fin n \u2192 \u211d) (p : Fin n \u2192 NNReal) (hpsum : \u2211 k, p k = (1 : NNReal)) : \u211d := \u2211 k, (p k : \u211d) * u k",
+    "formal_statement": "theorem expected_payoff_definition {n : \u2115} (u : Fin n \u2192 \u211d) (p : Fin n \u2192 NNReal) (hpsum : \u2211 k, p k = (1 : NNReal)) : expected_utility u p hpsum = \u2211 k : Fin n, (p k : \u211d) * u k := by sorry"
+  },
+  "MSC-180/91_003": {
+    "header": "import Mathlib\nopen Matrix NNReal BigOperators\ndef PureStrategyPayoff {m n : \u2115} (M : Matrix (Fin m) (Fin n) (\u211d \u00d7 \u211d)) (p\u2081 : Fin m \u2192 \u211d\u22650) (p\u2082 : Fin n \u2192 \u211d\u22650) : \u211d \u00d7 \u211d := (\u2211 i : Fin m, \u2211 j : Fin n, p\u2081 i * p\u2082 j * (M i j).1, \u2211 i : Fin m, \u2211 j : Fin n, p\u2081 i * p\u2082 j * (M i j).2)\ndef IsPureNashEquilibrium {m n : \u2115} (M : Matrix (Fin m) (Fin n) (\u211d \u00d7 \u211d)) (s\u2081 : Fin m \u2192 \u211d\u22650) (s\u2082 : Fin n \u2192 \u211d\u22650) : Prop := (\u2200 i, (\u2211 j : Fin n, s\u2082 j = 1) \u2192 \u2200 j, (M i j).1 \u2264 (M i j).1) \u2227 (\u2200 j, (\u2211 i : Fin m, s\u2081 i = 1) \u2192 \u2200 i, (M i j).2 \u2264 (M i j).2)\ndef war_stage_payoff : Matrix (Fin 2) (Fin 2) (\u211d \u00d7 \u211d) := !![(-5, -5), (-100, -100); (-100, -100), (-100, -100)]",
+    "formal_statement": "theorem war_stage_nash_equilibria : let game := war_stage_payoff; let equilibria := { (s\u2081, s\u2082) | (s\u2081 = ![1, 0] \u2227 s\u2082 = ![1, 0]) \u2228 (s\u2081 = ![0, 1] \u2227 s\u2082 = ![0, 1]) }; (\u2200 (s : _ \u00d7 _), s \u2208 equilibria \u2192 IsPureNashEquilibrium game s.1 s.2) \u2227 (PureStrategyPayoff game ![1, 0] ![1, 0] = (-5, -5)) \u2227 (PureStrategyPayoff game ![0, 1] ![0, 1] = (-100, -100)) := by sorry"
+  }
+}

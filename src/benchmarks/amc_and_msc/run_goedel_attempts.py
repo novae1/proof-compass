@@ -17,7 +17,7 @@ from src.prover_generation.theorem_proving import generate_attempts
 INPUT_PATH = ROOT / "experiments" / "amc_and_msc" / "filtered_problems.json"
 OUTPUT_PATH = ROOT / "experiments" / "amc_and_msc" / "attempts.json"
 
-MODEL_ID = ""
+MODEL_ID = "Goedel-LM/Goedel-Prover-V2-8B"
 TEMPERATURE = 1.0
 TOP_P = 0.95
 MAX_NEW_TOKENS = 14000
@@ -56,7 +56,7 @@ def main() -> int:
     )
 
     output: dict[str, object] = {}
-    for problem_key in sorted(problems):
+    for problem_key in problems:
         entry = problems[problem_key]
         header = str(entry.get("header", "")).strip()
         formal_statement = str(entry.get("formal_statement", "")).strip()
