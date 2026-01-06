@@ -43,6 +43,27 @@ def _normalize_formal_statement(formal_statement: str) -> str:
     return trimmed
 
 
+_LEAN4_BLOCK_RE = re.compile(r"```lean4\s*(.*?)```", re.DOTALL)
+
+
+def _extract_last_theorem_block(raw_output: str) -> str:
+    matches = list(_LEAN4_BLOCK_RE.finditer(raw_output))
+    if not matches:
+        return ""
+
+    block = matches[-1].group(1)
+    lines = block.splitlines()
+    last_idx = None
+    for idx, line in enumerate(lines):
+        if line.lstrip().startswith("theorem "):
+            last_idx = idx
+
+    if last_idx is None:
+        return ""
+
+    return "\n".join(lines[last_idx:]).strip()
+
+
 class GoedelPromptConfig(PromptConfig):
     """Prompt configuration that matches `experiments/testing_goedel.py`."""
 
@@ -68,8 +89,7 @@ The plan should highlight key ideas, intermediate lemmas, and proof structures t
 
     @staticmethod
     def parse(raw_output: str) -> str:
-        """Not yet implemented."""
-        return raw_output
+        return _extract_last_theorem_block(str(raw_output))
 
 
 class DeepSeekProverV2CoTPromptConfig(PromptConfig):
