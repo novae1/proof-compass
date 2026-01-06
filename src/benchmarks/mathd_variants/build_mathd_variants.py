@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from src.benchmarks.benchmark_runner import DEFAULT_HEADER
+from src.benchmarks.mathd_variants.benchmark_runner import DEFAULT_HEADER
 
 MINIF2F_PATH = Path("benchmarks/processed/miniF2F_valid.json")
 OUTPUT_PATH = Path("benchmarks/processed/miniF2F_mathd_variants.json")
