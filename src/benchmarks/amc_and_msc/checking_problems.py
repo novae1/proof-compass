@@ -28,6 +28,13 @@ def _save_json(payload: dict, path: Path) -> None:
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
+def _strip_imports(text: str) -> str:
+    lines = text.splitlines()
+    return "\n".join(
+        line for line in lines if not line.lstrip().startswith("import ")
+    )
+
+
 def verify_attempts(payload: dict, server_url: str) -> dict:
     client = LeanHTTPClient(server_url)
     total = len(payload)
@@ -35,7 +42,7 @@ def verify_attempts(payload: dict, server_url: str) -> dict:
     for idx, problem_key in enumerate(sorted(payload), start=1):
         print(f"[{idx}/{total}] {problem_key}")
         processor = payload[problem_key]
-        header = str(processor.get("header", "")).strip()
+        header = _strip_imports(str(processor.get("header", ""))).strip()
         if not header:
             raise ValueError(f"Problem '{problem_key}' is missing a header.")
 
