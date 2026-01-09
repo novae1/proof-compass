@@ -33,13 +33,16 @@ def _load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def _write_attempt(
-    path: Path,
+def _write_attempt_files(
+    lean_path: Path,
+    raw_path: Path,
     header: str,
     parsed_proof: str,
+    raw_output: str,
 ) -> None:
-    content = f"{header}\n\n{parsed_proof}"
-    path.write_text(content, encoding="utf-8")
+    lean_content = f"{header}\n\n{parsed_proof}"
+    lean_path.write_text(lean_content, encoding="utf-8")
+    raw_path.write_text(raw_output, encoding="utf-8")
 
 
 def _prepare_output_dir(path: Path, overwrite: bool) -> None:
@@ -79,8 +82,11 @@ def export_attempts(input_path: Path, overwrite: bool) -> tuple[Path, Path]:
 
         for attempt_idx, attempt in enumerate(attempts, start=1):
             parsed_proof = str(attempt.get("parsed_proof", ""))
-            filename = f"attempt{attempt_idx}_{folder_name}.lean"
-            _write_attempt(problem_dir / filename, header, parsed_proof)
+            raw_output = str(attempt.get("raw_output", ""))
+            base_name = f"attempt{attempt_idx}_{folder_name}"
+            lean_path = problem_dir / f"{base_name}.lean"
+            raw_path = problem_dir / f"{base_name}.txt"
+            _write_attempt_files(lean_path, raw_path, header, parsed_proof, raw_output)
 
     shutil.make_archive(
         base_name=str(output_dir),
