@@ -11,9 +11,10 @@ sys.path.insert(0, str(ROOT))
 
 from src.lean.http_client import LeanHTTPClient
 from src.lean.checking import check_proof
+from src.prover_generation.prompt_config import DeepSeekProverV2CoTPromptConfig, KiminaProverPromptConfig
 
-INPUT_PATH = ROOT / "experiments" / "amc_and_msc" / "attempts_extracted.json"
-OUTPUT_PATH = ROOT / "experiments" / "amc_and_msc" / "attempts_verified.json"
+INPUT_PATH = ROOT / "experiments" / "amc_and_msc" / "20260110_attempts_kimina.json"
+OUTPUT_PATH = ROOT / "experiments" / "amc_and_msc" / "20260110_attempts_kimina_verified.json"
 SERVER_URL = "http://localhost:1347"
 TIMEOUT_SECONDS = 20
 IGNORE_SORRIES = False
@@ -47,9 +48,10 @@ def verify_attempts(payload: dict, server_url: str) -> dict:
         attempts = processor.get("attempts", [])
         for attempt in attempts:
             proof = attempt.get("parsed_proof", "")
+            parsed_proof = KiminaProverPromptConfig.parse(proof)
             start = time.time()
             success, message = check_proof(
-                proof,
+                parsed_proof,
                 client,
                 timeout=TIMEOUT_SECONDS,
                 ignore_sorries=IGNORE_SORRIES,
@@ -58,6 +60,7 @@ def verify_attempts(payload: dict, server_url: str) -> dict:
             attempt["success"] = success
             attempt["message"] = message
             attempt["verification_time"] = time.time() - start
+            attempt["parsed_proof"] = parsed_proof
 
     return payload
 
