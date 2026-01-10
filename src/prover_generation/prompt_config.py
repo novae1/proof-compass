@@ -131,8 +131,7 @@ The plan should highlight key ideas, intermediate lemmas, and proof structures t
 
     @staticmethod
     def parse(raw_output: str) -> str:
-        """Not yet implemented."""
-        return raw_output
+        return _extract_last_theorem_block(str(raw_output))
 
 
 class KiminaProverPromptConfig(PromptConfig):
@@ -157,5 +156,4 @@ class KiminaProverPromptConfig(PromptConfig):
 
     @staticmethod
     def parse(raw_output: str) -> str:
-        """Not yet implemented."""
-        return raw_output
+        return _extract_last_theorem_block(str(raw_output))
