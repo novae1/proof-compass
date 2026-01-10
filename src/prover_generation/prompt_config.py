@@ -43,6 +43,15 @@ def _normalize_formal_statement(formal_statement: str) -> str:
     return trimmed
 
 
+def _normalize_formal_statement_without_sorry(formal_statement: str) -> str:
+    trimmed = formal_statement.strip()
+    needle = ":= by"
+    idx = trimmed.rfind(needle)
+    if idx != -1:
+        return trimmed[: idx + len(needle)].rstrip() + "\n"
+    return trimmed
+
+
 _LEAN4_BLOCK_RE = re.compile(r"```lean4\s*(.*?)```", re.DOTALL)
 
 
@@ -119,6 +128,32 @@ Before producing the Lean 4 code to formally prove the given theorem, provide a 
 The plan should highlight key ideas, intermediate lemmas, and proof structures that will guide the construction of the final formal proof.
 """
         return prompt.strip()
+
+    @staticmethod
+    def parse(raw_output: str) -> str:
+        """Not yet implemented."""
+        return raw_output
+
+
+class KiminaProverPromptConfig(PromptConfig):
+    """Prompt configuration that matches the Kimina-Prover example format."""
+
+    @staticmethod
+    def build(
+        header: str,
+        informal_statement: Optional[str],
+        formal_statement: str,
+    ) -> str:
+        prompt = "Think about and solve the following problem step by step in Lean 4."
+        normalized_formal_statement = _normalize_formal_statement_without_sorry(formal_statement)
+        
+        if informal_statement:
+            normalized_informal_statement = _normalize_informal_statement(informal_statement)
+            prompt += f"\n# Problem:{informal_statement}"
+            normalized_formal_statement = normalized_informal_statement + "\n" + normalized_formal_statement
+
+        prompt += f"\n# Formal statement:\n```lean4\n{header.strip()}\n\n{normalized_formal_statement}```\n"
+        return prompt
 
     @staticmethod
     def parse(raw_output: str) -> str:
