@@ -2,7 +2,7 @@
   "miniF2F/amc12a_2019_p21": {
     "formal_statement": "theorem amc12a_2019_p21 (z : \u2102) (h\u2080 : z = (1 + Complex.I) / Real.sqrt 2) :\n  ((\u2211 k : \u2124 in Finset.Icc 1 12, z ^ k ^ 2) * (\u2211 k : \u2124 in Finset.Icc 1 12, 1 / z ^ k ^ 2)) = 36 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Let $z=\\frac{1+i}{\\sqrt{2}}.$What is $\\left(z^{1^2}+z^{2^2}+z^{3^2}+\\dots+z^{{12}^2}\\right) \\cdot \\left(\\frac{1}{z^{1^2}}+\\frac{1}{z^{2^2}}+\\frac{1}{z^{3^2}}+\\dots+\\frac{1}{z^{{12}^2}}\\right)?$\n\n$\\textbf{(A) } 18 \\qquad \\textbf{(B) } 72-36\\sqrt2 \\qquad \\textbf{(C) } 36 \\qquad \\textbf{(D) } 72 \\qquad \\textbf{(E) } 72+36\\sqrt2$ Show that it is \\textbf{(C) }36.",
     "nl_proof": null,
     "attempts": [
       {
@@ -42,7 +42,7 @@
   "miniF2F/amc12a_2015_p10": {
     "formal_statement": "theorem amc12a_2015_p10 (x y : \u2124) (h\u2080 : 0 < y) (h\u2081 : y < x) (h\u2082 : x + y + x * y = 80) : x = 26 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Integers $x$ and $y$ with $x>y>0$ satisfy $x+y+xy=80$. What is $x$?\n\n$ \\textbf{(A)}\\ 8 \\qquad\\textbf{(B)}\\ 10 \\qquad\\textbf{(C)}\\ 15 \\qquad\\textbf{(D)}\\ 18 \\qquad\\textbf{(E)}\\ 26$ Show that it is \\textbf{(E)}\\ 26.",
     "nl_proof": null,
     "attempts": [
       {
@@ -82,7 +82,7 @@
   "miniF2F/amc12a_2008_p8": {
     "formal_statement": "theorem amc12a_2008_p8 (x y : \u211d) (h\u2080 : 0 < x \u2227 0 < y) (h\u2081 : y ^ 3 = 1)\n  (h\u2082 : 6 * x ^ 2 = 2 * (6 * y ^ 2)) : x ^ 3 = 2 * Real.sqrt 2 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "What is the [[volume]] of a [[cube]] whose [[surface area]] is twice that of a cube with volume 1? \n\n$\\mathrm{(A)}\\ \\sqrt{2}\\qquad\\mathrm{(B)}\\ 2\\qquad\\mathrm{(C)}\\ 2\\sqrt{2}\\qquad\\mathrm{(D)}\\ 4\\qquad\\mathrm{(E)}\\ 8$ Show that it is \\mathrm{(C)}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -122,7 +122,7 @@
   "miniF2F/amc12a_2009_p9": {
     "formal_statement": "theorem amc12a_2009_p9 (a b c : \u211d) (f : \u211d \u2192 \u211d) (h\u2080 : \u2200 x, f (x + 3) = 3 * x ^ 2 + 7 * x + 4)\n  (h\u2081 : \u2200 x, f x = a * x ^ 2 + b * x + c) : a + b + c = 2 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Suppose that $f(x+3)=3x^2 + 7x + 4$ and $f(x)=ax^2 + bx + c$. What is $a+b+c$?\n\n$\\textbf{(A)}\\ -1 \\qquad \\textbf{(B)}\\ 0 \\qquad \\textbf{(C)}\\ 1 \\qquad \\textbf{(D)}\\ 2 \\qquad \\textbf{(E)}\\ 3$ Show that it is 2.",
     "nl_proof": null,
     "attempts": [
       {
@@ -162,7 +162,7 @@
   "miniF2F/amc12a_2019_p9": {
     "formal_statement": "theorem amc12a_2019_p9 (a : \u2115 \u2192 \u211a) (h\u2080 : a 1 = 1) (h\u2081 : a 2 = 3 / 7)\n  (h\u2082 : \u2200 n, a (n + 2) = a n * a (n + 1) / (2 * a n - a (n + 1))) :\n  \u2191(a 2019).den + (a 2019).num = 8078 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "A sequence of numbers is defined recursively by $a_1 = 1$, $a_2 = \\frac{3}{7}$, and\n$a_n=\\frac{a_{n-2} \\cdot a_{n-1}}{2a_{n-2} - a_{n-1}}$for all $n \\geq 3$ Then $a_{2019}$ can be written as $\\frac{p}{q}$, where $p$ and $q$ are relatively prime positive integers. What is $p+q ?$\n\n$\\textbf{(A) } 2020 \\qquad\\textbf{(B) } 4039 \\qquad\\textbf{(C) } 6057 \\qquad\\textbf{(D) } 6061 \\qquad\\textbf{(E) } 8078$ Show that it is \\textbf{(E) }8078.",
     "nl_proof": null,
     "attempts": [
       {
@@ -202,7 +202,7 @@
   "miniF2F/amc12a_2008_p4": {
     "formal_statement": "theorem amc12a_2008_p4 : (\u220f k in Finset.Icc (1 : \u2115) 501, ((4 : \u211d) * k + 4) / (4 * k)) = 502 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Which of the following is equal to the [[product]]\n$\\frac{8}{4}\\cdot\\frac{12}{8}\\cdot\\frac{16}{12}\\cdot\\cdots\\cdot\\frac{4n+4}{4n}\\cdot\\cdots\\cdot\\frac{2008}{2004}?$\n\n$\\textbf{(A)}\\ 251\\qquad\\textbf{(B)}\\ 502\\qquad\\textbf{(C)}\\ 1004\\qquad\\textbf{(D)}\\ 2008\\qquad\\textbf{(E)}\\ 4016$ Show that it is \\textbf{(B)}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -242,7 +242,7 @@
   "miniF2F/amc12_2001_p9": {
     "formal_statement": "theorem amc12_2001_p9 (f : \u211d \u2192 \u211d) (h\u2080 : \u2200 x > 0, \u2200 y > 0, f (x * y) = f x / y) (h\u2081 : f 500 = 3) :\n    f 600 = 5 / 2 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Let $f$ be a function satisfying $f(xy) = \\frac{f(x)}y$ for all positive real numbers $x$ and $y$. If $f(500) =3$, what is the value of $f(600)$?\n\n$(\\mathrm{A})\\ 1 \\qquad (\\mathrm{B})\\ 2 \\qquad (\\mathrm{C})\\ \\frac52 \\qquad (\\mathrm{D})\\ 3 \\qquad (\\mathrm{E})\\ \\frac{18}5$ Show that it is \\textbf{C } \\frac52.",
     "nl_proof": null,
     "attempts": [
       {
@@ -282,7 +282,7 @@
   "miniF2F/amc12_2000_p15": {
     "formal_statement": "theorem amc12_2000_p15 (f : \u2102 \u2192 \u2102) (h\u2080 : \u2200 x, f (x / 3) = x ^ 2 + x + 1)\n  (h\u2081 : Fintype (f \u207b\u00b9' {7})) : (\u2211 y in (f \u207b\u00b9' {7}).toFinset, y / 3) = -1 / 9 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Let $f$ be a [[function]] for which $f\\left(\\dfrac{x}{3}\\right) = x^2 + x + 1$. Find the sum of all values of $z$ for which $f(3z) = 7$.\n\n$\\text {(A)}\\ -1/3 \\qquad \\text {(B)}\\ -1/9 \\qquad \\text {(C)}\\ 0 \\qquad \\text {(D)}\\ 5/9 \\qquad \\text {(E)}\\ 5/3$ Show that it is \\textbf{(B) }-\\frac19.",
     "nl_proof": null,
     "attempts": [
       {
@@ -322,7 +322,7 @@
   "miniF2F/amc12a_2009_p5": {
     "formal_statement": "theorem amc12a_2009_p5 (x : \u211d) (h\u2080 : x ^ 3 - (x + 1) * (x - 1) * x = 5) : x ^ 3 = 125 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "One dimension of a cube is increased by $1$, another is decreased by $1$, and the third is left unchanged. The volume of the new rectangular solid is $5$ less than that of the cube. What was the volume of the cube?\n\n$\\textbf{(A)}\\ 8 \\qquad \\textbf{(B)}\\ 27 \\qquad \\textbf{(C)}\\ 64 \\qquad \\textbf{(D)}\\ 125 \\qquad \\textbf{(E)}\\ 216$ Show that it is \\text{(D)}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -362,7 +362,7 @@
   "miniF2F/amc12b_2002_p11": {
     "formal_statement": "theorem amc12b_2002_p11 (a b : \u2115) (h\u2080 : Nat.Prime a) (h\u2081 : Nat.Prime b) (h\u2082 : Nat.Prime (a + b))\n  (h\u2083 : Nat.Prime (a - b)) : Nat.Prime (a + b + (a - b + (a + b))) := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "The positive integers $A, B, A-B, $ and $A+B$ are all prime numbers. The sum of these four primes is\n\n$\\mathrm{(A)}\\ \\mathrm{even}\n\\qquad\\mathrm{(B)}\\ \\mathrm{divisible\\ by\\ }3\n\\qquad\\mathrm{(C)}\\ \\mathrm{divisible\\ by\\ }5\n\\qquad\\mathrm{(D)}\\ \\mathrm{divisible\\ by\\ }7\n\\qquad\\mathrm{(E)}\\ \\mathrm{prime}$ Show that it is \\mathrm{(E)}\\ \\text{prime}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -402,7 +402,7 @@
   "miniF2F/amc12_2000_p5": {
     "formal_statement": "theorem amc12_2000_p5 (x p : \u211d) (h\u2080 : x < 2) (h\u2081 : abs (x - 2) = p) : x - p = 2 - 2 * p := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "If $|x - 2| = p$, where $x < 2$, then $x - p =$\n\n$ \\textbf{(A)} \\ -2 \\qquad \\textbf{(B)} \\ 2 \\qquad \\textbf{(C)} \\ 2-2p \\qquad \\textbf{(D)} \\ 2p-2 \\qquad \\textbf{(E)} \\ |2p-2|  $ Show that it is \\text{(C)2-2p}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -442,7 +442,7 @@
   "miniF2F/amc12a_2008_p2": {
     "formal_statement": "theorem amc12a_2008_p2 (x : \u211d) (h\u2080 : x * (1 / 2 + 2 / 3) = 1) : x = 6 / 7 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "What is the [[reciprocal]] of $\\frac{1}{2}+\\frac{2}{3}$?\n\n$\\mathrm{(A)}\\ \\frac{6}{7}\\qquad\\mathrm{(B)}\\ \\frac{7}{6}\\qquad\\mathrm{(C)}\\ \\frac{5}{3}\\qquad\\mathrm{(D)}\\ 3\\qquad\\mathrm{(E)}\\ \\frac{7}{2}$ Show that it is \\frac{6}{7}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -482,7 +482,7 @@
   "miniF2F/amc12a_2021_p7": {
     "formal_statement": "theorem amc12a_2021_p7 (x y : \u211d) : 1 \u2264 (x * y - 1) ^ 2 + (x + y) ^ 2 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "What is the least possible value of $(xy-1)^2+(x+y)^2$ for real numbers $x$ and $y$?\n\n$\\textbf{(A)} ~0\\qquad\\textbf{(B)} ~\\frac{1}{4}\\qquad\\textbf{(C)} ~\\frac{1}{2} \\qquad\\textbf{(D)} ~1 \\qquad\\textbf{(E)} Show that it is \\textbf{(D)} ~1.",
     "nl_proof": null,
     "attempts": [
       {
@@ -522,7 +522,7 @@
   "miniF2F/amc12a_2002_p21": {
     "formal_statement": "theorem amc12a_2002_p21 (u : \u2115 \u2192 \u2115) (h\u2080 : u 0 = 4) (h\u2081 : u 1 = 7)\n    (h\u2082 : \u2200 n \u2265 2, u (n + 2) = (u n + u (n + 1)) % 10) :\n    \u2200 n, (\u2211 k in Finset.range n, u k) > 10000 \u2192 1999 \u2264 n := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Consider the sequence of numbers: $4,7,1,8,9,7,6,\\dots$ For $n>2$, the $n$-th term of the sequence is the units digit of the sum of the two previous terms. Let $S_n$ denote the sum of the first $n$ terms of this sequence. The smallest value of $n$ for which $S_n>10,000$ is: \n\n$\n\\text{(A) }1992\n\\qquad\n\\text{(B) }1999\n\\qquad\n\\text{(C) }2001\n\\qquad\n\\text{(D) }2002\n\\qquad\n\\text{(E) }2004\n$ Show that it is (B)1999.",
     "nl_proof": null,
     "attempts": [
       {
@@ -562,7 +562,7 @@
   "miniF2F/amc12b_2002_p6": {
     "formal_statement": "theorem amc12b_2002_p6 (a b : \u211d) (h\u2080 : a \u2260 0 \u2227 b \u2260 0)\n  (h\u2081 : \u2200 x, x ^ 2 + a * x + b = (x - a) * (x - b)) : a = 1 \u2227 b = -2 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Suppose that $a$ and $b$ are nonzero real numbers, and that the [[equation]] $x^2 + ax + b = 0$ has solutions $a$ and $b$. Then the pair $(a,b)$ is\n\n$\\mathrm{(A)}\\ (-2,1)\n\\qquad\\mathrm{(B)}\\ (-1,2)\n\\qquad\\mathrm{(C)}\\ (1,-2)\n\\qquad\\mathrm{(D)}\\ (2,-1)\n\\qquad\\mathrm{(E)}\\ (4,4)$ Show that it is \\mathrm{(C)}\\ (1,-2).",
     "nl_proof": null,
     "attempts": [
       {
@@ -602,7 +602,7 @@
   "miniF2F/amc12a_2010_p22": {
     "formal_statement": "theorem amc12a_2010_p22 (x : \u211d) : 49 \u2264 \u2211 k:\u2124 in Finset.Icc 1 119, abs (\u2191k * x - 1) := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "What is the minimum value of $f(x)=\\left|x-1\\right| + \\left|2x-1\\right| + \\left|3x-1\\right| + \\cdots + \\left|119x - 1 \\right|$?\n\n$\\textbf{(A)}\\ 49 \\qquad \\textbf{(B)}\\ 50 \\qquad \\textbf{(C)}\\ 51 \\qquad \\textbf{(D)}\\ 52 \\qquad \\textbf{(E)}\\ 53$ Show that it is 49\\ \\textbf{(A)}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -642,7 +642,7 @@
   "miniF2F/amc12a_2017_p7": {
     "formal_statement": "theorem amc12a_2017_p7 (f : \u2115 \u2192 \u211d) (h\u2080 : f 1 = 2) (h\u2081 : \u2200 n, 1 < n \u2227 Even n \u2192 f n = f (n - 1) + 1)\n  (h\u2082 : \u2200 n, 1 < n \u2227 Odd n \u2192 f n = f (n - 2) + 2) : f 2017 = 2018 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Define a function on the positive integers recursively by $f(1) = 2$, $f(n) = f(n-1) + 1$ if $n$ is even, and $f(n) = f(n-2) + 2$ if $n$ is odd and greater than $1$. What is $f(2017)$?\n\n$ \\textbf{(A)}\\ 2017 \\qquad\\textbf{(B)}\\ 2018 \\qquad\\textbf{(C)}\\ 4034 \\qquad\\textbf{(D)}\\ 4035 \\qquad\\textbf{(E)}\\ 4036 $ Show that it is \\textbf{(B)}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -682,7 +682,7 @@
   "miniF2F/amc12b_2021_p21": {
     "formal_statement": "theorem amc12b_2021_p21 (S : Finset \u211d)\n  (h\u2080 : \u2200 x : \u211d, x \u2208 S \u2194 0 < x \u2227 x ^ (2 : \u211d) ^ Real.sqrt 2 = Real.sqrt 2 ^ (2 : \u211d) ^ x) :\n  (\u21912 \u2264 \u2211 k in S, k) \u2227 (\u2211 k in S, k) < 6 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Let $S$ be the sum of all positive real numbers $x$ for which$x^{2^{\\sqrt2}}=\\sqrt2^{2^x}.$Which of the following statements is true?\n\n$\\textbf{(A) }S<\\sqrt2 \\qquad \\textbf{(B) }S=\\sqrt2 \\qquad \\textbf{(C) }\\sqrt2<S<2\\qquad \\textbf{(D) }2\\le S<6 \\qquad \\textbf{(E) }S\\ge 6$ Show that it is \\textbf{(D) }2\\le S<6.",
     "nl_proof": null,
     "attempts": [
       {
@@ -722,7 +722,7 @@
   "miniF2F/amc12b_2004_p3": {
     "formal_statement": "theorem amc12b_2004_p3 (x y : \u2115) (h\u2080 : 2 ^ x * 3 ^ y = 1296) : x + y = 8 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "If $x$ and $y$ are positive integers for which $2^x3^y=1296$, what is the value of $x+y$?\n\n$(\\mathrm {A})\\ 8 \\qquad (\\mathrm {B})\\ 9 \\qquad (\\mathrm {C})\\ 10 \\qquad (\\mathrm {D})\\ 11 \\qquad (\\mathrm {E})\\ 12$ Show that it is 8.",
     "nl_proof": null,
     "attempts": [
       {
@@ -762,7 +762,7 @@
   "miniF2F/amc12a_2011_p18": {
     "formal_statement": "theorem amc12a_2011_p18 (x y : \u211d) (h\u2080 : abs (x + y) + abs (x - y) = 2) :\n  x ^ 2 - 6 * x + y ^ 2 \u2264 8 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Suppose that $\\left|x+y\\right|+\\left|x-y\\right|=2$. What is the maximum possible value of $x^2-6x+y^2$? $\\n\\textbf{(A)}\\ 5 \\qquad\n\\textbf{(B)}\\ 6 \\qquad\n\\textbf{(C)}\\ 7 \\qquad\n\\textbf{(D)}\\ 8 \\qquad\n\\textbf{(E)}\\ 9 $ Show that it is \\textbf{(D)}\\ 8.",
     "nl_proof": null,
     "attempts": [
       {
@@ -802,7 +802,7 @@
   "miniF2F/amc12b_2003_p6": {
     "formal_statement": "theorem amc12b_2003_p6 (a r : \u211d) (u : \u2115 \u2192 \u211d) (h\u2080 : \u2200 k, u k = a * r ^ k) (h\u2081 : u 1 = 2)\n  (h\u2082 : u 3 = 6) : u 0 = 2 / Real.sqrt 3 \u2228 u 0 = -(2 / Real.sqrt 3) := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "The second and fourth terms of a geometric sequence are $2$ and $6$. Which of the following is a possible first term?\n\n$\\textbf{(A) } -\\sqrt{3}  \\qquad\\textbf{(B) } -\\frac{2\\sqrt{3}}{3} \\qquad\\textbf{(C) } -\\frac{\\sqrt{3}}{3} \\qquad\\textbf{(D) } \\sqrt{3} \\qquad\\textbf{(E) } 3$ Show that it is \\textbf{(B)}\\ -\\frac{2\\sqrt{3}}{3}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -842,7 +842,7 @@
   "miniF2F/amc12_2001_p2": {
     "formal_statement": "theorem amc12_2001_p2 (a b n : \u2115) (h\u2080 : 1 \u2264 a \u2227 a \u2264 9) (h\u2081 : 0 \u2264 b \u2227 b \u2264 9) (h\u2082 : n = 10 * a + b)\n  (h\u2083 : n = a * b + a + b) : b = 9 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Let $P(n)$ and $S(n)$ denote the product and the sum, respectively, of the digits\nof the integer $n$. For example, $P(23) = 6$ and $S(23) = 5$. Suppose $N$ is a\ntwo-digit number such that $N = P(N)+S(N)$. What is the units digit of $N$?\n\n$\\text{(A)}\\ 2\\qquad \\text{(B)}\\ 3\\qquad \\text{(C)}\\ 6\\qquad \\text{(D)}\\ 8\\qquad \\text{(E)}\\ 9$ Show that it is (\\text{E})9.",
     "nl_proof": null,
     "attempts": [
       {
@@ -882,7 +882,7 @@
   "miniF2F/amc12a_2009_p2": {
     "formal_statement": "theorem amc12a_2009_p2 : 1 + 1 / (1 + 1 / (1 + 1)) = (5 : \u211a) / 3 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Which of the following is equal to $1 + \\frac {1}{1 + \\frac {1}{1 + 1}}$?\n\n$\\textbf{(A)}\\ \\frac {5}{4} \\qquad \\textbf{(B)}\\ \\frac {3}{2} \\qquad \\textbf{(C)}\\ \\frac {5}{3} \\qquad \\textbf{(D)}\\ 2 \\qquad \\textbf{(E)}\\ 3$ Show that it is \\text{C}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -922,7 +922,7 @@
   "miniF2F/amc12a_2013_p8": {
     "formal_statement": "theorem amc12a_2013_p8 (x y : \u211d) (h\u2080 : x \u2260 0) (h\u2081 : y \u2260 0) (h\u2082 : x \u2260 y)\n  (h\u2083 : x + 2 / x = y + 2 / y) : x * y = 2 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Given that $x$ and $y$ are distinct nonzero real numbers such that $x+\\tfrac{2}{x} = y + \\tfrac{2}{y}$, what is $xy$?\n\n$ \\textbf{(A)}\\ \\frac{1}{4}\\qquad\\textbf{(B)}\\ \\frac{1}{2}\\qquad\\textbf{(C)}\\ 1\\qquad\\textbf{(D)}\\ 2\\qquad\\textbf{(E)}\\ 4\\qquad $ Show that it is \\textbf{(D) }{2}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -962,7 +962,7 @@
   "miniF2F/amc12b_2020_p5": {
     "formal_statement": "theorem amc12b_2020_p5 (a b : \u2115) (h\u2080 : (5 : \u211a) / 8 * b = 2 / 3 * a + 7)\n  (h\u2081 : (b : \u211a) - 5 / 8 * b = a - 2 / 3 * a + 7) : a = 42 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Teams $A$ and $B$ are playing in a basketball league where each game results in a win for one team and a loss for the other team. Team $A$ has won $\\tfrac{2}{3}$ of its games and team $B$ has won $\\tfrac{5}{8}$ of its games. Also, team $B$ has won $7$ more games and lost $7$ more games than team $A.$ How many games has team $A$ played?\n\n$\\textbf{(A) } 21 \\qquad \\textbf{(B) } 27 \\qquad \\textbf{(C) } 42 \\qquad \\textbf{(D) } 48 \\qquad \\textbf{(E) } 63$ Show that it is \\textbf{(C) } 42.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1002,7 +1002,7 @@
   "miniF2F/amc12b_2003_p17": {
     "formal_statement": "theorem amc12b_2003_p17 (x y : \u211d) (h\u2080 : 0 < x \u2227 0 < y) (h\u2081 : Real.log (x * y ^ 3) = 1)\n  (h\u2082 : Real.log (x ^ 2 * y) = 1) : Real.log (x * y) = 3 / 5 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "If $\\log (xy^3) = 1$ and $\\log (x^2y) = 1$, what is $\\log (xy)$?\n\n$\\mathrm{(A)}\\ -\\frac 12 \n\\qquad\\mathrm{(B)}\\ 0 \n\\qquad\\mathrm{(C)}\\ \\frac 12\n\\qquad\\mathrm{(D)}\\ \\frac 35 \n\\qquad\\mathrm{(E)}\\ 1$ Show that it is \\mathrm{(D)} \\frac 35.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1042,7 +1042,7 @@
   "miniF2F/amc12_2000_p11": {
     "formal_statement": "theorem amc12_2000_p11 (a b : \u211d) (h\u2080 : a \u2260 0 \u2227 b \u2260 0) (h\u2081 : a * b = a - b) :\n    a / b + b / a - a * b = 2 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "$\\textbf{(A)} \\ - 2 \\qquad \\textbf{(B)} \\ \\frac { -1 }{2} \\qquad \\textbf{(C)} \\ \\frac {1}{3} \\qquad \\textbf{(D)} \\ \\frac {1}{2} \\qquad \\textbf{(E)} \\ 2$ Show that it is $\\text{E}$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1082,7 +1082,7 @@
   "miniF2F/amc12b_2003_p9": {
     "formal_statement": "theorem amc12b_2003_p9 (a b : \u211d) (f : \u211d \u2192 \u211d) (h\u2080 : \u2200 x, f x = a * x + b) (h\u2081 : f 6 - f 2 = 12) :\n    f 12 - f 2 = 30 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Let $f$ be a linear function for which $f(6) - f(2) = 12.$ What is $f(12) - f(2)?$\n\n$\n\\text {(A) } 12 \\qquad \\text {(B) } 18 \\qquad \\text {(C) } 24 \\qquad \\text {(D) } 30 \\qquad \\text {(E) } 36\n$ Show that it is \\text {(D) } 30.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1122,7 +1122,7 @@
   "miniF2F/amc12a_2008_p15": {
     "formal_statement": "theorem amc12a_2008_p15 (k : \u2115) (h\u2080 : k = 2008 ^ 2 + 2 ^ 2008) : (k ^ 2 + 2 ^ k) % 10 = 6 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Let $k={2008}^{2}+{2}^{2008}$. What is the units digit of $k^2+2^k$?\n\n$\\mathrm{(A)}\\ 0\\qquad\\mathrm{(B)}\\ 2\\qquad\\mathrm{(C)}\\ 4\\qquad\\mathrm{(D)}\\ 6\\qquad\\mathrm{(E)}\\ 8$ Show that it is D.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1162,7 +1162,7 @@
   "miniF2F/amc12a_2009_p15": {
     "formal_statement": "theorem amc12a_2009_p15 (n : \u2115) (h\u2080 : 0 < n)\n  (h\u2081 : (\u2211 k in Finset.Icc 1 n, \u2191k * Complex.I ^ k) = 48 + 49 * Complex.I) : n = 97 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "For what value of $n$ is $i + 2i^2 + 3i^3 + \\cdots + ni^n = 48 + 49i$?\n\nNote: here $i = \\sqrt { - 1}$.\n\n$\\textbf{(A)}\\ 24 \\qquad \\textbf{(B)}\\ 48 \\qquad \\textbf{(C)}\\ 49 \\qquad \\textbf{(D)}\\ 97 \\qquad \\textbf{(E)}\\ 98$ Show that it is \\mathbf{D}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1202,7 +1202,7 @@
   "miniF2F/amc12a_2013_p7": {
     "formal_statement": "theorem amc12a_2013_p7 (s : \u2115 \u2192 \u211d) (h\u2080 : \u2200 n, s (n + 2) = s (n + 1) + s n) (h\u2081 : s 9 = 110)\n    (h\u2082 : s 7 = 42) : s 4 = 10 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "The sequence $S_1, S_2, S_3, \\cdots, S_{10}$ has the property that every term beginning with the third is the sum of the previous two.  That is, $ S_n = S_{n-2} + S_{n-1} \\text{ for } n \\ge 3. $ Suppose that $S_9 = 110$ and $S_7 = 42$.  What is $S_4$?\n\n$ \\textbf{(A)}\\ 4\\qquad\\textbf{(B)}\\ 6\\qquad\\textbf{(C)}\\ 10\\qquad\\textbf{(D)}\\ 12\\qquad\\textbf{(E)}\\ 16\\qquad $ Show that it is \\textbf{(C) }{10}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1242,7 +1242,7 @@
   "miniF2F/amc12a_2020_p21": {
     "formal_statement": "theorem amc12a_2020_p21 (S : Finset \u2115)\n  (h\u2080 : \u2200 n : \u2115, n \u2208 S \u2194 5 \u2223 n \u2227 Nat.lcm 5! n = 5 * Nat.gcd 10! n) : S.card = 48 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "How many positive integers $n$ are there such that $n$ is a multiple of $5$, and the least common multiple of $5!$ and $n$ equals $5$ times the greatest common divisor of $10!$ and $n?$\n\n$\\textbf{(A) } 12 \\qquad \\textbf{(B) } 24 \\qquad \\textbf{(C) } 36 \\qquad \\textbf{(D) } 48 \\qquad \\textbf{(E) } 72$ Show that it is \\textbf{(D) } 48.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1282,7 +1282,7 @@
   "miniF2F/amc12a_2003_p1": {
     "formal_statement": "theorem amc12a_2003_p1 (u v : \u2115 \u2192 \u2115) (h\u2080 : \u2200 n, u n = 2 * n + 2) (h\u2081 : \u2200 n, v n = 2 * n + 1) :\n    ((\u2211 k in Finset.range 2003, u k) - \u2211 k in Finset.range 2003, v k) = 2003 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "What is the difference between the sum of the first $2003$ even counting numbers and the sum of the first $2003$ odd counting numbers? \n\n$ \\mathrm{(A) \\ } 0\\qquad \\mathrm{(B) \\ } 1\\qquad \\mathrm{(C) \\ } 2\\qquad \\mathrm{(D) \\ } 2003\\qquad \\mathrm{(E) \\ } 4006 $ Show that it is \\mathrm{(D)}\\ 2003.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1322,7 +1322,7 @@
   "miniF2F/amc12a_2016_p2": {
     "formal_statement": "theorem amc12a_2016_p2 (x : \u211d) (h\u2080 : (10 : \u211d) ^ x * 100 ^ (2 * x) = 1000 ^ 5) : x = 3 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "For what value of $x$ does $10^{x}\\cdot 100^{2x}=1000^{5}$?\n\n$\\textbf{(A)}\\ 1 \\qquad\\textbf{(B)}\\ 2\\qquad\\textbf{(C)}\\ 3\\qquad\\textbf{(D)}\\ 4\\qquad\\textbf{(E)}\\ 5$ Show that it is \\textbf{(C)}\\;3.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1362,7 +1362,7 @@
   "miniF2F/amc12a_2003_p25": {
     "formal_statement": "theorem amc12a_2003_p25 (a b : \u211d) (f : \u211d \u2192 \u211d) (h\u2080 : 0 < b)\n  (h\u2081 : \u2200 x, f x = Real.sqrt (a * x ^ 2 + b * x)) (h\u2082 : { x | 0 \u2264 f x } = f '' { x | 0 \u2264 f x }) :\n  a = 0 \u2228 a = -4 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Let $f(x)= \\sqrt{ax^2+bx} $.  For how many [[real number | real]] values of $a$ is there at least one [[positive number | positive]] value of $ b $ for which the [[domain]] of $f $ and the [[range]] of $ f $ are the same [[set]]?\n\n$ \\mathrm{(A) \\ 0 } \\qquad \\mathrm{(B) \\ 1 } \\qquad \\mathrm{(C) \\ 2 } \\qquad \\mathrm{(D) \\ 3 } \\qquad \\mathrm{(E) \\ \\mathrm{infinitely \\ many} }  $ Show that it is \\mathrm{(B) \\ 2 }.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1402,7 +1402,7 @@
   "miniF2F/amc12a_2010_p10": {
     "formal_statement": "theorem amc12a_2010_p10 (p q : \u211d) (a : \u2115 \u2192 \u211d) (h\u2080 : \u2200 n, a (n + 2) - a (n + 1) = a (n + 1) - a n)\n  (h\u2081 : a 1 = p) (h\u2082 : a 2 = 9) (h\u2083 : a 3 = 3 * p - q) (h\u2084 : a 4 = 3 * p + q) : a 2010 = 8041 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "The first four terms of an arithmetic sequence are $p$, $9$, $3p-q$, and $3p+q$. What is the $2010^\\text{th}$ term of this sequence?\n\n$\\textbf{(A)}\\ 8041 \\qquad \\textbf{(B)}\\ 8043 \\qquad \\textbf{(C)}\\ 8045 \\qquad \\textbf{(D)}\\ 8047 \\qquad \\textbf{(E)}\\ 8049$ Show that it is \\textbf{(A) }8041.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1442,7 +1442,7 @@
   "miniF2F/amc12a_2009_p25": {
     "formal_statement": "theorem amc12a_2009_p25 (a : \u2115 \u2192 \u211d) (h\u2080 : a 1 = 1) (h\u2081 : a 2 = 1 / Real.sqrt 3)\n  (h\u2082 : \u2200 n, 1 \u2264 n \u2192 a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1))) : abs (a 2009) = 0 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "The first two terms of a sequence are $a_1 = 1$ and $a_2 = \\frac {1}{\\sqrt3}$. For $n\\ge1$,\n\n<center>$a_{n + 2} = \\frac {a_n + a_{n + 1}}{1 - a_na_{n + 1}}.$</center>\n\nWhat is $|a_{2009}|$?\n\n$\\textbf{(A)}\\ 0\\qquad \\textbf{(B)}\\ 2 - \\sqrt3\\qquad \\textbf{(C)}\\ \\frac {1}{\\sqrt3}\\qquad \\textbf{(D)}\\ 1\\qquad \\textbf{(E)}\\ 2 + \\sqrt3$ Show that it is \\textbf{(A)}\\ 0.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1482,7 +1482,7 @@
   "miniF2F/amc12a_2002_p12": {
     "formal_statement": "theorem amc12a_2002_p12 (f : \u211d \u2192 \u211d) (k : \u211d) (a b : \u2115) (h\u2080 : \u2200 x, f x = x ^ 2 - 63 * x + k)\n  (h\u2081 : f a = 0 \u2227 f b = 0) (h\u2082 : a \u2260 b) (h\u2083 : Nat.Prime a \u2227 Nat.Prime b) : k = 122 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Both roots of the quadratic equation $x^2 - 63x + k = 0$ are prime numbers. The number of possible values of $k$ is \n\n$\\text{(A)}\\ 0 \\qquad \\text{(B)}\\ 1 \\qquad \\text{(C)}\\ 2 \\qquad \\text{(D)}\\ 4 \\qquad \\text{(E) more than 4}$ Show that it is \\text{(B)}\\ 1.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1522,7 +1522,7 @@
   "miniF2F/amc12a_2020_p13": {
     "formal_statement": "theorem amc12a_2020_p13 (a b c : \u2115) (n : NNReal) (h\u2080 : n \u2260 1) (h\u2081 : 1 < a \u2227 1 < b \u2227 1 < c)\n  (h\u2082 : (n * (n * n ^ (1 / c)) ^ (1 / b)) ^ (1 / a) = (n ^ 25) ^ (1 / 36)) : b = 3 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "There are integers $a, b,$ and $c,$ each greater than $1,$ such that\n\n$\\sqrt[a]{N\\sqrt[b]{N\\sqrt[c]{N}}} = \\sqrt[36]{N^{25}}$\n\nfor all $N \\neq 1$. What is $b$?\n\n$\\textbf{(A) } 2 \\qquad \\textbf{(B) } 3 \\qquad \\textbf{(C) } 4 \\qquad \\textbf{(D) } 5 \\qquad \\textbf{(E) } 6$ Show that it is \\textbf{(B) } 3..",
     "nl_proof": null,
     "attempts": [
       {
@@ -1562,7 +1562,7 @@
   "miniF2F/amc12a_2010_p11": {
     "formal_statement": "theorem amc12a_2010_p11 (x b : \u211d) (h\u2080 : 0 < b) (h\u2081 : (7 : \u211d) ^ (x + 7) = 8 ^ x)\n  (h\u2082 : x = Real.logb b (7 ^ 7)) : b = 8 / 7 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "The solution of the equation $7^{x+7} = 8^x$ can be expressed in the form $x = \\log_b 7^7$. What is $b$?\n\n$\\textbf{(A)}\\ \\frac{7}{15} \\qquad \\textbf{(B)}\\ \\frac{7}{8} \\qquad \\textbf{(C)}\\ \\frac{8}{7} \\qquad \\textbf{(D)}\\ \\frac{15}{8} \\qquad \\textbf{(E)}\\ \\frac{15}{7}$ Show that it is \\textbf{(C)}\\ \\frac{8}{7}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1602,7 +1602,7 @@
   "miniF2F/amc12a_2003_p24": {
     "formal_statement": "theorem amc12a_2003_p24 :\n  IsGreatest { y : \u211d | \u2203 a b : \u211d, 1 < b \u2227 b \u2264 a \u2227 y = Real.logb a (a / b) + Real.logb b (b / a) }\n    0 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "If $a\\geq b > 1,$ what is the largest possible value of $\\log_{a}(a/b) + \\log_{b}(b/a)?$\n\n$\n\\mathrm{(A)}\\ -2      \\qquad\n\\mathrm{(B)}\\ 0     \\qquad\n\\mathrm{(C)}\\ 2      \\qquad\n\\mathrm{(D)}\\ 3      \\qquad\n\\mathrm{(E)}\\ 4\n$ Show that it is \\textbf{B}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1642,7 +1642,7 @@
   "miniF2F/amc12a_2002_p1": {
     "formal_statement": "theorem amc12a_2002_p1 (f : \u2102 \u2192 \u2102) (h\u2080 : \u2200 x, f x = (2 * x + 3) * (x - 4) + (2 * x + 3) * (x - 6))\n  (h\u2081 : Fintype (f \u207b\u00b9' {0})) : (\u2211 y in (f \u207b\u00b9' {0}).toFinset, y) = 7 / 2 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "Compute the sum of all the roots of\n$(2x+3)(x-4)+(2x+3)(x-6)=0 $\n\n$ \\textbf{(A) } \\frac{7}{2}\\qquad \\textbf{(B) } 4\\qquad \\textbf{(C) } 5\\qquad \\textbf{(D) } 7\\qquad \\textbf{(E) } 13 $ Show that it is \\textbf{(A) }7/2.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1682,7 +1682,7 @@
   "miniF2F/amc12b_2002_p3": {
     "formal_statement": "theorem amc12b_2002_p3 (S : Finset \u2115)\n  -- note: we use (n^2 + 2 - 3 * n) over (n^2 - 3 * n + 2) because nat subtraction truncates the latter at 1 and 2\n  (h\u2080 : \u2200 n : \u2115, n \u2208 S \u2194 0 < n \u2227 Nat.Prime (n ^ 2 + 2 - 3 * n)) :\n  S.card = 1 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "For how many positive integers $n$ is $n^2 - 3n + 2$ a [[prime]] number?\n\n$\\mathrm{(A)}\\ \\text{none}\n\\qquad\\mathrm{(B)}\\ \\text{one}\n\\qquad\\mathrm{(C)}\\ \\text{two}\n\\qquad\\mathrm{(D)}\\ \\text{more\\ than\\ two,\\ but\\ finitely\\ many}\n\\qquad\\mathrm{(E)}\\ \\text{infinitely\\ many}$ Show that it is \\mathrm{(B)}\\ \\text{one}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1722,7 +1722,7 @@
   "miniF2F/amc12a_2016_p3": {
     "formal_statement": "theorem amc12a_2016_p3 (f : \u211d \u2192 \u211d \u2192 \u211d)\n  (h\u2080 : \u2200 x, \u2200 (y) (_ : y \u2260 0), f x y = x - y * Int.floor (x / y)) :\n  f (3 / 8) (-(2 / 5)) = -(1 / 40) := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "The remainder can be defined for all real numbers $x$ and $y$ with $y \\neq 0$ by $\\text{rem} (x ,y)=x-y\\left \\lfloor \\frac{x}{y} \\right \\rfloor$where $\\left \\lfloor \\tfrac{x}{y} \\right \\rfloor$ denotes the greatest integer less than or equal to $\\tfrac{x}{y}$. What is the value of $\\text{rem} (\\tfrac{3}{8}, -\\tfrac{2}{5} )$?\n\n$\\textbf{(A) } -\\frac{3}{8} \\qquad \\textbf{(B) } -\\frac{1}{40} \\qquad \\textbf{(C) } 0 \\qquad \\textbf{(D) } \\frac{3}{8} \\qquad \\textbf{(E) } \\frac{31}{40}$ Show that it is \\textbf{(B) } -\\frac{1}{40}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1762,7 +1762,7 @@
   "miniF2F/amc12a_2017_p2": {
     "formal_statement": "theorem amc12a_2017_p2 (x y : \u211d) (h\u2080 : x \u2260 0) (h\u2081 : y \u2260 0) (h\u2082 : x + y = 4 * (x * y)) :\n  1 / x + 1 / y = 4 := by",
     "header": "import Mathlib\nimport Aesop\n\nset_option maxHeartbeats 0\n\nopen BigOperators Real Nat Topology Rat",
-    "informal_statement": null,
+    "informal_statement": "The sum of two nonzero real numbers is 4 times their product. What is the sum of the reciprocals of the two numbers?\n\n$\\textbf{(A)}\\ 1\\qquad\\textbf{(B)}\\ 2\\qquad\\textbf{(C)}\\ 4\\qquad\\textbf{(D)}\\ 8\\qquad\\textbf{(E)}\\ 12$ Show that it is \\textbf{C}.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1802,7 +1802,7 @@
   "MSC-180/05_003": {
     "formal_statement": "theorem excedance_coexcedance_dual {n : \u2115} (\u03c0 : Perm (Fin n))) : (excedances \u03c0).card = (coexcedances \u03c0\u207b\u00b9).card := by sorry",
     "header": "import Mathlib\nopen Equiv\ndef excedances {n : \u2115} (\u03c0 : Perm (Fin n)) : Finset (Fin n) := Finset.univ.filter (fun i => \u03c0 i > i)\ndef eulerianNumber (n k : \u2115) : \u2115 := Fintype.card {\u03c0 : Perm (Fin n) | (excedances \u03c0).card = k}\ndef coexcedances {n : \u2115} (\u03c0 : Perm (Fin n)) : Finset (Fin n) := Finset.univ.filter (fun i => \u03c0 i < i)",
-    "informal_statement": null,
+    "informal_statement": "For $n,k \\ge 0$ we have $A(n,k) = \\text{number of } \\pi \\in \\mathfrak{S}_n \\text{ with } k \\text{ excedances}$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1842,7 +1842,7 @@
   "MSC-180/06_002": {
     "formal_statement": "theorem finite_field_extension_construction (m : Polynomial (GaloisField p r)) (hirr : Irreducible m) (hdeg : natDegree m = n) : let Fq := GaloisField p r; let q := p ^ r; let K := Fq[X] \u29f8 span {m}; have is_max : (span {m} : Ideal Fq[X]).IsMaximal := PrincipalIdealRing.isMaximal_of_irreducible hirr; have field_inst : Field K := Ideal.Quotient.field (span {m}); have fintype_inst : Fintype K := by sorry; let u : K := Ideal.Quotient.mk (span {m}) X; Fintype.card K = q ^ n \u2227 (\u2200 (x : K), \u2203! (c : Fin n \u2192 Fq), x = \u2211 i : Fin n, c i \u2022 u ^ (i : \u2115)) \u2227 aeval u m = 0 := by sorry",
     "header": "import Mathlib\n\nopen Polynomial Ideal\n\nvariable {p : \u2115} [Fact (Nat.Prime p)] {r n : \u2115}",
-    "informal_statement": null,
+    "informal_statement": "\u8bbe$\\mathbb{F}_q$\u662f\u542b$q$\u4e2a\u5143\u7d20\u7684\u6709\u9650\u57df\uff0c\u5176\u4e2d$q = p^r$\uff0c$p$\u4e3a\u7d20\u6570\u3002\u5982\u679c$m(x) = a_0 + a_1x + \\cdots + a_nx^n$\u662f$\\mathbb{F}_q[x]$\u7684$n$\u6b21\u4e0d\u53ef\u7ea6\u591a\u9879\u5f0f\uff0c\u5219$\\mathbb{F}_q[x]/(m(x))$\u662f\u542b$q^n$\u4e2a\u5143\u7d20\u7684\u6709\u9650\u57df\uff0c\u5e76\u4e14\u5b83\u7684\u6bcf\u4e00\u4e2a\u5143\u7d20\u53ef\u4ee5\u552f\u4e00\u5730\u8868\u793a\u6210    $$c_0 + c_1u + \\cdots + c_{n-1}u^{n-1},$$    \u5176\u4e2d$c_i \\in \\mathbb{F}_q$\uff0c$0 \\leq i < n$\uff0c$u = x + (m(x))$\uff0c$u$\u6ee1\u8db3    $$a_0 + a_1u + \\cdots + a_nu^n = 0.$",
     "nl_proof": null,
     "attempts": [
       {
@@ -1882,7 +1882,7 @@
   "MSC-180/08_001": {
     "formal_statement": "theorem homomorphism_agreement {R A B : Type*} [CommSemiring R] [Semiring A] [Semiring B] [Algebra R A] [Algebra R B] {X : Set A} (hgen : Algebra.adjoin R X = \u22a4) {\u03b1 \u03b2 : A \u2192\u2090[R] B} (h_agree : \u2200 x \u2208 X, \u03b1 x = \u03b2 x) : \u03b1 = \u03b2 := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "Let $A$ be an algebra generated by a set $X$. If $\\alpha: A \\to B$ and $\\beta: A \\to B$ are two homomorphisms which agree on $X$ (i.e., $\\alpha(a) = \\beta(a)$ for $a \\in X$), then $\\alpha = \\beta$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1922,7 +1922,7 @@
   "MSC-180/08_002": {
     "formal_statement": "theorem unique_relative_complement {L : Type*} [DistribLattice L] {a b c : L} (hab : a \u2264 b) (hbc : b \u2264 c) : \u2200 (d\u2081 d\u2082 : L), a \u2264 d\u2081 \u2227 d\u2081 \u2264 c \u2227 d\u2081 \u2294 b = c \u2227 d\u2081 \u2293 b = a \u2192 a \u2264 d\u2082 \u2227 d\u2082 \u2264 c \u2227 d\u2082 \u2294 b = c \u2227 d\u2082 \u2293 b = a \u2192 d\u2081 = d\u2082 := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "In a distributive lattice, relative complements are unique if they exist.",
     "nl_proof": null,
     "attempts": [
       {
@@ -1962,7 +1962,7 @@
   "MSC-180/08_003": {
     "formal_statement": "theorem exists_element_with_maximal_order {G : Type*} [CommGroup G] [Fintype G] : \u2203 g : G, \u2200 x : G, orderOf x \u2223 orderOf g := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "Let $G$ be a finite abelian group. Then there exists an element in $G$ whose order is a multiple of the orders of all elements in $G$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2002,7 +2002,7 @@
   "MSC-180/11_001": {
     "formal_statement": "theorem algebraic_number_property {l : \u2115} (\u03b3 : Fin l \u2192 \u2102) (hspan : Submodule.span \u211a (Set.range \u03b3) = Submodule.span \u211a (Set.range \u03b3)) (\u03b1 : \u2102) (h : \u2200 (x : \u2102), x \u2208 Submodule.span \u211a (Set.range \u03b3) \u2192 \u03b1 * x \u2208 Submodule.span \u211a (Set.range \u03b3)) : IsAlgebraic \u211a \u03b1 := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "Let $V =[\\gamma_1,\\gamma_2,\\ldots,\\gamma_l]$, and suppose that $\\alpha\\in\\mathbb{C}$ has the property that $\\alpha\\gamma\\in V$ for all $\\gamma\\in V$. Then $\\alpha$ is an algebraic number.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2042,7 +2042,7 @@
   "MSC-180/11_003": {
     "formal_statement": "theorem lifting_solutions {p a n : \u2115} [hp : Fact (Nat.Prime p)] (h_odd : p \u2260 2) (hpa : \u00acp \u2223 a) (hpn : \u00acp \u2223 n) (h_solvable : \u2203 x : ZMod p, x ^ n = a) : \u2200 e : \u2115, e \u2265 1 \u2192 (\u2203 y : ZMod (p^e), y^n = a) \u2227 Fintype.card {x : ZMod p // x^n = a} = Fintype.card {x : ZMod (p^e) // x^n = a} := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "If $p$ is an odd prime, $p \\nmid a$, and $p \\nmid n$, then if $x^n \\equiv a \\ (\\text{mod}\\ p)$ is solvable, so is $x^n \\equiv a \\ (\\text{mod}\\ p^e)$ for all $e \\geq 1$. All these congruences have the same number of solutions.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2082,7 +2082,7 @@
   "MSC-180/12_001": {
     "formal_statement": "theorem polynomial_division_algorithm {F : Type*} [Field F] (f g : Polynomial F) (hg : g \u2260 0) : \u2203 (q r : Polynomial F), f = g * q + r \u2227 (r = 0 \u2228 r.degree < g.degree) \u2227 \u2200 (q' r' : Polynomial F), (f = g * q' + r' \u2227 (r' = 0 \u2228 r'.degree < g.degree)) \u2192 q = q' \u2227 r = r' := by sorry",
     "header": "import Mathlib\nopen Polynomial",
-    "informal_statement": null,
+    "informal_statement": "Let $f(x)$ and $g(x)$ be two nonzero polynomials in $F[x]$, where $F$ is a field and $g(x)$ is a nonconstant polynomial. Then there exist unique polynomials $q(x), r(x) \\in F[x]$ such that $f(x) = g(x)q(x) + r(x)$, where either $\\deg r(x) < \\deg g(x)$ or $r(x)$ is the zero polynomial.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2122,7 +2122,7 @@
   "MSC-180/12_002": {
     "formal_statement": "theorem chinese_remainder_theorem {k : \u2115} (n : \u2115 \u2192 \u2115) (hpos : \u2200 i, 0 < i \u2192 i \u2264 k \u2192 n i > 0) (hcoprime : \u2200 i j, 0 < i \u2192 i \u2264 k \u2192 0 < j \u2192 j \u2264 k \u2192 i \u2260 j \u2192 Nat.Coprime (n i) (n j)) (a : \u2115 \u2192 \u2124) : \u2203 x : \u2124, \u2200 i, 0 < i \u2192 i \u2264 k \u2192 x \u2261 a i [ZMOD (n i)] \u2227 \u2200 y : \u2124, (\u2200 i, 0 < i \u2192 i \u2264 k \u2192 y \u2261 a i [ZMOD (n i)]) \u2192 x \u2261 y [ZMOD ((Finset.Icc 1 k).prod fun i => (n i : \u2124))] := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "Let $n_1, n_2, \\ldots, n_k$ be positive integers such that $\\gcd(n_i, n_j) = 1$ for $i \\neq j$. Then for any integers $a_1, \\ldots, a_k$, the system \\[ \\begin{cases} x \\equiv a_1 \\pmod{n_1} \\\\ x \\equiv a_2 \\pmod{n_2} \\\\ \\vdots \\\\ x \\equiv a_k \\pmod{n_k} \\end{cases} \\] has a solution. Furthermore, any two solutions of the system are congruent modulo $n_1 n_2 \\cdots n_k$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2162,7 +2162,7 @@
   "MSC-180/12_003": {
     "formal_statement": "theorem maximal_ideal_iff_quotient_field {R : Type*} [CommRing R] [Nontrivial R] (M : Ideal R) : M.IsMaximal \u2194 IsField (R \u29f8 M) := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "Let $R$ be a commutative ring with identity and $M$ an ideal in $R$. Then $M$ is a maximal ideal of $R$ if and only if $R/M$ is a field.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2202,7 +2202,7 @@
   "MSC-180/14_001": {
     "formal_statement": "theorem kernel_subgroup_and_isomorphism {G H : Type*} [AddCommGroup G] [AddCommGroup H] (\u03c6 : G \u2192+ H) : \u03c6.ker = {g | \u03c6 g = 0} \u2227 (Surjective \u03c6 \u2192 Nonempty (G \u29f8 \u03c6.ker \u2243+ H)) := by sorry",
     "header": "import Mathlib\nopen Function",
-    "informal_statement": null,
+    "informal_statement": "Let $\\varphi:G\\to H$ be a homomorphism between abelian groups, and let $e$ be the identity element of $H$. Let $\\ker(\\varphi):=\\{g\\in G:\\varphi(g)=e\\}$. (1) Show that $\\ker(\\varphi)$ is a subgroup of $G$. (2) Show that if $\\varphi: G \\to H$ is onto, then the quotient group $G/\\ker(\\varphi)$ is isomorphic to $H$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2242,7 +2242,7 @@
   "MSC-180/14_002": {
     "formal_statement": "theorem curve_union : {(x, y, z) : \u211d \u00d7 \u211d \u00d7 \u211d | (x + y + z) * (x ^ 2 + y ^ 2 - z ^ 2) = 0} = {(x, y, z) | x + y + z = 0} \u222a {(x, y, z) | x ^ 2 + y ^ 2 - z ^ 2 = 0} := by sorry",
     "header": "import Mathlib.Data.Real.Basic",
-    "informal_statement": null,
+    "informal_statement": "Let \\( P(x,y,z)=(x+y+z)(x^2+y^2-z^2) \\). Show that \\( V(P) \\) is the union of the two curves \\( V(x+y+z) \\) and \\( V(x^2+y^2-z^2) \\).",
     "nl_proof": null,
     "attempts": [
       {
@@ -2282,7 +2282,7 @@
   "MSC-180/14_003": {
     "formal_statement": "theorem root_multiplicity_factorization {\u03b1 : Type*} [Field \u03b1] {P : Polynomial \u03b1} {a : \u03b1} {k : \u2115} (h : multiplicity (X - C a) P = k) : \u2203 g : Polynomial \u03b1, P = (X - C a) ^ k * g \u2227 eval a g \u2260 0 := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "Suppose that $a$ is a root of multiplicity $k$ for $P(x)$. Show there is a polynomial $g(x)$ such that $P(x) = (x - a)^{k}g(x)$ with $g(a) \\neq 0$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2322,7 +2322,7 @@
   "MSC-180/15_001": {
     "formal_statement": "theorem qr_factorization {n : \u2115} (A : Matrix (Fin n) (Fin n) \u2102) : \u2203 (Q : Matrix (Fin n) (Fin n) \u2102) (R : Matrix (Fin n) (Fin n) \u2102), A = Q * R \u2227 Q\u1d34 * Q = 1 \u2227 (\u2200 i j : Fin n, i > j \u2192 R i j = 0) \u2227 (IsUnit A.det \u2192 (\u2200 i, (R i i).re > 0 \u2227 (R i i).im = 0) \u2227 \u2200 (Q' R' : Matrix (Fin n) (Fin n) \u2102), (A = Q' * R' \u2227 Q'\u1d34 * Q' = 1 \u2227 \u2200 i j, i > j \u2192 R' i j = 0 \u2227 (\u2200 i, (R' i i).re > 0 \u2227 (R' i i).im = 0)) \u2192 Q' = Q \u2227 R' = R) := by sorry",
     "header": "import Mathlib\nopen Matrix",
-    "informal_statement": null,
+    "informal_statement": " Let $A$ be an $n \times n$ complex matrix. Then there exists a unitary matrix $Q$ and an upper triangular matrix $R$ such that\\[A = QR.\\]Furthermore, if $A$ is invertible, then the factorization is unique if we require that the diagonal entries of $R$ are positive real numbers.(An equivalent formulation common in numerical linear algebra):Let $A \\in M_{n}(\\mathbb{C})$. Then $A$ can be factored as\\[A = QR,\\]where $Q$ is a unitary matrix ($Q^*Q = I$) and $R$ is an upper triangular matrix. If $A$ is a real matrix, then $Q$ is an orthogonal matrix ($Q^TQ = I$).",
     "nl_proof": null,
     "attempts": [
       {
@@ -2362,7 +2362,7 @@
   "MSC-180/15_003": {
     "formal_statement": "theorem column_row_factorization {m n : \u2115} (A : Matrix (Fin m) (Fin n) \u2102) (hc : A.rank \u2265 1) : \u2203 (c : \u2115) (h : c = A.rank) (C : Matrix (Fin m) (Fin c) \u2102) (R : Matrix (Fin c) (Fin n) \u2102), A = C * R := by sorry",
     "header": "import Mathlib\n\nopen Matrix",
-    "informal_statement": null,
+    "informal_statement": "Suppose $A$ is an $m$-by-$n$ matrix with entries in $F$ and column rank $c \\geq 1$. Then there exist an $m$-by-$c$ matrix $C$ and a $c$-by-$n$ matrix $R$, both with entries in $F$, such that $A = CR$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2402,7 +2402,7 @@
   "MSC-180/16_002": {
     "formal_statement": "theorem minimal_polynomial_unique : \u2203! (g : k[X]), g.Monic \u2227 (g.eval\u2082 (algebraMap k A) u = 0) \u2227 \u2200 (f : k[X]), f.Monic \u2192 f.eval\u2082 (algebraMap k A) u = 0 \u2192 degree g \u2264 degree f := by sorry",
     "header": "import Mathlib\nopen Polynomial\nvariable {k : Type*} [Field k] {A : Type*} [CommRing A] [Algebra k A] (u : A)",
-    "informal_statement": null,
+    "informal_statement": "The minimal polynomial $g(x)$ of $u$ over $k$ is the unique monic polynomial of least degree satisfying $g(u) = 0$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2442,7 +2442,7 @@
   "MSC-180/20_001": {
     "formal_statement": "theorem my_favorite_theorem {G : Type*} [CommGroup G] [Fintype G]\n    (hG : Fintype.card G \u2260 0) (p : \u2115) (hp : Nat.Prime p)\n    (hG1 : p \u2223 Fintype.card G) :\n    \u2203 x : G, orderOf x = p := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "Let $G$ be a finite Abelian group and let $p$ be a prime such that $p \\mid o(G)$. Then $G$ has an element of order $p$, i.e., there exists some $x \\in G$ such that $o(x)=p$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2482,7 +2482,7 @@
   "MSC-180/20_003": {
     "formal_statement": "theorem my_favorite_theorem {G : Type*} [Group G] [IsCyclic G]\n  (H : Subgroup G) : IsCyclic H :=by sorry",
     "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
-    "informal_statement": null,
+    "informal_statement": "Every subgroup of a cyclic group is cyclic.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2522,7 +2522,7 @@
   "MSC-180/26_002": {
     "formal_statement": "theorem exists_sup_of_bddAbove {A : Set \u211d} (hne : A.Nonempty) (hbd : BddAbove A) :\n    \u2203 s : \u211d, IsLUB A s := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "Suppose \\( A \\subset \\mathbb{R}, A \\neq \\emptyset \\), has an upper bound. Then $\\sup A$ exists.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2562,7 +2562,7 @@
   "MSC-180/28_003": {
     "formal_statement": "theorem outer_measure_additive_of_separated {E F : Set (Fin d \u2192 \u211d)} (h : \u2203 \u03b4 > 0, \u2200 x \u2208 E, \u2200 y \u2208 F, \u03b4 \u2264 dist x y) : MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) (E \u222a F) = MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) E + MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) F := by sorry",
     "header": "import Mathlib\nopen MeasureTheory Metric Set\nvariable {d : \u2115}",
-    "informal_statement": null,
+    "informal_statement": "Let \\( E, F \\subset \\mathbb{R}^d \\) be such that \\( \\text{dist}(E, F) > 0 \\), where \\( \\text{dist}(E, F) := \\inf\\{|x - y| : x \\in E, y \\in F\\} \\) is the distance between \\( E \\) and \\( F \\). Then \\( m^*(E \\cup F) = m^*(E) + m^*(F) \\).",
     "nl_proof": null,
     "attempts": [
       {
@@ -2602,7 +2602,7 @@
   "MSC-180/34_001": {
     "formal_statement": "theorem two_mass_spring_system : (\u2200 t, m\u2081 * (deriv^[2] x\u2081 t) = k * (x\u2082 t - x\u2081 t)) \u2227 (\u2200 t, m\u2082 * (deriv^[2] x\u2082 t) = -k * (x\u2082 t - x\u2081 t)) := by sorry",
     "header": "import Mathlib\nvariable {m\u2081 m\u2082 k : \u211d} (x\u2081 x\u2082 : \u211d \u2192 \u211d)",
-    "informal_statement": null,
+    "informal_statement": "For the two-mass spring system with masses $m_1$ and $m_2$ connected by a spring with constant $k$, where $x_1$ and $x_2$ are the displacements of each mass from their equilibrium positions, show that the system of equations is: \\[m_{1}x_{1}^{\\prime \\prime} = k(x_{2} - x_{1}),\\] \\[m_{2}x_{2}^{\\prime \\prime} = -k(x_{2} - x_{1}).\\]",
     "nl_proof": null,
     "attempts": [
       {
@@ -2642,7 +2642,7 @@
   "MSC-180/34_002": {
     "formal_statement": "theorem potential_function_exact_ode {f g : \u211d \u2192 \u211d} (hf : Continuous f) (hg : Continuous g) : \u2203 (F : \u211d \u00d7 \u211d \u2192 \u211d) (C : \u211d), Differentiable \u211d F \u2227 (\u2200 (x y : \u211d), deriv (\u03bb x' => F (x', y)) x = f x) \u2227 (\u2200 (x y : \u211d), deriv (\u03bb y' => F (x, y')) y = g y) \u2227 (\u2200 (x y : \u211d), F (x, y) = \u222b t in 0..x, f t + \u222b t in 0..y, g t + C) := by sorry",
     "header": "import Mathlib\n\nopen Real",
-    "informal_statement": null,
+    "informal_statement": "The potential function for the equation $f(x) + g(y) \\frac{dy}{dx} = 0$ is of the form $F(x, y) = \\int f(x) dx + \\int g(y) dy$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2682,7 +2682,7 @@
   "MSC-180/34_003": {
     "formal_statement": "theorem brine_tank_system {V r : \u211d} (hV : V > 0) (hr : r > 0) : \u2200 (x\u2081 x\u2082 : \u211d \u2192 \u211d), (Differentiable \u211d x\u2081) \u2192 (Differentiable \u211d x\u2082) \u2192 (\u2200 t, deriv x\u2081 t = r / V * (x\u2082 t - x\u2081 t)) \u2227 (\u2200 t, deriv x\u2082 t = r / V * (x\u2081 t - x\u2082 t)) := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "Consider a closed system of two brine tanks with equal volume $V$, where the amount of salt in each tank is $x_1$ and $x_2$ grams respectively, and liquid flows between them at rate $r$ liters per second. Show that the system of ODEs governing this system is: \\[x_{1}^{\\prime} = \\frac{r}{V}(x_{2} - x_{1}),\\quad x_{2}^{\\prime} = \\frac{r}{V}(x_{1} - x_{2}).\\]",
     "nl_proof": null,
     "attempts": [
       {
@@ -2722,7 +2722,7 @@
   "MSC-180/39_003": {
     "formal_statement": "theorem power_series_recurrence_relation (C : \u2115 \u2192 \u211d) (R : \u211d) (hR : R > 0) (hconv : \u2200 x \u2208 Metric.ball 0 R, HasSum (\u03bb n => C n * x ^ n) (\u2211' n, C n * x ^ n)) (hsol : \u2200 x \u2208 Metric.ball 0 R, deriv^[2] (fun x => \u2211' n, C n * x ^ n) x + 3 * x * deriv (fun x => \u2211' n, C n * x ^ n) x + 3 * (\u2211' n, C n * x ^ n) = 0) : \u2200 k \u2265 2, k * C k + 3 * C (k - 2) = 0 := by sorry",
     "header": "import Mathlib\nopen Filter ENNReal\nopen scoped Topology",
-    "informal_statement": null,
+    "informal_statement": "\u8bc1\u660e\u5fae\u5206\u65b9\u7a0b $\\frac{d^{2}y}{d x^{2}} + 3 x \\frac{d y}{d x} + 3 y = 0$ \u7684\u5e42\u7ea7\u6570\u89e3\u7cfb\u6570\u6ee1\u8db3\u9012\u63a8\u5173\u7cfb $k C_{k} + 3 C_{k - 2} = 0$",
     "nl_proof": null,
     "attempts": [
       {
@@ -2762,7 +2762,7 @@
   "MSC-180/40_003": {
     "formal_statement": "theorem convergence_of_log_series {a b : \u211d} (ha : a > 0) (hb : b > 1) : Summable (\u03bb n : \u2115 => (Real.log (n + 1))^a / (n + 1)^b) := by sorry",
     "header": "import Mathlib\nopen Real Filter",
-    "informal_statement": null,
+    "informal_statement": "Gem 22 (CMJ,18:5,p.410) For any $a > 0$, $b > 1$, the series $\\sum_{n=1}^{\\infty} \\frac{(\\log n)^a}{n^b}$ converges.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2802,7 +2802,7 @@
   "MSC-180/52_002": {
     "formal_statement": "theorem diameter_achieved_by_hull_vertices {n : \u2115} {S : Set (EuclideanSpace \u211d (Fin n))} \n    (h_finite : Set.Finite S) (h_nonempty : S.Nonempty) :\n    \u2203 x \u2208 (convexHull \u211d S).extremePoints \u211d, \u2203 y \u2208 (convexHull \u211d S).extremePoints \u211d, \n    dist x y = Metric.diam S := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "Let the diameter of a point set \\( S \\) be the largest distance between any two points of \\( S \\). Prove that the diameter of \\( S \\) is achieved by two hull vertices.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2842,7 +2842,7 @@
   "MSC-180/60_002": {
     "formal_statement": "theorem weierstrass_approximation (f : \u211d \u2192 \u211d) (hf : ContinuousOn f (Set.Icc 0 1)) (\u03b5 : \u211d) (h\u03b5 : \u03b5 > 0) : \u2203 (B : Polynomial \u211d), \u2200 x \u2208 Set.Icc 0 1, |B.eval x - f x| \u2264 \u03b5 := by sorry",
     "header": "import Mathlib\nopen scoped BigOperators",
-    "informal_statement": null,
+    "informal_statement": "Weierstrass approximation theorem      If $f$ is a continuous function on $[0,1]$ and $\\epsilon > 0$, then there exists a polynomial $B$ such that      $$\\sup_{x \\in [0,1]} |B(x) - f(x)| \\leq \\epsilon.$$",
     "nl_proof": null,
     "attempts": [
       {
@@ -2882,7 +2882,7 @@
   "MSC-180/65_001": {
     "formal_statement": "theorem unique_root_of_nonzero_deriv {a b : \u211d} (hab : a < b) (f : \u211d \u2192 \u211d) (hf : ContinuousOn f (Icc a b)) (hderiv : \u2200 x \u2208 Ioo a b, DifferentiableAt \u211d f x) (hnonzero : \u2200 x \u2208 Ioo a b, deriv f x \u2260 0) : \u2200 (p q : \u211d), p \u2208 Icc a b \u2192 q \u2208 Icc a b \u2192 f p = 0 \u2192 f q = 0 \u2192 p = q := by sorry",
     "header": "import Mathlib\nopen Set",
-    "informal_statement": null,
+    "informal_statement": "Suppose $f \\in C[a,b]$ and $f'(x)$ exists on $(a,b)$. Show that if $f'(x) \\neq 0$ for all $x$ in $(a,b)$, then there can exist at most one number $p$ in $[a,b]$ with $f(p)=0$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2922,7 +2922,7 @@
   "MSC-180/65_003": {
     "formal_statement": "theorem lipschitz_from_bounded_deriv {f : \u211d \u2192 \u211d} {a b : \u211d} {L : \u211d\u22650} (hab : a \u2264 b) (hderiv : \u2200 x \u2208 Icc a b, DifferentiableAt \u211d f x) (hbounded : \u2200 x \u2208 Icc a b, \u2016deriv f x\u2016 \u2264 L) : LipschitzOnWith L f (Icc a b) := by sorry",
     "header": "import Mathlib\nopen Metric Set NNReal",
-    "informal_statement": null,
+    "informal_statement": "Show that if $f$ has a derivative that is bounded on $[a,b]$ by $L$, then $f$ satisfies a Lipschitz condition with Lipschitz constant $L$ on $[a,b]$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -2962,7 +2962,7 @@
   "MSC-180/68_002": {
     "formal_statement": "theorem bezout_identity (a b : \u2124) : \u2203 s t : \u2124, s * a + t * b = Int.gcd a b := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "The greatest common divisor of $a$ and $b$ is a linear combination of $a$ and $b$. That is, $$\\text{gcd}(a,b) = s a + t b,$$ for some integers $s$ and $t$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -3002,7 +3002,7 @@
   "MSC-180/68_003": {
     "formal_statement": "theorem divide_conquer_sort_bound {f : \u2115 \u2192 \u2115} (h_rec : \u2200 n \u2265 2, f n = f (n / 2) + f ((n + 1) / 2) + n - 1) (h_base : f 1 = 0) : True := by sorry",
     "header": "import Mathlib",
-    "informal_statement": null,
+    "informal_statement": "The function $f(n) = f(\\lfloor n/2 \\rfloor) + f(\\lceil n/2 \\rceil) + n - 1$ with $f(1) = 0$ bounds the comparisons for a divide-and-conquer sorting algorithm.",
     "nl_proof": null,
     "attempts": [
       {
@@ -3042,7 +3042,7 @@
   "MSC-180/78_003": {
     "formal_statement": "theorem quadrupole_field_theorem : quadrupole_field_strength q l r \u03b5\u2080 = 3 * (2 * q * l^2) / (4 * \u03c0 * \u03b5\u2080 * r^4) := by sorry",
     "header": "import Mathlib\nopen Real\nvariable (q l r \u03b5\u2080 : \u211d)\nvariable (hl : l > 0) (hr : r > 2 * l) (h\u03b5\u2080 : \u03b5\u2080 > 0)\nnoncomputable def quadrupole_moment : \u211d := 2 * q * l^2\nnoncomputable def quadrupole_field_strength : \u211d := 3 * quadrupole_moment q l / (4 * \u03c0 * \u03b5\u2080 * r^4)",
-    "informal_statement": null,
+    "informal_statement": "\u8bc1\u660e\u7535\u56db\u6781\u5b50\u5728\u5ef6\u957f\u7ebf\u4e0a\u79bb\u4e2d\u5fc3\u4e3a$r$\u5904\u7684\u573a\u5f3a$E = \\frac{3Q}{4\\pi\\varepsilon_0r^4}$\uff08$r \\gg l$\uff09\uff0c\u5176\u4e2d$Q = 2ql^2$\u4e3a\u7535\u56db\u6781\u77e9",
     "nl_proof": null,
     "attempts": [
       {
@@ -3082,7 +3082,7 @@
   "MSC-180/90_001": {
     "formal_statement": "theorem euclidean_ball_convex {E : Type*} [NormedAddCommGroup E] [NormedSpace \u211d E] (c : E) (r : \u211d) (hr : 0 \u2264 r) : Convex \u211d (ball c r) := by sorry",
     "header": "import Mathlib\nopen Metric Set",
-    "informal_statement": null,
+    "informal_statement": "A Euclidean ball is a convex set: if $\\|x_1-x_c\\|_2 \\leq r$, $\\|x_2-x_c\\|_2 \\leq r$, and $0 \\leq \\theta \\leq 1$, then $\\|\\theta x_{1} + (1 - \\theta)x_{2} - x_{c}\\|_{2} = \\|\\theta(x_{1} - x_{c}) + (1 - \\theta)(x_{2} - x_{c})\\|_{2}$ $\\leq \\theta \\| x_{1} - x_{c}\\|_{2} + (1 - \\theta)\\|x_{2} - x_{c}\\|_{2}$ $\\leq r$.",
     "nl_proof": null,
     "attempts": [
       {
@@ -3122,7 +3122,7 @@
   "MSC-180/91_001": {
     "formal_statement": "theorem expected_payoff_definition {n : \u2115} (u : Fin n \u2192 \u211d) (p : Fin n \u2192 NNReal) (hpsum : \u2211 k, p k = (1 : NNReal)) : expected_utility u p hpsum = \u2211 k : Fin n, (p k : \u211d) * u k := by sorry",
     "header": "import Mathlib\nopen BigOperators\nnoncomputable def expected_utility {n : \u2115} (u : Fin n \u2192 \u211d) (p : Fin n \u2192 NNReal) (hpsum : \u2211 k, p k = (1 : NNReal)) : \u211d := \u2211 k, (p k : \u211d) * u k",
-    "informal_statement": null,
+    "informal_statement": "The expected payoff from the lottery \\( p \\) is defined as \\[ E[u(x)|p] = \\sum_{k = 1}^{n}p_{k}u(x_{k}) = p_{1}u(x_{1}) + p_{2}u(x_{2}) + \\cdot \\cdot + p_{n}u(x_{n}). \\]",
     "nl_proof": null,
     "attempts": [
       {
@@ -3162,7 +3162,7 @@
   "MSC-180/91_003": {
     "formal_statement": "theorem war_stage_nash_equilibria : let game := war_stage_payoff; let equilibria := { (s\u2081, s\u2082) | (s\u2081 = ![1, 0] \u2227 s\u2082 = ![1, 0]) \u2228 (s\u2081 = ![0, 1] \u2227 s\u2082 = ![0, 1]) }; (\u2200 (s : _ \u00d7 _), s \u2208 equilibria \u2192 IsPureNashEquilibrium game s.1 s.2) \u2227 (PureStrategyPayoff game ![1, 0] ![1, 0] = (-5, -5)) \u2227 (PureStrategyPayoff game ![0, 1] ![0, 1] = (-100, -100)) := by sorry",
     "header": "import Mathlib\nopen Matrix NNReal BigOperators\ndef PureStrategyPayoff {m n : \u2115} (M : Matrix (Fin m) (Fin n) (\u211d \u00d7 \u211d)) (p\u2081 : Fin m \u2192 \u211d\u22650) (p\u2082 : Fin n \u2192 \u211d\u22650) : \u211d \u00d7 \u211d := (\u2211 i : Fin m, \u2211 j : Fin n, p\u2081 i * p\u2082 j * (M i j).1, \u2211 i : Fin m, \u2211 j : Fin n, p\u2081 i * p\u2082 j * (M i j).2)\ndef IsPureNashEquilibrium {m n : \u2115} (M : Matrix (Fin m) (Fin n) (\u211d \u00d7 \u211d)) (s\u2081 : Fin m \u2192 \u211d\u22650) (s\u2082 : Fin n \u2192 \u211d\u22650) : Prop := (\u2200 i, (\u2211 j : Fin n, s\u2082 j = 1) \u2192 \u2200 j, (M i j).1 \u2264 (M i j).1) \u2227 (\u2200 j, (\u2211 i : Fin m, s\u2081 i = 1) \u2192 \u2200 i, (M i j).2 \u2264 (M i j).2)\ndef war_stage_payoff : Matrix (Fin 2) (Fin 2) (\u211d \u00d7 \u211d) := !![(-5, -5), (-100, -100); (-100, -100), (-100, -100)]",
-    "informal_statement": null,
+    "informal_statement": "The war-stage game has two pure-strategy Nash equilibria: \\\\begin{itemize}\\\\item NE1: $(R,r)$ that yields a payoff of $(-5,-5)$. \\\\item NE2: $(D,d)$ that yields a payoff of $(-100,-100)$.\\\\end{itemize}",
     "nl_proof": null,
     "attempts": [
       {
