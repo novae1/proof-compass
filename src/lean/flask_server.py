@@ -10,7 +10,6 @@ logging.basicConfig(
 	level=logging.WARNING,  # Only show warnings and errors by default
 	format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 	handlers=[
-		logging.FileHandler("lean_server.log"),
 		logging.StreamHandler()
 	]
 )
