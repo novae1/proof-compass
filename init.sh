@@ -7,8 +7,8 @@ set -x
 set -e
 
 # Configure git
-#git config --global user.name "novae1"
-#git config --global user.email "ndasilva@protonmail.com"
+git config --global user.name "novae1"
+git config --global user.email "ndasilva@protonmail.com"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="${SCRIPT_DIR}"
