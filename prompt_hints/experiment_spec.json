@@ -1,0 +1,24 @@
+{
+  "problems": {
+    "MSC-180/12_003": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem maximal_ideal_iff_quotient_field {R : Type*} [CommRing R] [Nontrivial R] (M : Ideal R) : M.IsMaximal ↔ IsField (R ⧸ M) := by sorry",
+      "theorem_hint": "-- Use as: Ideal.Quotient.maximal_ideal_iff_isField_quotient\ntheorem maximal_ideal_iff_isField_quotient {R} [CommRing R] (I : Ideal R) : I.IsMaximal ↔ IsField (R ⧸ I)"
+    },
+    "MSC-180/14_001": {
+      "header": "import Mathlib\nopen Function",
+      "formal_statement": "theorem kernel_subgroup_and_isomorphism {G H : Type*} [AddCommGroup G] [AddCommGroup H] (φ : G →+ H) : φ.ker = {g | φ g = 0} ∧ (Surjective φ → Nonempty (G ⧸ φ.ker ≃+ H)) := by sorry",
+      "theorem_hint": "-- Use as: QuotientAddGroup.quotientKerEquivOfSurjective\nnoncomputable def quotientKerEquivOfSurjective (hφ : Surjective φ) : G ⧸ ker φ ≃* H"
+    },
+    "MSC-180/20_001": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem my_favorite_theorem {G : Type*} [CommGroup G] [Fintype G]\n    (hG : Fintype.card G ≠ 0) (p : ℕ) (hp : Nat.Prime p)\n    (hG1 : p ∣ Fintype.card G) :\n    ∃ x : G, orderOf x = p := by sorry",
+      "theorem_hint": "-- Use as: exists_prime_orderOf_dvd_card\ntheorem exists_prime_addOrderOf_dvd_card{G : Type u_3} [AddGroup G] [Fintype G] (p : ℕ) [Fact (Nat.Prime p)] (hdvd : p ∣ Fintype.card G) : ∃ (x : G), addOrderOf x = p"
+    },
+    "MSC-180/20_003": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem my_favorite_theorem {G : Type*} [Group G] [IsCyclic G]\n  (H : Subgroup G) : IsCyclic H :=by sorry",
+      "theorem_hint": "-- Use as: Subgroup.isCyclic\ninstance Subgroup.isCyclic{α : Type u_1} [Group α] [IsCyclic α] (H : Subgroup α) : IsCyclic ↥H"
+    }
+  }
+}
