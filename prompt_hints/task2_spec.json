@@ -2,23 +2,23 @@
   "problems": {
     "MSC-180/12_003": {
       "header": "import Mathlib",
-      "formal_statement": "theorem maximal_ideal_iff_quotient_field {R : Type*} [CommRing R] [Nontrivial R] (M : Ideal R) : M.IsMaximal \u2194 IsField (R \u29f8 M) := by sorry",
-      "theorem_hint": "-- Use as: Ideal.Quotient.maximal_ideal_iff_isField_quotient\ntheorem maximal_ideal_iff_isField_quotient {R} [CommRing R] (I : Ideal R) : I.IsMaximal \u2194 IsField (R \u29f8 I)"
+      "formal_statement": "theorem maximal_ideal_iff_quotient_field {R : Type*} [CommRing R] [Nontrivial R] (M : Ideal R) : M.IsMaximal ↔ IsField (R ⧸ M) := by sorry",
+      "theorem_hint": "-- Use as: Ideal.Quotient.maximal_ideal_iff_isField_quotient\ntheorem maximal_ideal_iff_isField_quotient {R} [CommRing R] (I : Ideal R) : I.IsMaximal ↔ IsField (R ⧸ I)"
     },
     "MSC-180/14_001": {
       "header": "import Mathlib\nopen Function",
-      "formal_statement": "theorem kernel_subgroup_and_isomorphism {G H : Type*} [AddCommGroup G] [AddCommGroup H] (\u03c6 : G \u2192+ H) : \u03c6.ker = {g | \u03c6 g = 0} \u2227 (Surjective \u03c6 \u2192 Nonempty (G \u29f8 \u03c6.ker \u2243+ H)) := by sorry",
-      "theorem_hint": "-- Use as: QuotientAddGroup.quotientKerEquivOfSurjective\nnoncomputable def quotientKerEquivOfSurjective (h\u03c6 : Surjective \u03c6) : G \u29f8 ker \u03c6 \u2243* H"
+      "formal_statement": "theorem kernel_subgroup_and_isomorphism {G H : Type*} [AddCommGroup G] [AddCommGroup H] (φ : G →+ H) : φ.ker = {g | φ g = 0} ∧ (Surjective φ → Nonempty (G ⧸ φ.ker ≃+ H)) := by sorry",
+      "theorem_hint": "-- Use as: QuotientAddGroup.quotientKerEquivOfSurjective\nnoncomputable def quotientKerEquivOfSurjective (hφ : Surjective φ) : G ⧸ ker φ ≃* H"
     },
     "MSC-180/20_001": {
       "header": "import Mathlib",
-      "formal_statement": "theorem my_favorite_theorem {G : Type*} [CommGroup G] [Fintype G]\n    (hG : Fintype.card G \u2260 0) (p : \u2115) (hp : Nat.Prime p)\n    (hG1 : p \u2223 Fintype.card G) :\n    \u2203 x : G, orderOf x = p := by sorry",
-      "theorem_hint": "-- Use as: exists_prime_orderOf_dvd_card\ntheorem exists_prime_addOrderOf_dvd_card{G : Type u_3} [AddGroup G] [Fintype G] (p : \u2115) [Fact (Nat.Prime p)] (hdvd : p \u2223 Fintype.card G) : \u2203 (x : G), addOrderOf x = p"
+      "formal_statement": "theorem my_favorite_theorem {G : Type*} [CommGroup G] [Fintype G]\n    (hG : Fintype.card G ≠ 0) (p : ℕ) (hp : Nat.Prime p)\n    (hG1 : p ∣ Fintype.card G) :\n    ∃ x : G, orderOf x = p := by sorry",
+      "theorem_hint": "-- Use as: exists_prime_orderOf_dvd_card\ntheorem exists_prime_addOrderOf_dvd_card{G : Type u_3} [AddGroup G] [Fintype G] (p : ℕ) [Fact (Nat.Prime p)] (hdvd : p ∣ Fintype.card G) : ∃ (x : G), addOrderOf x = p"
     },
     "MSC-180/20_003": {
       "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
       "formal_statement": "theorem my_favorite_theorem {G : Type*} [Group G] [IsCyclic G]\n  (H : Subgroup G) : IsCyclic H :=by sorry",
-      "theorem_hint": "-- Use as: Subgroup.isCyclic\ninstance Subgroup.isCyclic{\u03b1 : Type u_1} [Group \u03b1] [IsCyclic \u03b1] (H : Subgroup \u03b1) : IsCyclic \u21a5H"
+      "theorem_hint": "-- Use as: Subgroup.isCyclic\ninstance Subgroup.isCyclic{α : Type u_1} [Group α] [IsCyclic α] (H : Subgroup α) : IsCyclic ↥H"
     }
   }
 }

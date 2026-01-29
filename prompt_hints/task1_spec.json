@@ -5,30 +5,15 @@
       "formal_statement": "theorem my_favorite_theorem {R} [CommRing R] (I : Ideal R) : I.IsMaximal \u2194 IsField (R \u29f8 I) := by sorry",
       "theorem_hint": "-- Use as: Ideal.Quotient.maximal_ideal_iff_isField_quotient\ntheorem maximal_ideal_iff_isField_quotient {R} [CommRing R] (I : Ideal R) : I.IsMaximal \u2194 IsField (R \u29f8 I)"
     },
-    "MSC-180-identical/12_003": {
-      "header": "import Mathlib",
-      "formal_statement": "theorem my_favorite_theorem {R} [CommRing R] (I : Ideal R) : I.IsMaximal \u2194 IsField (R \u29f8 I) := by sorry",
-      "theorem_hint": "-- This statement is identical to the goal; close with `exact <theorem>`\n-- Use as: Ideal.Quotient.maximal_ideal_iff_isField_quotient\ntheorem maximal_ideal_iff_isField_quotient {R} [CommRing R] (I : Ideal R) : I.IsMaximal \u2194 IsField (R \u29f8 I)"
-    },
     "MSC-180-hint/20_001": {
       "header": "import Mathlib",
       "formal_statement": "theorem my_favorite_theorem {G : Type u_3} [AddGroup G] [Fintype G] (p : \u2115) [Fact (Nat.Prime p)] (hdvd : p \u2223 Fintype.card G) : \u2203 (x : G), addOrderOf x = p := by sorry",
-      "theorem_hint": "-- Use as: exists_prime_orderOf_dvd_card\ntheorem exists_prime_addOrderOf_dvd_card{G : Type u_3} [AddGroup G] [Fintype G] (p : \u2115) [Fact (Nat.Prime p)] (hdvd : p \u2223 Fintype.card G) : \u2203 (x : G), addOrderOf x = p"
-    },
-    "MSC-180-identical/20_001": {
-      "header": "import Mathlib",
-      "formal_statement": "theorem my_favorite_theorem {G : Type u_3} [AddGroup G] [Fintype G] (p : \u2115) [Fact (Nat.Prime p)] (hdvd : p \u2223 Fintype.card G) : \u2203 (x : G), addOrderOf x = p := by sorry",
-      "theorem_hint": "-- This statement is identical to the goal; close with `exact <theorem>`\n-- Use as: exists_prime_orderOf_dvd_card\ntheorem exists_prime_addOrderOf_dvd_card{G : Type u_3} [AddGroup G] [Fintype G] (p : \u2115) [Fact (Nat.Prime p)] (hdvd : p \u2223 Fintype.card G) : \u2203 (x : G), addOrderOf x = p"
+      "theorem_hint": "-- Use as: exists_prime_orderOf_dvd_card\ntheorem exists_prime_addOrderOf_dvd_card {G : Type u_3} [AddGroup G] [Fintype G] (p : \u2115) [Fact (Nat.Prime p)] (hdvd : p \u2223 Fintype.card G) : \u2203 (x : G), addOrderOf x = p"
     },
     "MSC-180-hint/sqrt2": {
       "header": "import Mathlib",
       "formal_statement": "theorem my_favorite_theorem : Irrational (Real.sqrt 2) := by sorry",
-      "theorem_hint": "-- Use as: Real.irrational_sqrt_two\ntheorem Real.irrational_sqrt_two : Irrational (Real.sqrt 2)"
-    },
-    "MSC-180-identical/sqrt2": {
-      "header": "import Mathlib",
-      "formal_statement": "theorem my_favorite_theorem : Irrational (Real.sqrt 2) := by sorry",
-      "theorem_hint": "-- This statement is identical to the goal; close with `exact <theorem>`\n-- Use as: Real.irrational_sqrt_two\ntheorem Real.irrational_sqrt_two : Irrational (Real.sqrt 2)"
+      "theorem_hint": "-- Use as: irrational_sqrt_two\ntheorem irrational_sqrt_two : Irrational (Real.sqrt 2)"
     }
   }
 }
