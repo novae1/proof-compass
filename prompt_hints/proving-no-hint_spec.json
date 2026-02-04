@@ -1,0 +1,24 @@
+{
+  "problems": {
+    "MSC-180/12_003": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem maximal_ideal_iff_quotient_field {R : Type*} [CommRing R] [Nontrivial R] (M : Ideal R) : M.IsMaximal ↔ IsField (R ⧸ M) := by sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/14_001": {
+      "header": "import Mathlib\nopen Function",
+      "formal_statement": "theorem kernel_subgroup_and_isomorphism {G H : Type*} [AddCommGroup G] [AddCommGroup H] (φ : G →+ H) : φ.ker = {g | φ g = 0} ∧ (Surjective φ → Nonempty (G ⧸ φ.ker ≃+ H)) := by sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/20_001": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem my_favorite_theorem {G : Type*} [CommGroup G] [Fintype G]\n    (hG : Fintype.card G ≠ 0) (p : ℕ) (hp : Nat.Prime p)\n    (hG1 : p ∣ Fintype.card G) :\n    ∃ x : G, orderOf x = p := by sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/20_003": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem my_favorite_theorem {G : Type*} [Group G] [IsCyclic G]\n  (H : Subgroup G) : IsCyclic H :=by sorry",
+      "theorem_hint": ""
+    }
+  }
+}
