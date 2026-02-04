@@ -27,7 +27,7 @@ MODEL_IDS = {
     "goedelv2_32b": "Goedel-LM/Goedel-Prover-V2-32B",
 }
 
-DATE_PREFIX = "20260203"
+DATE_PREFIX = "20260204"
 
 ATTEMPTS_PER_PROBLEM = 4
 MICRO_BATCH_SIZES = {
