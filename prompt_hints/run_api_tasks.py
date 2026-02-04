@@ -23,17 +23,17 @@ SPEC_FILES = {
 }
 
 PROVIDERS = {
-    "moonshot": {
-        "base_url": "https://api.moonshot.ai/v1",
-        "model": "kimi-k2.5",
-        "key_field": "moonshot",
-        "extra_body": {"thinking": {"type": "disabled"}},
+    "openai": {
+        "base_url": None,
+        "model": "gpt-5.2",
+        "key_field": "openai",
+        "request_kwargs": {},
     },
     "deepseek": {
         "base_url": "https://api.deepseek.com",
         "model": "deepseek-chat",
         "key_field": "deepseek",
-        "extra_body": None,
+        "request_kwargs": {},
     },
 }
 
@@ -94,15 +94,14 @@ def _chat_completion(
     client: OpenAI,
     model: str,
     prompt: str,
-    extra_body: dict | None,
+    request_kwargs: dict,
 ) -> tuple[str, float]:
     start = time.time()
     response = client.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=MAX_TOKENS,
         stream=False,
-        extra_body=extra_body,
+        **request_kwargs,
     )
     elapsed = time.time() - start
     content = response.choices[0].message.content or ""
@@ -123,7 +122,7 @@ def _run_spec(
     output_path: Path,
     client: OpenAI,
     model: str,
-    extra_body: dict | None,
+    request_kwargs: dict,
 ) -> None:
     if not spec_path.exists():
         raise FileNotFoundError(f"Spec not found at {spec_path}")
@@ -141,7 +140,7 @@ def _run_spec(
         )
 
         for _ in range(ATTEMPTS_PER_PROBLEM):
-            content, elapsed = _chat_completion(client, model, prompt, extra_body)
+            content, elapsed = _chat_completion(client, model, prompt, request_kwargs)
             raw_output = _format_raw_output(prompt, content)
             parsed_proof = _extract_last_theorem_block(content)
             attempt = Attempt(
@@ -169,14 +168,15 @@ def main() -> int:
         if not api_key:
             raise ValueError(f"Missing API key for '{provider}' in keys.json")
 
-        client = OpenAI(api_key=api_key, base_url=cfg["base_url"])
+        base_url = cfg.get("base_url")
+        client = OpenAI(api_key=api_key, base_url=base_url)
         model = cfg["model"]
-        extra_body = cfg["extra_body"]
+        request_kwargs = cfg.get("request_kwargs", {})
 
         for spec_name, spec_path in SPEC_FILES.items():
             output_name = f"{DATE_PREFIX}_{spec_name}_{provider}.json"
             output_path = SPEC_DIR / output_name
-            _run_spec(spec_path, output_path, client, model, extra_body)
+            _run_spec(spec_path, output_path, client, model, request_kwargs)
 
     return 0
 
