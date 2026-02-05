@@ -1,0 +1,24 @@
+{
+  "problems": {
+    "custom-hint/analysis": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem my_favorite_theorem_analysis.{u, u_1} : ∀ {α : Type u} [inst : ConditionallyCompleteLinearOrder α] [inst_1 : TopologicalSpace α] [inst_2 : OrderTopology α] [inst_3 : DenselyOrdered α] {δ : Type u_1} [inst_4 : LinearOrder δ] [inst_5 : TopologicalSpace δ] [inst_6 : OrderClosedTopology δ] {a b : α}, a ≤ b → ∀ {f : α → δ}, ContinuousOn f (Set.Icc a b) → Set.Icc (f a) (f b) ⊆ f '' Set.Icc a b := by sorry",
+      "theorem_hint": "-- Use as: intermediate_value_Icc\ntheorem intermediate_value_Icc.{u, u_1} : ∀ {α : Type u} [inst : ConditionallyCompleteLinearOrder α] [inst_1 : TopologicalSpace α] [inst_2 : OrderTopology α] [inst_3 : DenselyOrdered α] {δ : Type u_1} [inst_4 : LinearOrder δ] [inst_5 : TopologicalSpace δ] [inst_6 : OrderClosedTopology δ] {a b : α}, a ≤ b → ∀ {f : α → δ}, ContinuousOn f (Set.Icc a b) → Set.Icc (f a) (f b) ⊆ f '' Set.Icc a b"
+    },
+    "custom-hint/numberTheory": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem my_favorite_theorem_numberTheory : ∀ {p : ℕ} [inst : Fact (Nat.Prime p)] {a : ZMod p}, a ≠ 0 → a ^ (p - 1) = 1 := by sorry",
+      "theorem_hint": "-- Use as: ZMod.pow_card_sub_one_eq_one\ntheorem ZMod.pow_card_sub_one_eq_one : ∀ {p : ℕ} [inst : Fact (Nat.Prime p)] {a : ZMod p}, a ≠ 0 → a ^ (p - 1) = 1"
+    },
+    "custom-hint/algebra": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem my_favorite_theorem_algebra.{u_1} : ∀ {α : Type u_1} [inst : Group α] (s : Subgroup α), Nat.card ↥s ∣ Nat.card α := by sorry",
+      "theorem_hint": "-- Use as: Subgroup.card_subgroup_dvd_card\ntheorem Subgroup.card_subgroup_dvd_card.{u_1} : ∀ {α : Type u_1} [inst : Group α] (s : Subgroup α), Nat.card ↥s ∣ Nat.card α"
+    },
+    "MSC-180-hint/sqrt2": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem my_favorite_theorem : Irrational (Real.sqrt 2) := by sorry",
+      "theorem_hint": "-- Use as: irrational_sqrt_two\ntheorem irrational_sqrt_two : Irrational (Real.sqrt 2)"
+    }
+  }
+}
