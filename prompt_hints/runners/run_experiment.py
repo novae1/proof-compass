@@ -6,7 +6,7 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src.core.problem_structure import TheoremProcessor
@@ -15,8 +15,9 @@ from src.prover_generation.generation_params import GenerationParams
 from src.prover_generation.theorem_proving import generate_attempts
 from prompt_hints.prompt_config import DeepSeekProverV2HintPromptConfig
 
-SPEC_PATH = Path(__file__).resolve().parent / "experiment_spec.json"
-OUTPUT_PATH = Path(__file__).resolve().parent / "attempts.json"
+HINTS_DIR = Path(__file__).resolve().parents[1]
+SPEC_PATH = HINTS_DIR / "specs" / "experiment_spec.json"
+OUTPUT_PATH = HINTS_DIR / "outputs" / "attempts.json"
 
 MODEL_ID = "deepseek-ai/DeepSeek-Prover-V2-7B"
 ATTEMPTS_PER_PROBLEM = 4
