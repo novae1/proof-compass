@@ -4,7 +4,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-SPEC_PATH = Path(__file__).resolve().parent / "task1_spec.json"
+HINTS_DIR = Path(__file__).resolve().parents[1]
+SPEC_PATH = HINTS_DIR / "specs" / "task1_spec.json"
 
 
 def main() -> int:

@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src.core.problem_structure import TheoremProcessor
@@ -14,7 +14,9 @@ from src.prover_generation.generation_params import GenerationParams
 from src.prover_generation.theorem_proving import generate_attempts
 from prompt_hints.prompt_config import GoedelHintPromptConfig
 
-SPEC_DIR = Path(__file__).resolve().parent
+HINTS_DIR = Path(__file__).resolve().parents[1]
+SPEC_DIR = HINTS_DIR / "specs"
+OUTPUT_DIR = HINTS_DIR / "outputs"
 
 SPEC_FILES = {
     "proving-with-given-theorem": SPEC_DIR / "proving-with-given-theorem_spec.json",
@@ -123,7 +125,7 @@ def main() -> int:
         model, tokenizer = load_artifacts(model_id)
         for spec_name, spec_path in SPEC_FILES.items():
             output_name = f"{DATE_PREFIX}_{spec_name}_{model_suffix}.json"
-            output_path = SPEC_DIR / output_name
+            output_path = OUTPUT_DIR / output_name
             _run_spec(spec_path, output_path, model, tokenizer, params)
 
     return 0

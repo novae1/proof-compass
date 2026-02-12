@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src.core.problem_structure import TheoremProcessor
@@ -17,10 +17,11 @@ from prompt_hints.prompt_config import (
     DeepSeekProverV2HintAlignPromptConfig,
 )
 
-TASK1_SPEC = Path(__file__).resolve().parent / "task1_spec.json"
-TASK2_SPEC = Path(__file__).resolve().parent / "task2_spec.json"
-TASK1_OUTPUT = Path(__file__).resolve().parent / "task1_attempts.json"
-TASK2_OUTPUT = Path(__file__).resolve().parent / "task2_attempts.json"
+HINTS_DIR = Path(__file__).resolve().parents[1]
+TASK1_SPEC = HINTS_DIR / "specs" / "task1_spec.json"
+TASK2_SPEC = HINTS_DIR / "specs" / "task2_spec.json"
+TASK1_OUTPUT = HINTS_DIR / "outputs" / "task1_attempts.json"
+TASK2_OUTPUT = HINTS_DIR / "outputs" / "task2_attempts.json"
 
 MODEL_ID = "deepseek-ai/DeepSeek-Prover-V2-7B"
 ATTEMPTS_PER_PROBLEM = 4

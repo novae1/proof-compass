@@ -6,12 +6,13 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from prompt_hints.prompt_config import DeepSeekProverV2HintPromptConfig
 
-SPEC_PATH = Path(__file__).resolve().parent / "experiment_spec.json"
+HINTS_DIR = Path(__file__).resolve().parents[1]
+SPEC_PATH = HINTS_DIR / "specs" / "experiment_spec.json"
 
 
 def _load_json(path: Path) -> dict:
