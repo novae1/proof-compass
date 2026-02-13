@@ -1,0 +1,29 @@
+{
+  "problems": {
+    "MSC-180/65_001": {
+      "header": "import Mathlib\n\nopen Set Function\nopen scoped NNReal",
+      "formal_statement": "theorem unique_root_of_nonzero_deriv {a b : ℝ} (_hab : a < b) (f : ℝ → ℝ)\n    (hf : ContinuousOn f (Icc a b))\n    (hderiv : ∀ x ∈ Ioo a b, DifferentiableAt ℝ f x)\n    (hnonzero : ∀ x ∈ Ioo a b, deriv f x ≠ 0) :\n    ∀ (p q : ℝ), p ∈ Icc a b → q ∈ Icc a b → f p = 0 → f q = 0 → p = q := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/65_003": {
+      "header": "import Mathlib\n\nopen Set Function\nopen scoped NNReal",
+      "formal_statement": "theorem lipschitz_from_bounded_deriv {f : ℝ → ℝ} {a b : ℝ} {L : ℝ≥0} (_hab : a ≤ b)\n    (hderiv : ∀ x ∈ Icc a b, DifferentiableAt ℝ f x)\n    (hbounded : ∀ x ∈ Icc a b, ‖deriv f x‖ ≤ L) :\n    LipschitzOnWith L f (Icc a b) := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/14_001": {
+      "header": "import Mathlib\n\nopen Set Function\nopen scoped NNReal",
+      "formal_statement": "theorem kernel_subgroup_and_isomorphism {G H : Type*} [AddCommGroup G] [AddCommGroup H]\n    (φ : G →+ H) :\n    φ.ker = {g | φ g = 0} ∧ (Surjective φ → Nonempty (G ⧸ φ.ker ≃+ H)) := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/08_003": {
+      "header": "import Mathlib\n\nopen Set Function\nopen scoped NNReal",
+      "formal_statement": "theorem exists_element_with_maximal_order {G : Type*} [CommGroup G] [Fintype G] :\n    ∃ g : G, ∀ x : G, orderOf x ∣ orderOf g := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/14_003": {
+      "header": "import Mathlib\n\nopen Set Function\nopen scoped NNReal",
+      "formal_statement": "theorem root_multiplicity_factorization_nonzero {α : Type*} [Field α] {P : Polynomial α}\n    {a : α} {k : ℕ} (hP : P ≠ 0) (h : multiplicity (Polynomial.X - Polynomial.C a) P = k) :\n    ∃ g : Polynomial α,\n      P = (Polynomial.X - Polynomial.C a) ^ k * g ∧ Polynomial.eval a g ≠ 0 := by\n  sorry",
+      "theorem_hint": ""
+    }
+  }
+}
