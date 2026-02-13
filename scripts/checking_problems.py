@@ -30,6 +30,22 @@ def _save_json(payload: dict, path: Path) -> None:
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
+def _strip_leading_import_lines(text: str) -> str:
+    """
+    Remove leading `import ...` lines (and leading blank lines) from a header.
+    Keep everything else (e.g. `open ...`, `set_option ...`, local notations).
+    """
+    lines = text.splitlines()
+    idx = 0
+    while idx < len(lines):
+        stripped = lines[idx].lstrip()
+        if not stripped or stripped.startswith("import "):
+            idx += 1
+            continue
+        break
+    return "\n".join(lines[idx:]).strip()
+
+
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Verify attempts JSON produced by proof-compass runs."
@@ -65,7 +81,7 @@ def verify_attempts(payload: dict, output_path: Path) -> dict:
         if not isinstance(processor, dict):
             raise TypeError(f"Problem '{problem_key}' must be a JSON object.")
 
-        header = str(processor.get("header", "")).rstrip()
+        header = _strip_leading_import_lines(str(processor.get("header", "")))
         attempts = processor.get("attempts", [])
         if not isinstance(attempts, list):
             raise TypeError(f"Attempts for '{problem_key}' must be a list.")
@@ -80,7 +96,7 @@ def verify_attempts(payload: dict, output_path: Path) -> dict:
                 client,
                 timeout=TIMEOUT_SECONDS,
                 ignore_sorries=IGNORE_SORRIES,
-                header="",
+                header=header,
             )
             attempt["success"] = success
             attempt["message"] = message
