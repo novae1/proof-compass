@@ -1,15 +1,21 @@
 # Manual-Hint Pilot for 5 MSC-180 Problems
 
 ## Objective
-Build a small, controlled benchmark for three settings on the same 5 problems:
+Build a controlled benchmark on the same 5 problems with manual theorem context (no retriever yet), using these conditions:
 
 1. **A: No hint**
-2. **B: Theorem statement hint(s)**
-3. **C: Theorem statement hint(s) + one usage example**
+2. **B-main: Statement of one primary theorem**
+3. **B-all: Statements of all selected theorems for the problem**
+4. **C-main: Primary theorem statement + one external full proof that uses it**
+5. **C-all: All selected theorem statements + external full proofs that use each theorem**
 
-This document is the manual reference set (no retriever yet).
+Policy for usage examples in `C-*` (current decision):
+- Use **full proofs** (not one-line snippets).
+- Prefer **short** proofs.
+- The usage proof must come from a **different theorem** than our benchmark proof, to avoid directly spoiling the target derivation.
+- If no short direct usage is found, keep a short note and use the best available proof.
 
-## Setup (to keep fixed across A/B/C)
+## Setup (fixed across all conditions)
 - Lean: **4.15.0**
 - Mathlib: **v4.15.x**
 - Same model and decoding params across all conditions
@@ -93,11 +99,10 @@ lt_or_gt_of_ne {a b : α} (h : a ≠ b) : a < b ∨ a > b
 ```
 
 ### Manual hint package
-- **Condition B (statement-only):** include `exists_deriv_eq_zero`.
-- **Condition C (statement + usage):** include `exists_deriv_eq_zero` + the usage line:
-```lean
-obtain ⟨c, hc, hdc⟩ := exists_deriv_eq_zero huv hcont_uv (by simp [hfu, hfv])
-```
+- **B-main:** statement of `exists_deriv_eq_zero`.
+- **B-all:** statements of `exists_deriv_eq_zero`, `ContinuousOn.mono`, `Set.Icc_subset_Icc`, `lt_or_gt_of_ne`.
+- **C-main:** `B-main` + external full proof for `exists_deriv_eq_zero` (see External Usage Proof #1).
+- **C-all:** `B-all` + external full proofs for all four theorems (see #1-#4).
 
 ---
 
@@ -139,11 +144,10 @@ Convex.lipschitzOnWith_of_nnnorm_deriv_le
 ```
 
 ### Manual hint package
-- **Condition B:** include `Convex.lipschitzOnWith_of_nnnorm_deriv_le`.
-- **Condition C:** include it + usage line:
-```lean
-simpa using (convex_Icc a b).lipschitzOnWith_of_nnnorm_deriv_le hderiv hbounded'
-```
+- **B-main:** statement of `Convex.lipschitzOnWith_of_nnnorm_deriv_le`.
+- **B-all:** statements of `convex_Icc`, `Convex.lipschitzOnWith_of_nnnorm_deriv_le`.
+- **C-main:** `B-main` + external full proof for `Convex.lipschitzOnWith_of_nnnorm_deriv_le` (see #6).
+- **C-all:** `B-all` + external full proofs for both theorems (see #5-#6).
 
 ---
 
@@ -178,11 +182,10 @@ QuotientAddGroup.quotientKerEquivOfSurjective
 ```
 
 ### Manual hint package
-- **Condition B:** include `QuotientAddGroup.quotientKerEquivOfSurjective`.
-- **Condition C:** include it + usage line:
-```lean
-exact ⟨QuotientAddGroup.quotientKerEquivOfSurjective φ hsurj⟩
-```
+- **B-main:** statement of `QuotientAddGroup.quotientKerEquivOfSurjective`.
+- **B-all:** same as `B-main` (single theorem for this problem).
+- **C-main:** `B-main` + external full proof for this theorem (see #7).
+- **C-all:** same as `C-main`.
 
 ---
 
@@ -227,13 +230,10 @@ Monoid.order_dvd_exponent {G : Type u} [Monoid G]
 ```
 
 ### Manual hint package
-- **Condition B:** include `Monoid.exists_orderOf_eq_exponent` and `Monoid.order_dvd_exponent`.
-- **Condition C:** include both + usage lines:
-```lean
-obtain ⟨g, hg⟩ := Monoid.exists_orderOf_eq_exponent (G := G) (Monoid.ExponentExists.of_finite (G := G))
-rw [hg]
-exact Monoid.order_dvd_exponent x
-```
+- **B-main:** statement of `Monoid.exists_orderOf_eq_exponent`.
+- **B-all:** statements of `Monoid.ExponentExists.of_finite`, `Monoid.exists_orderOf_eq_exponent`, `Monoid.order_dvd_exponent`.
+- **C-main:** `B-main` + external full proof for `Monoid.exists_orderOf_eq_exponent` (see #9).
+- **C-all:** `B-all` + external full proofs for all three theorems (see #8-#10).
 
 ---
 
@@ -296,11 +296,10 @@ Polynomial.IsRoot.def :
 ```
 
 ### Manual hint package
-- **Condition B:** include `Polynomial.exists_eq_pow_rootMultiplicity_mul_and_not_dvd`, `Polynomial.dvd_iff_isRoot`, `Polynomial.IsRoot.def`.
-- **Condition C:** include these + usage line:
-```lean
-exact (Polynomial.dvd_iff_isRoot).2 ((Polynomial.IsRoot.def).2 hge)
-```
+- **B-main:** statement of `Polynomial.exists_eq_pow_rootMultiplicity_mul_and_not_dvd`.
+- **B-all:** statements of `Polynomial.rootMultiplicity_eq_multiplicity`, `Polynomial.exists_eq_pow_rootMultiplicity_mul_and_not_dvd`, `Polynomial.dvd_iff_isRoot`, `Polynomial.IsRoot.def`.
+- **C-main:** `B-main` + external full proof for `Polynomial.exists_eq_pow_rootMultiplicity_mul_and_not_dvd` (see #12).
+- **C-all:** `B-all` + external full proofs for all four theorems (see #11-#14).
 
 ---
 
@@ -323,8 +322,198 @@ exact (Polynomial.dvd_iff_isRoot).2 ((Polynomial.IsRoot.def).2 hge)
 
 ---
 
+## Theorems Requiring External Usage Proofs
+
+| # | Target theorem | External theorem chosen | Note |
+|---|---|---|---|
+| 1 | `exists_deriv_eq_zero` | `Polynomial.card_roots_toFinset_le_card_roots_derivative_diff_roots_succ` | No shorter direct usage found in searched files |
+| 2 | `ContinuousOn.mono` | `NNReal.continuousOn_rpow_const` | Short |
+| 3 | `Set.Icc_subset_Icc` | `Set.Icc_subset_uIcc` | Short |
+| 4 | `lt_or_gt_of_ne` | `exists_pair_lt` | Short |
+| 5 | `convex_Icc` | `convex_uIcc` | Short |
+| 6 | `Convex.lipschitzOnWith_of_nnnorm_deriv_le` | `_root_.lipschitzWith_of_nnnorm_deriv_le` | Short |
+| 7 | `QuotientAddGroup.quotientKerEquivOfSurjective` | `zmodAddCyclicAddEquiv` | No shorter direct usage found in searched files |
+| 8 | `Monoid.ExponentExists.of_finite` | `Monoid.exponent_ne_zero_of_finite` | Short |
+| 9 | `Monoid.exists_orderOf_eq_exponent` | `Monoid.exponent_eq_iSup_orderOf` | No shorter direct usage found in searched files |
+| 10 | `Monoid.order_dvd_exponent` | `CommGroup.dvd_exponent` | Short |
+| 11 | `Polynomial.rootMultiplicity_eq_multiplicity` | `Polynomial.rootMultiplicity_eq_zero_iff` | Short |
+| 12 | `Polynomial.exists_eq_pow_rootMultiplicity_mul_and_not_dvd` | `IsAlgebraic.exists_nonzero_coeff_and_aeval_eq_zero` | Short |
+| 13 | `Polynomial.dvd_iff_isRoot` | `Polynomial.X_sub_C_dvd_sub_C_eval` | Short |
+| 14 | `Polynomial.IsRoot.def` | `Polynomial.root_X_sub_C` | Short |
+
+---
+
+## External Usage Proofs (Mathlib, transcribed)
+
+### 1) Target: `exists_deriv_eq_zero`
+Source: `Mathlib/Analysis/Calculus/LocalExtr/Polynomial.lean:35`
+
+```lean
+theorem card_roots_toFinset_le_card_roots_derivative_diff_roots_succ (p : ℝ[X]) :
+    p.roots.toFinset.card ≤ (p.derivative.roots.toFinset \ p.roots.toFinset).card + 1 := by
+  rcases eq_or_ne (derivative p) 0 with hp' | hp'
+  · rw [eq_C_of_derivative_eq_zero hp', roots_C, Multiset.toFinset_zero, Finset.card_empty]
+    exact zero_le _
+  have hp : p ≠ 0 := ne_of_apply_ne derivative (by rwa [derivative_zero])
+  refine Finset.card_le_diff_of_interleaved fun x hx y hy hxy hxy' => ?_
+  rw [Multiset.mem_toFinset, mem_roots hp] at hx hy
+  obtain ⟨z, hz1, hz2⟩ := exists_deriv_eq_zero hxy p.continuousOn (hx.trans hy.symm)
+  refine ⟨z, ?_, hz1⟩
+  rwa [Multiset.mem_toFinset, mem_roots hp', IsRoot, ← p.deriv]
+```
+
+### 2) Target: `ContinuousOn.mono`
+Source: `Mathlib/Analysis/SpecialFunctions/Pow/Continuity.lean:428`
+
+```lean
+theorem continuousOn_rpow_const {r : ℝ} {s : Set ℝ≥0}
+    (h : 0 ∉ s ∨ 0 ≤ r) : ContinuousOn (fun z : ℝ≥0 => z ^ r) s :=
+  h.elim (fun _ ↦ ContinuousOn.mono (s := {0}ᶜ) (by fun_prop) (by aesop))
+    (NNReal.continuous_rpow_const · |>.continuousOn)
+```
+
+### 3) Target: `Set.Icc_subset_Icc`
+Source: `Mathlib/Order/Interval/Set/UnorderedInterval.lean:81`
+
+```lean
+lemma Icc_subset_uIcc : Icc a b ⊆ [[a, b]] := Icc_subset_Icc inf_le_left le_sup_right
+```
+
+### 4) Target: `lt_or_gt_of_ne`
+Source: `Mathlib/Logic/Nontrivial/Basic.lean:25`
+
+```lean
+theorem exists_pair_lt (α : Type*) [Nontrivial α] [LinearOrder α] : ∃ x y : α, x < y := by
+  rcases exists_pair_ne α with ⟨x, y, hxy⟩
+  cases lt_or_gt_of_ne hxy <;> exact ⟨_, _, ‹_›⟩
+```
+
+### 5) Target: `convex_Icc`
+Source: `Mathlib/Analysis/Convex/Basic.lean:305`
+
+```lean
+theorem convex_uIcc (r s : β) : Convex 𝕜 (uIcc r s) :=
+  convex_Icc _ _
+```
+
+### 6) Target: `Convex.lipschitzOnWith_of_nnnorm_deriv_le`
+Source: `Mathlib/Analysis/Calculus/MeanValue.lean:667`
+
+```lean
+theorem _root_.lipschitzWith_of_nnnorm_deriv_le {C : ℝ≥0} (hf : Differentiable 𝕜 f)
+    (bound : ∀ x, ‖deriv f x‖₊ ≤ C) : LipschitzWith C f :=
+  lipschitzOnWith_univ.1 <|
+    convex_univ.lipschitzOnWith_of_nnnorm_deriv_le (fun x _ => hf x) fun x _ => bound x
+```
+
+### 7) Target: `QuotientAddGroup.quotientKerEquivOfSurjective`
+Source: `Mathlib/GroupTheory/SpecificGroups/Cyclic.lean:692`
+
+```lean
+noncomputable def zmodAddCyclicAddEquiv [AddGroup G] (h : IsAddCyclic G) :
+    ZMod (Nat.card G) ≃+ G := by
+  let n := Nat.card G
+  let ⟨g, surj⟩ := Classical.indefiniteDescription _ h.exists_generator
+  have kereq : ((zmultiplesHom G) g).ker = zmultiples ↑(Nat.card G) := by
+    rw [zmultiplesHom_ker_eq]
+    congr
+    rw [← Nat.card_zmultiples]
+    exact Nat.card_congr (Equiv.subtypeUnivEquiv surj)
+  exact Int.quotientZMultiplesNatEquivZMod n
+    |>.symm.trans <| QuotientAddGroup.quotientAddEquivOfEq kereq
+    |>.symm.trans <| QuotientAddGroup.quotientKerEquivOfSurjective (zmultiplesHom G g) surj
+```
+
+### 8) Target: `Monoid.ExponentExists.of_finite`
+Source: `Mathlib/GroupTheory/Exponent.lean:394`
+
+```lean
+theorem exponent_ne_zero_of_finite : exponent G ≠ 0 :=
+  ExponentExists.of_finite.exponent_ne_zero
+```
+
+### 9) Target: `Monoid.exists_orderOf_eq_exponent`
+Source: `Mathlib/GroupTheory/Exponent.lean:453`
+
+```lean
+theorem exponent_eq_iSup_orderOf (h : ∀ g : G, 0 < orderOf g) :
+    exponent G = ⨆ g : G, orderOf g := by
+  rw [iSup]
+  by_cases ExponentExists G
+  case neg he =>
+    rw [← exponent_eq_zero_iff] at he
+    rw [he, Set.Infinite.Nat.sSup_eq_zero <| (exponent_eq_zero_iff_range_orderOf_infinite h).1 he]
+  case pos he =>
+    rw [csSup_eq_of_forall_le_of_forall_lt_exists_gt (Set.range_nonempty _)]
+    · simp_rw [Set.mem_range, forall_exists_index, forall_apply_eq_imp_iff]
+      exact orderOf_le_exponent he
+    intro x hx
+    obtain ⟨g, hg⟩ := exists_orderOf_eq_exponent he
+    rw [← hg] at hx
+    simp_rw [Set.mem_range, exists_exists_eq_and]
+    exact ⟨g, hx⟩
+```
+
+### 10) Target: `Monoid.order_dvd_exponent`
+Source: `Mathlib/GroupTheory/FiniteAbelian/Duality.lean:24`
+
+```lean
+private
+lemma dvd_exponent {ι G : Type*} [Finite ι] [CommGroup G] {n : ι → ℕ}
+    (e : G ≃* ((i : ι) → Multiplicative (ZMod (n i)))) (i : ι) :
+    n i ∣ Monoid.exponent G := by
+  classical
+  have : n i = orderOf (e.symm <| Pi.mulSingle i <| .ofAdd 1) := by
+    simpa only [MulEquiv.orderOf_eq, orderOf_piMulSingle, orderOf_ofAdd_eq_addOrderOf]
+      using (ZMod.addOrderOf_one (n i)).symm
+  exact this ▸ Monoid.order_dvd_exponent _
+```
+
+### 11) Target: `Polynomial.rootMultiplicity_eq_multiplicity`
+Source: `Mathlib/Algebra/Polynomial/Div.lean:627`
+
+```lean
+@[simp]
+theorem rootMultiplicity_eq_zero_iff {p : R[X]} {x : R} :
+    rootMultiplicity x p = 0 ↔ IsRoot p x → p = 0 := by
+  classical
+  simp only [rootMultiplicity_eq_multiplicity, ite_eq_left_iff,
+    Nat.cast_zero, multiplicity_eq_zero, dvd_iff_isRoot, not_imp_not]
+```
+
+### 12) Target: `Polynomial.exists_eq_pow_rootMultiplicity_mul_and_not_dvd`
+Source: `Mathlib/RingTheory/Algebraic/Basic.lean:537`
+
+```lean
+theorem IsAlgebraic.exists_nonzero_coeff_and_aeval_eq_zero
+    {s : S} (hRs : IsAlgebraic R s) (hs : s ∈ nonZeroDivisors S) :
+    ∃ q : R[X], q.coeff 0 ≠ 0 ∧ aeval s q = 0 := by
+  obtain ⟨p, hp0, hp⟩ := hRs
+  obtain ⟨q, hpq, hq⟩ := exists_eq_pow_rootMultiplicity_mul_and_not_dvd p hp0 0
+  simp only [C_0, sub_zero, X_pow_mul, X_dvd_iff] at hpq hq
+  rw [hpq, map_mul, aeval_X_pow] at hp
+  exact ⟨q, hq, (nonZeroDivisors S).pow_mem hs (rootMultiplicity 0 p) (aeval s q) hp⟩
+```
+
+### 13) Target: `Polynomial.dvd_iff_isRoot`
+Source: `Mathlib/Algebra/Polynomial/Div.lean:610`
+
+```lean
+theorem X_sub_C_dvd_sub_C_eval : X - C a ∣ p - C (p.eval a) := by
+  rw [dvd_iff_isRoot, IsRoot, eval_sub, eval_C, sub_self]
+```
+
+### 14) Target: `Polynomial.IsRoot.def`
+Source: `Mathlib/Algebra/Polynomial/Eval/Defs.lean:771`
+
+```lean
+theorem root_X_sub_C : IsRoot (X - C a) b ↔ a = b := by
+  rw [IsRoot.def, eval_sub, eval_X, eval_C, sub_eq_zero, eq_comm]
+```
+
+---
+
 ## Further Work
-- Build additional proof variants per problem using different primary theorems.
-- Expand the manual theorem pool into a curated “useful theorem bank”.
-- Scale to retrieval experiments: top-`K` statements and statement+usage retrieval.
-- Evaluate robustness across models and prompt styles.
+- Add alternate external usage proofs per target theorem (multiple options per theorem).
+- Add alternate full benchmark proofs per problem that pivot on different primary theorems.
+- After scaling up, compare these manual conditions against retriever-generated contexts.
