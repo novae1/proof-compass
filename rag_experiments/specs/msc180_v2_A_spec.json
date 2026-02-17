@@ -1,0 +1,104 @@
+{
+  "problems": {
+    "MSC-180/05_003": {
+      "header": "import Mathlib\n\nopen Equiv\n\ndef excedances {n : ℕ} (π : Perm (Fin n)) : Finset (Fin n) :=\n  Finset.univ.filter (fun i => π i > i)\n\ndef eulerianNumber (n k : ℕ) : ℕ :=\n  Fintype.card {π : Perm (Fin n) | (excedances π).card = k}\n\ndef coexcedances {n : ℕ} (π : Perm (Fin n)) : Finset (Fin n) :=\n  Finset.univ.filter (fun i => π i < i)",
+      "formal_statement": "theorem excedance_coexcedance_dual {n : ℕ} (π : Perm (Fin n)) :\n    (excedances π).card = (coexcedances π⁻¹).card := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/08_001": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem homomorphism_agreement {R A B : Type*} [CommSemiring R] [Semiring A] [Semiring B]\n    [Algebra R A] [Algebra R B] {X : Set A} (hgen : Algebra.adjoin R X = ⊤)\n    {α β : A →ₐ[R] B} (h_agree : ∀ x ∈ X, α x = β x) :\n    α = β := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/08_002": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem unique_relative_complement {L : Type*} [DistribLattice L] {a b c : L}\n    (hab : a ≤ b) (hbc : b ≤ c) :\n    ∀ (d₁ d₂ : L),\n      a ≤ d₁ ∧ d₁ ≤ c ∧ d₁ ⊔ b = c ∧ d₁ ⊓ b = a →\n      a ≤ d₂ ∧ d₂ ≤ c ∧ d₂ ⊔ b = c ∧ d₂ ⊓ b = a →\n      d₁ = d₂ := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/08_003": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem exists_element_with_maximal_order {G : Type*} [CommGroup G] [Fintype G] :\n    ∃ g : G, ∀ x : G, orderOf x ∣ orderOf g := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/12_001": {
+      "header": "import Mathlib\n\nopen Polynomial",
+      "formal_statement": "theorem polynomial_division_algorithm {F : Type*} [Field F] (f g : Polynomial F) (hg : g ≠ 0) :\n    ∃ (q r : Polynomial F),\n      f = g * q + r ∧\n      (r = 0 ∨ r.degree < g.degree) ∧\n      ∀ (q' r' : Polynomial F),\n        (f = g * q' + r' ∧ (r' = 0 ∨ r'.degree < g.degree)) → q = q' ∧ r = r' := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/12_002": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem chinese_remainder_theorem {k : ℕ} (n : ℕ → ℕ)\n    (hpos : ∀ i, 0 < i → i ≤ k → n i > 0)\n    (hcoprime : ∀ i j, 0 < i → i ≤ k → 0 < j → j ≤ k → i ≠ j → Nat.Coprime (n i) (n j))\n    (a : ℕ → ℤ) :\n    ∃ x : ℤ, ∀ i, 0 < i → i ≤ k → x ≡ a i [ZMOD (n i)] ∧\n      ∀ y : ℤ, (∀ i, 0 < i → i ≤ k → y ≡ a i [ZMOD (n i)]) →\n        x ≡ y [ZMOD ((Finset.Icc 1 k).prod fun i => (n i : ℤ))] := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/12_003": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem maximal_ideal_iff_quotient_field {R : Type*} [CommRing R] [Nontrivial R]\n    (M : Ideal R) :\n    M.IsMaximal ↔ IsField (R ⧸ M) := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/14_001": {
+      "header": "import Mathlib\n\nopen Function",
+      "formal_statement": "theorem kernel_subgroup_and_isomorphism {G H : Type*} [AddCommGroup G] [AddCommGroup H]\n    (φ : G →+ H) :\n    φ.ker = {g | φ g = 0} ∧ (Surjective φ → Nonempty (G ⧸ φ.ker ≃+ H)) := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/14_003": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem root_multiplicity_factorization_nonzero {α : Type*} [Field α] {P : Polynomial α}\n    {a : α} {k : ℕ} (hP : P ≠ 0) (h : multiplicity (Polynomial.X - Polynomial.C a) P = k) :\n    ∃ g : Polynomial α,\n      P = (Polynomial.X - Polynomial.C a) ^ k * g ∧ Polynomial.eval a g ≠ 0 := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/15_003": {
+      "header": "import Mathlib\n\nopen Matrix",
+      "formal_statement": "theorem column_row_factorization {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℂ) (hc : A.rank ≥ 1) :\n    ∃ (c : ℕ) (h : c = A.rank) (C : Matrix (Fin m) (Fin c) ℂ)\n      (R : Matrix (Fin c) (Fin n) ℂ), A = C * R := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/20_001": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem my_favorite_theorem {G : Type*} [CommGroup G] [Fintype G]\n    (hG : Fintype.card G ≠ 0) (p : ℕ) (hp : Nat.Prime p)\n    (hG1 : p ∣ Fintype.card G) :\n    ∃ x : G, orderOf x = p := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/26_002": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem exists_sup_of_bddAbove {A : Set ℝ} (hne : A.Nonempty) (hbd : BddAbove A) :\n    ∃ s : ℝ, IsLUB A s := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/28_003": {
+      "header": "import Mathlib\n\nopen MeasureTheory Metric Set\n\nvariable {d : ℕ}",
+      "formal_statement": "theorem outer_measure_additive_of_separated {E F : Set (Fin d → ℝ)}\n    (h : ∃ δ > 0, ∀ x ∈ E, ∀ y ∈ F, δ ≤ dist x y) :\n    MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) (E ∪ F) =\n      MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) E +\n        MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) F := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/40_003": {
+      "header": "import Mathlib\n\nopen Real Filter",
+      "formal_statement": "theorem convergence_of_log_series {a b : ℝ} (ha : a > 0) (hb : b > 1) :\n    Summable (fun n : ℕ => (Real.log (n + 1)) ^ a / (n + 1) ^ b) := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/52_002": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem diameter_achieved_by_hull_vertices {n : ℕ} {S : Set (EuclideanSpace ℝ (Fin n))}\n    (h_finite : Set.Finite S) (h_nonempty : S.Nonempty) :\n    ∃ x ∈ (convexHull ℝ S).extremePoints ℝ, ∃ y ∈ (convexHull ℝ S).extremePoints ℝ,\n      dist x y = Metric.diam S := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/60_002": {
+      "header": "import Mathlib\n\nopen scoped BigOperators",
+      "formal_statement": "theorem weierstrass_approximation (f : ℝ → ℝ) (hf : ContinuousOn f (Set.Icc 0 1))\n    (ε : ℝ) (hε : ε > 0) :\n    ∃ (B : Polynomial ℝ), ∀ x ∈ Set.Icc 0 1, |B.eval x - f x| ≤ ε := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/65_001": {
+      "header": "import Mathlib\n\nopen Set",
+      "formal_statement": "theorem unique_root_of_nonzero_deriv {a b : ℝ} (hab : a < b) (f : ℝ → ℝ)\n    (hf : ContinuousOn f (Icc a b))\n    (hderiv : ∀ x ∈ Ioo a b, DifferentiableAt ℝ f x)\n    (hnonzero : ∀ x ∈ Ioo a b, deriv f x ≠ 0) :\n    ∀ (p q : ℝ), p ∈ Icc a b → q ∈ Icc a b → f p = 0 → f q = 0 → p = q := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/65_003": {
+      "header": "import Mathlib\n\nopen Metric Set NNReal",
+      "formal_statement": "theorem lipschitz_from_bounded_deriv {f : ℝ → ℝ} {a b : ℝ} {L : ℝ≥0} (hab : a ≤ b)\n    (hderiv : ∀ x ∈ Icc a b, DifferentiableAt ℝ f x)\n    (hbounded : ∀ x ∈ Icc a b, ‖deriv f x‖ ≤ L) :\n    LipschitzOnWith L f (Icc a b) := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/68_002": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem bezout_identity (a b : ℤ) : ∃ s t : ℤ, s * a + t * b = Int.gcd a b := by\n  sorry",
+      "theorem_hint": ""
+    },
+    "MSC-180/90_001": {
+      "header": "import Mathlib\n\nopen Metric Set",
+      "formal_statement": "theorem euclidean_ball_convex {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]\n    (c : E) (r : ℝ) (hr : 0 ≤ r) :\n    Convex ℝ (ball c r) := by\n  sorry",
+      "theorem_hint": ""
+    }
+  }
+}
