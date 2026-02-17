@@ -28,7 +28,6 @@ class TheoremStmt:
 @dataclass
 class UsageExample:
     theorem_name: str
-    source_line: str
     example_block: str
 
 
@@ -117,16 +116,13 @@ def _extract_usage_examples(text: str) -> list[UsageExample]:
         theorem_name = um.group(1).strip()
         i += 1
 
-        # source line is expected next non-empty comment line
+        # Optional source line may appear next; ignore it in the extracted hint payload.
         while i < len(lines) and lines[i].strip() == "":
             i += 1
         if i >= len(lines):
-            raise ValueError(f"Missing source/example block after Uses `{theorem_name}`")
-        sm = source_re.match(lines[i])
-        if not sm:
-            raise ValueError(f"Missing source line after Uses `{theorem_name}`")
-        source_line = lines[i].rstrip()
-        i += 1
+            raise ValueError(f"Missing example block after Uses `{theorem_name}`")
+        if source_re.match(lines[i]):
+            i += 1
 
         while i < len(lines) and lines[i].strip() == "":
             i += 1
@@ -141,7 +137,7 @@ def _extract_usage_examples(text: str) -> list[UsageExample]:
             i += 1
 
         block = "\n".join(lines[start:i]).rstrip()
-        out.append(UsageExample(theorem_name=theorem_name, source_line=source_line, example_block=block))
+        out.append(UsageExample(theorem_name=theorem_name, example_block=block))
 
     if not out:
         raise ValueError("No usage examples found in examples section.")
@@ -149,29 +145,29 @@ def _extract_usage_examples(text: str) -> list[UsageExample]:
 
 
 def _build_hint_B(statements: list[TheoremStmt]) -> str:
-    chunks: list[str] = []
-    for s in statements:
-        chunks.append("-- this theorem might be useful in the proof of the problem")
-        chunks.append(s.statement)
-    return "\n\n".join(chunks).strip()
+    blocks = [
+        "-- this theorem might be useful in the proof of the problem\n" + s.statement
+        for s in statements
+    ]
+    return "\n\n".join(blocks).strip()
 
 
 def _build_hint_C(statements: list[TheoremStmt], usages: list[UsageExample]) -> str:
     # Pair by theorem name in statement order, consuming first available matching usage each time.
     remaining = usages[:]
-    chunks: list[str] = []
+    blocks: list[str] = []
     for s in statements:
         idx = next((j for j, u in enumerate(remaining) if u.theorem_name == s.name), None)
         if idx is None:
             raise ValueError(f"No usage example found for theorem `{s.name}`")
         u = remaining.pop(idx)
-        chunks.append("-- this theorem might be useful in the proof of the problem")
-        chunks.append(s.statement)
-        chunks.append(f"-- this is an example of how theorem {s.name} is used")
-        chunks.append(f"-- Uses `{u.theorem_name}`")
-        chunks.append(u.source_line)
-        chunks.append(u.example_block)
-    return "\n\n".join(chunks).strip()
+        theorem_block = "-- this theorem might be useful in the proof of the problem\n" + s.statement
+        example_block = (
+            f"-- this is an example of how theorem {s.name} is used\n"
+            f"{u.example_block}"
+        )
+        blocks.append(f"{theorem_block}\n\n{example_block}")
+    return "\n\n".join(blocks).strip()
 
 
 def _problem_key(path: Path) -> str:
