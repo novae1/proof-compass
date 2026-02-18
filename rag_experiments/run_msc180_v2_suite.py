@@ -38,7 +38,7 @@ DATE_PREFIX = "20260217"
 ATTEMPTS_PER_PROBLEM = 8
 TEMPERATURE = 1.0
 TOP_P = 0.95
-MAX_NEW_TOKENS = 8000
+MAX_NEW_TOKENS = 7000
 STOP_ON_SUCCESS = False
 
 
@@ -101,7 +101,21 @@ def _run_spec(
     processors = _build_processors(spec)
 
     for key, processor in processors.items():
-        print(f"[{condition_tag}] {key}")
+        merged_key = f"{group_prefix}/{_normalize_problem_key(key)}"
+        existing = output_payload.get(merged_key)
+        existing_attempts: list[object] = []
+        if isinstance(existing, dict):
+            prior_attempts = existing.get("attempts")
+            if isinstance(prior_attempts, list):
+                existing_attempts = prior_attempts
+
+        existing_count = len(existing_attempts)
+        if existing_count >= ATTEMPTS_PER_PROBLEM:
+            print(f"[{condition_tag}] {key} (skip: already {existing_count}/{ATTEMPTS_PER_PROBLEM})")
+            continue
+
+        remaining = ATTEMPTS_PER_PROBLEM - existing_count
+        print(f"[{condition_tag}] {key} ({existing_count}/{ATTEMPTS_PER_PROBLEM} done, generating {remaining})")
         attempts = generate_attempts(
             processor,
             DeepSeekProverV2HintPromptConfig,
@@ -109,14 +123,16 @@ def _run_spec(
             tokenizer,
             server_client=None,
             params=params,
-            max_attempts=ATTEMPTS_PER_PROBLEM,
+            max_attempts=remaining,
             stop_on_success=STOP_ON_SUCCESS,
         )
         for attempt in attempts:
             processor.add_attempt(attempt)
 
-        merged_key = f"{group_prefix}/{_normalize_problem_key(key)}"
-        output_payload[merged_key] = processor.to_dict()
+        entry = processor.to_dict()
+        if existing_attempts:
+            entry["attempts"] = [*existing_attempts, *entry.get("attempts", [])]
+        output_payload[merged_key] = entry
         _save_json(output_payload, output_path)
 
     print(f"Updated combined output at {output_path}")
@@ -143,7 +159,14 @@ def main() -> int:
 
     output_name = f"{DATE_PREFIX}_msc180-v2_{suffix}_lean4-15.json"
     output_path = OUTPUT_DIR / output_name
-    output_payload: dict[str, object] = {}
+    if output_path.exists():
+        loaded = _load_json(output_path)
+        if not isinstance(loaded, dict):
+            raise TypeError(f"Existing output must be a JSON object: {output_path}")
+        output_payload: dict[str, object] = loaded
+        print(f"Resuming existing output: {output_path} ({len(output_payload)} entries)")
+    else:
+        output_payload = {}
 
     for condition_tag, group_prefix, spec_path in SPEC_FILES:
         _run_spec(
