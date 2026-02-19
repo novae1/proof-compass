@@ -38,13 +38,13 @@ def _parse_args() -> argparse.Namespace:
         "output_json",
         type=Path,
         nargs="?",
-        default=Path("rag_experiments/outputs/20260217_msc180-v2_deepseekv2_7b_lean4-15.json"),
+        default=Path("rag_experiments/outputs/20260217_msc180-v2_deepseekv2_7b_lean4-15_verified.json"),
         help="Path to combined output JSON (default: latest v2 deepseek path).",
     )
     parser.add_argument(
         "--unknown-regex",
-        default=r"unknown\s+constant",
-        help="Regex used to count unknown-constant occurrences from attempt message text.",
+        default=r"\bunknown\b",
+        help="Regex used to count unknown-word occurrences from attempt message text.",
     )
     return parser.parse_args()
 
@@ -159,7 +159,7 @@ def _print_metrics(metrics: dict[str, ConfigMetrics]) -> None:
             f"({m.problems_pass_at_8}/{m.problems_total})"
         )
 
-    _print_section("Metric 3: Attempts With Unknown Constant (%)")
+    _print_section("Metric 3: Attempts With 'Unknown' (%)")
     for cfg in CONFIG_ORDER:
         m = metrics[cfg]
         print(
@@ -167,12 +167,21 @@ def _print_metrics(metrics: dict[str, ConfigMetrics]) -> None:
             f"({m.attempts_with_unknown}/{m.attempts_total})"
         )
 
-    _print_section("Metric 4: Total Unknown Constant Occurrences")
+    _print_section("Metric 4: Total 'Unknown' Occurrences")
     for cfg in CONFIG_ORDER:
         m = metrics[cfg]
         print(f"{cfg:32} {m.total_unknown_occurrences}")
 
-    _print_section("Metric 5: Per-Problem Pass Count (k/attempts)")
+    _print_section("Metric 5: 'Unknown' Among Failed Attempts (%)")
+    for cfg in CONFIG_ORDER:
+        m = metrics[cfg]
+        failed_attempts = m.attempts_total - m.attempts_success
+        print(
+            f"{cfg:32} {_pct(m.attempts_with_unknown, failed_attempts):6.2f}% "
+            f"({m.attempts_with_unknown}/{failed_attempts})"
+        )
+
+    _print_section("Metric 6: Per-Problem Pass Count (k/attempts)")
     problem_ids: list[str] = sorted(
         {pid for cfg in CONFIG_ORDER for pid in (metrics[cfg].per_problem_successes or {}).keys()}
     )
