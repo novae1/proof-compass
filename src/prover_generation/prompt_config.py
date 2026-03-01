@@ -52,25 +52,67 @@ def _normalize_formal_statement_without_sorry(formal_statement: str) -> str:
     return trimmed
 
 
-_LEAN4_BLOCK_RE = re.compile(r"```lean4\s*(.*?)```", re.DOTALL)
+_LEAN4_OPEN_RE = re.compile(r"```lean4\b", re.IGNORECASE)
+_FENCE_CLOSE_RE = re.compile(r"(?m)^[ \t]*```[ \t]*$")
+
+
+def _iter_lean4_blocks(raw_output: str) -> list[str]:
+    blocks: list[str] = []
+    for open_match in _LEAN4_OPEN_RE.finditer(raw_output):
+        block_start = open_match.end()
+        close_match = _FENCE_CLOSE_RE.search(raw_output, block_start)
+        if close_match:
+            blocks.append(raw_output[block_start:close_match.start()])
+        else:
+            blocks.append(raw_output[block_start:])
+    return blocks
+
+
+def _extract_theorem_from_text(text: str) -> str:
+    lines = text.splitlines()
+    theorem_starts: list[int] = []
+    for idx, line in enumerate(lines):
+        if line.lstrip().startswith("theorem "):
+            theorem_starts.append(idx)
+
+    if not theorem_starts:
+        return ""
+
+    segments: list[str] = []
+    for i, start in enumerate(theorem_starts):
+        end = theorem_starts[i + 1] if i + 1 < len(theorem_starts) else len(lines)
+        segment = "\n".join(lines[start:end]).strip()
+        if segment:
+            segments.append(segment)
+
+    if not segments:
+        return ""
+
+    with_body = [segment for segment in segments if ":= by" in segment]
+    if with_body:
+        return with_body[-1]
+    return segments[-1]
 
 
 def _extract_last_theorem_block(raw_output: str) -> str:
-    matches = list(_LEAN4_BLOCK_RE.finditer(raw_output))
-    if not matches:
-        return ""
+    blocks = _iter_lean4_blocks(raw_output)
+    if blocks:
+        with_body: list[str] = []
+        fallback: list[str] = []
+        for block in blocks:
+            theorem = _extract_theorem_from_text(block)
+            if not theorem:
+                continue
+            fallback.append(theorem)
+            if ":= by" in theorem:
+                with_body.append(theorem)
+        if with_body:
+            return with_body[-1]
+        if fallback:
+            return fallback[-1]
 
-    block = matches[-1].group(1)
-    lines = block.splitlines()
-    last_idx = None
-    for idx, line in enumerate(lines):
-        if line.lstrip().startswith("theorem "):
-            last_idx = idx
-
-    if last_idx is None:
-        return ""
-
-    return "\n".join(lines[last_idx:]).strip()
+    # Fallback for generations that do not use fenced code blocks.
+    return _extract_theorem_from_text(raw_output)
 
 
 class GoedelPromptConfig(PromptConfig):

@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.lean.http_client import LeanHTTPClient
 from src.lean.checking import check_proof
+from src.prover_generation.prompt_config import _extract_last_theorem_block
 
 SERVER_URL = "http://localhost:1347"
 TIMEOUT_SECONDS = 20
@@ -89,7 +90,9 @@ def verify_attempts(payload: dict, output_path: Path) -> dict:
         for attempt in attempts:
             if not isinstance(attempt, dict):
                 raise TypeError(f"Attempt in '{problem_key}' must be a JSON object.")
-            proof = attempt.get("parsed_proof", "")
+            raw_output = str(attempt.get("raw_output", ""))
+            extracted = _extract_last_theorem_block(raw_output) if raw_output else ""
+            proof = extracted or attempt.get("parsed_proof", "")
             start = time.time()
             success, message = check_proof(
                 proof,
@@ -98,6 +101,7 @@ def verify_attempts(payload: dict, output_path: Path) -> dict:
                 ignore_sorries=IGNORE_SORRIES,
                 header=header,
             )
+            attempt["parsed_proof"] = proof
             attempt["success"] = success
             attempt["message"] = message
             attempt["verification_time"] = time.time() - start
