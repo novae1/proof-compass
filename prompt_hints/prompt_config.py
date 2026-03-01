@@ -50,6 +50,43 @@ The plan should highlight key ideas, intermediate lemmas, and proof structures t
         return _extract_last_theorem_block(str(raw_output))
 
 
+class DeepSeekProverV2HintNonCoTPromptConfig(PromptConfig):
+    """Non-CoT DeepSeek V2 prompt config with optional Mathlib hint injection."""
+
+    @staticmethod
+    def build(
+        header: str,
+        informal_statement: Optional[str],
+        formal_statement: str,
+    ) -> str:
+        prompt = f"""
+Complete the following Lean 4 code:
+
+```lean4
+{header.strip()}"""
+
+        normalized_formal_statement = _normalize_formal_statement(formal_statement)
+        prompt += f"""\n{normalized_formal_statement}
+```
+"""
+
+        hint = (informal_statement or "").strip()
+        if hint:
+            prompt += f"""
+The following Mathlib context can be useful in your formal proof. It is already part of Mathlib; do not try to prove or restate it in your output.
+
+```lean4
+{hint}
+```
+"""
+
+        return prompt.strip()
+
+    @staticmethod
+    def parse(raw_output: str) -> str:
+        return _extract_last_theorem_block(str(raw_output))
+
+
 class DeepSeekProverV2HintWithUsagePromptConfig(PromptConfig):
     """Prompt config for structured hint context with theorem statements and usage examples."""
 

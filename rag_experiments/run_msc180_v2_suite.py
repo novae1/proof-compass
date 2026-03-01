@@ -12,7 +12,7 @@ from src.core.problem_structure import TheoremProcessor
 from src.prover_generation.artifacts import load_artifacts
 from src.prover_generation.generation_params import GenerationParams
 from src.prover_generation.theorem_proving import generate_attempts
-from prompt_hints.prompt_config import DeepSeekProverV2HintPromptConfig
+from prompt_hints.prompt_config import DeepSeekProverV2HintNonCoTPromptConfig
 
 
 EXPERIMENT_DIR = Path(__file__).resolve().parent
@@ -118,7 +118,7 @@ def _run_spec(
         print(f"[{condition_tag}] {key} ({existing_count}/{ATTEMPTS_PER_PROBLEM} done, generating {remaining})")
         attempts = generate_attempts(
             processor,
-            DeepSeekProverV2HintPromptConfig,
+            DeepSeekProverV2HintNonCoTPromptConfig,
             model,
             tokenizer,
             server_client=None,
