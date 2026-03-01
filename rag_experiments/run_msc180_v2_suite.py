@@ -29,7 +29,7 @@ MODEL_CONFIGS = {
     "deepseek": {
         "model_id": "deepseek-ai/DeepSeek-Prover-V2-7B",
         "suffix": "deepseekv2_7b",
-        "micro_batch_size": 4,
+        "micro_batch_size": 8,
     }
 }
 
