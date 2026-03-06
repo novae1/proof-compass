@@ -260,7 +260,6 @@ def _tokenize_with_offsets(raw_output: str, tokenizer) -> tuple[list[int], list[
 def _token_prefix_from_char_cut(
     raw_output: str,
     prompt_cut_char: int,
-    tokenizer,
     input_ids: list[int],
     offsets: list[tuple[int, int]],
 ) -> tuple[tuple[int, ...], str, int]:
@@ -277,9 +276,10 @@ def _token_prefix_from_char_cut(
         raise ValueError(f"Could not map char cut {prompt_cut_char} onto tokenizer offsets.")
 
     prompt_token_ids = tuple(input_ids[:token_cut])
-    prompt_prefix = tokenizer.decode(prompt_token_ids, skip_special_tokens=True)
-    if not raw_output.startswith(prompt_prefix):
-        raise ValueError("Token-aligned prompt prefix is not a prefix of raw_output.")
+    # Keep the saved prompt prefix as an exact raw-text prefix at the token boundary.
+    # The tokenizer's decoded string can differ slightly across versions even when the
+    # token ids are correct, so we do not require decoded text equality here.
+    prompt_prefix = raw_output[:actual_prompt_char_end]
     return prompt_token_ids, prompt_prefix, actual_prompt_char_end
 
 
@@ -321,7 +321,6 @@ def _build_slots(payload: dict, theorem_index: TheoremIndex, tokenizer) -> list[
                 prompt_token_ids, prompt_prefix, actual_prompt_char_end = _token_prefix_from_char_cut(
                     raw_output,
                     prompt_cut,
-                    tokenizer,
                     raw_output_ids,
                     raw_output_offsets,
                 )
@@ -473,6 +472,8 @@ def main() -> int:
         raise ValueError("--max-new-tokens must be positive")
 
     micro_batch_size = args.micro_batch_size or cfg["micro_batch_size"]
+    if micro_batch_size <= 0:
+        raise ValueError("--micro-batch-size must be positive")
     params = GenerationParams(
         micro_batch_size=micro_batch_size,
         temperature=TEMPERATURE,
