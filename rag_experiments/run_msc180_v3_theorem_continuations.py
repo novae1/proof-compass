@@ -21,7 +21,7 @@ from src.prover_generation.generation_params import GenerationParams
 EXPERIMENT_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = EXPERIMENT_DIR / "outputs"
 
-DATE_PREFIX = "20260305"
+DATE_PREFIX = "20260306"
 DEFAULT_SOURCE_OUTPUT = (
     EXPERIMENT_DIR / "outputs" / "20260301_msc180-v2_deepseekv2_7b_lean4-15_verified.json"
 )
@@ -40,6 +40,8 @@ TEMPERATURE = 1.0
 TOP_P = 0.95
 MAX_NEW_TOKENS = 24
 EXPECTED_SLOT_COUNT = 95
+RUN_SCHEMA_VERSION = 1
+RUN_METADATA_KEY = "__meta__"
 
 USABLE_SOURCE_KEYS = {
     "no-hint/MSC-180_08_002",
@@ -179,6 +181,87 @@ def _load_json(path: Path) -> dict:
 def _save_json(payload: dict, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def _required_attempt_message_keys() -> set[str]:
+    return {
+        "source_key",
+        "source_attempt_index",
+        "target_token",
+        "target_full_name",
+        "first_identifier",
+        "prompt_prefix_length",
+        "prompt_token_count",
+        "prompt_cut_char",
+        "actual_prompt_char_end",
+        "cut_char_aligned",
+        "classification",
+        "resolved_full_name",
+        "resolution",
+    }
+
+
+def _build_run_metadata(
+    *,
+    model_id: str,
+    source_output: Path,
+    theorem_index: Path,
+    attempts_per_slot: int,
+    max_new_tokens: int,
+    micro_batch_size: int,
+) -> dict[str, object]:
+    return {
+        "schema_version": RUN_SCHEMA_VERSION,
+        "model_id": model_id,
+        "source_output": str(source_output.resolve()),
+        "theorem_index": str(theorem_index.resolve()),
+        "attempts_per_slot": attempts_per_slot,
+        "max_new_tokens": max_new_tokens,
+        "micro_batch_size": micro_batch_size,
+        "temperature": TEMPERATURE,
+        "top_p": TOP_P,
+        "expected_slot_count": EXPECTED_SLOT_COUNT,
+    }
+
+
+def _validate_existing_payload(payload: dict, expected_meta: dict[str, object], output_path: Path) -> None:
+    existing_meta = payload.get(RUN_METADATA_KEY)
+    if not isinstance(existing_meta, dict):
+        raise ValueError(
+            f"Existing output at {output_path} is legacy or incomplete. "
+            "Use a fresh --output-name or remove the file before rerunning."
+        )
+
+    if existing_meta != expected_meta:
+        raise ValueError(
+            f"Existing output at {output_path} was created with different run settings. "
+            "Use a fresh --output-name or remove the file before rerunning."
+        )
+
+    required_keys = _required_attempt_message_keys()
+    for slot_key, entry in payload.items():
+        if slot_key == RUN_METADATA_KEY:
+            continue
+        if not isinstance(entry, dict):
+            continue
+        attempts = entry.get("attempts")
+        if not isinstance(attempts, list):
+            continue
+        for attempt_index, attempt in enumerate(attempts):
+            if not isinstance(attempt, dict):
+                raise TypeError(f"Attempt {attempt_index} of '{slot_key}' must be a JSON object.")
+            message = attempt.get("message")
+            if not isinstance(message, dict):
+                raise ValueError(
+                    f"Attempt {attempt_index} of '{slot_key}' is missing continuation metadata. "
+                    "Use a fresh --output-name or remove the file before rerunning."
+                )
+            missing = sorted(required_keys - set(message))
+            if missing:
+                raise ValueError(
+                    f"Attempt {attempt_index} of '{slot_key}' is missing required metadata keys: "
+                    f"{', '.join(missing)}. Use a fresh --output-name or remove the file before rerunning."
+                )
 
 
 def _mask_comment_text(text: str) -> str:
@@ -480,6 +563,14 @@ def main() -> int:
         top_p=TOP_P,
         max_new_tokens=args.max_new_tokens,
     )
+    run_metadata = _build_run_metadata(
+        model_id=cfg["model_id"],
+        source_output=args.source_output,
+        theorem_index=args.theorem_index,
+        attempts_per_slot=args.attempts_per_slot,
+        max_new_tokens=args.max_new_tokens,
+        micro_batch_size=micro_batch_size,
+    )
 
     output_name = args.output_name or f"{DATE_PREFIX}_msc180-v3-theorem-continuations_{cfg['suffix']}_lean4-15.json"
     output_path = OUTPUT_DIR / output_name
@@ -488,8 +579,13 @@ def main() -> int:
         loaded = _load_json(output_path)
         if not isinstance(loaded, dict):
             raise TypeError(f"Existing output must be a JSON object: {output_path}")
+        _validate_existing_payload(loaded, run_metadata, output_path)
         existing_payload = loaded
-        print(f"Resuming existing output: {output_path} ({len(existing_payload)} entries)")
+        print(f"Resuming existing output: {output_path} ({max(len(existing_payload) - 1, 0)} entries)")
+    else:
+        existing_payload[RUN_METADATA_KEY] = run_metadata
+
+    existing_payload[RUN_METADATA_KEY] = run_metadata
 
     model, tokenizer = load_artifacts(cfg["model_id"])
     theorem_index = TheoremIndex.load(args.theorem_index)
