@@ -74,9 +74,10 @@ class Slot:
     target_full_name: str
     target_token: str
     token_count_in_attempt: int
-    raw_output: str
-    parsed_proof: str
     prompt_prefix: str
+    prompt_token_ids: tuple[int, ...]
+    prompt_cut_char: int
+    actual_prompt_char_end: int
 
 
 class TheoremIndex:
@@ -140,7 +141,7 @@ def _parse_args() -> argparse.Namespace:
         "--theorem-index",
         type=Path,
         default=DEFAULT_THEOREM_INDEX,
-        help="Path to the theorem-only Mathlib index JSONL.",
+        help="Path to the theorem-only Mathlib index (compact JSON or JSONL).",
     )
     parser.add_argument(
         "--attempts-per-slot",
@@ -243,7 +244,46 @@ def _build_slot_key(source_key: str, attempt_index: int, target_token: str, ordi
     return f"{source_key}::attempt{attempt_index}::slot{ordinal:02d}::{target_token}"
 
 
-def _build_slots(payload: dict, theorem_index: TheoremIndex) -> list[Slot]:
+def _tokenize_with_offsets(raw_output: str, tokenizer) -> tuple[list[int], list[tuple[int, int]]]:
+    encoded = tokenizer(
+        raw_output,
+        add_special_tokens=True,
+        return_offsets_mapping=True,
+    )
+    input_ids = [int(x) for x in encoded["input_ids"]]
+    offsets = [(int(start), int(end)) for start, end in encoded["offset_mapping"]]
+    if len(input_ids) != len(offsets):
+        raise ValueError("Token ids and offset mappings differ in length.")
+    return input_ids, offsets
+
+
+def _token_prefix_from_char_cut(
+    raw_output: str,
+    prompt_cut_char: int,
+    tokenizer,
+    input_ids: list[int],
+    offsets: list[tuple[int, int]],
+) -> tuple[tuple[int, ...], str, int]:
+    token_cut = 0
+    actual_prompt_char_end = 0
+    for idx, (_start, end) in enumerate(offsets):
+        if end <= prompt_cut_char:
+            token_cut = idx + 1
+            actual_prompt_char_end = max(actual_prompt_char_end, end)
+            continue
+        break
+
+    if token_cut == 0:
+        raise ValueError(f"Could not map char cut {prompt_cut_char} onto tokenizer offsets.")
+
+    prompt_token_ids = tuple(input_ids[:token_cut])
+    prompt_prefix = tokenizer.decode(prompt_token_ids, skip_special_tokens=True)
+    if not raw_output.startswith(prompt_prefix):
+        raise ValueError("Token-aligned prompt prefix is not a prefix of raw_output.")
+    return prompt_token_ids, prompt_prefix, actual_prompt_char_end
+
+
+def _build_slots(payload: dict, theorem_index: TheoremIndex, tokenizer) -> list[Slot]:
     slots: list[Slot] = []
 
     for source_key in sorted(USABLE_SOURCE_KEYS):
@@ -270,6 +310,7 @@ def _build_slots(payload: dict, theorem_index: TheoremIndex) -> list[Slot]:
             seen_full_names: set[str] = set()
             ordinal = 0
             proof_start = _find_parsed_proof_in_raw_output(raw_output, parsed_proof)
+            raw_output_ids, raw_output_offsets = _tokenize_with_offsets(raw_output, tokenizer)
 
             for token_start, _token_end, token, full_name in _iter_resolved_theorem_tokens(masked_body, theorem_index):
                 if full_name in seen_full_names:
@@ -277,7 +318,13 @@ def _build_slots(payload: dict, theorem_index: TheoremIndex) -> list[Slot]:
                 seen_full_names.add(full_name)
 
                 prompt_cut = proof_start + body_offset + token_start
-                prompt_prefix = raw_output[:prompt_cut]
+                prompt_token_ids, prompt_prefix, actual_prompt_char_end = _token_prefix_from_char_cut(
+                    raw_output,
+                    prompt_cut,
+                    tokenizer,
+                    raw_output_ids,
+                    raw_output_offsets,
+                )
                 if not prompt_prefix:
                     raise ValueError(f"Empty prompt prefix for {source_key} attempt {attempt_index}")
 
@@ -290,9 +337,10 @@ def _build_slots(payload: dict, theorem_index: TheoremIndex) -> list[Slot]:
                         target_full_name=full_name,
                         target_token=token,
                         token_count_in_attempt=ordinal,
-                        raw_output=raw_output,
-                        parsed_proof=parsed_proof,
                         prompt_prefix=prompt_prefix,
+                        prompt_token_ids=prompt_token_ids,
+                        prompt_cut_char=prompt_cut,
+                        actual_prompt_char_end=actual_prompt_char_end,
                     )
                 )
 
@@ -301,35 +349,25 @@ def _build_slots(payload: dict, theorem_index: TheoremIndex) -> list[Slot]:
     return slots
 
 
-def _common_prefix_len(a: str, b: str) -> int:
-    n = min(len(a), len(b))
-    i = 0
-    while i < n and a[i] == b[i]:
-        i += 1
-    return i
-
-
-def _generate_suffix_batch(prompts: list[str], model, tokenizer, params: GenerationParams) -> list[str]:
+def _generate_suffix_batch(prefix_token_ids: tuple[int, ...], batch_size: int, model, tokenizer, params: GenerationParams) -> list[str]:
     import torch
 
-    if not prompts:
+    if batch_size <= 0:
         return []
+    if not prefix_token_ids:
+        raise ValueError("prefix_token_ids must be non-empty.")
 
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     pad_token_id = tokenizer.pad_token_id
     target_device = torch.device("cuda")
 
-    encoded = tokenizer(
-        prompts,
-        return_tensors="pt",
-        padding=True,
-        truncation=True,
-    )
-    inputs = {k: v.to(target_device) for k, v in encoded.items()}
+    input_ids = torch.tensor([list(prefix_token_ids)] * batch_size, dtype=torch.long, device=target_device)
+    attention_mask = torch.ones_like(input_ids, device=target_device)
 
     outputs = model.generate(
-        **inputs,
+        input_ids=input_ids,
+        attention_mask=attention_mask,
         do_sample=True,
         temperature=params.temperature,
         top_p=params.top_p,
@@ -337,18 +375,11 @@ def _generate_suffix_batch(prompts: list[str], model, tokenizer, params: Generat
         pad_token_id=pad_token_id,
     )
 
+    prefix_len = input_ids.shape[1]
     suffixes: list[str] = []
     for idx in range(outputs.size(0)):
-        full_text = tokenizer.decode(outputs[idx], skip_special_tokens=True)
-        prompt_text = tokenizer.decode(inputs["input_ids"][idx], skip_special_tokens=True)
-        if full_text.startswith(prompt_text):
-            suffixes.append(full_text[len(prompt_text) :])
-            continue
-
-        # Fall back to tokenizer-consistent prefix trimming if decode normalization
-        # makes the decoded prompt differ slightly from the original input string.
-        common_prefix_len = _common_prefix_len(full_text, prompt_text)
-        suffixes.append(full_text[common_prefix_len:])
+        generated = outputs[idx, prefix_len:]
+        suffixes.append(tokenizer.decode(generated, skip_special_tokens=True))
     return suffixes
 
 
@@ -407,6 +438,10 @@ def _metadata_json(slot: Slot) -> str:
             "source_attempt_index": slot.source_attempt_index,
             "target_token": slot.target_token,
             "target_full_name": slot.target_full_name,
+            "prompt_cut_char": slot.prompt_cut_char,
+            "actual_prompt_char_end": slot.actual_prompt_char_end,
+            "prompt_token_count": len(slot.prompt_token_ids),
+            "cut_char_aligned": slot.actual_prompt_char_end == slot.prompt_cut_char,
         },
         ensure_ascii=False,
     )
@@ -437,12 +472,6 @@ def main() -> int:
     if args.max_new_tokens <= 0:
         raise ValueError("--max-new-tokens must be positive")
 
-    theorem_index = TheoremIndex.load(args.theorem_index)
-    source_payload = _load_json(args.source_output)
-    slots = _build_slots(source_payload, theorem_index)
-    if args.max_slots is not None:
-        slots = slots[: args.max_slots]
-
     micro_batch_size = args.micro_batch_size or cfg["micro_batch_size"]
     params = GenerationParams(
         micro_batch_size=micro_batch_size,
@@ -462,6 +491,11 @@ def main() -> int:
         print(f"Resuming existing output: {output_path} ({len(existing_payload)} entries)")
 
     model, tokenizer = load_artifacts(cfg["model_id"])
+    theorem_index = TheoremIndex.load(args.theorem_index)
+    source_payload = _load_json(args.source_output)
+    slots = _build_slots(source_payload, theorem_index, tokenizer)
+    if args.max_slots is not None:
+        slots = slots[: args.max_slots]
 
 
     total_slots = len(slots)
@@ -484,15 +518,18 @@ def main() -> int:
             continue
 
         remaining = args.attempts_per_slot - len(existing_attempts)
-        prefix = slot.prompt_prefix
-        prompts = [prefix] * remaining
-        generation_start = time.time()
-        continuations = _generate_suffix_batch(prompts, model, tokenizer, params)
-        generation_time = time.time() - generation_start
+        continuations: list[str] = []
+        generation_time = 0.0
+        while len(continuations) < remaining:
+            batch_size = min(remaining - len(continuations), params.micro_batch_size)
+            generation_start = time.time()
+            batch_continuations = _generate_suffix_batch(slot.prompt_token_ids, batch_size, model, tokenizer, params)
+            generation_time += time.time() - generation_start
+            continuations.extend(batch_continuations)
         average_generation_time = generation_time / len(continuations) if continuations else 0.0
 
         for continuation in continuations:
-            raw_output = prefix + continuation
+            raw_output = slot.prompt_prefix + continuation
             first_identifier = _first_theorem_like_identifier(continuation)
             classification = _classify_identifier(
                 first_identifier=first_identifier,
@@ -506,7 +543,11 @@ def main() -> int:
                 "target_token": slot.target_token,
                 "target_full_name": slot.target_full_name,
                 "first_identifier": first_identifier,
-                "prompt_prefix_length": len(prefix),
+                "prompt_prefix_length": len(slot.prompt_prefix),
+                "prompt_token_count": len(slot.prompt_token_ids),
+                "prompt_cut_char": slot.prompt_cut_char,
+                "actual_prompt_char_end": slot.actual_prompt_char_end,
+                "cut_char_aligned": slot.actual_prompt_char_end == slot.prompt_cut_char,
                 **classification,
             }
             attempt = Attempt(
