@@ -40,7 +40,7 @@ TEMPERATURE = 1.0
 TOP_P = 0.95
 MAX_NEW_TOKENS = 24
 EXPECTED_SLOT_COUNT = 95
-RUN_SCHEMA_VERSION = 1
+RUN_SCHEMA_VERSION = 2
 RUN_METADATA_KEY = "__meta__"
 
 USABLE_SOURCE_KEYS = {
@@ -327,43 +327,15 @@ def _build_slot_key(source_key: str, attempt_index: int, target_token: str, ordi
     return f"{source_key}::attempt{attempt_index}::slot{ordinal:02d}::{target_token}"
 
 
-def _tokenize_with_offsets(raw_output: str, tokenizer) -> tuple[list[int], list[tuple[int, int]]]:
+def _tokenize_prompt_prefix(prompt_prefix: str, tokenizer) -> tuple[int, ...]:
     encoded = tokenizer(
-        raw_output,
+        prompt_prefix,
         add_special_tokens=True,
-        return_offsets_mapping=True,
     )
-    input_ids = [int(x) for x in encoded["input_ids"]]
-    offsets = [(int(start), int(end)) for start, end in encoded["offset_mapping"]]
-    if len(input_ids) != len(offsets):
-        raise ValueError("Token ids and offset mappings differ in length.")
-    return input_ids, offsets
-
-
-def _token_prefix_from_char_cut(
-    raw_output: str,
-    prompt_cut_char: int,
-    input_ids: list[int],
-    offsets: list[tuple[int, int]],
-) -> tuple[tuple[int, ...], str, int]:
-    token_cut = 0
-    actual_prompt_char_end = 0
-    for idx, (_start, end) in enumerate(offsets):
-        if end <= prompt_cut_char:
-            token_cut = idx + 1
-            actual_prompt_char_end = max(actual_prompt_char_end, end)
-            continue
-        break
-
-    if token_cut == 0:
-        raise ValueError(f"Could not map char cut {prompt_cut_char} onto tokenizer offsets.")
-
-    prompt_token_ids = tuple(input_ids[:token_cut])
-    # Keep the saved prompt prefix as an exact raw-text prefix at the token boundary.
-    # The tokenizer's decoded string can differ slightly across versions even when the
-    # token ids are correct, so we do not require decoded text equality here.
-    prompt_prefix = raw_output[:actual_prompt_char_end]
-    return prompt_token_ids, prompt_prefix, actual_prompt_char_end
+    input_ids = tuple(int(x) for x in encoded["input_ids"])
+    if not input_ids:
+        raise ValueError("Prompt prefix tokenization produced no input ids.")
+    return input_ids
 
 
 def _build_slots(payload: dict, theorem_index: TheoremIndex, tokenizer) -> list[Slot]:
@@ -393,7 +365,6 @@ def _build_slots(payload: dict, theorem_index: TheoremIndex, tokenizer) -> list[
             seen_full_names: set[str] = set()
             ordinal = 0
             proof_start = _find_parsed_proof_in_raw_output(raw_output, parsed_proof)
-            raw_output_ids, raw_output_offsets = _tokenize_with_offsets(raw_output, tokenizer)
 
             for token_start, _token_end, token, full_name in _iter_resolved_theorem_tokens(masked_body, theorem_index):
                 if full_name in seen_full_names:
@@ -401,12 +372,9 @@ def _build_slots(payload: dict, theorem_index: TheoremIndex, tokenizer) -> list[
                 seen_full_names.add(full_name)
 
                 prompt_cut = proof_start + body_offset + token_start
-                prompt_token_ids, prompt_prefix, actual_prompt_char_end = _token_prefix_from_char_cut(
-                    raw_output,
-                    prompt_cut,
-                    raw_output_ids,
-                    raw_output_offsets,
-                )
+                prompt_prefix = raw_output[:prompt_cut]
+                prompt_token_ids = _tokenize_prompt_prefix(prompt_prefix, tokenizer)
+                actual_prompt_char_end = prompt_cut
                 if not prompt_prefix:
                     raise ValueError(f"Empty prompt prefix for {source_key} attempt {attempt_index}")
 
