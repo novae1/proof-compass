@@ -309,6 +309,42 @@ def _common_prefix_len(a: str, b: str) -> int:
     return i
 
 
+def _generate_suffix_batch(prompts: list[str], model, tokenizer, params: GenerationParams) -> list[str]:
+    import torch
+
+    if not prompts:
+        return []
+
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    pad_token_id = tokenizer.pad_token_id
+    target_device = torch.device("cuda")
+
+    encoded = tokenizer(
+        prompts,
+        return_tensors="pt",
+        padding=True,
+        truncation=True,
+    )
+    inputs = {k: v.to(target_device) for k, v in encoded.items()}
+    prompt_width = int(inputs["input_ids"].shape[1])
+
+    outputs = model.generate(
+        **inputs,
+        do_sample=True,
+        temperature=params.temperature,
+        top_p=params.top_p,
+        max_new_tokens=params.max_new_tokens,
+        pad_token_id=pad_token_id,
+    )
+
+    suffixes: list[str] = []
+    for idx in range(outputs.size(0)):
+        generated = outputs[idx, prompt_width:]
+        suffixes.append(tokenizer.decode(generated, skip_special_tokens=True))
+    return suffixes
+
+
 def _first_theorem_like_identifier(text: str) -> str | None:
     for match in IDENTIFIER_RE.finditer(text):
         token = match.group(0)
@@ -419,7 +455,6 @@ def main() -> int:
         print(f"Resuming existing output: {output_path} ({len(existing_payload)} entries)")
 
     model, tokenizer = load_artifacts(cfg["model_id"])
-    from src.prover_generation.batch_generation import generate_batch
 
 
     total_slots = len(slots)
@@ -445,13 +480,12 @@ def main() -> int:
         prefix = slot.prompt_prefix
         prompts = [prefix] * remaining
         generation_start = time.time()
-        raw_outputs = generate_batch(prompts, model, tokenizer, params)
+        continuations = _generate_suffix_batch(prompts, model, tokenizer, params)
         generation_time = time.time() - generation_start
-        average_generation_time = generation_time / len(raw_outputs) if raw_outputs else 0.0
+        average_generation_time = generation_time / len(continuations) if continuations else 0.0
 
-        for raw_output in raw_outputs:
-            common_prefix_len = _common_prefix_len(raw_output, prefix)
-            continuation = raw_output[common_prefix_len:]
+        for continuation in continuations:
+            raw_output = prefix + continuation
             first_identifier = _first_theorem_like_identifier(continuation)
             classification = _classify_identifier(
                 first_identifier=first_identifier,
@@ -465,7 +499,6 @@ def main() -> int:
                 "target_token": slot.target_token,
                 "target_full_name": slot.target_full_name,
                 "first_identifier": first_identifier,
-                "common_prefix_length": common_prefix_len,
                 "prompt_prefix_length": len(prefix),
                 **classification,
             }
