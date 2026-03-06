@@ -327,7 +327,6 @@ def _generate_suffix_batch(prompts: list[str], model, tokenizer, params: Generat
         truncation=True,
     )
     inputs = {k: v.to(target_device) for k, v in encoded.items()}
-    prompt_width = int(inputs["input_ids"].shape[1])
 
     outputs = model.generate(
         **inputs,
@@ -340,8 +339,16 @@ def _generate_suffix_batch(prompts: list[str], model, tokenizer, params: Generat
 
     suffixes: list[str] = []
     for idx in range(outputs.size(0)):
-        generated = outputs[idx, prompt_width:]
-        suffixes.append(tokenizer.decode(generated, skip_special_tokens=True))
+        full_text = tokenizer.decode(outputs[idx], skip_special_tokens=True)
+        prompt_text = tokenizer.decode(inputs["input_ids"][idx], skip_special_tokens=True)
+        if full_text.startswith(prompt_text):
+            suffixes.append(full_text[len(prompt_text) :])
+            continue
+
+        # Fall back to tokenizer-consistent prefix trimming if decode normalization
+        # makes the decoded prompt differ slightly from the original input string.
+        common_prefix_len = _common_prefix_len(full_text, prompt_text)
+        suffixes.append(full_text[common_prefix_len:])
     return suffixes
 
 
