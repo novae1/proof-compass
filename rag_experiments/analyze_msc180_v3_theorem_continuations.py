@@ -23,8 +23,9 @@ CLASSIFICATION_ORDER = [
 ]
 
 DEFAULT_OUTPUT = Path(
-    "rag_experiments/outputs/20260305_msc180-v3-theorem-continuations_deepseekv2_7b_lean4-15.json"
+    "rag_experiments/outputs/20260306_msc180-v3-theorem-continuations_deepseekv2_7b_lean4-15.json"
 )
+RUN_METADATA_KEY = "__meta__"
 
 
 @dataclass
@@ -126,6 +127,8 @@ def main() -> int:
     target_classification_counts: dict[str, Counter[str]] = defaultdict(Counter)
 
     for slot_key, entry in payload.items():
+        if slot_key == RUN_METADATA_KEY:
+            continue
         if not isinstance(entry, dict):
             continue
 

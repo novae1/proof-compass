@@ -9,8 +9,9 @@ from pathlib import Path
 
 
 DEFAULT_OUTPUT = Path(
-    "rag_experiments/outputs/20260305_msc180-v3-theorem-continuations_deepseekv2_7b_lean4-15.json"
+    "rag_experiments/outputs/20260306_msc180-v3-theorem-continuations_deepseekv2_7b_lean4-15.json"
 )
+RUN_METADATA_KEY = "__meta__"
 
 CONFIG_ORDER = [
     "no-hint",
@@ -18,12 +19,18 @@ CONFIG_ORDER = [
     "theorem-statements-and-examples",
 ]
 
-CORRUPTION_RULES: list[tuple[str, re.Pattern[str]]] = [
-    ("artifact_marker", re.compile(r"[ĠĊ]|âŁ|Ã")),
-    ("code_fence_restart", re.compile(r"```|lean4theorem|Complete the following Lean 4 code:")),
-    ("commentary_text", re.compile(r"--|Explanation|Step\s+\d+|Use the|We need to|ByRolle|By Rolle")),
-    ("placeholder_meta", re.compile(r"\?apply|\?have|exact\?|apply\?|sorry\b")),
-    ("squashed_spacing", re.compile(r"apply[A-Z?]|byapply|linarithhave|haveh:|exacth|subst_varsdone")),
+ARTIFACT_MARKER_RE = re.compile(r"[ĠĊ]|âŁ|Ã")
+LEAN_FENCE_RESTART_RE = re.compile(r"```(?:lean4?|Lean 4)|lean4theorem|Complete the following Lean 4 code:")
+COMMENTARY_TEXT_RE = re.compile(r"--|Explanation|Step\s+\d+|Use the|We need to|ByRolle|By Rolle")
+PLACEHOLDER_META_RE = re.compile(r"\?apply|\?have|exact\?|apply\?|sorry\b")
+SQUASHED_SPACING_RE = re.compile(r"apply[A-Z?]|byapply|linarithhave|haveh:|exacth|subst_varsdone")
+
+CORRUPTION_CATEGORIES = [
+    "artifact_marker",
+    "code_fence_restart",
+    "commentary_text",
+    "placeholder_meta",
+    "squashed_spacing",
 ]
 
 
@@ -68,6 +75,33 @@ def _config_from_source_key(source_key: str) -> str:
     return source_key.split("/", 1)[0]
 
 
+def _has_code_fence_restart(text: str) -> bool:
+    if LEAN_FENCE_RESTART_RE.search(text):
+        return True
+
+    idx = text.find("```")
+    while idx != -1:
+        if text[idx + 3 :].strip():
+            return True
+        idx = text.find("```", idx + 3)
+    return False
+
+
+def _detect_corruption_categories(text: str) -> list[str]:
+    categories: list[str] = []
+    if ARTIFACT_MARKER_RE.search(text):
+        categories.append("artifact_marker")
+    if _has_code_fence_restart(text):
+        categories.append("code_fence_restart")
+    if COMMENTARY_TEXT_RE.search(text):
+        categories.append("commentary_text")
+    if PLACEHOLDER_META_RE.search(text):
+        categories.append("placeholder_meta")
+    if SQUASHED_SPACING_RE.search(text):
+        categories.append("squashed_spacing")
+    return categories
+
+
 def _print_section(title: str) -> None:
     print()
     print(title)
@@ -94,6 +128,8 @@ def main() -> int:
     samples: dict[str, list[tuple[str, str, str]]] = defaultdict(list)
 
     for slot_key, entry in payload.items():
+        if slot_key == RUN_METADATA_KEY:
+            continue
         if not isinstance(entry, dict):
             continue
         source_key = str(entry.get("header", "")).strip()
@@ -110,14 +146,12 @@ def main() -> int:
             config_attempt_counts[config] += 1
             slot_attempt_counts[slot_key] += 1
 
-            triggered: list[str] = []
-            for category, pattern in CORRUPTION_RULES:
-                if pattern.search(parsed_proof):
-                    triggered.append(category)
-                    category_counts[category] += 1
-                    config_category_counts[config][category] += 1
-                    if len(samples[category]) < args.samples_per_category:
-                        samples[category].append((slot_key, config, parsed_proof[:180]))
+            triggered = _detect_corruption_categories(parsed_proof)
+            for category in triggered:
+                category_counts[category] += 1
+                config_category_counts[config][category] += 1
+                if len(samples[category]) < args.samples_per_category:
+                    samples[category].append((slot_key, config, parsed_proof[:180]))
 
             if triggered:
                 slot_corruption_counts[slot_key] += 1
@@ -140,7 +174,7 @@ def main() -> int:
     )
 
     _print_section("Metric 2: Corruption Category Rates")
-    for category, _ in CORRUPTION_RULES:
+    for category in CORRUPTION_CATEGORIES:
         count = category_counts[category]
         print(f"{category:24} {_pct(count, attempts_total):6.2f}% ({count}/{attempts_total})")
 
@@ -151,9 +185,7 @@ def main() -> int:
         if denom == 0:
             print("  no attempts")
             continue
-        corrupted = sum(config_category_counts[config][category] > 0 for category, _ in CORRUPTION_RULES)
-        clean = denom
-        for category, _ in CORRUPTION_RULES:
+        for category in CORRUPTION_CATEGORIES:
             count = config_category_counts[config][category]
             print(f"  {category:22} {_pct(count, denom):6.2f}% ({count}/{denom})")
 
@@ -167,7 +199,7 @@ def main() -> int:
         print(f"{slot_key[:72]:72} {count:10d} {attempts:10d} {_pct(count, attempts):7.2f}%")
 
     _print_section("Metric 6: Example Corrupt Continuations")
-    for category, _ in CORRUPTION_RULES:
+    for category in CORRUPTION_CATEGORIES:
         print(category)
         if not samples[category]:
             print("  none")
