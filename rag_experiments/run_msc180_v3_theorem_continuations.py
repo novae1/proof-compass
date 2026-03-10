@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 import time
@@ -40,8 +41,10 @@ TEMPERATURE = 1.0
 TOP_P = 0.95
 MAX_NEW_TOKENS = 24
 EXPECTED_SLOT_COUNT = 95
-RUN_SCHEMA_VERSION = 2
+RUN_SCHEMA_VERSION = 3
 RUN_METADATA_KEY = "__meta__"
+SUPPORTED_TRANSFORMERS_VERSION = "4.57.6"
+ALLOW_UNSUPPORTED_ENV_VAR = "PROOF_COMPASS_ALLOW_UNSUPPORTED_TRANSFORMERS"
 
 USABLE_SOURCE_KEYS = {
     "no-hint/MSC-180_08_002",
@@ -183,6 +186,34 @@ def _save_json(payload: dict, path: Path) -> None:
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def _load_versions() -> dict[str, object]:
+    import tokenizers
+    import torch
+    import transformers
+
+    return {
+        "transformers": transformers.__version__,
+        "tokenizers": tokenizers.__version__,
+        "torch": torch.__version__,
+        "cuda_available": torch.cuda.is_available(),
+    }
+
+
+def _require_supported_transformers() -> None:
+    import transformers
+
+    version = str(transformers.__version__)
+    if os.environ.get(ALLOW_UNSUPPORTED_ENV_VAR) == "1":
+        return
+    if version != SUPPORTED_TRANSFORMERS_VERSION:
+        raise SystemExit(
+            "MSC-180 v3 theorem continuations require "
+            f"transformers=={SUPPORTED_TRANSFORMERS_VERSION}; found {version}. "
+            "Use .venv/bin/python after running ./init.sh, or set "
+            f"{ALLOW_UNSUPPORTED_ENV_VAR}=1 to bypass this check."
+        )
+
+
 def _required_attempt_message_keys() -> set[str]:
     return {
         "source_key",
@@ -213,6 +244,7 @@ def _build_run_metadata(
     return {
         "schema_version": RUN_SCHEMA_VERSION,
         "model_id": model_id,
+        "versions": _load_versions(),
         "source_output": str(source_output.resolve()),
         "theorem_index": str(theorem_index.resolve()),
         "attempts_per_slot": attempts_per_slot,
@@ -508,6 +540,7 @@ def _make_processor(slot: Slot) -> TheoremProcessor:
 
 def main() -> int:
     args = _parse_args()
+    _require_supported_transformers()
     mode = args.mode.strip().lower()
     cfg = MODEL_CONFIGS.get(mode)
     if cfg is None:
