@@ -1,9 +1,12 @@
 models/
 __pycache__/
 .venv/
+.venvs/
 prompt_examples/
 testing_stuff/
 keys.json
 AGENTS.md
 rag_experiments/MSC-180/
 models/
+rag_experiments/debug_runs/
+continuation_recovery/artifacts/
