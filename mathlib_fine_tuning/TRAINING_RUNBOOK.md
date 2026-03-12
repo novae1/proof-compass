@@ -24,13 +24,18 @@ This uses the script's built-in smoke defaults:
 - `64` valid examples
 - `20` max steps
 
+Tested starting point for an RTX 5090:
+
 ```bash
 python mathlib_fine_tuning/train_tactic_sft.py \
   --smoke \
+  --per-device-train-batch-size 2 \
+  --per-device-eval-batch-size 2 \
+  --gradient-accumulation-steps 8 \
   --output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_smoke
 ```
 
-If VRAM is tighter, reduce only batch size:
+If you hit CUDA OOM, retry with:
 
 ```bash
 python mathlib_fine_tuning/train_tactic_sft.py \
@@ -41,20 +46,31 @@ python mathlib_fine_tuning/train_tactic_sft.py \
   --output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_smoke
 ```
 
-## Full Training
+Optional allocator setting if CUDA reports fragmentation:
 
 ```bash
-python mathlib_fine_tuning/train_tactic_sft.py \
-  --output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_v1
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 ```
 
-If you want to set batch size explicitly:
+## Full Training
+
+Tested starting point for an RTX 5090:
 
 ```bash
 python mathlib_fine_tuning/train_tactic_sft.py \
   --per-device-train-batch-size 2 \
   --per-device-eval-batch-size 2 \
   --gradient-accumulation-steps 8 \
+  --output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_v1
+```
+
+If you want to preserve a larger effective batch while staying within memory, increase accumulation instead:
+
+```bash
+python mathlib_fine_tuning/train_tactic_sft.py \
+  --per-device-train-batch-size 2 \
+  --per-device-eval-batch-size 2 \
+  --gradient-accumulation-steps 16 \
   --output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_v1
 ```
 
@@ -68,6 +84,9 @@ Inside `--output-dir` you should get:
 - `train_config.json`
 - `train_metrics.json`
 - `eval_metrics.json`
+
+The smoke run also saves its own final adapter and metrics.
+It does not affect the full training run as long as the smoke and full runs use different `--output-dir` values.
 
 ## Progress
 
