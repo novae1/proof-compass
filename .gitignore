@@ -10,3 +10,4 @@ rag_experiments/MSC-180/
 models/
 rag_experiments/debug_runs/
 continuation_recovery/artifacts/
+mathlib_fine_tuning/processed/
