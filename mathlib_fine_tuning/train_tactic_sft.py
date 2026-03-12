@@ -40,8 +40,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--weight-decay", type=float, default=0.0)
     parser.add_argument("--logging-steps", type=int, default=10)
     parser.add_argument("--eval-steps", type=int, default=200)
-    parser.add_argument("--save-steps", type=int, default=200)
-    parser.add_argument("--save-total-limit", type=int, default=2)
     parser.add_argument("--max-steps", type=int, default=-1)
     parser.add_argument("--max-train-samples", type=int, default=None)
     parser.add_argument("--max-valid-samples", type=int, default=None)
@@ -69,8 +67,6 @@ def apply_smoke_defaults(args: argparse.Namespace) -> None:
         args.max_steps = 20
     if args.eval_steps == 200:
         args.eval_steps = 10
-    if args.save_steps == 200:
-        args.save_steps = 20
     if args.logging_steps == 10:
         args.logging_steps = 5
 
@@ -210,9 +206,8 @@ def main() -> int:
         do_train=True,
         do_eval=True,
         eval_strategy="steps",
-        save_strategy="steps",
+        save_strategy="no",
         eval_steps=args.eval_steps,
-        save_steps=args.save_steps,
         logging_steps=args.logging_steps,
         per_device_train_batch_size=args.per_device_train_batch_size,
         per_device_eval_batch_size=args.per_device_eval_batch_size,
@@ -226,7 +221,6 @@ def main() -> int:
         bf16=True,
         report_to="none",
         remove_unused_columns=False,
-        save_total_limit=args.save_total_limit,
         seed=args.seed,
         data_seed=args.seed,
         logging_first_step=True,
