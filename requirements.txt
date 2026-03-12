@@ -13,6 +13,7 @@ mlflow
 numpy
 openai
 pandas
+peft
 pyarrow
 sentencepiece==0.2.1
 tokenizers==0.22.2
