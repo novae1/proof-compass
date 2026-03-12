@@ -20,16 +20,21 @@ def generate_batch(
     if not prompts:
         return []
     
-    formatted_prompts = list(prompts)
-
     pad_token_id = _ensure_pad_token(tokenizer)
     target_device = torch.device("cuda")
+    chat_inputs = [
+        tokenizer.apply_chat_template(
+            [{"role": "user", "content": prompt}],
+            tokenize=True,
+            add_generation_prompt=True,
+        )
+        for prompt in prompts
+    ]
 
-    encoded = tokenizer(
-        formatted_prompts,
+    encoded = tokenizer.pad(
+        {"input_ids": chat_inputs},
         return_tensors="pt",
         padding=True,
-        truncation=True,
     )
     inputs = {k: v.to(target_device) for k, v in encoded.items()}
 
