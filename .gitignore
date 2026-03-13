@@ -11,3 +11,4 @@ models/
 rag_experiments/debug_runs/
 continuation_recovery/artifacts/
 mathlib_fine_tuning/processed/
+mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_v1/adapter_model.safetensors
