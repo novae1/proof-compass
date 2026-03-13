@@ -1,0 +1,29 @@
+{
+  "train_path": "/workspace/proof-compass/mathlib_fine_tuning/processed/deepseek_noncot_tactic_1024_train.jsonl",
+  "valid_path": "/workspace/proof-compass/mathlib_fine_tuning/processed/deepseek_noncot_tactic_1024_valid.jsonl",
+  "model_path": "/workspace/proof-compass/models/deepseek-ai/DeepSeek-Prover-V2-7B",
+  "output_dir": "mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_v1",
+  "max_seq_length": 1024,
+  "per_device_train_batch_size": 1,
+  "per_device_eval_batch_size": 1,
+  "gradient_accumulation_steps": 8,
+  "learning_rate": 5e-05,
+  "num_train_epochs": 1.0,
+  "warmup_ratio": 0.03,
+  "weight_decay": 0.0,
+  "logging_steps": 10,
+  "eval_steps": 200,
+  "max_steps": -1,
+  "max_train_samples": null,
+  "max_valid_samples": null,
+  "lora_r": 16,
+  "lora_alpha": 32,
+  "lora_dropout": 0.05,
+  "lora_target_modules": "q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj",
+  "seed": 42,
+  "smoke": false,
+  "dataset_sizes": {
+    "train": 55712,
+    "valid": 1155
+  }
+}
