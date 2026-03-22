@@ -1,0 +1,190 @@
+{
+  "base_file": "rag_experiments/outputs/20260313_msc180-v2-nohint_base_deepseekv2_7b_lean4-15_verified.json",
+  "lora_file": "rag_experiments/outputs/20260313_msc180-v2-nohint_lora_deepseekv2_7b_lean4-15_verified.json",
+  "base": {
+    "problems": 20,
+    "attempts": 400,
+    "successful_attempts": 77,
+    "attempt_pass_rate": 0.1925,
+    "problems_solved": 6,
+    "problem_pass_at_20": 0.3,
+    "attempts_with_unknown": 111,
+    "unknown_attempt_rate": 0.2775,
+    "total_unknown_occurrences": 196,
+    "unknown_rate_among_failures": 0.34365325077399383
+  },
+  "lora": {
+    "problems": 20,
+    "attempts": 400,
+    "successful_attempts": 4,
+    "attempt_pass_rate": 0.01,
+    "problems_solved": 2,
+    "problem_pass_at_20": 0.1,
+    "attempts_with_unknown": 258,
+    "unknown_attempt_rate": 0.645,
+    "total_unknown_occurrences": 347,
+    "unknown_rate_among_failures": 0.6515151515151515
+  },
+  "per_problem": {
+    "no-hint/MSC-180_05_003": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 15,
+      "lora_unknown_attempts": 13,
+      "delta_unknown_attempts": -2
+    },
+    "no-hint/MSC-180_08_001": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 15,
+      "lora_unknown_attempts": 15,
+      "delta_unknown_attempts": 0
+    },
+    "no-hint/MSC-180_08_002": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 4,
+      "lora_unknown_attempts": 6,
+      "delta_unknown_attempts": 2
+    },
+    "no-hint/MSC-180_08_003": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 0,
+      "lora_unknown_attempts": 13,
+      "delta_unknown_attempts": 13
+    },
+    "no-hint/MSC-180_12_001": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 11,
+      "lora_unknown_attempts": 17,
+      "delta_unknown_attempts": 6
+    },
+    "no-hint/MSC-180_12_002": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 2,
+      "lora_unknown_attempts": 16,
+      "delta_unknown_attempts": 14
+    },
+    "no-hint/MSC-180_12_003": {
+      "base_successes": 16,
+      "lora_successes": 0,
+      "delta_successes": -16,
+      "base_unknown_attempts": 2,
+      "lora_unknown_attempts": 17,
+      "delta_unknown_attempts": 15
+    },
+    "no-hint/MSC-180_14_001": {
+      "base_successes": 14,
+      "lora_successes": 1,
+      "delta_successes": -13,
+      "base_unknown_attempts": 6,
+      "lora_unknown_attempts": 14,
+      "delta_unknown_attempts": 8
+    },
+    "no-hint/MSC-180_14_003": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 5,
+      "lora_unknown_attempts": 17,
+      "delta_unknown_attempts": 12
+    },
+    "no-hint/MSC-180_15_003": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 8,
+      "lora_unknown_attempts": 11,
+      "delta_unknown_attempts": 3
+    },
+    "no-hint/MSC-180_20_001": {
+      "base_successes": 19,
+      "lora_successes": 3,
+      "delta_successes": -16,
+      "base_unknown_attempts": 0,
+      "lora_unknown_attempts": 4,
+      "delta_unknown_attempts": 4
+    },
+    "no-hint/MSC-180_26_002": {
+      "base_successes": 19,
+      "lora_successes": 0,
+      "delta_successes": -19,
+      "base_unknown_attempts": 0,
+      "lora_unknown_attempts": 14,
+      "delta_unknown_attempts": 14
+    },
+    "no-hint/MSC-180_28_003": {
+      "base_successes": 3,
+      "lora_successes": 0,
+      "delta_successes": -3,
+      "base_unknown_attempts": 7,
+      "lora_unknown_attempts": 16,
+      "delta_unknown_attempts": 9
+    },
+    "no-hint/MSC-180_40_003": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 3,
+      "lora_unknown_attempts": 14,
+      "delta_unknown_attempts": 11
+    },
+    "no-hint/MSC-180_52_002": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 5,
+      "lora_unknown_attempts": 18,
+      "delta_unknown_attempts": 13
+    },
+    "no-hint/MSC-180_60_002": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 18,
+      "lora_unknown_attempts": 15,
+      "delta_unknown_attempts": -3
+    },
+    "no-hint/MSC-180_65_001": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 1,
+      "lora_unknown_attempts": 8,
+      "delta_unknown_attempts": 7
+    },
+    "no-hint/MSC-180_65_003": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 6,
+      "lora_unknown_attempts": 14,
+      "delta_unknown_attempts": 8
+    },
+    "no-hint/MSC-180_68_002": {
+      "base_successes": 6,
+      "lora_successes": 0,
+      "delta_successes": -6,
+      "base_unknown_attempts": 0,
+      "lora_unknown_attempts": 7,
+      "delta_unknown_attempts": 7
+    },
+    "no-hint/MSC-180_90_001": {
+      "base_successes": 0,
+      "lora_successes": 0,
+      "delta_successes": 0,
+      "base_unknown_attempts": 3,
+      "lora_unknown_attempts": 9,
+      "delta_unknown_attempts": 6
+    }
+  }
+}
