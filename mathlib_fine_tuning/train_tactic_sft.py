@@ -114,7 +114,6 @@ def build_datasets(args: argparse.Namespace, tokenizer):
             "input_ids": full_ids,
             "attention_mask": [1] * len(full_ids),
             "labels": labels,
-            "length": len(full_ids),
         }
 
     remove_columns = raw["train"].column_names
@@ -225,8 +224,6 @@ def main() -> int:
         data_seed=args.seed,
         logging_first_step=True,
         dataloader_pin_memory=True,
-        group_by_length=True,
-        length_column_name="length",
         save_safetensors=True,
     )
 
