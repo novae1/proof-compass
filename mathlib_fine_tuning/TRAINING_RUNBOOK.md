@@ -24,25 +24,44 @@ This uses the script's built-in smoke defaults:
 - `64` valid examples
 - `20` max steps
 
-Tested starting point for an RTX 5090:
+Current trainer behavior:
+
+- training uses ordinary shuffled batches
+- it does not group long sequences together by length
+
+This is intentionally simpler and reduces the risk of late OOM failures from
+long-sequence buckets, at the cost of somewhat lower throughput from padding.
+
+Recommended starting point for an RTX PRO 6000 Blackwell Workstation:
 
 ```bash
 python mathlib_fine_tuning/train_tactic_sft.py \
   --smoke \
-  --per-device-train-batch-size 2 \
-  --per-device-eval-batch-size 2 \
-  --gradient-accumulation-steps 8 \
+  --per-device-train-batch-size 12 \
+  --per-device-eval-batch-size 12 \
+  --gradient-accumulation-steps 1 \
   --output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_smoke
 ```
 
-If you hit CUDA OOM, retry with:
+If you want to probe extra headroom on `r=64`, try:
 
 ```bash
 python mathlib_fine_tuning/train_tactic_sft.py \
   --smoke \
-  --per-device-train-batch-size 1 \
-  --per-device-eval-batch-size 1 \
-  --gradient-accumulation-steps 8 \
+  --per-device-train-batch-size 14 \
+  --per-device-eval-batch-size 14 \
+  --gradient-accumulation-steps 1 \
+  --output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_smoke
+```
+
+If you still hit CUDA OOM, fall back to:
+
+```bash
+python mathlib_fine_tuning/train_tactic_sft.py \
+  --smoke \
+  --per-device-train-batch-size 8 \
+  --per-device-eval-batch-size 8 \
+  --gradient-accumulation-steps 1 \
   --output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_smoke
 ```
 
@@ -54,25 +73,33 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 ## Full Training
 
-Tested starting point for an RTX 5090:
+Recommended starting point for an RTX PRO 6000 Blackwell Workstation:
 
 ```bash
 python mathlib_fine_tuning/train_tactic_sft.py \
-  --per-device-train-batch-size 2 \
-  --per-device-eval-batch-size 2 \
-  --gradient-accumulation-steps 8 \
+  --per-device-train-batch-size 12 \
+  --per-device-eval-batch-size 12 \
+  --gradient-accumulation-steps 1 \
   --output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_v1
 ```
 
-If you want to preserve a larger effective batch while staying within memory, increase accumulation instead:
+If an `r=64` smoke run is clearly comfortable and you want to reduce wall-clock time, try:
 
 ```bash
 python mathlib_fine_tuning/train_tactic_sft.py \
-  --per-device-train-batch-size 2 \
-  --per-device-eval-batch-size 2 \
-  --gradient-accumulation-steps 16 \
+  --per-device-train-batch-size 14 \
+  --per-device-eval-batch-size 14 \
+  --gradient-accumulation-steps 1 \
   --output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_v1
 ```
+
+For the current `r=64` / `r=128` ablation, prefer keeping both runs on the same configuration:
+
+- `--per-device-train-batch-size 12`
+- `--per-device-eval-batch-size 12`
+- `--gradient-accumulation-steps 1`
+
+That keeps the comparison clean and should fit comfortably on the PRO 6000.
 
 ## Outputs
 
@@ -92,3 +119,96 @@ It does not affect the full training run as long as the smoke and full runs use 
 
 `transformers.Trainer` prints the standard tqdm progress bar during training.
 That includes step progress and an ETA-like remaining-time estimate.
+
+## Rank Sweeps
+
+Use the rank wrapper to keep output naming consistent while still allowing
+hardware-specific overrides.
+
+`r=64`
+```bash
+mathlib_fine_tuning/run_rank_training.sh 64
+```
+
+`r=128`
+```bash
+mathlib_fine_tuning/run_rank_training.sh 128
+```
+
+Recommended commands for the PRO 6000:
+
+`r=64`
+```bash
+mathlib_fine_tuning/run_rank_training.sh 64 \
+  --per-device-train-batch-size 12 \
+  --per-device-eval-batch-size 12 \
+  --gradient-accumulation-steps 1
+```
+
+`r=128`
+```bash
+mathlib_fine_tuning/run_rank_training.sh 128 \
+  --per-device-train-batch-size 12 \
+  --per-device-eval-batch-size 12 \
+  --gradient-accumulation-steps 1
+```
+
+If `r=64` has clear headroom, you can test:
+```bash
+mathlib_fine_tuning/run_rank_training.sh 64 \
+  --per-device-train-batch-size 14 \
+  --per-device-eval-batch-size 14 \
+  --gradient-accumulation-steps 1
+```
+
+The wrapper sets:
+- `--lora-r <rank>`
+- `--lora-alpha <2 * rank>`
+- `--output-dir mathlib_fine_tuning/runs/deepseek_noncot_tactic_lora_r<rank>`
+- standard defaults for the current PRO 6000 runs:
+  - `--per-device-train-batch-size 12`
+  - `--per-device-eval-batch-size 12`
+  - `--gradient-accumulation-steps 1`
+  - `--seed 42`
+
+## No-Hint Benchmark Pipeline
+
+Keep the Lean verifier server running in another terminal:
+
+```bash
+python3 src/lean/flask_server.py
+```
+
+Then run the full no-hint pipeline for a trained rank:
+- generation
+- verification
+- standard MSC-180 summary
+- comparison against base
+- comparison against `r=16`
+- error-type comparison against base
+- error-type comparison against `r=16`
+
+`r=64`
+```bash
+rag_experiments/run_nohint_rank_pipeline.sh 64
+```
+
+`r=128`
+```bash
+rag_experiments/run_nohint_rank_pipeline.sh 128
+```
+
+Recommended starting point for inference on the PRO 6000:
+```bash
+rag_experiments/run_nohint_rank_pipeline.sh 64 \
+  --date-prefix 20260323 \
+  --attempts-per-problem 20 \
+  --micro-batch-size 10
+```
+
+Use the same `--micro-batch-size 10` setting for `r=128` first. If generation OOMs or slows down badly due to long outputs, fall back to `5`.
+
+This pipeline writes:
+- raw attempts under `rag_experiments/outputs/`
+- verified attempts under `rag_experiments/outputs/`
+- pairwise summaries under `finetuning_analysis/`
