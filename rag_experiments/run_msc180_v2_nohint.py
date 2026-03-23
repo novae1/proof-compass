@@ -9,7 +9,7 @@ Scope:
 
 Defaults:
 - 20 generations per problem
-- micro-batch size 5
+- micro-batch size 10
 - temperature 1.0
 - top-p 0.95
 - max-new-tokens 7000
@@ -73,7 +73,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--micro-batch-size",
         type=int,
-        default=5,
+        default=10,
         help="How many prompts to send per generate() call.",
     )
     parser.add_argument("--temperature", type=float, default=1.0)
