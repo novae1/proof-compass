@@ -1,0 +1,504 @@
+{
+  "base": {
+    "total_attempts": 400,
+    "successful_attempts": 77,
+    "failed_attempts": 323,
+    "error_occurrences": {
+      "unknown_name": 192,
+      "automation_no_progress": 288,
+      "other": 36,
+      "rewrite_failed": 57,
+      "synthesis_error": 35,
+      "type_mismatch": 142,
+      "goal_state_error": 16,
+      "shape_or_induction_error": 31,
+      "unsolved_goals": 147,
+      "timeout": 21,
+      "apply_failed": 15,
+      "field_error": 55,
+      "parser_error": 1,
+      "calc_error": 15
+    },
+    "attempts_with_category": {
+      "unknown_name": 109,
+      "automation_no_progress": 131,
+      "other": 26,
+      "rewrite_failed": 43,
+      "synthesis_error": 17,
+      "type_mismatch": 73,
+      "goal_state_error": 14,
+      "shape_or_induction_error": 20,
+      "unsolved_goals": 87,
+      "timeout": 10,
+      "apply_failed": 11,
+      "field_error": 18,
+      "parser_error": 1,
+      "calc_error": 15
+    },
+    "first_error_category": {
+      "unknown_name": 82,
+      "automation_no_progress": 84,
+      "other": 10,
+      "synthesis_error": 11,
+      "unsolved_goals": 38,
+      "type_mismatch": 39,
+      "rewrite_failed": 23,
+      "apply_failed": 4,
+      "field_error": 13,
+      "timeout": 3,
+      "parser_error": 1,
+      "calc_error": 15
+    },
+    "nonunknown_failures": 214,
+    "error_occurrences_nonunknown_only": {
+      "automation_no_progress": 208,
+      "other": 25,
+      "synthesis_error": 18,
+      "type_mismatch": 108,
+      "unsolved_goals": 95,
+      "rewrite_failed": 38,
+      "timeout": 19,
+      "apply_failed": 9,
+      "field_error": 35,
+      "parser_error": 1,
+      "shape_or_induction_error": 9,
+      "goal_state_error": 1,
+      "calc_error": 15
+    },
+    "attempts_with_category_nonunknown_only": {
+      "automation_no_progress": 96,
+      "other": 20,
+      "synthesis_error": 11,
+      "type_mismatch": 58,
+      "unsolved_goals": 57,
+      "rewrite_failed": 26,
+      "timeout": 9,
+      "apply_failed": 8,
+      "field_error": 12,
+      "parser_error": 1,
+      "shape_or_induction_error": 2,
+      "goal_state_error": 1,
+      "calc_error": 15
+    },
+    "first_error_category_nonunknown_only": {
+      "automation_no_progress": 76,
+      "other": 10,
+      "synthesis_error": 8,
+      "type_mismatch": 34,
+      "unsolved_goals": 34,
+      "rewrite_failed": 21,
+      "apply_failed": 3,
+      "field_error": 9,
+      "timeout": 3,
+      "parser_error": 1,
+      "calc_error": 15
+    },
+    "unknown_only_failures": 14,
+    "unknown_plus_other_failures": 95,
+    "cooccurring_with_unknown": {
+      "automation_no_progress": 35,
+      "other": 6,
+      "rewrite_failed": 17,
+      "goal_state_error": 13,
+      "shape_or_induction_error": 18,
+      "type_mismatch": 15,
+      "unsolved_goals": 30,
+      "synthesis_error": 6,
+      "apply_failed": 3,
+      "field_error": 6,
+      "timeout": 1
+    },
+    "other_first_lines": {
+      "aesop: error in norm simp: tactic 'simp' failed, nested error:": 2,
+      "simp_all made no progress": 4,
+      "invalid alternative name 'inl', expected 'mem', 'algebraMap', 'add' or 'mul'": 1,
+      "failed to elaborate eliminator, insufficient number of arguments, expected type:": 1,
+      "aesop: internal error: extracted proof has metavariables.": 2,
+      "invalid 'calc' step, failed to synthesize `Trans` instance": 4,
+      "ring failed, ring expressions not equal": 3,
+      "tactic 'simp' failed, nested error:": 3,
+      "tactic 'constructor' failed, no applicable constructor found": 1,
+      "unknown metavariable '?_uniq.130958'": 1,
+      "no applicable extensionality theorem found for": 1,
+      "tactic failed, resulting expression contains metavariables": 1,
+      "failed to prove positivity/nonnegativity/nonzeroness": 4,
+      "invalid alternative name 'inl', expected 'intro'": 2,
+      "invalid 'calc' step, left-hand side is": 3,
+      "invalid projection, structure expected": 1,
+      "unknown metavariable '?_uniq.76341'": 1,
+      "failed to prove strict positivity, but it would be possible to prove nonnegativity if desired": 1
+    },
+    "representative_nonunknown_examples": {
+      "type_mismatch": {
+        "problem": "no-hint/MSC-180_08_001",
+        "attempt_index": 0,
+        "parsed_proof_head": "theorem homomorphism_agreement {R A B : Type*} [CommSemiring R] [Semiring A] [Semiring B]\n    [Algebra R A] [Algebra R B] {X : Set A} (hgen : Algebra.adjoin R X = \u22a4)\n    {\u03b1 \u03b2 : A \u2192\u2090[R] B} (h_agree : \u2200 x \u2208 X, \u03b1 x = \u03b2 x) :\n    \u03b1 = \u03b2 := by\n  have h_agree' : \u03b1 = \u03b2 := by\n    apply AlgHom.ext\n    intro x\n    have h\u2081 : x \u2208 Algebra.adjoin R X := by\n      rw [hgen]\n      exact Submodule.mem_top\n    refine' Algebra.adjoin_induction h\u2081 h_agree _ _ _\n    -- For the base case, if x \u2208 X, then by h_agree, \u03b1 x = \u03b2 x.",
+        "messages": [
+          {
+            "category": "synthesis_error",
+            "first_line": "typeclass instance problem is stuck, it is often due to metavariables"
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          }
+        ]
+      },
+      "synthesis_error": {
+        "problem": "no-hint/MSC-180_08_001",
+        "attempt_index": 0,
+        "parsed_proof_head": "theorem homomorphism_agreement {R A B : Type*} [CommSemiring R] [Semiring A] [Semiring B]\n    [Algebra R A] [Algebra R B] {X : Set A} (hgen : Algebra.adjoin R X = \u22a4)\n    {\u03b1 \u03b2 : A \u2192\u2090[R] B} (h_agree : \u2200 x \u2208 X, \u03b1 x = \u03b2 x) :\n    \u03b1 = \u03b2 := by\n  have h_agree' : \u03b1 = \u03b2 := by\n    apply AlgHom.ext\n    intro x\n    have h\u2081 : x \u2208 Algebra.adjoin R X := by\n      rw [hgen]\n      exact Submodule.mem_top\n    refine' Algebra.adjoin_induction h\u2081 h_agree _ _ _\n    -- For the base case, if x \u2208 X, then by h_agree, \u03b1 x = \u03b2 x.",
+        "messages": [
+          {
+            "category": "synthesis_error",
+            "first_line": "typeclass instance problem is stuck, it is often due to metavariables"
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          }
+        ]
+      },
+      "rewrite_failed": {
+        "problem": "no-hint/MSC-180_08_002",
+        "attempt_index": 0,
+        "parsed_proof_head": "theorem unique_relative_complement {L : Type*} [DistribLattice L] {a b c : L}\n    (hab : a \u2264 b) (hbc : b \u2264 c) :\n    \u2200 (d\u2081 d\u2082 : L),\n      a \u2264 d\u2081 \u2227 d\u2081 \u2264 c \u2227 d\u2081 \u2294 b = c \u2227 d\u2081 \u2293 b = a \u2192\n      a \u2264 d\u2082 \u2227 d\u2082 \u2264 c \u2227 d\u2082 \u2294 b = c \u2227 d\u2082 \u2293 b = a \u2192\n      d\u2081 = d\u2082 := by\n  intro d\u2081 d\u2082 h\u2081 h\u2082\n  have h\u2083 : d\u2081 \u2293 b = a := h\u2081.2.2.2\n  have h\u2084 : d\u2082 \u2293 b = a := h\u2082.2.2.2\n  have h\u2085 : d\u2081 \u2294 b = c := h\u2081.2.2.1\n  have h\u2086 : d\u2082 \u2294 b = c := h\u2082.2.2.1\n  have h\u2087 : d\u2081 \u2264 c := h\u2081.2.1",
+        "messages": [
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          },
+          {
+            "category": "rewrite_failed",
+            "first_line": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+          },
+          {
+            "category": "rewrite_failed",
+            "first_line": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+          },
+          {
+            "category": "rewrite_failed",
+            "first_line": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+          },
+          {
+            "category": "rewrite_failed",
+            "first_line": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+          }
+        ]
+      },
+      "field_error": {
+        "problem": "no-hint/MSC-180_12_001",
+        "attempt_index": 0,
+        "parsed_proof_head": "theorem polynomial_division_algorithm {F : Type*} [Field F] (f g : Polynomial F) (hg : g \u2260 0) :\n    \u2203 (q r : Polynomial F),\n      f = g * q + r \u2227\n      (r = 0 \u2228 r.degree < g.degree) \u2227\n      \u2200 (q' r' : Polynomial F),\n        (f = g * q' + r' \u2227 (r' = 0 \u2228 r'.degree < g.degree)) \u2192 q = q' \u2227 r = r' := by\n  use(f /\u2098 g), (f %\u2098 g)\n  constructor\n  \u00b7 exact?\n  constructor\n  \u00b7 exact?\n  intro q' r' h",
+        "messages": [
+          {
+            "category": "automation_no_progress",
+            "first_line": "`exact?` could not close the goal. Try `apply?` to see partial suggestions."
+          },
+          {
+            "category": "automation_no_progress",
+            "first_line": "`exact?` could not close the goal. Try `apply?` to see partial suggestions."
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "application type mismatch"
+          },
+          {
+            "category": "field_error",
+            "first_line": "invalid field notation, type is not of the form (C ...) where C is a constant"
+          }
+        ]
+      },
+      "parser_error": {
+        "problem": "no-hint/MSC-180_52_002",
+        "attempt_index": 3,
+        "parsed_proof_head": "theorem diameter_achieved_by_hull_vertices {n : \u2115} {S : Set (EuclideanSpace \u211d (Fin n))}\n    (h_finite : Set.Finite S) (h_nonempty : S.Nonempty) :\n    \u2203 x \u2208 (convexHull \u211d S).extremePoints \u211d, \u2203 y \u2208 (convexHull \u211d S).extremePoints \u211d,\n      dist x y = Metric.diam S := by\n  have h\u2081 : \u2203 x \u2208 (convexHull \u211d S).extremePoints \u211d, \u2203 y \u2208 (convexHull \u211d S).extremePoints \u211d,\n    dist x y = Metric.diam S := by\n    -- Use the fact that the set S is finite and nonempty to find the extreme points\n    -- and show that the diameter is achieved by these extreme points.\n    have h\u2082 : Metric.diam S = \u2a06 (x : (convexHull \u211d S) : Set (EuclideanSpace \u211d (Fin n)) ) (y : (convexHull \u211d S)),\n      dist x y := by\n      -- Use the fact that the diameter of a set is the supremum of the distances between any two points in the set.\n      apply Eq.symm",
+        "messages": [
+          {
+            "category": "parser_error",
+            "first_line": "unexpected token ':'; expected ')'"
+          },
+          {
+            "category": "unsolved_goals",
+            "first_line": "unsolved goals"
+          },
+          {
+            "category": "unsolved_goals",
+            "first_line": "unsolved goals"
+          }
+        ]
+      },
+      "shape_or_induction_error": {
+        "problem": "no-hint/MSC-180_60_002",
+        "attempt_index": 12,
+        "parsed_proof_head": "theorem weierstrass_approximation (f : \u211d \u2192 \u211d) (hf : ContinuousOn f (Set.Icc 0 1))\n    (\u03b5 : \u211d) (h\u03b5 : \u03b5 > 0) :\n    \u2203 (B : Polynomial \u211d), \u2200 x \u2208 Set.Icc 0 1, |B.eval x - f x| \u2264 \u03b5 := by\n  classical\n  obtain \u27e8p, hp\u27e9 := Polynomial. ApproximatesInCompact.exists_forall_mem_Icc hf \u03b5 h\u03b5\n  exact \u27e8p, fun x hx => by simpa using hp x hx\u27e9",
+        "messages": [
+          {
+            "category": "field_error",
+            "first_line": "invalid field notation, identifier or numeral expected"
+          },
+          {
+            "category": "shape_or_induction_error",
+            "first_line": "rcases tactic failed: x\u271d : ?m.1146 is not an inductive datatype"
+          }
+        ]
+      }
+    }
+  },
+  "lora": {
+    "total_attempts": 400,
+    "successful_attempts": 4,
+    "failed_attempts": 396,
+    "error_occurrences": {
+      "unknown_name": 346,
+      "rewrite_failed": 96,
+      "apply_failed": 5,
+      "parser_error": 21,
+      "synthesis_error": 31,
+      "other": 25,
+      "automation_no_progress": 26,
+      "unsolved_goals": 57,
+      "type_mismatch": 104,
+      "field_error": 120,
+      "shape_or_induction_error": 103,
+      "goal_state_error": 55,
+      "timeout": 2,
+      "calc_error": 1
+    },
+    "attempts_with_category": {
+      "rewrite_failed": 84,
+      "unknown_name": 257,
+      "apply_failed": 5,
+      "parser_error": 21,
+      "synthesis_error": 24,
+      "other": 25,
+      "automation_no_progress": 24,
+      "unsolved_goals": 52,
+      "type_mismatch": 73,
+      "field_error": 51,
+      "shape_or_induction_error": 98,
+      "goal_state_error": 53,
+      "timeout": 1,
+      "calc_error": 1
+    },
+    "first_error_category": {
+      "unknown_name": 212,
+      "apply_failed": 5,
+      "parser_error": 15,
+      "synthesis_error": 15,
+      "other": 12,
+      "unsolved_goals": 7,
+      "type_mismatch": 50,
+      "field_error": 32,
+      "rewrite_failed": 29,
+      "shape_or_induction_error": 11,
+      "automation_no_progress": 8
+    },
+    "nonunknown_failures": 139,
+    "error_occurrences_nonunknown_only": {
+      "apply_failed": 4,
+      "synthesis_error": 21,
+      "parser_error": 8,
+      "other": 15,
+      "automation_no_progress": 11,
+      "unsolved_goals": 20,
+      "type_mismatch": 72,
+      "rewrite_failed": 31,
+      "goal_state_error": 9,
+      "shape_or_induction_error": 26,
+      "field_error": 68,
+      "calc_error": 1
+    },
+    "attempts_with_category_nonunknown_only": {
+      "apply_failed": 4,
+      "synthesis_error": 16,
+      "parser_error": 8,
+      "other": 15,
+      "automation_no_progress": 10,
+      "unsolved_goals": 16,
+      "type_mismatch": 50,
+      "rewrite_failed": 26,
+      "goal_state_error": 9,
+      "shape_or_induction_error": 25,
+      "field_error": 28,
+      "calc_error": 1
+    },
+    "first_error_category_nonunknown_only": {
+      "apply_failed": 4,
+      "synthesis_error": 13,
+      "parser_error": 6,
+      "other": 11,
+      "unsolved_goals": 5,
+      "type_mismatch": 41,
+      "rewrite_failed": 22,
+      "shape_or_induction_error": 10,
+      "field_error": 21,
+      "automation_no_progress": 6
+    },
+    "unknown_only_failures": 32,
+    "unknown_plus_other_failures": 225,
+    "cooccurring_with_unknown": {
+      "rewrite_failed": 58,
+      "parser_error": 13,
+      "automation_no_progress": 14,
+      "unsolved_goals": 36,
+      "field_error": 23,
+      "shape_or_induction_error": 73,
+      "other": 10,
+      "type_mismatch": 23,
+      "goal_state_error": 44,
+      "synthesis_error": 8,
+      "apply_failed": 1,
+      "timeout": 1
+    },
+    "other_first_lines": {
+      "invalid '\u2190' modifier, 'id' is a declaration name to be unfolded": 1,
+      "invalid 'end', insufficient scopes": 1,
+      "cannot coerce": 1,
+      "invalid alternative name 'algebra_map', expected 'mem', 'algebraMap', 'add' or 'mul'": 1,
+      "invalid alternative name 'of', expected 'intro'": 1,
+      "aesop: error in norm simp: tactic 'simp' failed, nested error:": 1,
+      "dsimp made no progress": 2,
+      "invalid projection, structure expected": 1,
+      "fail to show termination for": 2,
+      "tactic 'decide' proved that the proposition": 1,
+      "failed to rewrite using equation theorems for 'Int.ModEq'.": 1,
+      "failed to rewrite using equation theorems for 'IsField.toField'.": 1,
+      "invalid dotted identifier notation, unknown identifier `Nonempty.mk` from expected type": 1,
+      "failed to prove positivity/nonnegativity/nonzeroness": 1,
+      "not a positivity goal": 1,
+      "failed to rewrite using equation theorems for 'Filter.Eventually'.": 1,
+      "invalid `\u25b8` notation, argument": 1,
+      "invalid 'calc' step, left-hand side is": 2,
+      "tactic 'cases' failed, nested error:": 3,
+      "invalid alternative name 'ofNat', expected 'hz', 'hp' or 'hn'": 1
+    },
+    "representative_nonunknown_examples": {
+      "synthesis_error": {
+        "problem": "no-hint/MSC-180_05_003",
+        "attempt_index": 3,
+        "parsed_proof_head": "theorem excedance_coexcedance_dual {n : \u2115} (\u03c0 : Perm (Fin n)) :\n    (excedances \u03c0).card = (coexcedances \u03c0\u207b\u00b9).card := by\n  rw [excedances, coexcedances]\n  refine Fintype.card_congr ?_\n  exact Equiv.sumCompl _",
+        "messages": [
+          {
+            "category": "synthesis_error",
+            "first_line": "typeclass instance problem is stuck, it is often due to metavariables"
+          }
+        ]
+      },
+      "parser_error": {
+        "problem": "no-hint/MSC-180_05_003",
+        "attempt_index": 4,
+        "parsed_proof_head": "theorem excedance_coexcedance_dual {n : \u2115} (\u03c0 : Perm (Fin n)) :\n    (excedances \u03c0).card = (coexcedances \u03c0\u207b\u00b9).card := by\n  refine Fintype.card_congr ?_\n  refine { toFun := fun i => \u03c0 i\u207b\u00b9; invFun := fun i => \u03c0\u207b\u00b9 i\u207b\u00b9; left_inv := ?_; right_inv := ?_}\n  \u00b7 intro x\n    simp only [inv_inv]\n  \u00b7 intro x\n    simp only [inv_inv]",
+        "messages": [
+          {
+            "category": "parser_error",
+            "first_line": "unexpected token ';'; expected '}'"
+          }
+        ]
+      },
+      "type_mismatch": {
+        "problem": "no-hint/MSC-180_05_003",
+        "attempt_index": 11,
+        "parsed_proof_head": "theorem excedance_coexcedance_dual {n : \u2115} (\u03c0 : Perm (Fin n)) :\n    (excedances \u03c0).card = (coexcedances \u03c0\u207b\u00b9).card := by\n  refine Finset.card_congr ?_ (fun i _ => i) ?_ ?_ ?_ <;> simp [pi\u03c0_symm, excedances, coexcedances]\n  \u00b7 intro i j hi hj\n    simpa using Fin.val_eq_of_eq (by injection hi)\n  \u00b7 intro i _\n    simp\n  \u00b7 simp",
+        "messages": [
+          {
+            "category": "type_mismatch",
+            "first_line": "function expected at"
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          }
+        ]
+      },
+      "rewrite_failed": {
+        "problem": "no-hint/MSC-180_05_003",
+        "attempt_index": 17,
+        "parsed_proof_head": "theorem excedance_coexcedance_dual {n : \u2115} (\u03c0 : Perm (Fin n)) :\n    (excedances \u03c0).card = (coexcedances \u03c0\u207b\u00b9).card := by\n  conv_lhs =>\n    congr\n    \u00b7 rw [\u2190 Finset.card_map (\u03c0 : Perm (Fin n))]\n    rw [Finset.map_val]\n  ext i\n  simp [\u2190 and_not_left, \u2190 not_lt, eq_comm, \u2190 sub_one_lt_iff]",
+        "messages": [
+          {
+            "category": "rewrite_failed",
+            "first_line": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression"
+          },
+          {
+            "category": "goal_state_error",
+            "first_line": "no goals to be solved"
+          }
+        ]
+      },
+      "shape_or_induction_error": {
+        "problem": "no-hint/MSC-180_08_001",
+        "attempt_index": 11,
+        "parsed_proof_head": "theorem homomorphism_agreement {R A B : Type*} [CommSemiring R] [Semiring A] [Semiring B]\n    [Algebra R A] [Algebra R B] {X : Set A} (hgen : Algebra.adjoin R X = \u22a4)\n    {\u03b1 \u03b2 : A \u2192\u2090[R] B} (h_agree : \u2200 x \u2208 X, \u03b1 x = \u03b2 x) :\n    \u03b1 = \u03b2 := by\n  refine AlgHom.ext fun x => ?_\n  obtain \u27e8y, rfl\u27e9 : x \u2208 Algebra.adjoin R X := hgen.symm \u25b8 trivial\n  exact AlgHom.congr_fun (Algebra.adjoin.induction_on hgen.symm y\n    (fun y hy => h_agree y hy)\n    Algebra.adjoin.algebraMap_mem\n    (fun p q hp hq => by simp [hp, hq]) (fun p q hp hq => by simp [hp, hq])) x",
+        "messages": [
+          {
+            "category": "shape_or_induction_error",
+            "first_line": "rcases tactic failed: x\u271d : \u2200 t \u2208 Set.range fun t => \u22c2 (_ : t \u2208 {S | Set.range \u21d1(algebraMap R A) \u222a X \u2286 \u2191S}), \u2191t,"
+          }
+        ]
+      },
+      "field_error": {
+        "problem": "no-hint/MSC-180_08_002",
+        "attempt_index": 2,
+        "parsed_proof_head": "theorem unique_relative_complement {L : Type*} [DistribLattice L] {a b c : L}\n    (hab : a \u2264 b) (hbc : b \u2264 c) :\n    \u2200 (d\u2081 d\u2082 : L),\n      a \u2264 d\u2081 \u2227 d\u2081 \u2264 c \u2227 d\u2081 \u2294 b = c \u2227 d\u2081 \u2293 b = a \u2192\n      a \u2264 d\u2082 \u2227 d\u2082 \u2264 c \u2227 d\u2082 \u2294 b = c \u2227 d\u2082 \u2293 b = a \u2192\n      d\u2081 = d\u2082 := by\n  rintro d\u2081 d\u2082 \u27e8h\u2081, h\u2082, h\u2083, h\u2084\u27e9 \u27e8h\u2085, h\u2086, h\u2087, h\u2088\u27e9\n  apply le_antisymm (h\u2082.trans h\u2086.symm)\n  calc\n    d\u2082 \u2264 d\u2082 \u2294 b := le_sup_right\n    _ = c := h\u2087\n    _ \u2264 d\u2081 := h\u2083.ge",
+        "messages": [
+          {
+            "category": "field_error",
+            "first_line": "invalid field 'symm', the environment does not contain 'LE.le.symm'"
+          },
+          {
+            "category": "field_error",
+            "first_line": "invalid field notation, type is not of the form (C ...) where C is a constant"
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          },
+          {
+            "category": "type_mismatch",
+            "first_line": "type mismatch"
+          }
+        ]
+      }
+    }
+  },
+  "classification_notes": {
+    "severity_filter": "Only verifier messages with severity=error are counted; warnings and info messages are excluded.",
+    "category_order": [
+      "unknown_name",
+      "rewrite_failed",
+      "type_mismatch",
+      "field_error",
+      "synthesis_error",
+      "automation_no_progress",
+      "unsolved_goals",
+      "shape_or_induction_error",
+      "apply_failed",
+      "calc_error",
+      "timeout",
+      "goal_state_error",
+      "parser_error",
+      "other"
+    ]
+  }
+}
