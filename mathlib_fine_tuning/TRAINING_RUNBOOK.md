@@ -12,8 +12,8 @@ pip install -r requirements.txt
 
 Required local paths:
 
-- `mathlib_fine_tuning/processed/deepseek_noncot_tactic_1024_train.jsonl`
-- `mathlib_fine_tuning/processed/deepseek_noncot_tactic_1024_valid.jsonl`
+- `mathlib_fine_tuning/data/processed/deepseek_noncot_tactic_1024_train.jsonl`
+- `mathlib_fine_tuning/data/processed/deepseek_noncot_tactic_1024_valid.jsonl`
 - `models/deepseek-ai/DeepSeek-Prover-V2-7B`
 
 ## Smoke Test
@@ -35,7 +35,7 @@ long-sequence buckets, at the cost of somewhat lower throughput from padding.
 Recommended starting point for an RTX PRO 6000 Blackwell Workstation:
 
 ```bash
-python mathlib_fine_tuning/train_tactic_sft.py \
+python mathlib_fine_tuning/scripts/train_tactic_sft.py \
   --smoke \
   --per-device-train-batch-size 12 \
   --per-device-eval-batch-size 12 \
@@ -46,7 +46,7 @@ python mathlib_fine_tuning/train_tactic_sft.py \
 If you want to probe extra headroom on `r=64`, try:
 
 ```bash
-python mathlib_fine_tuning/train_tactic_sft.py \
+python mathlib_fine_tuning/scripts/train_tactic_sft.py \
   --smoke \
   --per-device-train-batch-size 14 \
   --per-device-eval-batch-size 14 \
@@ -57,7 +57,7 @@ python mathlib_fine_tuning/train_tactic_sft.py \
 If you still hit CUDA OOM, fall back to:
 
 ```bash
-python mathlib_fine_tuning/train_tactic_sft.py \
+python mathlib_fine_tuning/scripts/train_tactic_sft.py \
   --smoke \
   --per-device-train-batch-size 8 \
   --per-device-eval-batch-size 8 \
@@ -76,7 +76,7 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 Recommended starting point for an RTX PRO 6000 Blackwell Workstation:
 
 ```bash
-python mathlib_fine_tuning/train_tactic_sft.py \
+python mathlib_fine_tuning/scripts/train_tactic_sft.py \
   --per-device-train-batch-size 12 \
   --per-device-eval-batch-size 12 \
   --gradient-accumulation-steps 1 \
@@ -86,7 +86,7 @@ python mathlib_fine_tuning/train_tactic_sft.py \
 If an `r=64` smoke run is clearly comfortable and you want to reduce wall-clock time, try:
 
 ```bash
-python mathlib_fine_tuning/train_tactic_sft.py \
+python mathlib_fine_tuning/scripts/train_tactic_sft.py \
   --per-device-train-batch-size 14 \
   --per-device-eval-batch-size 14 \
   --gradient-accumulation-steps 1 \
@@ -127,19 +127,19 @@ hardware-specific overrides.
 
 `r=64`
 ```bash
-mathlib_fine_tuning/run_rank_training.sh 64
+mathlib_fine_tuning/scripts/run_rank_training.sh 64
 ```
 
 `r=128`
 ```bash
-mathlib_fine_tuning/run_rank_training.sh 128
+mathlib_fine_tuning/scripts/run_rank_training.sh 128
 ```
 
 Recommended commands for the PRO 6000:
 
 `r=64`
 ```bash
-mathlib_fine_tuning/run_rank_training.sh 64 \
+mathlib_fine_tuning/scripts/run_rank_training.sh 64 \
   --per-device-train-batch-size 12 \
   --per-device-eval-batch-size 12 \
   --gradient-accumulation-steps 1
@@ -147,7 +147,7 @@ mathlib_fine_tuning/run_rank_training.sh 64 \
 
 `r=128`
 ```bash
-mathlib_fine_tuning/run_rank_training.sh 128 \
+mathlib_fine_tuning/scripts/run_rank_training.sh 128 \
   --per-device-train-batch-size 12 \
   --per-device-eval-batch-size 12 \
   --gradient-accumulation-steps 1
@@ -155,7 +155,7 @@ mathlib_fine_tuning/run_rank_training.sh 128 \
 
 If `r=64` has clear headroom, you can test:
 ```bash
-mathlib_fine_tuning/run_rank_training.sh 64 \
+mathlib_fine_tuning/scripts/run_rank_training.sh 64 \
   --per-device-train-batch-size 14 \
   --per-device-eval-batch-size 14 \
   --gradient-accumulation-steps 1
@@ -211,4 +211,4 @@ Use the same `--micro-batch-size 10` setting for `r=128` first. If generation OO
 This pipeline writes:
 - raw attempts under `rag_experiments/outputs/`
 - verified attempts under `rag_experiments/outputs/`
-- pairwise summaries under `finetuning_analysis/`
+- pairwise summaries under `finetuning_analysis/reports/msc180_nohint/`
