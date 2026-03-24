@@ -2,7 +2,7 @@
 
 ## Summary
 Prepare a single markdown planning doc for later review that freezes the agreed experiment design:
-- 20 problems from `rag_experiments/MSC-180/verified_problems`
+- 20 problems from `rag_experiments/data/benchmarks/msc180/verified_problems`
 - 3 specs
 - 8 attempts/problem
 - single unified prompt config across conditions
@@ -27,7 +27,7 @@ Prepare a single markdown planning doc for later review that freezes the agreed 
 - Only `theorem_hint` content changes between A/B/C.
 
 ## 4. Dataset Scope (fixed)
-- All 20 files in `rag_experiments/MSC-180/verified_problems`.
+- All 20 files in `rag_experiments/data/benchmarks/msc180/verified_problems`.
 
 ## 5. Planned New Artifacts (later implementation)
 - 3 new spec JSON files (v2-only).
@@ -58,7 +58,7 @@ Prepare a single markdown planning doc for later review that freezes the agreed 
 
 ## Test Cases and Scenarios
 - Doc review scenario: read markdown and confirm all decisions are explicit and implementation-ready.
-- Consistency scenario: verify no contradictions with existing `run_msc180_manual_suite.py` behavior assumptions.
+- Consistency scenario: verify no contradictions with existing `rag_experiments/scripts/run/run_msc180_manual_suite.py` behavior assumptions.
 
 ## Assumptions and Defaults
 - No code/spec changes now; only planning documentation.

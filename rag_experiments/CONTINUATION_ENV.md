@@ -29,13 +29,13 @@ source .venv/bin/activate
 ## Run
 
 ```bash
-.venv/bin/python rag_experiments/debug_continuation_fidelity.py inspect \
+.venv/bin/python rag_experiments/scripts/tools/debug_continuation_fidelity.py inspect \
   --preset mathd_algebra_10 \
   --builder deepseek_noncot
 ```
 
 ```bash
-.venv/bin/python rag_experiments/run_msc180_v3_theorem_continuations.py deepseek \
+.venv/bin/python rag_experiments/scripts/run/run_msc180_v3_theorem_continuations.py deepseek \
   --max-slots 3 \
   --attempts-per-slot 1 \
   --max-new-tokens 24 \
