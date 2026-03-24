@@ -12,3 +12,5 @@ rag_experiments/debug_runs/
 continuation_recovery/artifacts/
 mathlib_fine_tuning/processed/
 mathlib_fine_tuning/runs/
+mathlib_fine_tuning/data/raw/*.jsonl
+mathlib_fine_tuning/data/processed/*.jsonl
