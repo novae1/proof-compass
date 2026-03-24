@@ -21,17 +21,28 @@ from prompt_hints.prompt_config import DeepSeekProverV2HintNonCoTPromptConfig
 
 
 WORKSPACE_DIR = Path(__file__).resolve().parents[1]
-ARTIFACTS_DIR = WORKSPACE_DIR / "artifacts"
+OUTPUTS_DIR = WORKSPACE_DIR / "outputs"
 DEFAULT_MODEL = ROOT / "models" / "deepseek-ai" / "DeepSeek-Prover-V2-7B"
 SUPPORTED_TRANSFORMERS_VERSION = "4.57.6"
 ALLOW_UNSUPPORTED_ENV_VAR = "PROOF_COMPASS_ALLOW_UNSUPPORTED_TRANSFORMERS"
 
-MSC_SPEC_PATH = ROOT / "rag_experiments" / "specs" / "msc180_v2_A_spec.json"
+MSC_SPEC_PATH = ROOT / "rag_experiments" / "data" / "specs" / "msc180_v2_A_spec.json"
 MSC_VERIFIED_OUTPUT = (
-    ROOT / "rag_experiments" / "outputs" / "20260301_msc180-v2_deepseekv2_7b_lean4-15_verified.json"
+    ROOT
+    / "rag_experiments"
+    / "outputs"
+    / "msc180"
+    / "v2"
+    / "20260301_msc180-v2_deepseekv2_7b_lean4-15_verified.json"
 )
 CONTINUATION_OUTPUT = (
-    ROOT / "rag_experiments" / "outputs" / "20260306_msc180-v3-theorem-continuations_deepseekv2_7b_lean4-15.json"
+    ROOT
+    / "rag_experiments"
+    / "outputs"
+    / "msc180"
+    / "theorem_continuations"
+    / "v3"
+    / "20260306_msc180-v3-theorem-continuations_deepseekv2_7b_lean4-15.json"
 )
 
 DEFAULT_PROBES = ["a", " ", "\n", "(", ".", ":", "_", "\n  "]
@@ -732,7 +743,7 @@ def _run_build_cases(args: argparse.Namespace) -> Path:
         )
     )
 
-    output_path = ARTIFACTS_DIR / args.output_name
+    output_path = OUTPUTS_DIR / args.output_name
     _save_json(_reference_case_payload(cases, args), output_path)
     return output_path
 
@@ -781,7 +792,7 @@ def _run_sweep_cuts(args: argparse.Namespace) -> Path:
             )
         )
 
-    output_path = ARTIFACTS_DIR / args.output_name
+    output_path = OUTPUTS_DIR / args.output_name
     _save_json(result, output_path)
     return output_path
 
@@ -789,7 +800,7 @@ def _run_sweep_cuts(args: argparse.Namespace) -> Path:
 def _run_summarize(args: argparse.Namespace) -> Path:
     payload = _load_json(args.sweep_json)
     summary = _summarize_sweep(payload)
-    output_path = ARTIFACTS_DIR / args.output_name
+    output_path = OUTPUTS_DIR / args.output_name
     _save_text(summary, output_path)
     return output_path
 

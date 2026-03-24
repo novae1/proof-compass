@@ -17,7 +17,7 @@ from continuation_recovery.scripts import recovery_study as rs
 
 
 WORKSPACE_DIR = Path(__file__).resolve().parents[1]
-ARTIFACTS_DIR = WORKSPACE_DIR / "artifacts"
+OUTPUTS_DIR = WORKSPACE_DIR / "outputs"
 
 
 def _parse_args() -> argparse.Namespace:
@@ -166,7 +166,7 @@ def main() -> int:
     for case in reference_payload["cases"]:
         result["cases"].append(_scan_case(case, tokenizer, probes, args.max_backtrack, args.strategy_set))
 
-    output_path = ARTIFACTS_DIR / args.output_name
+    output_path = OUTPUTS_DIR / args.output_name
     _save_json(result, output_path)
     summary_path = output_path.with_suffix(".md")
     summary_path.write_text(_summary_markdown(result), encoding="utf-8")

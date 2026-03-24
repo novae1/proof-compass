@@ -10,10 +10,11 @@ from pathlib import Path
 
 
 DEFAULT_OUTPUT_JSON = Path(
-    "rag_experiments/outputs/20260310_msc180-v4-theorem-continuations-recovered_deepseekv2_7b_lean4-15.json"
+    "rag_experiments/outputs/msc180/theorem_continuations/v4/"
+    "20260310_msc180-v4-theorem-continuations-recovered_deepseekv2_7b_lean4-15.json"
 )
-DEFAULT_SUMMARY_JSON = Path("continuation_recovery/artifacts/hallucination_analysis_v4.json")
-DEFAULT_SUMMARY_MD = Path("continuation_recovery/artifacts/hallucination_analysis_v4.md")
+DEFAULT_SUMMARY_JSON = Path("continuation_recovery/outputs/hallucination_analysis_v4.json")
+DEFAULT_SUMMARY_MD = Path("continuation_recovery/outputs/hallucination_analysis_v4.md")
 RUN_METADATA_KEY = "__meta__"
 
 IDENTIFIER_RE = re.compile(r"\b[A-Za-z][A-Za-z0-9_']*(?:\.[A-Za-z][A-Za-z0-9_']*)*\b")

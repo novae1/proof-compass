@@ -25,8 +25,13 @@ continuation environment:
 
 ## Layout
 
-- `PROGRESS.md`: running lab notebook, updated continuously
-- `FINDINGS.md`: stabilized conclusions
-- `TODO.md`: active next steps
+- `reports/`: running notes, findings, and next-step planning
 - `scripts/`: standalone experiment code
-- `artifacts/`: JSON and Markdown outputs from the study
+- `outputs/`: generated JSON and Markdown artifacts from the study
+
+## Notes
+
+- This workspace is an audit trail for the continuation-recovery decision, not a
+  general benchmark runner.
+- Benchmark inputs live in `rag_experiments/`; this folder stores the study code,
+  its reports, and its derived outputs.

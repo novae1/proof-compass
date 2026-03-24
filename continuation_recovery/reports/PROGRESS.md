@@ -8,9 +8,9 @@
   `.venvs/continuation-tf457` setup and is now superseded by the main repo
   `.venv` after pinning `requirements.txt`.
 - Confirmed the available source families:
-  - MSC prompt specs in `rag_experiments/specs/`
-  - verified MSC v2 outputs in `rag_experiments/outputs/20260301_msc180-v2_deepseekv2_7b_lean4-15_verified.json`
-  - existing theorem-continuation outputs in `rag_experiments/outputs/20260306_msc180-v3-theorem-continuations_deepseekv2_7b_lean4-15.json`
+  - MSC prompt specs in `rag_experiments/data/specs/`
+  - verified MSC v2 outputs in `rag_experiments/outputs/msc180/v2/20260301_msc180-v2_deepseekv2_7b_lean4-15_verified.json`
+  - existing theorem-continuation outputs in `rag_experiments/outputs/msc180/theorem_continuations/v3/20260306_msc180-v3-theorem-continuations_deepseekv2_7b_lean4-15.json`
 - Initial working hypothesis:
   - `transformers==4.57.6` fixes the gross tokenizer corruption
   - the remaining problem is boundary recoverability from raw truncated text
@@ -100,7 +100,7 @@
   - the slice is clean enough to justify a full v4 rerun
 - Full v4 rerun completed:
   - output:
-    `rag_experiments/outputs/20260310_msc180-v4-theorem-continuations-recovered_deepseekv2_7b_lean4-15.json`
+    `rag_experiments/outputs/msc180/theorem_continuations/v4/20260310_msc180-v4-theorem-continuations-recovered_deepseekv2_7b_lean4-15.json`
   - theorem metrics:
     - exact `600/760` (`78.95%`)
     - other valid `90/760` (`11.84%`)
@@ -135,8 +135,8 @@
 - Follow-up analysis of the remaining `57` v4 hallucination-labeled attempts:
   - wrote `continuation_recovery/scripts/analyze_hallucinations.py`
   - generated:
-    - `continuation_recovery/artifacts/hallucination_analysis_v4.json`
-    - `continuation_recovery/artifacts/hallucination_analysis_v4.md`
+    - `continuation_recovery/outputs/hallucination_analysis_v4.json`
+    - `continuation_recovery/outputs/hallucination_analysis_v4.md`
   - the `57` attempts collapse to only `9` slots and only `3` unique first
     identifiers:
     - `43 x p_all`
