@@ -11,7 +11,7 @@ Headline result from the benchmark:
 - LoRA: `4/400` successful attempts, `2/20` problems solved
 
 Related summary:
-- `finetuning_analysis/msc180_nohint_base_vs_lora_20260313.md`
+- `finetuning_analysis/reports/msc180_nohint/msc180_nohint_base_vs_lora_20260313.md`
 
 ## Findings
 

@@ -14,7 +14,7 @@ Both runs use:
 - later verification via `scripts/checking_problems.py`
 
 Machine-readable summary:
-- `finetuning_analysis/msc180_nohint_base_vs_lora_20260313.json`
+- `finetuning_analysis/reports/msc180_nohint/msc180_nohint_base_vs_lora_20260313.json`
 
 ## Headline result
 The fine-tuned LoRA model is much worse than the base model on this benchmark.

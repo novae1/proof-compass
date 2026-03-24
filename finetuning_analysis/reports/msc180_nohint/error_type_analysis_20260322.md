@@ -15,8 +15,8 @@ Counting policy:
 - errors are bucketed heuristically by the first line of each Lean error message.
 
 Machine-readable artifacts:
-- `finetuning_analysis/_error_type_inventory_20260322.json`
-- `finetuning_analysis/error_type_analysis_20260322.json`
+- `finetuning_analysis/data/inventories/_error_type_inventory_20260322.json`
+- `finetuning_analysis/reports/msc180_nohint/error_type_analysis_20260322.json`
 
 ## Headline Conclusion
 The regression is not a broad increase across every Lean error type.
