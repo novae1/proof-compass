@@ -1,0 +1,26 @@
+{
+  "input_path": "mathlib_fine_tuning/mathlib_standalone_theorems_validated.jsonl",
+  "model_path": "models/deepseek-ai/DeepSeek-Prover-V2-7B",
+  "max_seq_length": 1024,
+  "valid_percent": 2,
+  "input_rows": 131284,
+  "skipped": {
+    "no_decl_header": 2,
+    "no_outer_assign_or_unparsed": 1190,
+    "non_tactic_outer": 72107,
+    "over_max_seq_length": 1118
+  },
+  "retained_rows": 56867,
+  "split_counts": {
+    "train": 55712,
+    "valid": 1155
+  },
+  "retained_token_stats": {
+    "mean": 335.21,
+    "median": 293.0,
+    "p90": 558.0,
+    "p95": 674.0,
+    "p99": 895.0,
+    "max": 1024
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "summary_matches": {
+    "train_rows": true,
+    "valid_rows": true,
+    "retained_rows": true
+  },
+  "train": {
+    "rows": 55712,
+    "bad_rows": 0,
+    "errors": {},
+    "token_count_min": 74,
+    "token_count_max": 1024
+  },
+  "valid": {
+    "rows": 1155,
+    "bad_rows": 0,
+    "errors": {},
+    "token_count_min": 94,
+    "token_count_max": 1024
+  },
+  "overlap": {
+    "shared_completion_blocks": 0
+  }
+}
