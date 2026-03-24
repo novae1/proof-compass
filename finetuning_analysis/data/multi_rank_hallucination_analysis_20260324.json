@@ -1,0 +1,3158 @@
+{
+  "theorem_index_path": "/home/nicolas/Documents/lean_project/data/mathlib_theorem_index.jsonl",
+  "runs": {
+    "r16": {
+      "path": "rag_experiments/outputs/20260313_msc180-v2-nohint_lora_deepseekv2_7b_lean4-15_verified.json",
+      "attempts_total": 400,
+      "attempts_success": 4,
+      "attempts_with_unknown": 281,
+      "total_unknown_occurrences": 428,
+      "distinct_unknown_names": 342,
+      "distinct_theorem_like_unknown_names": 329,
+      "top_unknown_names": [
+        [
+          "exists_isLUB",
+          8
+        ],
+        [
+          "map₂",
+          5
+        ],
+        [
+          "root_multiplicity_factorization",
+          5
+        ],
+        [
+          "deriv",
+          5
+        ],
+        [
+          "adjoin_induction",
+          4
+        ],
+        [
+          "excedance_coexcedance_card",
+          3
+        ],
+        [
+          "mem_univ",
+          3
+        ],
+        [
+          "modByMVar_spec",
+          3
+        ],
+        [
+          "chinese_remainder_theorem",
+          3
+        ],
+        [
+          "elim",
+          3
+        ],
+        [
+          "ker",
+          3
+        ],
+        [
+          "le_succ",
+          3
+        ],
+        [
+          "isLeast_csSup",
+          3
+        ],
+        [
+          "carrier",
+          3
+        ],
+        [
+          "MeasureTheory.Lebesgue.volume",
+          3
+        ],
+        [
+          "mono_set",
+          3
+        ],
+        [
+          "derivOn",
+          3
+        ],
+        [
+          "ne",
+          3
+        ],
+        [
+          "card_map",
+          2
+        ],
+        [
+          "k",
+          2
+        ],
+        [
+          "mem_coe",
+          2
+        ],
+        [
+          "inv_eq_iff_eq",
+          2
+        ],
+        [
+          "toEquiv",
+          2
+        ],
+        [
+          "mem_filter",
+          2
+        ],
+        [
+          "h",
+          2
+        ]
+      ],
+      "top_theorem_like_unknown_names": [
+        [
+          "exists_isLUB",
+          8
+        ],
+        [
+          "map₂",
+          5
+        ],
+        [
+          "root_multiplicity_factorization",
+          5
+        ],
+        [
+          "deriv",
+          5
+        ],
+        [
+          "adjoin_induction",
+          4
+        ],
+        [
+          "excedance_coexcedance_card",
+          3
+        ],
+        [
+          "mem_univ",
+          3
+        ],
+        [
+          "modByMVar_spec",
+          3
+        ],
+        [
+          "chinese_remainder_theorem",
+          3
+        ],
+        [
+          "elim",
+          3
+        ],
+        [
+          "le_succ",
+          3
+        ],
+        [
+          "isLeast_csSup",
+          3
+        ],
+        [
+          "carrier",
+          3
+        ],
+        [
+          "MeasureTheory.Lebesgue.volume",
+          3
+        ],
+        [
+          "mono_set",
+          3
+        ],
+        [
+          "derivOn",
+          3
+        ],
+        [
+          "card_map",
+          2
+        ],
+        [
+          "mem_coe",
+          2
+        ],
+        [
+          "inv_eq_iff_eq",
+          2
+        ],
+        [
+          "toEquiv",
+          2
+        ],
+        [
+          "mem_filter",
+          2
+        ],
+        [
+          "apply_lt_iff_lt_symm_apply",
+          2
+        ],
+        [
+          "algHom_ext",
+          2
+        ],
+        [
+          "eq_inf_of_sup_eq_right",
+          2
+        ],
+        [
+          "le_sup_left_of_inf_le_sup_left",
+          2
+        ]
+      ],
+      "classification_occurrences": {
+        "no_convincing_theorem_match": 244,
+        "exact_short_theorem_ambiguous": 82,
+        "short_or_local_like_nonmatch": 10,
+        "exact_short_theorem_unique": 8,
+        "near_theorem_match": 68,
+        "normalized_theorem_match_unique": 9,
+        "exact_full_theorem": 5,
+        "normalized_theorem_match_ambiguous": 2
+      },
+      "classification_distinct_names": {
+        "no_convincing_theorem_match": 212,
+        "exact_short_theorem_ambiguous": 41,
+        "short_or_local_like_nonmatch": 8,
+        "exact_short_theorem_unique": 6,
+        "near_theorem_match": 62,
+        "normalized_theorem_match_unique": 8,
+        "exact_full_theorem": 3,
+        "normalized_theorem_match_ambiguous": 2
+      },
+      "theorem_like_classification_occurrences": {
+        "no_convincing_theorem_match": 244,
+        "exact_short_theorem_ambiguous": 73,
+        "exact_short_theorem_unique": 7,
+        "near_theorem_match": 68,
+        "normalized_theorem_match_unique": 9,
+        "exact_full_theorem": 5,
+        "normalized_theorem_match_ambiguous": 2
+      },
+      "theorem_like_classification_distinct_names": {
+        "no_convincing_theorem_match": 212,
+        "exact_short_theorem_ambiguous": 37,
+        "exact_short_theorem_unique": 5,
+        "near_theorem_match": 62,
+        "normalized_theorem_match_unique": 8,
+        "exact_full_theorem": 3,
+        "normalized_theorem_match_ambiguous": 2
+      },
+      "per_problem_unknowns": {
+        "no-hint/MSC-180_05_003": {
+          "top_unknowns": [
+            [
+              "excedance_coexcedance_card",
+              3
+            ],
+            [
+              "mem_univ",
+              3
+            ],
+            [
+              "card_map",
+              2
+            ],
+            [
+              "k",
+              2
+            ],
+            [
+              "mem_coe",
+              2
+            ]
+          ],
+          "unique_unknown_names": 19,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_08_001": {
+          "top_unknowns": [
+            [
+              "adjoin_induction",
+              4
+            ],
+            [
+              "algHom_ext",
+              2
+            ],
+            [
+              "adjoin_eq_top_iff_range_eq_top",
+              1
+            ],
+            [
+              "induction_on",
+              1
+            ],
+            [
+              "mem_adjoin_iff_algHom",
+              1
+            ]
+          ],
+          "unique_unknown_names": 13,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 12,
+          "successes": 0
+        },
+        "no-hint/MSC-180_08_002": {
+          "top_unknowns": [
+            [
+              "eq_inf_of_sup_eq_right",
+              2
+            ],
+            [
+              "le_sup_left_of_inf_le_sup_left",
+              2
+            ],
+            [
+              "sup_right_inj.mp",
+              2
+            ],
+            [
+              "symm",
+              1
+            ],
+            [
+              "sup_cancel_left₁",
+              1
+            ]
+          ],
+          "unique_unknown_names": 7,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 16,
+          "successes": 0
+        },
+        "no-hint/MSC-180_08_003": {
+          "top_unknowns": [
+            [
+              "exists_max_image",
+              2
+            ],
+            [
+              "Fintype.exists_max_image",
+              1
+            ],
+            [
+              "Fintype.exists_maximal",
+              1
+            ],
+            [
+              "Finset.nonempty_image_iff.mpr",
+              1
+            ],
+            [
+              "Finset.exists_max",
+              1
+            ]
+          ],
+          "unique_unknown_names": 15,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 11,
+          "successes": 0
+        },
+        "no-hint/MSC-180_12_001": {
+          "top_unknowns": [
+            [
+              "map₂",
+              5
+            ],
+            [
+              "modByMVar_spec",
+              3
+            ],
+            [
+              "divByMonic_add_modByMonic",
+              2
+            ],
+            [
+              "div_and_mod",
+              1
+            ],
+            [
+              "IntegralDomain",
+              1
+            ]
+          ],
+          "unique_unknown_names": 23,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 17,
+          "successes": 0
+        },
+        "no-hint/MSC-180_12_002": {
+          "top_unknowns": [
+            [
+              "chinese_remainder_theorem",
+              3
+            ],
+            [
+              "elim",
+              3
+            ],
+            [
+              "chinese_remainder",
+              2
+            ],
+            [
+              "Nat.ChineseRemainderFunction",
+              2
+            ],
+            [
+              "pos_of_lt_succ",
+              1
+            ]
+          ],
+          "unique_unknown_names": 20,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 17,
+          "successes": 0
+        },
+        "no-hint/MSC-180_12_003": {
+          "top_unknowns": [
+            [
+              "eq_top_or_isMaximal_of_isUnit_mem",
+              2
+            ],
+            [
+              "isField_iff_isField_quotient",
+              2
+            ],
+            [
+              "isMaximal",
+              2
+            ],
+            [
+              "exists_maximal_ideal_of_not_isField",
+              2
+            ],
+            [
+              "maximal_of_noZeroDivisors_of_exists_mul_eq_one",
+              2
+            ]
+          ],
+          "unique_unknown_names": 29,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 11,
+          "successes": 0
+        },
+        "no-hint/MSC-180_14_001": {
+          "top_unknowns": [
+            [
+              "ker",
+              3
+            ],
+            [
+              "QuotientAddGroup.quotientKerAddEquivOfSurjective",
+              1
+            ],
+            [
+              "Group.kernel_subgroup_and_isomorphism",
+              1
+            ],
+            [
+              "exists_quotient_ker_equiv_of_surjective",
+              1
+            ],
+            [
+              "AddMonoidHom.ker_eq_comap_bot",
+              1
+            ]
+          ],
+          "unique_unknown_names": 18,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 12,
+          "successes": 1
+        },
+        "no-hint/MSC-180_14_003": {
+          "top_unknowns": [
+            [
+              "root_multiplicity_factorization",
+              5
+            ],
+            [
+              "multiplicity_eq_iff.mp",
+              1
+            ],
+            [
+              "root_factorization_ne_zero",
+              1
+            ],
+            [
+              "resolve_left",
+              1
+            ],
+            [
+              "eval_mul",
+              1
+            ]
+          ],
+          "unique_unknown_names": 22,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_15_003": {
+          "top_unknowns": [
+            [
+              "le_succ",
+              3
+            ],
+            [
+              "column_row_factorization",
+              2
+            ],
+            [
+              "toRowLeftKernel",
+              2
+            ],
+            [
+              "toRowRightKernel",
+              2
+            ],
+            [
+              "toEchelonForm",
+              2
+            ]
+          ],
+          "unique_unknown_names": 25,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_20_001": {
+          "top_unknowns": [
+            [
+              "ZMod.exists_card_zmod_dvd_zmod",
+              1
+            ],
+            [
+              "card_eq_zero_iff",
+              1
+            ],
+            [
+              "Finite.exists_ne_of_one_lt_card",
+              1
+            ],
+            [
+              "Nat.exists_prime_orderOf_dvd_card",
+              1
+            ]
+          ],
+          "unique_unknown_names": 4,
+          "unique_parsed_proofs": 19,
+          "unique_first_steps": 15,
+          "successes": 3
+        },
+        "no-hint/MSC-180_26_002": {
+          "top_unknowns": [
+            [
+              "exists_isLUB",
+              8
+            ],
+            [
+              "isLeast_csSup",
+              3
+            ],
+            [
+              "bddAbove_iff_exists_ge",
+              2
+            ],
+            [
+              "BddAbove",
+              1
+            ],
+            [
+              "exists_max_of_bddAbove",
+              1
+            ]
+          ],
+          "unique_unknown_names": 13,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_28_003": {
+          "top_unknowns": [
+            [
+              "carrier",
+              3
+            ],
+            [
+              "Box",
+              2
+            ],
+            [
+              "atTop",
+              2
+            ],
+            [
+              "SeparatedSpace",
+              2
+            ],
+            [
+              "MeasureTheory.measureOf_add_measureOf_of_almost_disjoint",
+              1
+            ]
+          ],
+          "unique_unknown_names": 25,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_40_003": {
+          "top_unknowns": [
+            [
+              "summable_of_nonneg_of_le",
+              2
+            ],
+            [
+              "n",
+              2
+            ],
+            [
+              "summable_of_norm_bounded",
+              1
+            ],
+            [
+              "summable_log_div_rpow",
+              1
+            ],
+            [
+              "summable_of_summable_norm",
+              1
+            ]
+          ],
+          "unique_unknown_names": 14,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_52_002": {
+          "top_unknowns": [
+            [
+              "nonempty",
+              2
+            ],
+            [
+              "exists_max_distance",
+              1
+            ],
+            [
+              "diameter_achieved_by_hull_vertices_aux",
+              1
+            ],
+            [
+              "diameter_achieved_by_convex_hull_vertices",
+              1
+            ],
+            [
+              "extreme_points_nonempty_of_nonempty_of_finite",
+              1
+            ]
+          ],
+          "unique_unknown_names": 24,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_60_002": {
+          "top_unknowns": [
+            [
+              "restrict",
+              2
+            ],
+            [
+              "weierstrassPolynomial",
+              1
+            ],
+            [
+              "polynomial_eventually_uniformly_close",
+              1
+            ],
+            [
+              "weierstrass",
+              1
+            ],
+            [
+              "x₀",
+              1
+            ]
+          ],
+          "unique_unknown_names": 18,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_65_001": {
+          "top_unknowns": [
+            [
+              "MeasureTheory.Lebesgue.volume",
+              3
+            ],
+            [
+              "mono_set",
+              3
+            ],
+            [
+              "exists_unique_eqOn_of_nonzero_deriv",
+              2
+            ],
+            [
+              "codRestrict",
+              2
+            ],
+            [
+              "eq_or_lt",
+              2
+            ]
+          ],
+          "unique_unknown_names": 15,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 13,
+          "successes": 0
+        },
+        "no-hint/MSC-180_65_003": {
+          "top_unknowns": [
+            [
+              "derivOn",
+              3
+            ],
+            [
+              "deriv",
+              3
+            ],
+            [
+              "norm_integral_le_of_norm_le_const",
+              2
+            ],
+            [
+              "lipschitzOnWith_deriv_of_continuousOn",
+              1
+            ],
+            [
+              "lipschitzOnWith_deriv_Icc",
+              1
+            ]
+          ],
+          "unique_unknown_names": 20,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_68_002": {
+          "top_unknowns": [
+            [
+              "Int.gcd_dvd",
+              1
+            ],
+            [
+              "gcdA_mul_x_add_gdcy_mul_y",
+              1
+            ],
+            [
+              "Int.gcd_natAbs",
+              1
+            ],
+            [
+              "xgcd_spec",
+              1
+            ],
+            [
+              "Module.mk",
+              1
+            ]
+          ],
+          "unique_unknown_names": 9,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_90_001": {
+          "top_unknowns": [
+            [
+              "ne",
+              3
+            ],
+            [
+              "euclidean_closedBall_eq_sphere",
+              1
+            ],
+            [
+              "ball_mem_iff",
+              1
+            ],
+            [
+              "ball_norm_cast",
+              1
+            ],
+            [
+              "smul_set",
+              1
+            ]
+          ],
+          "unique_unknown_names": 11,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 17,
+          "successes": 0
+        }
+      },
+      "output_structure": {
+        "unique_parsed_proofs_per_problem": {
+          "min": 19,
+          "median": 20.0,
+          "mean": 19.95,
+          "max": 20
+        },
+        "unique_raw_outputs_per_problem": {
+          "min": 19,
+          "median": 20.0,
+          "mean": 19.95,
+          "max": 20
+        },
+        "unique_first_steps_per_problem": {
+          "min": 11,
+          "median": 18.0,
+          "mean": 16.85,
+          "max": 20
+        },
+        "duplicate_attempts": 1,
+        "duplicate_attempt_rate": 0.0025,
+        "theorem_name_match_rate": 1.0,
+        "parsed_length_mean": 674.5,
+        "parsed_length_median": 477.0,
+        "parsed_length_p90": 1217,
+        "raw_length_mean": 1019.4,
+        "raw_length_median": 822.5,
+        "raw_length_p90": 1653,
+        "keyword_counts": {
+          "rw [": 223,
+          "simp": 200,
+          "have ": 143,
+          "obtain ": 119,
+          "calc": 16,
+          "aesop": 5,
+          "rcases": 51,
+          "linarith": 25,
+          "omega": 8
+        },
+        "top_first_steps": [
+          [
+            "classical",
+            24
+          ],
+          [
+            "constructor",
+            18
+          ],
+          [
+            "ext x",
+            5
+          ],
+          [
+            "intro p q hp hq hfp hfq",
+            5
+          ],
+          [
+            "rintro d₁ d₂ ⟨h₁, h₂, h₃, h₄⟩ ⟨h₅, h₆, h₇, h₈⟩",
+            4
+          ],
+          [
+            "intro p q hp hq hp0 hq0",
+            4
+          ],
+          [
+            "rw [convex_iff_forall_pos]",
+            4
+          ],
+          [
+            "ext a",
+            3
+          ],
+          [
+            "haveI := Fact.mk hp",
+            3
+          ],
+          [
+            "apply algHom_ext",
+            2
+          ],
+          [
+            "apply AlgHom.ext",
+            2
+          ],
+          [
+            "intro d₁ d₂ h₁ h₂",
+            2
+          ],
+          [
+            "cases nonempty_fintype G",
+            2
+          ],
+          [
+            "apply",
+            2
+          ],
+          [
+            "refine ⟨fun h ↦ inferInstance, fun _ ↦ ?_⟩",
+            2
+          ],
+          [
+            "nontriviality α",
+            2
+          ],
+          [
+            "use A.rank",
+            2
+          ],
+          [
+            "obtain ⟨x, hx⟩ := exists_prime_orderOf_dvd_card p hG1",
+            2
+          ],
+          [
+            "rcases h with ⟨δ, δ_pos, hδ⟩",
+            2
+          ],
+          [
+            "rw [excedances, coexcedances, Fintype.card_congr (Equiv.invPermEquivOfDual π)]",
+            1
+          ]
+        ]
+      }
+    },
+    "r64": {
+      "path": "rag_experiments/outputs/20260323_msc180-v2-nohint_lora_r64_deepseekv2_7b_lean4-15_verified.json",
+      "attempts_total": 400,
+      "attempts_success": 1,
+      "attempts_with_unknown": 286,
+      "total_unknown_occurrences": 402,
+      "distinct_unknown_names": 344,
+      "distinct_theorem_like_unknown_names": 333,
+      "top_unknown_names": [
+        [
+          "some",
+          5
+        ],
+        [
+          "Polynomial.emultiplicity",
+          5
+        ],
+        [
+          "row_column_factorization",
+          5
+        ],
+        [
+          "card_map",
+          4
+        ],
+        [
+          "Int.xgcd",
+          4
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "Euclid.gcd",
+          3
+        ],
+        [
+          "mem_ker",
+          3
+        ],
+        [
+          "box",
+          3
+        ],
+        [
+          "mem_filter",
+          2
+        ],
+        [
+          "mem_univ",
+          2
+        ],
+        [
+          "Set.leftInvOn_of_injective",
+          2
+        ],
+        [
+          "algHom_ext",
+          2
+        ],
+        [
+          "le_sup_of_le_left_of_le_right",
+          2
+        ],
+        [
+          "le_inf_right",
+          2
+        ],
+        [
+          "Fintype.exists_min",
+          2
+        ],
+        [
+          "clamp",
+          2
+        ],
+        [
+          "chinese_remainder_theorem_aux",
+          2
+        ],
+        [
+          "chinese_remainder",
+          2
+        ],
+        [
+          "ne_top",
+          2
+        ],
+        [
+          "AddMonoidHom.quotientKerEquivOfSurjective",
+          2
+        ],
+        [
+          "eq_zero_or_nonzero",
+          2
+        ],
+        [
+          "not_unit",
+          2
+        ],
+        [
+          "colSpace_rowSpace",
+          2
+        ],
+        [
+          "exists_isLUB",
+          2
+        ]
+      ],
+      "top_theorem_like_unknown_names": [
+        [
+          "some",
+          5
+        ],
+        [
+          "Polynomial.emultiplicity",
+          5
+        ],
+        [
+          "row_column_factorization",
+          5
+        ],
+        [
+          "card_map",
+          4
+        ],
+        [
+          "Int.xgcd",
+          4
+        ],
+        [
+          "Euclid.gcd",
+          3
+        ],
+        [
+          "mem_ker",
+          3
+        ],
+        [
+          "mem_filter",
+          2
+        ],
+        [
+          "mem_univ",
+          2
+        ],
+        [
+          "Set.leftInvOn_of_injective",
+          2
+        ],
+        [
+          "algHom_ext",
+          2
+        ],
+        [
+          "le_sup_of_le_left_of_le_right",
+          2
+        ],
+        [
+          "le_inf_right",
+          2
+        ],
+        [
+          "Fintype.exists_min",
+          2
+        ],
+        [
+          "clamp",
+          2
+        ],
+        [
+          "chinese_remainder_theorem_aux",
+          2
+        ],
+        [
+          "chinese_remainder",
+          2
+        ],
+        [
+          "ne_top",
+          2
+        ],
+        [
+          "AddMonoidHom.quotientKerEquivOfSurjective",
+          2
+        ],
+        [
+          "eq_zero_or_nonzero",
+          2
+        ],
+        [
+          "not_unit",
+          2
+        ],
+        [
+          "colSpace_rowSpace",
+          2
+        ],
+        [
+          "exists_isLUB",
+          2
+        ],
+        [
+          "range",
+          2
+        ],
+        [
+          "summable_comp_injective",
+          2
+        ]
+      ],
+      "classification_occurrences": {
+        "exact_short_theorem_ambiguous": 60,
+        "no_convincing_theorem_match": 213,
+        "near_theorem_match": 86,
+        "exact_short_theorem_unique": 18,
+        "normalized_theorem_match_unique": 11,
+        "short_or_local_like_nonmatch": 6,
+        "normalized_theorem_match_ambiguous": 4,
+        "exact_full_theorem": 4
+      },
+      "classification_distinct_names": {
+        "exact_short_theorem_ambiguous": 41,
+        "no_convincing_theorem_match": 192,
+        "near_theorem_match": 76,
+        "exact_short_theorem_unique": 15,
+        "normalized_theorem_match_unique": 9,
+        "short_or_local_like_nonmatch": 4,
+        "normalized_theorem_match_ambiguous": 4,
+        "exact_full_theorem": 3
+      },
+      "theorem_like_classification_occurrences": {
+        "exact_short_theorem_ambiguous": 57,
+        "no_convincing_theorem_match": 213,
+        "near_theorem_match": 86,
+        "exact_short_theorem_unique": 15,
+        "normalized_theorem_match_unique": 8,
+        "normalized_theorem_match_ambiguous": 4,
+        "exact_full_theorem": 4
+      },
+      "theorem_like_classification_distinct_names": {
+        "exact_short_theorem_ambiguous": 38,
+        "no_convincing_theorem_match": 192,
+        "near_theorem_match": 76,
+        "exact_short_theorem_unique": 12,
+        "normalized_theorem_match_unique": 8,
+        "normalized_theorem_match_ambiguous": 4,
+        "exact_full_theorem": 3
+      },
+      "per_problem_unknowns": {
+        "no-hint/MSC-180_05_003": {
+          "top_unknowns": [
+            [
+              "card_map",
+              4
+            ],
+            [
+              "mem_filter",
+              2
+            ],
+            [
+              "mem_univ",
+              2
+            ],
+            [
+              "excedanceEquiv",
+              1
+            ],
+            [
+              "sum_compl_mul_two",
+              1
+            ]
+          ],
+          "unique_unknown_names": 15,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_08_001": {
+          "top_unknowns": [
+            [
+              "Set.leftInvOn_of_injective",
+              2
+            ],
+            [
+              "algHom_ext",
+              2
+            ],
+            [
+              "eq_adjoin_of_eq_top",
+              1
+            ],
+            [
+              "eq_iff",
+              1
+            ],
+            [
+              "adjoin_induction",
+              1
+            ]
+          ],
+          "unique_unknown_names": 13,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 15,
+          "successes": 0
+        },
+        "no-hint/MSC-180_08_002": {
+          "top_unknowns": [
+            [
+              "le_sup_of_le_left_of_le_right",
+              2
+            ],
+            [
+              "le_inf_right",
+              2
+            ],
+            [
+              "sup_inf_right_cancel",
+              1
+            ],
+            [
+              "eq_of_inf_sup_eq",
+              1
+            ],
+            [
+              "disjoint_of_inf_le",
+              1
+            ]
+          ],
+          "unique_unknown_names": 5,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 14,
+          "successes": 0
+        },
+        "no-hint/MSC-180_08_003": {
+          "top_unknowns": [
+            [
+              "some",
+              4
+            ],
+            [
+              "Fintype.exists_min",
+              2
+            ],
+            [
+              "x",
+              2
+            ],
+            [
+              "Fintype.exists_maximal",
+              1
+            ],
+            [
+              "exists_maximal",
+              1
+            ]
+          ],
+          "unique_unknown_names": 19,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 15,
+          "successes": 0
+        },
+        "no-hint/MSC-180_12_001": {
+          "top_unknowns": [
+            [
+              "Polynomial.emultiplicity",
+              5
+            ],
+            [
+              "Euclid.gcd",
+              3
+            ],
+            [
+              "clamp",
+              2
+            ],
+            [
+              "induction_on_quotient",
+              1
+            ],
+            [
+              "natDegree_smul_of_ne_zero",
+              1
+            ]
+          ],
+          "unique_unknown_names": 30,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 18,
+          "successes": 0
+        },
+        "no-hint/MSC-180_12_002": {
+          "top_unknowns": [
+            [
+              "chinese_remainder_theorem_aux",
+              2
+            ],
+            [
+              "chinese_remainder",
+              2
+            ],
+            [
+              "Prod",
+              1
+            ],
+            [
+              "modEq_of_dvd",
+              1
+            ],
+            [
+              "Nat.chineseRemainder_theorem_coprime",
+              1
+            ]
+          ],
+          "unique_unknown_names": 19,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 18,
+          "successes": 0
+        },
+        "no-hint/MSC-180_12_003": {
+          "top_unknowns": [
+            [
+              "ne_top",
+              2
+            ],
+            [
+              "isField_iff_isField_quotient_iff",
+              1
+            ],
+            [
+              "_root_.IsMaximal",
+              1
+            ],
+            [
+              "Ideal.quotient_maximal_iff.symm",
+              1
+            ],
+            [
+              "IsField.maximal_ideal",
+              1
+            ]
+          ],
+          "unique_unknown_names": 21,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_14_001": {
+          "top_unknowns": [
+            [
+              "mem_ker",
+              3
+            ],
+            [
+              "AddMonoidHom.quotientKerEquivOfSurjective",
+              2
+            ],
+            [
+              "QuotientAddGroup.ker_mk",
+              1
+            ],
+            [
+              "ker_eq_bot",
+              1
+            ],
+            [
+              "toAddSubgroup",
+              1
+            ]
+          ],
+          "unique_unknown_names": 17,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 12,
+          "successes": 0
+        },
+        "no-hint/MSC-180_14_003": {
+          "top_unknowns": [
+            [
+              "eq_zero_or_nonzero",
+              2
+            ],
+            [
+              "not_unit",
+              2
+            ],
+            [
+              "exists_factorization_root_multiplicity_eq_self",
+              1
+            ],
+            [
+              "get",
+              1
+            ],
+            [
+              "is_root_of_dvd_of_eval_eq_zero",
+              1
+            ]
+          ],
+          "unique_unknown_names": 15,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_15_003": {
+          "top_unknowns": [
+            [
+              "row_column_factorization",
+              5
+            ],
+            [
+              "colSpace_rowSpace",
+              2
+            ],
+            [
+              "Finrank.eq_rank",
+              1
+            ],
+            [
+              "toColumns",
+              1
+            ],
+            [
+              "toRows",
+              1
+            ]
+          ],
+          "unique_unknown_names": 20,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_20_001": {
+          "top_unknowns": [
+            [
+              "exists_mem_of_nonempty",
+              1
+            ],
+            [
+              "nontrivial_of_dvd_card",
+              1
+            ],
+            [
+              "exists_subgroup_card_eq_prime_pow",
+              1
+            ],
+            [
+              "Subgroup.exists_subgroup_of_index_prime",
+              1
+            ],
+            [
+              "Fintype.exists_prime_orderOf_dvd_card",
+              1
+            ]
+          ],
+          "unique_unknown_names": 8,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 16,
+          "successes": 1
+        },
+        "no-hint/MSC-180_26_002": {
+          "top_unknowns": [
+            [
+              "exists_isLUB",
+              2
+            ],
+            [
+              "exists_sup",
+              1
+            ],
+            [
+              "nonempty_iff_ne_empty.mp",
+              1
+            ],
+            [
+              "sSupOn",
+              1
+            ],
+            [
+              "isLUB_iff_le_iff_lt_ge",
+              1
+            ]
+          ],
+          "unique_unknown_names": 21,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_28_003": {
+          "top_unknowns": [
+            [
+              "box",
+              3
+            ],
+            [
+              "toOuterMeasure_apply",
+              1
+            ],
+            [
+              "MeasureTheory.OuterMeasure.measureOf_eq_toMeasure",
+              1
+            ],
+            [
+              "isLUB_iff_le_least",
+              1
+            ],
+            [
+              "MeasureTheory.volume_val",
+              1
+            ]
+          ],
+          "unique_unknown_names": 25,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_40_003": {
+          "top_unknowns": [
+            [
+              "summable_comp_injective",
+              2
+            ],
+            [
+              "natCast_nonneg",
+              2
+            ],
+            [
+              "summable_iff_absolute_summable",
+              1
+            ],
+            [
+              "summable_rpow_mul_nat_rpow",
+              1
+            ],
+            [
+              "hasSum_norm.mpr",
+              1
+            ]
+          ],
+          "unique_unknown_names": 16,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_52_002": {
+          "top_unknowns": [
+            [
+              "exists_isMaxOn",
+              2
+            ],
+            [
+              "exists_norm_eq_iSup_pair_norm",
+              2
+            ],
+            [
+              "exists_dist_eq_diam_of_finite",
+              1
+            ],
+            [
+              "Finite.exists_isMaxOn",
+              1
+            ],
+            [
+              "blimsup_eq_iSup_iSup",
+              1
+            ]
+          ],
+          "unique_unknown_names": 19,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 18,
+          "successes": 0
+        },
+        "no-hint/MSC-180_60_002": {
+          "top_unknowns": [
+            [
+              "weierstrass_approximation_aux",
+              2
+            ],
+            [
+              "toNat",
+              2
+            ],
+            [
+              "WeierstrassApproximation1",
+              1
+            ],
+            [
+              "π",
+              1
+            ],
+            [
+              "isDense_ℕ_span_Ico_adjoin_X_pow.inducing.continuousOn_iff.mp",
+              1
+            ]
+          ],
+          "unique_unknown_names": 25,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_65_001": {
+          "top_unknowns": [
+            [
+              "hasDerivAt",
+              2
+            ],
+            [
+              "injOn_deriv_Ioo",
+              2
+            ],
+            [
+              "eq_of_le_of_not_gt",
+              2
+            ],
+            [
+              "deriv_eq_left",
+              2
+            ],
+            [
+              "mem_of_eq_of_mem",
+              2
+            ]
+          ],
+          "unique_unknown_names": 17,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 15,
+          "successes": 0
+        },
+        "no-hint/MSC-180_65_003": {
+          "top_unknowns": [
+            [
+              "lipschitzOnWith_of_differentiableOn_of_lipschitz_aux",
+              1
+            ],
+            [
+              "lipschitz_from_bounded_of_dist_le",
+              1
+            ],
+            [
+              "lipschitzOnWith_of_nndist_le_of_nonempty",
+              1
+            ],
+            [
+              "lipschitzOn_with_iff_norm_sub_le",
+              1
+            ],
+            [
+              "norm_image_sub_norm_le_of_norm_deriv_le_segment",
+              1
+            ]
+          ],
+          "unique_unknown_names": 20,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_68_002": {
+          "top_unknowns": [
+            [
+              "Int.xgcd",
+              4
+            ],
+            [
+              "Int.gcd_dvd",
+              2
+            ],
+            [
+              "symm",
+              2
+            ],
+            [
+              "Int.ediv_gcd_exists",
+              1
+            ],
+            [
+              "Int.gcd_eq_gcd_abs",
+              1
+            ]
+          ],
+          "unique_unknown_names": 11,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_90_001": {
+          "top_unknowns": [
+            [
+              "norm_lt_iff",
+              2
+            ],
+            [
+              "euclidean_segment_convex",
+              1
+            ],
+            [
+              "convex_iff_forall_pos_openSegment",
+              1
+            ],
+            [
+              "convex_iff_forall_pos_lineMap",
+              1
+            ],
+            [
+              "euclidean_ball_eq_preimage",
+              1
+            ]
+          ],
+          "unique_unknown_names": 11,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 16,
+          "successes": 0
+        }
+      },
+      "output_structure": {
+        "unique_parsed_proofs_per_problem": {
+          "min": 20,
+          "median": 20.0,
+          "mean": 20,
+          "max": 20
+        },
+        "unique_raw_outputs_per_problem": {
+          "min": 20,
+          "median": 20.0,
+          "mean": 20,
+          "max": 20
+        },
+        "unique_first_steps_per_problem": {
+          "min": 12,
+          "median": 18.5,
+          "mean": 17.7,
+          "max": 20
+        },
+        "duplicate_attempts": 0,
+        "duplicate_attempt_rate": 0.0,
+        "theorem_name_match_rate": 1.0,
+        "parsed_length_mean": 737.8,
+        "parsed_length_median": 528.0,
+        "parsed_length_p90": 1379,
+        "raw_length_mean": 1082.7,
+        "raw_length_median": 881.0,
+        "raw_length_p90": 1800,
+        "keyword_counts": {
+          "simp": 226,
+          "rw [": 256,
+          "omega": 8,
+          "rcases": 57,
+          "have ": 166,
+          "obtain ": 138,
+          "aesop": 5,
+          "calc": 28,
+          "linarith": 35
+        },
+        "top_first_steps": [
+          [
+            "classical",
+            20
+          ],
+          [
+            "constructor",
+            10
+          ],
+          [
+            "intro d₁ d₂ h₁ h₂",
+            7
+          ],
+          [
+            "ext x",
+            6
+          ],
+          [
+            "haveI := Fact.mk hp",
+            4
+          ],
+          [
+            "intro p q hp hq hfp hfq",
+            4
+          ],
+          [
+            "intro x hx y hy a b ha hb hab",
+            3
+          ],
+          [
+            "rw [convex_iff_forall_pos]",
+            3
+          ],
+          [
+            "by_cases hf : f = 0",
+            2
+          ],
+          [
+            "rw [Int.ModEq, Int.ModEq]",
+            2
+          ],
+          [
+            "refine ⟨?_, ?_⟩",
+            2
+          ],
+          [
+            "intro p q hp hq fp fq",
+            2
+          ],
+          [
+            "intro p q hp hq hp0 hq0",
+            2
+          ],
+          [
+            "unfold excedances coexcedances",
+            1
+          ],
+          [
+            "simp_rw [← card_map, ← Finset.coe_map, ← coexcedances_inv_eq_map, excedances]",
+            1
+          ],
+          [
+            "rw [← Fintype.card_congr excedanceEquiv]",
+            1
+          ],
+          [
+            "simp [excedances, coexcedances]",
+            1
+          ],
+          [
+            "rw [← card_map π.symm.toEmbedding, excedances, coexcedances, map_filter, map_filter,",
+            1
+          ],
+          [
+            "simp_rw [excedances, coexcedances, Nat.add_sub_cancel_left,",
+            1
+          ],
+          [
+            "rw [← Finset.card_map (Equiv.selfEquivCompEquivToSelf _).toEmbedding, excedances_inv_eq_image]",
+            1
+          ]
+        ]
+      }
+    },
+    "r128": {
+      "path": "rag_experiments/outputs/20260323_msc180-v2-nohint_lora_r128_deepseekv2_7b_lean4-15_verified.json",
+      "attempts_total": 400,
+      "attempts_success": 2,
+      "attempts_with_unknown": 295,
+      "total_unknown_occurrences": 531,
+      "distinct_unknown_names": 402,
+      "distinct_theorem_like_unknown_names": 377,
+      "top_unknown_names": [
+        [
+          "le",
+          38
+        ],
+        [
+          "lt",
+          10
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "root_multiplicity_factorization",
+          6
+        ],
+        [
+          "chineseRemainder",
+          5
+        ],
+        [
+          "trans",
+          5
+        ],
+        [
+          "card_compl",
+          4
+        ],
+        [
+          "hb",
+          4
+        ],
+        [
+          "Polynomial.eq_of_sub_eq_zero",
+          4
+        ],
+        [
+          "AddMonoidHom.quotientKerEquivOfSurjective",
+          4
+        ],
+        [
+          "univ",
+          3
+        ],
+        [
+          "coe_comp",
+          3
+        ],
+        [
+          "coe_toRingHom",
+          3
+        ],
+        [
+          "ring_hom.map_zero",
+          3
+        ],
+        [
+          "Subalgebra.coe_subtype",
+          3
+        ],
+        [
+          "mem_ker",
+          3
+        ],
+        [
+          "pow_root_multiplicity_dvd",
+          3
+        ],
+        [
+          "n",
+          3
+        ],
+        [
+          "diam",
+          3
+        ],
+        [
+          "extremePoints_nonempty_iff_of_finite.mpr",
+          3
+        ],
+        [
+          "differentiableWithinAt",
+          3
+        ],
+        [
+          "mem_filter",
+          2
+        ],
+        [
+          "card_univ",
+          2
+        ],
+        [
+          "Subalgebra.coe_top",
+          2
+        ],
+        [
+          "coe_ofRingHom",
+          2
+        ]
+      ],
+      "top_theorem_like_unknown_names": [
+        [
+          "root_multiplicity_factorization",
+          6
+        ],
+        [
+          "chineseRemainder",
+          5
+        ],
+        [
+          "trans",
+          5
+        ],
+        [
+          "card_compl",
+          4
+        ],
+        [
+          "Polynomial.eq_of_sub_eq_zero",
+          4
+        ],
+        [
+          "AddMonoidHom.quotientKerEquivOfSurjective",
+          4
+        ],
+        [
+          "univ",
+          3
+        ],
+        [
+          "coe_comp",
+          3
+        ],
+        [
+          "coe_toRingHom",
+          3
+        ],
+        [
+          "ring_hom.map_zero",
+          3
+        ],
+        [
+          "Subalgebra.coe_subtype",
+          3
+        ],
+        [
+          "mem_ker",
+          3
+        ],
+        [
+          "pow_root_multiplicity_dvd",
+          3
+        ],
+        [
+          "diam",
+          3
+        ],
+        [
+          "extremePoints_nonempty_iff_of_finite.mpr",
+          3
+        ],
+        [
+          "differentiableWithinAt",
+          3
+        ],
+        [
+          "mem_filter",
+          2
+        ],
+        [
+          "card_univ",
+          2
+        ],
+        [
+          "Subalgebra.coe_top",
+          2
+        ],
+        [
+          "coe_ofRingHom",
+          2
+        ],
+        [
+          "le_inf_sup_of_le_of_le_sup",
+          2
+        ],
+        [
+          "unique",
+          2
+        ],
+        [
+          "sup_inf_sSup_inf_sInf",
+          2
+        ],
+        [
+          "sup_inf_right_of_le_left_of_le",
+          2
+        ],
+        [
+          "sup_eq_sup_iff_of_le_left",
+          2
+        ]
+      ],
+      "classification_occurrences": {
+        "exact_short_theorem_ambiguous": 110,
+        "no_convincing_theorem_match": 231,
+        "near_theorem_match": 116,
+        "exact_short_theorem_unique": 26,
+        "normalized_theorem_match_ambiguous": 6,
+        "normalized_theorem_match_unique": 20,
+        "short_or_local_like_nonmatch": 16,
+        "exact_full_theorem": 6
+      },
+      "classification_distinct_names": {
+        "exact_short_theorem_ambiguous": 48,
+        "no_convincing_theorem_match": 206,
+        "near_theorem_match": 103,
+        "exact_short_theorem_unique": 17,
+        "normalized_theorem_match_ambiguous": 4,
+        "normalized_theorem_match_unique": 12,
+        "short_or_local_like_nonmatch": 10,
+        "exact_full_theorem": 2
+      },
+      "theorem_like_classification_occurrences": {
+        "exact_short_theorem_ambiguous": 54,
+        "no_convincing_theorem_match": 231,
+        "near_theorem_match": 116,
+        "exact_short_theorem_unique": 18,
+        "normalized_theorem_match_ambiguous": 6,
+        "normalized_theorem_match_unique": 13,
+        "exact_full_theorem": 6
+      },
+      "theorem_like_classification_distinct_names": {
+        "exact_short_theorem_ambiguous": 39,
+        "no_convincing_theorem_match": 206,
+        "near_theorem_match": 103,
+        "exact_short_theorem_unique": 13,
+        "normalized_theorem_match_ambiguous": 4,
+        "normalized_theorem_match_unique": 10,
+        "exact_full_theorem": 2
+      },
+      "per_problem_unknowns": {
+        "no-hint/MSC-180_05_003": {
+          "top_unknowns": [
+            [
+              "card_compl",
+              4
+            ],
+            [
+              "univ",
+              2
+            ],
+            [
+              "mem_filter",
+              2
+            ],
+            [
+              "card_univ",
+              2
+            ],
+            [
+              "mul_apply",
+              1
+            ]
+          ],
+          "unique_unknown_names": 15,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_08_001": {
+          "top_unknowns": [
+            [
+              "coe_comp",
+              3
+            ],
+            [
+              "coe_toRingHom",
+              3
+            ],
+            [
+              "ring_hom.map_zero",
+              3
+            ],
+            [
+              "Subalgebra.coe_subtype",
+              3
+            ],
+            [
+              "Subalgebra.coe_top",
+              2
+            ]
+          ],
+          "unique_unknown_names": 32,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 12,
+          "successes": 0
+        },
+        "no-hint/MSC-180_08_002": {
+          "top_unknowns": [
+            [
+              "le_inf_sup_of_le_of_le_sup",
+              2
+            ],
+            [
+              "sup_inf_sSup_inf_sInf",
+              2
+            ],
+            [
+              "hb",
+              2
+            ],
+            [
+              "sup_inf_right_of_le_left_of_le",
+              2
+            ],
+            [
+              "sup_eq_sup_iff_of_le_left",
+              2
+            ]
+          ],
+          "unique_unknown_names": 8,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_08_003": {
+          "top_unknowns": [
+            [
+              "hg",
+              1
+            ],
+            [
+              "Fintype.exists_equiv_fin",
+              1
+            ],
+            [
+              "orderOf_apply",
+              1
+            ],
+            [
+              "orderOf_dvd_orderOf.mpr",
+              1
+            ],
+            [
+              "exists_element_with_maximal_order_on_set",
+              1
+            ]
+          ],
+          "unique_unknown_names": 17,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 13,
+          "successes": 0
+        },
+        "no-hint/MSC-180_12_001": {
+          "top_unknowns": [
+            [
+              "Polynomial.eq_of_sub_eq_zero",
+              4
+            ],
+            [
+              "polynomial_division_algorithm",
+              2
+            ],
+            [
+              "s",
+              2
+            ],
+            [
+              "le",
+              2
+            ],
+            [
+              "C_mul_eq_smul",
+              1
+            ]
+          ],
+          "unique_unknown_names": 25,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 18,
+          "successes": 0
+        },
+        "no-hint/MSC-180_12_002": {
+          "top_unknowns": [
+            [
+              "chineseRemainder",
+              5
+            ],
+            [
+              "valMinAbs",
+              2
+            ],
+            [
+              "le",
+              2
+            ],
+            [
+              "chinese_remainder_theorem_aux",
+              2
+            ],
+            [
+              "prod_pos",
+              1
+            ]
+          ],
+          "unique_unknown_names": 23,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 16,
+          "successes": 0
+        },
+        "no-hint/MSC-180_12_003": {
+          "top_unknowns": [
+            [
+              "IsMaximal",
+              2
+            ],
+            [
+              "IsField.of_surjective",
+              1
+            ],
+            [
+              "ker_quotientMk_eq_bot",
+              1
+            ],
+            [
+              "exists_left_ne_zero",
+              1
+            ],
+            [
+              "ideal_quotient_isField",
+              1
+            ]
+          ],
+          "unique_unknown_names": 35,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 16,
+          "successes": 0
+        },
+        "no-hint/MSC-180_14_001": {
+          "top_unknowns": [
+            [
+              "AddMonoidHom.quotientKerEquivOfSurjective",
+              4
+            ],
+            [
+              "mem_ker",
+              3
+            ],
+            [
+              "Subgroup.Quotient.mk",
+              2
+            ],
+            [
+              "MulEquiv.map_zero",
+              1
+            ],
+            [
+              "kernel_subgroup_and_quotientAddGroupEquivOfSurjective",
+              1
+            ]
+          ],
+          "unique_unknown_names": 21,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 11,
+          "successes": 0
+        },
+        "no-hint/MSC-180_14_003": {
+          "top_unknowns": [
+            [
+              "root_multiplicity_factorization",
+              6
+            ],
+            [
+              "pow_root_multiplicity_dvd",
+              3
+            ],
+            [
+              "X",
+              2
+            ],
+            [
+              "C",
+              2
+            ],
+            [
+              "le_multiplicity_iff",
+              1
+            ]
+          ],
+          "unique_unknown_names": 28,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_15_003": {
+          "top_unknowns": [
+            [
+              "column_row_factorization",
+              2
+            ],
+            [
+              "imageBasis",
+              1
+            ],
+            [
+              "col_mul_row",
+              1
+            ],
+            [
+              "Matrix.imageBasis_toMatrix_mul_col",
+              1
+            ],
+            [
+              "row_column_factorization",
+              1
+            ]
+          ],
+          "unique_unknown_names": 20,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 18,
+          "successes": 0
+        },
+        "no-hint/MSC-180_20_001": {
+          "top_unknowns": [
+            [
+              "Nat.Prime.exists_root_of_dvd",
+              2
+            ],
+            [
+              "Finset.orderOf",
+              1
+            ],
+            [
+              "orderOf_le",
+              1
+            ],
+            [
+              "exists_subgroup_card",
+              1
+            ],
+            [
+              "Finite.exists_prime_orderOf_dvd_card",
+              1
+            ]
+          ],
+          "unique_unknown_names": 7,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 1
+        },
+        "no-hint/MSC-180_26_002": {
+          "top_unknowns": [
+            [
+              "bddAbove_iff_subset_Ici",
+              2
+            ],
+            [
+              "Icc",
+              2
+            ],
+            [
+              "upperBounds",
+              1
+            ],
+            [
+              "sInfSeq",
+              1
+            ],
+            [
+              "sInfSeq_spec",
+              1
+            ]
+          ],
+          "unique_unknown_names": 20,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 1
+        },
+        "no-hint/MSC-180_28_003": {
+          "top_unknowns": [
+            [
+              "x",
+              3
+            ],
+            [
+              "outerMeasure_eq_add_diff_self",
+              2
+            ],
+            [
+              "MeasureTheory.OuterMeasure.measureOf_eq_of_add",
+              1
+            ],
+            [
+              "measurableSet_lt_of_forall_isOpen",
+              1
+            ],
+            [
+              "MeasureTheory.measure_eq_outerMeasure_of_measurableSet",
+              1
+            ]
+          ],
+          "unique_unknown_names": 25,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_40_003": {
+          "top_unknowns": [
+            [
+              "n",
+              3
+            ],
+            [
+              "summable_log_series",
+              2
+            ],
+            [
+              "summable_pow_neg_iff",
+              1
+            ],
+            [
+              "div_le_div_iff_of_pos",
+              1
+            ],
+            [
+              "summable_of_isBigO_nat_filter_atTop",
+              1
+            ]
+          ],
+          "unique_unknown_names": 13,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_52_002": {
+          "top_unknowns": [
+            [
+              "diam",
+              3
+            ],
+            [
+              "extremePoints_nonempty_iff_of_finite.mpr",
+              3
+            ],
+            [
+              "frontier",
+              2
+            ],
+            [
+              "Set.IsBounded.diam_mono",
+              1
+            ],
+            [
+              "diam_mono",
+              1
+            ]
+          ],
+          "unique_unknown_names": 31,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_60_002": {
+          "top_unknowns": [
+            [
+              "exists_eq_integral_pow_mul_nat_eval_at_zero",
+              1
+            ],
+            [
+              "WeierstrassUniformContinuity.exists_eq",
+              1
+            ],
+            [
+              "eventually_atTop_iff",
+              1
+            ],
+            [
+              "exists_forall_deriv_lt_and_lt",
+              1
+            ],
+            [
+              "polynomial_fst_of_compact_closure_of_continuousOn",
+              1
+            ]
+          ],
+          "unique_unknown_names": 19,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 20,
+          "successes": 0
+        },
+        "no-hint/MSC-180_65_001": {
+          "top_unknowns": [
+            [
+              "le",
+              16
+            ],
+            [
+              "lt",
+              10
+            ],
+            [
+              "hasDerivAt_eq_zero",
+              1
+            ],
+            [
+              "isLocalMin_zero_of_hasDerivAt_eq_zero",
+              1
+            ],
+            [
+              "isLocalMax_zero_of_hasDerivAt_eq_zero",
+              1
+            ]
+          ],
+          "unique_unknown_names": 24,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 15,
+          "successes": 0
+        },
+        "no-hint/MSC-180_65_003": {
+          "top_unknowns": [
+            [
+              "trans",
+              5
+            ],
+            [
+              "differentiableWithinAt",
+              3
+            ],
+            [
+              "norm_deriv_sub_norm_deriv_le",
+              2
+            ],
+            [
+              "lipschitzOnWith_singleton",
+              2
+            ],
+            [
+              "congr",
+              2
+            ]
+          ],
+          "unique_unknown_names": 18,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 18,
+          "successes": 0
+        },
+        "no-hint/MSC-180_68_002": {
+          "top_unknowns": [
+            [
+              "hb",
+              2
+            ],
+            [
+              "Nat.gcd_pos_iff_pos_left",
+              1
+            ],
+            [
+              "gcd_eq_gcd_ab",
+              1
+            ],
+            [
+              "Int.gcd_dvd_gcd_mul_left_mul_right",
+              1
+            ],
+            [
+              "Int.gcd_dvd",
+              1
+            ]
+          ],
+          "unique_unknown_names": 17,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 19,
+          "successes": 0
+        },
+        "no-hint/MSC-180_90_001": {
+          "top_unknowns": [
+            [
+              "le",
+              18
+            ],
+            [
+              "convex_interior",
+              2
+            ],
+            [
+              "Metric.convex_ball",
+              1
+            ],
+            [
+              "convex_iff",
+              1
+            ],
+            [
+              "euclidean_ball_segment_subset",
+              1
+            ]
+          ],
+          "unique_unknown_names": 14,
+          "unique_parsed_proofs": 20,
+          "unique_first_steps": 14,
+          "successes": 0
+        }
+      },
+      "output_structure": {
+        "unique_parsed_proofs_per_problem": {
+          "min": 20,
+          "median": 20.0,
+          "mean": 20,
+          "max": 20
+        },
+        "unique_raw_outputs_per_problem": {
+          "min": 20,
+          "median": 20.0,
+          "mean": 20,
+          "max": 20
+        },
+        "unique_first_steps_per_problem": {
+          "min": 11,
+          "median": 18.5,
+          "mean": 17.2,
+          "max": 20
+        },
+        "duplicate_attempts": 0,
+        "duplicate_attempt_rate": 0.0,
+        "theorem_name_match_rate": 1.0,
+        "parsed_length_mean": 761.4,
+        "parsed_length_median": 541.0,
+        "parsed_length_p90": 1531,
+        "raw_length_mean": 1106.3,
+        "raw_length_median": 897.5,
+        "raw_length_p90": 1982,
+        "keyword_counts": {
+          "simp": 235,
+          "rw [": 255,
+          "have ": 174,
+          "calc": 31,
+          "obtain ": 118,
+          "aesop": 2,
+          "rcases": 60,
+          "omega": 5,
+          "linarith": 29
+        },
+        "top_first_steps": [
+          [
+            "classical",
+            20
+          ],
+          [
+            "constructor",
+            15
+          ],
+          [
+            "ext x",
+            7
+          ],
+          [
+            "ext a",
+            5
+          ],
+          [
+            "intro x hx y hy a b ha hb hab",
+            4
+          ],
+          [
+            "haveI := Classical.decEq G",
+            3
+          ],
+          [
+            "use A.rank",
+            3
+          ],
+          [
+            "intro p q hp hq hfp hfq",
+            3
+          ],
+          [
+            "intro p q hp hq fp fq",
+            3
+          ],
+          [
+            "rw [convex_iff_forall_pos]",
+            3
+          ],
+          [
+            "intro d₁ d₂ h₁ h₂",
+            2
+          ],
+          [
+            "by_cases hg : gcd (Polynomial.X - Polynomial.C a) P = 1",
+            2
+          ],
+          [
+            "rcases A.eq_empty_or_nonempty with (rfl | hne')",
+            2
+          ],
+          [
+            "rcases h with ⟨δ, hδ, h⟩",
+            2
+          ],
+          [
+            "intro p q hp hq fzero fzero'",
+            2
+          ],
+          [
+            "rw [lipschitzOnWith_iff_norm_sub_le]",
+            2
+          ],
+          [
+            "by_cases h : a < b",
+            2
+          ],
+          [
+            "obtain rfl | ha := eq_or_ne a 0",
+            2
+          ],
+          [
+            "rw [convex_iff_segment_subset]",
+            2
+          ],
+          [
+            "unfold excedances coexcedances",
+            1
+          ]
+        ]
+      }
+    }
+  },
+  "overlap": {
+    "r16": {
+      "r16": {
+        "distinct_overlap": 342,
+        "jaccard": 1.0
+      },
+      "r64": {
+        "distinct_overlap": 25,
+        "jaccard": 0.0378
+      },
+      "r128": {
+        "distinct_overlap": 26,
+        "jaccard": 0.0362
+      }
+    },
+    "r64": {
+      "r16": {
+        "distinct_overlap": 25,
+        "jaccard": 0.0378
+      },
+      "r64": {
+        "distinct_overlap": 344,
+        "jaccard": 1.0
+      },
+      "r128": {
+        "distinct_overlap": 34,
+        "jaccard": 0.0478
+      }
+    },
+    "r128": {
+      "r16": {
+        "distinct_overlap": 26,
+        "jaccard": 0.0362
+      },
+      "r64": {
+        "distinct_overlap": 34,
+        "jaccard": 0.0478
+      },
+      "r128": {
+        "distinct_overlap": 402,
+        "jaccard": 1.0
+      }
+    }
+  },
+  "problem_consensus": {
+    "r16": [
+      {
+        "problem": "no-hint/MSC-180_26_002",
+        "name": "exists_isLUB",
+        "occurrences": 8
+      },
+      {
+        "problem": "no-hint/MSC-180_12_001",
+        "name": "map₂",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_14_003",
+        "name": "root_multiplicity_factorization",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_08_001",
+        "name": "adjoin_induction",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_05_003",
+        "name": "excedance_coexcedance_card",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_12_002",
+        "name": "chinese_remainder_theorem",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_14_001",
+        "name": "ker",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_15_003",
+        "name": "le_succ",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_28_003",
+        "name": "carrier",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_65_001",
+        "name": "MeasureTheory.Lebesgue.volume",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_65_003",
+        "name": "derivOn",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_90_001",
+        "name": "ne",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_08_002",
+        "name": "eq_inf_of_sup_eq_right",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_08_003",
+        "name": "exists_max_image",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_12_003",
+        "name": "eq_top_or_isMaximal_of_isUnit_mem",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_40_003",
+        "name": "summable_of_nonneg_of_le",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_52_002",
+        "name": "nonempty",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_60_002",
+        "name": "restrict",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_20_001",
+        "name": "ZMod.exists_card_zmod_dvd_zmod",
+        "occurrences": 1
+      },
+      {
+        "problem": "no-hint/MSC-180_68_002",
+        "name": "Int.gcd_dvd",
+        "occurrences": 1
+      }
+    ],
+    "r64": [
+      {
+        "problem": "no-hint/MSC-180_12_001",
+        "name": "Polynomial.emultiplicity",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_15_003",
+        "name": "row_column_factorization",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_05_003",
+        "name": "card_map",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_08_003",
+        "name": "some",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_68_002",
+        "name": "Int.xgcd",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_14_001",
+        "name": "mem_ker",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_28_003",
+        "name": "box",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_08_001",
+        "name": "Set.leftInvOn_of_injective",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_08_002",
+        "name": "le_sup_of_le_left_of_le_right",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_12_002",
+        "name": "chinese_remainder_theorem_aux",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_12_003",
+        "name": "ne_top",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_14_003",
+        "name": "eq_zero_or_nonzero",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_26_002",
+        "name": "exists_isLUB",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_40_003",
+        "name": "summable_comp_injective",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_52_002",
+        "name": "exists_isMaxOn",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_60_002",
+        "name": "weierstrass_approximation_aux",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_65_001",
+        "name": "hasDerivAt",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_90_001",
+        "name": "norm_lt_iff",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_20_001",
+        "name": "exists_mem_of_nonempty",
+        "occurrences": 1
+      },
+      {
+        "problem": "no-hint/MSC-180_65_003",
+        "name": "lipschitzOnWith_of_differentiableOn_of_lipschitz_aux",
+        "occurrences": 1
+      }
+    ],
+    "r128": [
+      {
+        "problem": "no-hint/MSC-180_90_001",
+        "name": "le",
+        "occurrences": 18
+      },
+      {
+        "problem": "no-hint/MSC-180_65_001",
+        "name": "le",
+        "occurrences": 16
+      },
+      {
+        "problem": "no-hint/MSC-180_14_003",
+        "name": "root_multiplicity_factorization",
+        "occurrences": 6
+      },
+      {
+        "problem": "no-hint/MSC-180_12_002",
+        "name": "chineseRemainder",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_65_003",
+        "name": "trans",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_05_003",
+        "name": "card_compl",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_12_001",
+        "name": "Polynomial.eq_of_sub_eq_zero",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_14_001",
+        "name": "AddMonoidHom.quotientKerEquivOfSurjective",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_08_001",
+        "name": "coe_comp",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_28_003",
+        "name": "x",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_40_003",
+        "name": "n",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_52_002",
+        "name": "diam",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_08_002",
+        "name": "le_inf_sup_of_le_of_le_sup",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_12_003",
+        "name": "IsMaximal",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_15_003",
+        "name": "column_row_factorization",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_20_001",
+        "name": "Nat.Prime.exists_root_of_dvd",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_26_002",
+        "name": "bddAbove_iff_subset_Ici",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_68_002",
+        "name": "hb",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_08_003",
+        "name": "hg",
+        "occurrences": 1
+      },
+      {
+        "problem": "no-hint/MSC-180_60_002",
+        "name": "exists_eq_integral_pow_mul_nat_eval_at_zero",
+        "occurrences": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,696 @@
+{
+  "runs": {
+    "r16": {
+      "unique_parsed_proofs_per_problem": {
+        "min": 19,
+        "median": 20.0,
+        "mean": 19.95,
+        "max": 20
+      },
+      "unique_raw_outputs_per_problem": {
+        "min": 19,
+        "median": 20.0,
+        "mean": 19.95,
+        "max": 20
+      },
+      "unique_first_steps_per_problem": {
+        "min": 11,
+        "median": 18.0,
+        "mean": 16.85,
+        "max": 20
+      },
+      "duplicate_attempts": 1,
+      "duplicate_attempt_rate": 0.0025,
+      "theorem_name_match_rate": 1.0,
+      "parsed_length_mean": 674.5,
+      "parsed_length_median": 477.0,
+      "parsed_length_p90": 1217,
+      "raw_length_mean": 1019.4,
+      "raw_length_median": 822.5,
+      "raw_length_p90": 1653,
+      "keyword_counts": {
+        "rw [": 223,
+        "simp": 200,
+        "have ": 143,
+        "obtain ": 119,
+        "calc": 16,
+        "aesop": 5,
+        "rcases": 51,
+        "linarith": 25,
+        "omega": 8
+      },
+      "top_first_steps": [
+        [
+          "classical",
+          24
+        ],
+        [
+          "constructor",
+          18
+        ],
+        [
+          "ext x",
+          5
+        ],
+        [
+          "intro p q hp hq hfp hfq",
+          5
+        ],
+        [
+          "rintro d₁ d₂ ⟨h₁, h₂, h₃, h₄⟩ ⟨h₅, h₆, h₇, h₈⟩",
+          4
+        ],
+        [
+          "intro p q hp hq hp0 hq0",
+          4
+        ],
+        [
+          "rw [convex_iff_forall_pos]",
+          4
+        ],
+        [
+          "ext a",
+          3
+        ],
+        [
+          "haveI := Fact.mk hp",
+          3
+        ],
+        [
+          "apply algHom_ext",
+          2
+        ],
+        [
+          "apply AlgHom.ext",
+          2
+        ],
+        [
+          "intro d₁ d₂ h₁ h₂",
+          2
+        ],
+        [
+          "cases nonempty_fintype G",
+          2
+        ],
+        [
+          "apply",
+          2
+        ],
+        [
+          "refine ⟨fun h ↦ inferInstance, fun _ ↦ ?_⟩",
+          2
+        ],
+        [
+          "nontriviality α",
+          2
+        ],
+        [
+          "use A.rank",
+          2
+        ],
+        [
+          "obtain ⟨x, hx⟩ := exists_prime_orderOf_dvd_card p hG1",
+          2
+        ],
+        [
+          "rcases h with ⟨δ, δ_pos, hδ⟩",
+          2
+        ],
+        [
+          "rw [excedances, coexcedances, Fintype.card_congr (Equiv.invPermEquivOfDual π)]",
+          1
+        ]
+      ],
+      "attempts_success": 4,
+      "attempts_total": 400,
+      "attempts_with_unknown": 281,
+      "total_unknown_occurrences": 428,
+      "distinct_unknown_names": 342,
+      "distinct_theorem_like_unknown_names": 329
+    },
+    "r64": {
+      "unique_parsed_proofs_per_problem": {
+        "min": 20,
+        "median": 20.0,
+        "mean": 20,
+        "max": 20
+      },
+      "unique_raw_outputs_per_problem": {
+        "min": 20,
+        "median": 20.0,
+        "mean": 20,
+        "max": 20
+      },
+      "unique_first_steps_per_problem": {
+        "min": 12,
+        "median": 18.5,
+        "mean": 17.7,
+        "max": 20
+      },
+      "duplicate_attempts": 0,
+      "duplicate_attempt_rate": 0.0,
+      "theorem_name_match_rate": 1.0,
+      "parsed_length_mean": 737.8,
+      "parsed_length_median": 528.0,
+      "parsed_length_p90": 1379,
+      "raw_length_mean": 1082.7,
+      "raw_length_median": 881.0,
+      "raw_length_p90": 1800,
+      "keyword_counts": {
+        "simp": 226,
+        "rw [": 256,
+        "omega": 8,
+        "rcases": 57,
+        "have ": 166,
+        "obtain ": 138,
+        "aesop": 5,
+        "calc": 28,
+        "linarith": 35
+      },
+      "top_first_steps": [
+        [
+          "classical",
+          20
+        ],
+        [
+          "constructor",
+          10
+        ],
+        [
+          "intro d₁ d₂ h₁ h₂",
+          7
+        ],
+        [
+          "ext x",
+          6
+        ],
+        [
+          "haveI := Fact.mk hp",
+          4
+        ],
+        [
+          "intro p q hp hq hfp hfq",
+          4
+        ],
+        [
+          "intro x hx y hy a b ha hb hab",
+          3
+        ],
+        [
+          "rw [convex_iff_forall_pos]",
+          3
+        ],
+        [
+          "by_cases hf : f = 0",
+          2
+        ],
+        [
+          "rw [Int.ModEq, Int.ModEq]",
+          2
+        ],
+        [
+          "refine ⟨?_, ?_⟩",
+          2
+        ],
+        [
+          "intro p q hp hq fp fq",
+          2
+        ],
+        [
+          "intro p q hp hq hp0 hq0",
+          2
+        ],
+        [
+          "unfold excedances coexcedances",
+          1
+        ],
+        [
+          "simp_rw [← card_map, ← Finset.coe_map, ← coexcedances_inv_eq_map, excedances]",
+          1
+        ],
+        [
+          "rw [← Fintype.card_congr excedanceEquiv]",
+          1
+        ],
+        [
+          "simp [excedances, coexcedances]",
+          1
+        ],
+        [
+          "rw [← card_map π.symm.toEmbedding, excedances, coexcedances, map_filter, map_filter,",
+          1
+        ],
+        [
+          "simp_rw [excedances, coexcedances, Nat.add_sub_cancel_left,",
+          1
+        ],
+        [
+          "rw [← Finset.card_map (Equiv.selfEquivCompEquivToSelf _).toEmbedding, excedances_inv_eq_image]",
+          1
+        ]
+      ],
+      "attempts_success": 1,
+      "attempts_total": 400,
+      "attempts_with_unknown": 286,
+      "total_unknown_occurrences": 402,
+      "distinct_unknown_names": 344,
+      "distinct_theorem_like_unknown_names": 333
+    },
+    "r128": {
+      "unique_parsed_proofs_per_problem": {
+        "min": 20,
+        "median": 20.0,
+        "mean": 20,
+        "max": 20
+      },
+      "unique_raw_outputs_per_problem": {
+        "min": 20,
+        "median": 20.0,
+        "mean": 20,
+        "max": 20
+      },
+      "unique_first_steps_per_problem": {
+        "min": 11,
+        "median": 18.5,
+        "mean": 17.2,
+        "max": 20
+      },
+      "duplicate_attempts": 0,
+      "duplicate_attempt_rate": 0.0,
+      "theorem_name_match_rate": 1.0,
+      "parsed_length_mean": 761.4,
+      "parsed_length_median": 541.0,
+      "parsed_length_p90": 1531,
+      "raw_length_mean": 1106.3,
+      "raw_length_median": 897.5,
+      "raw_length_p90": 1982,
+      "keyword_counts": {
+        "simp": 235,
+        "rw [": 255,
+        "have ": 174,
+        "calc": 31,
+        "obtain ": 118,
+        "aesop": 2,
+        "rcases": 60,
+        "omega": 5,
+        "linarith": 29
+      },
+      "top_first_steps": [
+        [
+          "classical",
+          20
+        ],
+        [
+          "constructor",
+          15
+        ],
+        [
+          "ext x",
+          7
+        ],
+        [
+          "ext a",
+          5
+        ],
+        [
+          "intro x hx y hy a b ha hb hab",
+          4
+        ],
+        [
+          "haveI := Classical.decEq G",
+          3
+        ],
+        [
+          "use A.rank",
+          3
+        ],
+        [
+          "intro p q hp hq hfp hfq",
+          3
+        ],
+        [
+          "intro p q hp hq fp fq",
+          3
+        ],
+        [
+          "rw [convex_iff_forall_pos]",
+          3
+        ],
+        [
+          "intro d₁ d₂ h₁ h₂",
+          2
+        ],
+        [
+          "by_cases hg : gcd (Polynomial.X - Polynomial.C a) P = 1",
+          2
+        ],
+        [
+          "rcases A.eq_empty_or_nonempty with (rfl | hne')",
+          2
+        ],
+        [
+          "rcases h with ⟨δ, hδ, h⟩",
+          2
+        ],
+        [
+          "intro p q hp hq fzero fzero'",
+          2
+        ],
+        [
+          "rw [lipschitzOnWith_iff_norm_sub_le]",
+          2
+        ],
+        [
+          "by_cases h : a < b",
+          2
+        ],
+        [
+          "obtain rfl | ha := eq_or_ne a 0",
+          2
+        ],
+        [
+          "rw [convex_iff_segment_subset]",
+          2
+        ],
+        [
+          "unfold excedances coexcedances",
+          1
+        ]
+      ],
+      "attempts_success": 2,
+      "attempts_total": 400,
+      "attempts_with_unknown": 295,
+      "total_unknown_occurrences": 531,
+      "distinct_unknown_names": 402,
+      "distinct_theorem_like_unknown_names": 377
+    }
+  },
+  "problem_consensus": {
+    "r16": [
+      {
+        "problem": "no-hint/MSC-180_26_002",
+        "name": "exists_isLUB",
+        "occurrences": 8
+      },
+      {
+        "problem": "no-hint/MSC-180_12_001",
+        "name": "map₂",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_14_003",
+        "name": "root_multiplicity_factorization",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_08_001",
+        "name": "adjoin_induction",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_05_003",
+        "name": "excedance_coexcedance_card",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_12_002",
+        "name": "chinese_remainder_theorem",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_14_001",
+        "name": "ker",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_15_003",
+        "name": "le_succ",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_28_003",
+        "name": "carrier",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_65_001",
+        "name": "MeasureTheory.Lebesgue.volume",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_65_003",
+        "name": "derivOn",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_90_001",
+        "name": "ne",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_08_002",
+        "name": "eq_inf_of_sup_eq_right",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_08_003",
+        "name": "exists_max_image",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_12_003",
+        "name": "eq_top_or_isMaximal_of_isUnit_mem",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_40_003",
+        "name": "summable_of_nonneg_of_le",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_52_002",
+        "name": "nonempty",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_60_002",
+        "name": "restrict",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_20_001",
+        "name": "ZMod.exists_card_zmod_dvd_zmod",
+        "occurrences": 1
+      },
+      {
+        "problem": "no-hint/MSC-180_68_002",
+        "name": "Int.gcd_dvd",
+        "occurrences": 1
+      }
+    ],
+    "r64": [
+      {
+        "problem": "no-hint/MSC-180_12_001",
+        "name": "Polynomial.emultiplicity",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_15_003",
+        "name": "row_column_factorization",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_05_003",
+        "name": "card_map",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_08_003",
+        "name": "some",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_68_002",
+        "name": "Int.xgcd",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_14_001",
+        "name": "mem_ker",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_28_003",
+        "name": "box",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_08_001",
+        "name": "Set.leftInvOn_of_injective",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_08_002",
+        "name": "le_sup_of_le_left_of_le_right",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_12_002",
+        "name": "chinese_remainder_theorem_aux",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_12_003",
+        "name": "ne_top",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_14_003",
+        "name": "eq_zero_or_nonzero",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_26_002",
+        "name": "exists_isLUB",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_40_003",
+        "name": "summable_comp_injective",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_52_002",
+        "name": "exists_isMaxOn",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_60_002",
+        "name": "weierstrass_approximation_aux",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_65_001",
+        "name": "hasDerivAt",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_90_001",
+        "name": "norm_lt_iff",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_20_001",
+        "name": "exists_mem_of_nonempty",
+        "occurrences": 1
+      },
+      {
+        "problem": "no-hint/MSC-180_65_003",
+        "name": "lipschitzOnWith_of_differentiableOn_of_lipschitz_aux",
+        "occurrences": 1
+      }
+    ],
+    "r128": [
+      {
+        "problem": "no-hint/MSC-180_90_001",
+        "name": "le",
+        "occurrences": 18
+      },
+      {
+        "problem": "no-hint/MSC-180_65_001",
+        "name": "le",
+        "occurrences": 16
+      },
+      {
+        "problem": "no-hint/MSC-180_14_003",
+        "name": "root_multiplicity_factorization",
+        "occurrences": 6
+      },
+      {
+        "problem": "no-hint/MSC-180_12_002",
+        "name": "chineseRemainder",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_65_003",
+        "name": "trans",
+        "occurrences": 5
+      },
+      {
+        "problem": "no-hint/MSC-180_05_003",
+        "name": "card_compl",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_12_001",
+        "name": "Polynomial.eq_of_sub_eq_zero",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_14_001",
+        "name": "AddMonoidHom.quotientKerEquivOfSurjective",
+        "occurrences": 4
+      },
+      {
+        "problem": "no-hint/MSC-180_08_001",
+        "name": "coe_comp",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_28_003",
+        "name": "x",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_40_003",
+        "name": "n",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_52_002",
+        "name": "diam",
+        "occurrences": 3
+      },
+      {
+        "problem": "no-hint/MSC-180_08_002",
+        "name": "le_inf_sup_of_le_of_le_sup",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_12_003",
+        "name": "IsMaximal",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_15_003",
+        "name": "column_row_factorization",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_20_001",
+        "name": "Nat.Prime.exists_root_of_dvd",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_26_002",
+        "name": "bddAbove_iff_subset_Ici",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_68_002",
+        "name": "hb",
+        "occurrences": 2
+      },
+      {
+        "problem": "no-hint/MSC-180_08_003",
+        "name": "hg",
+        "occurrences": 1
+      },
+      {
+        "problem": "no-hint/MSC-180_60_002",
+        "name": "exists_eq_integral_pow_mul_nat_eval_at_zero",
+        "occurrences": 1
+      }
+    ]
+  }
+}
