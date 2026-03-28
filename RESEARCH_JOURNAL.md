@@ -38,3 +38,17 @@ current canonical view.
   - retrieval-aware training
   - small coherent Mathlib domain slices
 - The project claim should stay narrow: targeted repair of hallucinated Mathlib references in small Lean provers, not generic retrieval for theorem proving.
+- Implemented a dedicated hallucination extractor in `rag_experiments/scripts/tools/extract_hallucinations.py`. It now pulls unresolved names from verified Lean outputs, handles both `unknown identifier` and `unknown constant` forms plus dotted-identifier variants, and aggregates them per problem with both occurrence counts and attempt counts.
+- Settled on a simple first-pass unresolved-name filter: minimum length `>= 7` characters. This is strict enough to remove low-information junk while still keeping theorem-like names that are useful as retrieval seeds.
+- Confirmed that Lean Finder can be queried programmatically through the public Hugging Face Space, so no private API access is needed for the first prototype. Implemented `rag_experiments/scripts/tools/leanfinder_client.py` with a cache-first design, a minimal number of live requests, and parsing of the streamed Gradio response into structured theorem results.
+- Implemented `rag_experiments/scripts/tools/build_iterative_rag_specs.py` to build both pass-1 and pass-2 theorem-context specs from existing verified runs rather than from fresh generations.
+- The current plan is now more efficient: do not rerun pass 1. Use existing `A` no-hint and `B` theorem-statements runs on the 20-problem MSC-180 slice as offline sources of information, then make the first new model run the pass-2 retry run.
+- The pass-2 constructor currently works like this:
+  - start from the statement-only Lean Finder top-`2`
+  - combine hallucinations mined from failed `A` and `B` attempts
+  - rank them by frequency
+  - take the top `2`
+  - for each one, query Lean Finder with `hallucination + statement`
+  - add the first distinct retrieved theorem from the top-`5`
+- Small validation runs on representative problems showed the right general behavior: pass 1 recovers the global theorem family, while pass 2 adds more local theorem-family signal derived from frequent hallucinations.
+- One practical lesson from the builder validation is that we should prefer theorem/lemma results over defs when selecting hallucination-derived additions. That keeps the added context closer to what the model can actually use in a proof.
