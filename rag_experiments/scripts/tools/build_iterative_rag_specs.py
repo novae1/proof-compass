@@ -44,7 +44,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--pass2-spec", type=Path, default=DEFAULT_PASS2_SPEC)
     parser.add_argument("--metadata-json", type=Path, default=DEFAULT_METADATA_JSON)
     parser.add_argument("--cache-path", type=Path, help="LeanFinder cache path override.")
-    parser.add_argument("--statement-topk", type=int, default=2, help="Top-k from statement-only retrieval.")
+    parser.add_argument(
+        "--statement-topk",
+        type=int,
+        default=2,
+        help="Number of statement-only theorems to keep in the final prompt.",
+    )
+    parser.add_argument(
+        "--statement-search-topk",
+        type=int,
+        default=5,
+        help="Number of statement-only LeanFinder results to inspect before theorem/lemma filtering.",
+    )
     parser.add_argument(
         "--hallucination-topk",
         type=int,
@@ -101,7 +112,14 @@ def build_hint_block(selected_results: list[dict[str, Any]]) -> str:
     blocks = []
     for result in selected_results:
         signature = trim_declaration_to_signature(result["formal_statement"])
-        blocks.append("-- this theorem might be useful in the proof of the problem\n" + signature)
+        theorem_name = result.get("full_name") or trim_declaration_to_signature(
+            result.get("formal_statement", "")
+        )
+        blocks.append(
+            "-- this theorem might be useful in the proof of the problem\n"
+            f"-- Use as: {theorem_name}\n"
+            + signature
+        )
     return "\n\n".join(blocks).strip()
 
 
@@ -115,6 +133,18 @@ def dedup_results(results: list[dict[str, Any]]) -> list[dict[str, Any]]:
         seen.add(key)
         out.append(result)
     return out
+
+
+def prefer_theorems_and_lemmas(results: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    preferred = []
+    fallback = []
+    for result in results:
+        kind = declaration_kind(result.get("formal_statement", ""))
+        if kind in {"theorem", "lemma"}:
+            preferred.append(result)
+        else:
+            fallback.append(result)
+    return preferred + fallback
 
 
 def select_problem_keys(payload: dict[str, Any], args: argparse.Namespace) -> list[str]:
@@ -189,6 +219,7 @@ def build_specs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any
         "selected_run_keys": selected_keys,
         "config": {
             "statement_topk": args.statement_topk,
+            "statement_search_topk": args.statement_search_topk,
             "hallucination_topk": args.hallucination_topk,
             "max_hallucinations": args.max_hallucinations,
             "min_name_length": args.min_name_length,
@@ -208,8 +239,10 @@ def build_specs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any
             raise ValueError(f"Problem {run_key} is missing header/formal_statement.")
 
         statement_query = formal_statement
-        statement_results = client.retrieve(statement_query, k=args.statement_topk)
-        selected_statement_results = dedup_results(statement_results)[: args.statement_topk]
+        statement_results = client.retrieve(statement_query, k=args.statement_search_topk)
+        selected_statement_results = dedup_results(prefer_theorems_and_lemmas(statement_results))[
+            : args.statement_topk
+        ]
         pass1_hint = build_hint_block(selected_statement_results)
 
         problem_summary = hallucination_summary["problems"].get(run_key, {})

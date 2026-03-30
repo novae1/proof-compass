@@ -1,0 +1,104 @@
+{
+  "problems": {
+    "MSC-180/05_003": {
+      "header": "import Mathlib\n\nopen Equiv\n\ndef excedances {n : ℕ} (π : Perm (Fin n)) : Finset (Fin n) :=\n  Finset.univ.filter (fun i => π i > i)\n\ndef eulerianNumber (n k : ℕ) : ℕ :=\n  Fintype.card {π : Perm (Fin n) | (excedances π).card = k}\n\ndef coexcedances {n : ℕ} (π : Perm (Fin n)) : Finset (Fin n) :=\n  Finset.univ.filter (fun i => π i < i)",
+      "formal_statement": "theorem excedance_coexcedance_dual {n : ℕ} (π : Perm (Fin n)) :\n    (excedances π).card = (coexcedances π⁻¹).card := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: Finset.card_inv\ntheorem Finset.card_inv (s : Finset α) : s⁻¹.card = s.card\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: Equiv.Perm.support_inv\ntheorem Equiv.Perm.support_inv (σ : Perm α) : support σ⁻¹ = σ.support"
+    },
+    "MSC-180/08_001": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem homomorphism_agreement {R A B : Type*} [CommSemiring R] [Semiring A] [Semiring B]\n    [Algebra R A] [Algebra R B] {X : Set A} (hgen : Algebra.adjoin R X = ⊤)\n    {α β : A →ₐ[R] B} (h_agree : ∀ x ∈ X, α x = β x) :\n    α = β := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: ext_of_adjoin_eq_top\ntheorem ext_of_adjoin_eq_top {s : Set A} (h : adjoin R s = ⊤) ⦃φ₁ φ₂ : A →ₐ[R] B⦄\n    (hs : s.EqOn φ₁ φ₂) : φ₁ = φ₂\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: AlgHom.ext_of_adjoin_eq_top\ntheorem AlgHom.ext_of_adjoin_eq_top {s : Set A} (h : adjoin R s = ⊤) ⦃φ₁ φ₂ : A →ₐ[R] B⦄ (hs : s.EqOn φ₁ φ₂) : φ₁ = φ₂"
+    },
+    "MSC-180/08_002": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem unique_relative_complement {L : Type*} [DistribLattice L] {a b c : L}\n    (hab : a ≤ b) (hbc : b ≤ c) :\n    ∀ (d₁ d₂ : L),\n      a ≤ d₁ ∧ d₁ ≤ c ∧ d₁ ⊔ b = c ∧ d₁ ⊓ b = a →\n      a ≤ d₂ ∧ d₂ ≤ c ∧ d₂ ⊔ b = c ∧ d₂ ⊓ b = a →\n      d₁ = d₂ := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: eq_of_le_of_inf_le_of_le_sup\ntheorem eq_of_le_of_inf_le_of_le_sup (hxy : x ≤ y) (hinf : y ⊓ z ≤ x) (hsup : y ≤ x ⊔ z) :\n    x = y\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: sdiff_unique\ntheorem sdiff_unique (s : x ⊓ y ⊔ z = x) (i : x ⊓ y ⊓ z = ⊥) : x \\ y = z"
+    },
+    "MSC-180/08_003": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem exists_element_with_maximal_order {G : Type*} [CommGroup G] [Fintype G] :\n    ∃ g : G, ∀ x : G, orderOf x ∣ orderOf g := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: exists_prime_orderOf_dvd_card\ntheorem exists_prime_orderOf_dvd_card {G : Type*} [Group G] [Fintype G] (p : ℕ) [hp : Fact p.Prime] (hdvd : p ∣ Fintype.card G) : ∃ x : G, orderOf x = p\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: exists_prime_orderOf_dvd_card'\ntheorem exists_prime_orderOf_dvd_card' {G : Type*} [Group G] [Finite G] (p : ℕ) [hp : Fact p.Prime] (hdvd : p ∣ Nat.card G) : ∃ x : G, orderOf x = p"
+    },
+    "MSC-180/12_001": {
+      "header": "import Mathlib\n\nopen Polynomial",
+      "formal_statement": "theorem polynomial_division_algorithm {F : Type*} [Field F] (f g : Polynomial F) (hg : g ≠ 0) :\n    ∃ (q r : Polynomial F),\n      f = g * q + r ∧\n      (r = 0 ∨ r.degree < g.degree) ∧\n      ∀ (q' r' : Polynomial F),\n        (f = g * q' + r' ∧ (r' = 0 ∨ r'.degree < g.degree)) → q = q' ∧ r = r' := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: Polynomial.div_eq_quo_add_rem_div\ntheorem Polynomial.div_eq_quo_add_rem_div (f : R[X]) {g : R[X]} (hg : g.Monic) :\n  ∃ q r : R[X],\n    r.degree < g.degree ∧\n      (algebraMap R[X] K f) / (algebraMap R[X] K g) =\n        algebraMap R[X] K q + (algebraMap R[X] K r) / (algebraMap R[X] K g)\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: Polynomial.div_modByMonic_unique\ntheorem Polynomial.div_modByMonic_unique {f g} (q r : R[X]) (hg : Monic g) (h : r + g * q = f ∧ degree r < degree g) : f /ₘ g = q ∧ f %ₘ g = r"
+    },
+    "MSC-180/12_002": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem chinese_remainder_theorem {k : ℕ} (n : ℕ → ℕ)\n    (hpos : ∀ i, 0 < i → i ≤ k → n i > 0)\n    (hcoprime : ∀ i j, 0 < i → i ≤ k → 0 < j → j ≤ k → i ≠ j → Nat.Coprime (n i) (n j))\n    (a : ℕ → ℤ) :\n    ∃ x : ℤ, ∀ i, 0 < i → i ≤ k → x ≡ a i [ZMOD (n i)] ∧\n      ∀ y : ℤ, (∀ i, 0 < i → i ≤ k → y ≡ a i [ZMOD (n i)]) →\n        x ≡ y [ZMOD ((Finset.Icc 1 k).prod fun i => (n i : ℤ))] := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: Nat.chineseRemainderOfFinset\ndefinition Nat.chineseRemainderOfFinset (t : Finset ι) (hs : ∀ i ∈ t, s i ≠ 0) (pp : Set.Pairwise t (Coprime on s)) : { k // ∀ i ∈ t, k ≡ a i [MOD s i] }\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: Nat.chineseRemainderOfList\ndefinition Nat.chineseRemainderOfList : (l : List ι) → l.Pairwise (Coprime on s) → { k // ∀ i ∈ l, k ≡ a i [MOD s i] } | [],     _  => ⟨0, by simp⟩\n  | i :: l, co => by\n    have : Coprime (s i) (l.map s).prod"
+    },
+    "MSC-180/12_003": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem maximal_ideal_iff_quotient_field {R : Type*} [CommRing R] [Nontrivial R]\n    (M : Ideal R) :\n    M.IsMaximal ↔ IsField (R ⧸ M) := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: maximal_ideal_iff_isField_quotient\ntheorem maximal_ideal_iff_isField_quotient (I : Ideal R) : I.IsMaximal ↔ IsField (R ⧸ I)\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: Ideal.Quotient.maximal_ideal_iff_isField_quotient\ntheorem Ideal.Quotient.maximal_ideal_iff_isField_quotient (I : Ideal R) : I.IsMaximal ↔ IsField (R ⧸ I)"
+    },
+    "MSC-180/14_001": {
+      "header": "import Mathlib\n\nopen Function",
+      "formal_statement": "theorem kernel_subgroup_and_isomorphism {G H : Type*} [AddCommGroup G] [AddCommGroup H]\n    (φ : G →+ H) :\n    φ.ker = {g | φ g = 0} ∧ (Surjective φ → Nonempty (G ⧸ φ.ker ≃+ H)) := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: AddSubgroup.ker_normedMk\ntheorem AddSubgroup.ker_normedMk (S : AddSubgroup M) : S.normedMk.ker = S\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: AddCommGrp.kernelIsoKer_hom_comp_subtype\ntheorem AddCommGrp.kernelIsoKer_hom_comp_subtype {G H : AddCommGrp.{u}} (f : G ⟶ H) : (kernelIsoKer f).hom ≫ ofHom (AddSubgroup.subtype f.hom.ker) = kernel.ι f"
+    },
+    "MSC-180/14_003": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem root_multiplicity_factorization_nonzero {α : Type*} [Field α] {P : Polynomial α}\n    {a : α} {k : ℕ} (hP : P ≠ 0) (h : multiplicity (Polynomial.X - Polynomial.C a) P = k) :\n    ∃ g : Polynomial α,\n      P = (Polynomial.X - Polynomial.C a) ^ k * g ∧ Polynomial.eval a g ≠ 0 := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: Polynomial.exists_eq_pow_rootMultiplicity_mul_and_not_dvd\ntheorem Polynomial.exists_eq_pow_rootMultiplicity_mul_and_not_dvd (p : R[X]) (hp : p ≠ 0) (a : R) : ∃ q : R[X], p = (X - C a) ^ p.rootMultiplicity a * q ∧ ¬(X - C a) ∣ q\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: pow_rootMultiplicity_not_dvd\ntheorem pow_rootMultiplicity_not_dvd {p : R[X]} (p0 : p ≠ 0) (a : R) :\n    ¬(X - C a) ^ (rootMultiplicity a p + 1) ∣ p"
+    },
+    "MSC-180/15_003": {
+      "header": "import Mathlib\n\nopen Matrix",
+      "formal_statement": "theorem column_row_factorization {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℂ) (hc : A.rank ≥ 1) :\n    ∃ (c : ℕ) (h : c = A.rank) (C : Matrix (Fin m) (Fin c) ℂ)\n      (R : Matrix (Fin c) (Fin n) ℂ), A = C * R := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: Matrix.Pivot.exists_list_transvec_mul_diagonal_mul_list_transvec\ntheorem Matrix.Pivot.exists_list_transvec_mul_diagonal_mul_list_transvec (M : Matrix n n 𝕜) :\n  ∃ (L L' : List (TransvectionStruct n 𝕜)) (D : n → 𝕜), M = (L.map toMatrix).prod * diagonal D * (L'.map toMatrix).prod\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: Matrix.Pivot.exists_list_transvec_mul_mul_list_transvec_eq_diagonal\ntheorem Matrix.Pivot.exists_list_transvec_mul_mul_list_transvec_eq_diagonal (M : Matrix n n 𝕜) :\n  ∃ (L L' : List (TransvectionStruct n 𝕜)) (D : n → 𝕜), (L.map toMatrix).prod * M * (L'.map toMatrix).prod = diagonal D"
+    },
+    "MSC-180/20_001": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem my_favorite_theorem {G : Type*} [CommGroup G] [Fintype G]\n    (hG : Fintype.card G ≠ 0) (p : ℕ) (hp : Nat.Prime p)\n    (hG1 : p ∣ Fintype.card G) :\n    ∃ x : G, orderOf x = p := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: exists_prime_orderOf_dvd_card\ntheorem exists_prime_orderOf_dvd_card {G : Type*} [Group G] [Fintype G] (p : ℕ) [hp : Fact p.Prime] (hdvd : p ∣ Fintype.card G) : ∃ x : G, orderOf x = p\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: exists_prime_orderOf_dvd_card'\ntheorem exists_prime_orderOf_dvd_card' {G : Type*} [Group G] [Finite G] (p : ℕ) [hp : Fact p.Prime] (hdvd : p ∣ Nat.card G) : ∃ x : G, orderOf x = p"
+    },
+    "MSC-180/26_002": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem exists_sup_of_bddAbove {A : Set ℝ} (hne : A.Nonempty) (hbd : BddAbove A) :\n    ∃ s : ℝ, IsLUB A s := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: Real.exists_isLUB\ntheorem Real.exists_isLUB (hne : s.Nonempty) (hbdd : BddAbove s) : ∃ x, IsLUB s x\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: Real.isLUB_sSup\ntheorem Real.isLUB_sSup (h₁ : s.Nonempty) (h₂ : BddAbove s) : IsLUB s (sSup s)"
+    },
+    "MSC-180/28_003": {
+      "header": "import Mathlib\n\nopen MeasureTheory Metric Set\n\nvariable {d : ℕ}",
+      "formal_statement": "theorem outer_measure_additive_of_separated {E F : Set (Fin d → ℝ)}\n    (h : ∃ δ > 0, ∀ x ∈ E, ∀ y ∈ F, δ ≤ dist x y) :\n    MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) (E ∪ F) =\n      MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) E +\n        MeasureTheory.OuterMeasure.measureOf (MeasureTheory.volume.toOuterMeasure) F := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: MeasureTheory.inducedOuterMeasure_union_of_false_of_nonempty_inter\ntheorem MeasureTheory.inducedOuterMeasure_union_of_false_of_nonempty_inter {s t : Set α} (h : ∀ u, (s ∩ u).Nonempty → (t ∩ u).Nonempty → ¬P u) :\n  inducedOuterMeasure m P0 m0 (s ∪ t) = inducedOuterMeasure m P0 m0 s + inducedOuterMeasure m P0 m0 t\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: measureReal_union'\ntheorem measureReal_union' (hd : Disjoint s₁ s₂) (h : MeasurableSet s₁)\n    (h₁ : μ s₁ ≠ ∞"
+    },
+    "MSC-180/40_003": {
+      "header": "import Mathlib\n\nopen Real Filter",
+      "formal_statement": "theorem convergence_of_log_series {a b : ℝ} (ha : a > 0) (hb : b > 1) :\n    Summable (fun n : ℕ => (Real.log (n + 1)) ^ a / (n + 1) ^ b) := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: LSeries.summable_real_of_abscissaOfAbsConv_lt\ntheorem LSeries.summable_real_of_abscissaOfAbsConv_lt {f : ℕ → ℝ} {x : ℝ} (h : abscissaOfAbsConv (f ·) < x) : Summable fun n : ℕ ↦ f n / (n : ℝ) ^ x\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: Real.hasSum_log_one_add_inv\ntheorem Real.hasSum_log_one_add_inv {a : ℝ} (h : 0 < a) :\n  HasSum (fun k : ℕ => (2 : ℝ) * (1 / (2 * k + 1)) * (1 / (2 * a + 1)) ^ (2 * k + 1)) (log (1 + a⁻¹))"
+    },
+    "MSC-180/52_002": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem diameter_achieved_by_hull_vertices {n : ℕ} {S : Set (EuclideanSpace ℝ (Fin n))}\n    (h_finite : Set.Finite S) (h_nonempty : S.Nonempty) :\n    ∃ x ∈ (convexHull ℝ S).extremePoints ℝ, ∃ y ∈ (convexHull ℝ S).extremePoints ℝ,\n      dist x y = Metric.diam S := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: convexHull_diam\ntheorem convexHull_diam (s : Set E) : Metric.diam (convexHull ℝ s) = Metric.diam s\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: convexHull_exists_dist_ge\ntheorem convexHull_exists_dist_ge {s : Set E} {x : E} (hx : x ∈ convexHull ℝ s) (y : E) : ∃ x' ∈ s, dist x y ≤ dist x' y"
+    },
+    "MSC-180/60_002": {
+      "header": "import Mathlib\n\nopen scoped BigOperators",
+      "formal_statement": "theorem weierstrass_approximation (f : ℝ → ℝ) (hf : ContinuousOn f (Set.Icc 0 1))\n    (ε : ℝ) (hε : ε > 0) :\n    ∃ (B : Polynomial ℝ), ∀ x ∈ Set.Icc 0 1, |B.eval x - f x| ≤ ε := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: exists_polynomial_near_of_continuousOn\ntheorem exists_polynomial_near_of_continuousOn (a b : ℝ) (f : ℝ → ℝ) (c : ContinuousOn f (Set.Icc a b)) (ε : ℝ) (pos : 0 < ε) :\n  ∃ p : ℝ[X], ∀ x ∈ Set.Icc a b, |p.eval x - f x| < ε\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: exists_polynomial_near_continuousMap\ntheorem exists_polynomial_near_continuousMap (a b : ℝ) (f : C(Set.Icc a b, ℝ)) (ε : ℝ) (pos : 0 < ε) : ∃ p : ℝ[X], ‖p.toContinuousMapOn _ - f‖ < ε"
+    },
+    "MSC-180/65_001": {
+      "header": "import Mathlib\n\nopen Set",
+      "formal_statement": "theorem unique_root_of_nonzero_deriv {a b : ℝ} (hab : a < b) (f : ℝ → ℝ)\n    (hf : ContinuousOn f (Icc a b))\n    (hderiv : ∀ x ∈ Ioo a b, DifferentiableAt ℝ f x)\n    (hnonzero : ∀ x ∈ Ioo a b, deriv f x ≠ 0) :\n    ∀ (p q : ℝ), p ∈ Icc a b → q ∈ Icc a b → f p = 0 → f q = 0 → p = q := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: exists_deriv_eq_zero\ntheorem exists_deriv_eq_zero (hab : a < b) (hfc : ContinuousOn f (Icc a b)) (hfI : f a = f b) : ∃ c ∈ Ioo a b, deriv f c = 0\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: exists_hasDerivAt_eq_zero\ntheorem exists_hasDerivAt_eq_zero (hab : a < b) (hfc : ContinuousOn f (Icc a b)) (hfI : f a = f b) (hff' : ∀ x ∈ Ioo a b, HasDerivAt f (f' x) x) :\n  ∃ c ∈ Ioo a b, f' c = 0"
+    },
+    "MSC-180/65_003": {
+      "header": "import Mathlib\n\nopen Metric Set NNReal",
+      "formal_statement": "theorem lipschitz_from_bounded_deriv {f : ℝ → ℝ} {a b : ℝ} {L : ℝ≥0} (hab : a ≤ b)\n    (hderiv : ∀ x ∈ Icc a b, DifferentiableAt ℝ f x)\n    (hbounded : ∀ x ∈ Icc a b, ‖deriv f x‖ ≤ L) :\n    LipschitzOnWith L f (Icc a b) := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: norm_image_sub_le_of_norm_deriv_le_segment\ntheorem norm_image_sub_le_of_norm_deriv_le_segment {C : ℝ} (hf : DifferentiableOn ℝ f (Icc a b)) (bound : ∀ x ∈ Ico a b, ‖derivWithin f (Icc a b) x‖ ≤ C) :\n  ∀ x ∈ Icc a b, ‖f x - f a‖ ≤ C * (x - a)\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: Convex.lipschitzOnWith_of_nnnorm_deriv_le\ntheorem Convex.lipschitzOnWith_of_nnnorm_deriv_le {C : ℝ≥0} (hf : ∀ x ∈ s, DifferentiableAt 𝕜 f x) (bound : ∀ x ∈ s, ‖deriv f x‖₊ ≤ C) (hs : Convex ℝ s) :\n  LipschitzOnWith C f s"
+    },
+    "MSC-180/68_002": {
+      "header": "import Mathlib",
+      "formal_statement": "theorem bezout_identity (a b : ℤ) : ∃ s t : ℤ, s * a + t * b = Int.gcd a b := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: Int.gcd_eq_gcd_ab\ntheorem Int.gcd_eq_gcd_ab : ∀ x y : ℤ, (gcd x y : ℤ) = x * gcdA x y + y * gcdB x y | (m : ℕ), (n : ℕ) => Nat.gcd_eq_gcd_ab _ _\n  | (m : ℕ), -[n+1] =>\n    show (_ : ℤ) = _ + -(n + 1) * -_ by rw [Int.neg_mul_neg]; apply Nat.gcd_eq_gcd_ab\n  | -[m+1], (n : ℕ) =>\n    show (_ : ℤ) = -(m + 1) * -_ + _ by rw [Int.neg_mul_neg]; apply Nat.gcd_eq_gcd_ab\n  | -[m+1], -[n+1] =>\n    show (_ : ℤ) = -(m + 1) * -_ + -(n + 1) * -_ by\n      rw [Int.neg_mul_neg, Int.neg_mul_neg]\n      apply Nat.gcd_eq_gcd_ab\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: Nat.gcd_eq_gcd_ab\ntheorem Nat.gcd_eq_gcd_ab : (gcd x y : ℤ) = x * gcdA x y + y * gcdB x y"
+    },
+    "MSC-180/90_001": {
+      "header": "import Mathlib\n\nopen Metric Set",
+      "formal_statement": "theorem euclidean_ball_convex {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]\n    (c : E) (r : ℝ) (hr : 0 ≤ r) :\n    Convex ℝ (ball c r) := by\n  sorry",
+      "theorem_hint": "-- this theorem might be useful in the proof of the problem\n-- Use as: convex_ball\ntheorem convex_ball (a : E) (r : ℝ) : Convex ℝ (Metric.ball a r)\n\n-- this theorem might be useful in the proof of the problem\n-- Use as: convex_closedBall\ntheorem convex_closedBall (a : E) (r : ℝ) : Convex ℝ (Metric.closedBall a r)"
+    }
+  }
+}
