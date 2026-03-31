@@ -1,0 +1,197 @@
+{
+  "baseline_label": "base",
+  "candidate_label": "iterative_rag_pass2",
+  "baseline_path": "rag_experiments/outputs/msc180/v2_nohint/20260313_msc180-v2-nohint_base_deepseekv2_7b_lean4-15_verified.json",
+  "candidate_path": "rag_experiments/outputs/msc180/v2_nohint/20260330_msc180-v2-nohint_iterative-rag-pass2_base_deepseekv2_7b_lean4-15_verified.json",
+  "baseline": {
+    "attempts_total": 400,
+    "attempts_success": 77,
+    "attempt_pass_rate": 0.1925,
+    "attempts_with_unknown": 111,
+    "unknown_attempt_rate": 0.2775,
+    "total_unknown_occurrences": 194,
+    "failed_attempts": 323,
+    "unknown_among_failed_rate": 0.34365325077399383,
+    "problems_total": 20,
+    "problems_solved": 6,
+    "problem_pass_rate": 0.3,
+    "per_problem_successes": {
+      "no-hint/MSC-180_05_003": 0,
+      "no-hint/MSC-180_08_001": 0,
+      "no-hint/MSC-180_08_002": 0,
+      "no-hint/MSC-180_08_003": 0,
+      "no-hint/MSC-180_12_001": 0,
+      "no-hint/MSC-180_12_002": 0,
+      "no-hint/MSC-180_12_003": 16,
+      "no-hint/MSC-180_14_001": 14,
+      "no-hint/MSC-180_14_003": 0,
+      "no-hint/MSC-180_15_003": 0,
+      "no-hint/MSC-180_20_001": 19,
+      "no-hint/MSC-180_26_002": 19,
+      "no-hint/MSC-180_28_003": 3,
+      "no-hint/MSC-180_40_003": 0,
+      "no-hint/MSC-180_52_002": 0,
+      "no-hint/MSC-180_60_002": 0,
+      "no-hint/MSC-180_65_001": 0,
+      "no-hint/MSC-180_65_003": 0,
+      "no-hint/MSC-180_68_002": 6,
+      "no-hint/MSC-180_90_001": 0
+    },
+    "per_problem_attempts": {
+      "no-hint/MSC-180_05_003": 20,
+      "no-hint/MSC-180_08_001": 20,
+      "no-hint/MSC-180_08_002": 20,
+      "no-hint/MSC-180_08_003": 20,
+      "no-hint/MSC-180_12_001": 20,
+      "no-hint/MSC-180_12_002": 20,
+      "no-hint/MSC-180_12_003": 20,
+      "no-hint/MSC-180_14_001": 20,
+      "no-hint/MSC-180_14_003": 20,
+      "no-hint/MSC-180_15_003": 20,
+      "no-hint/MSC-180_20_001": 20,
+      "no-hint/MSC-180_26_002": 20,
+      "no-hint/MSC-180_28_003": 20,
+      "no-hint/MSC-180_40_003": 20,
+      "no-hint/MSC-180_52_002": 20,
+      "no-hint/MSC-180_60_002": 20,
+      "no-hint/MSC-180_65_001": 20,
+      "no-hint/MSC-180_65_003": 20,
+      "no-hint/MSC-180_68_002": 20,
+      "no-hint/MSC-180_90_001": 20
+    }
+  },
+  "candidate": {
+    "attempts_total": 400,
+    "attempts_success": 87,
+    "attempt_pass_rate": 0.2175,
+    "attempts_with_unknown": 86,
+    "unknown_attempt_rate": 0.215,
+    "total_unknown_occurrences": 128,
+    "failed_attempts": 313,
+    "unknown_among_failed_rate": 0.2747603833865815,
+    "problems_total": 20,
+    "problems_solved": 11,
+    "problem_pass_rate": 0.55,
+    "per_problem_successes": {
+      "no-hint/MSC-180_05_003": 0,
+      "no-hint/MSC-180_08_001": 9,
+      "no-hint/MSC-180_08_002": 5,
+      "no-hint/MSC-180_08_003": 0,
+      "no-hint/MSC-180_12_001": 0,
+      "no-hint/MSC-180_12_002": 0,
+      "no-hint/MSC-180_12_003": 7,
+      "no-hint/MSC-180_14_001": 19,
+      "no-hint/MSC-180_14_003": 1,
+      "no-hint/MSC-180_15_003": 0,
+      "no-hint/MSC-180_20_001": 19,
+      "no-hint/MSC-180_26_002": 18,
+      "no-hint/MSC-180_28_003": 0,
+      "no-hint/MSC-180_40_003": 0,
+      "no-hint/MSC-180_52_002": 3,
+      "no-hint/MSC-180_60_002": 1,
+      "no-hint/MSC-180_65_001": 0,
+      "no-hint/MSC-180_65_003": 0,
+      "no-hint/MSC-180_68_002": 3,
+      "no-hint/MSC-180_90_001": 2
+    },
+    "per_problem_attempts": {
+      "no-hint/MSC-180_05_003": 20,
+      "no-hint/MSC-180_08_001": 20,
+      "no-hint/MSC-180_08_002": 20,
+      "no-hint/MSC-180_08_003": 20,
+      "no-hint/MSC-180_12_001": 20,
+      "no-hint/MSC-180_12_002": 20,
+      "no-hint/MSC-180_12_003": 20,
+      "no-hint/MSC-180_14_001": 20,
+      "no-hint/MSC-180_14_003": 20,
+      "no-hint/MSC-180_15_003": 20,
+      "no-hint/MSC-180_20_001": 20,
+      "no-hint/MSC-180_26_002": 20,
+      "no-hint/MSC-180_28_003": 20,
+      "no-hint/MSC-180_40_003": 20,
+      "no-hint/MSC-180_52_002": 20,
+      "no-hint/MSC-180_60_002": 20,
+      "no-hint/MSC-180_65_001": 20,
+      "no-hint/MSC-180_65_003": 20,
+      "no-hint/MSC-180_68_002": 20,
+      "no-hint/MSC-180_90_001": 20
+    }
+  },
+  "delta": {
+    "attempt_successes": 10,
+    "problems_solved": 5,
+    "attempts_with_unknown": -25,
+    "total_unknown_occurrences": -66
+  },
+  "improved_problems": [
+    {
+      "problem": "no-hint/MSC-180_08_001",
+      "baseline_successes": 0,
+      "candidate_successes": 9,
+      "delta": 9
+    },
+    {
+      "problem": "no-hint/MSC-180_08_002",
+      "baseline_successes": 0,
+      "candidate_successes": 5,
+      "delta": 5
+    },
+    {
+      "problem": "no-hint/MSC-180_14_001",
+      "baseline_successes": 14,
+      "candidate_successes": 19,
+      "delta": 5
+    },
+    {
+      "problem": "no-hint/MSC-180_52_002",
+      "baseline_successes": 0,
+      "candidate_successes": 3,
+      "delta": 3
+    },
+    {
+      "problem": "no-hint/MSC-180_90_001",
+      "baseline_successes": 0,
+      "candidate_successes": 2,
+      "delta": 2
+    },
+    {
+      "problem": "no-hint/MSC-180_14_003",
+      "baseline_successes": 0,
+      "candidate_successes": 1,
+      "delta": 1
+    },
+    {
+      "problem": "no-hint/MSC-180_60_002",
+      "baseline_successes": 0,
+      "candidate_successes": 1,
+      "delta": 1
+    }
+  ],
+  "regressed_problems": [
+    {
+      "problem": "no-hint/MSC-180_12_003",
+      "baseline_successes": 16,
+      "candidate_successes": 7,
+      "delta": -9
+    },
+    {
+      "problem": "no-hint/MSC-180_28_003",
+      "baseline_successes": 3,
+      "candidate_successes": 0,
+      "delta": -3
+    },
+    {
+      "problem": "no-hint/MSC-180_68_002",
+      "baseline_successes": 6,
+      "candidate_successes": 3,
+      "delta": -3
+    },
+    {
+      "problem": "no-hint/MSC-180_26_002",
+      "baseline_successes": 19,
+      "candidate_successes": 18,
+      "delta": -1
+    }
+  ],
+  "unchanged_problem_count": 9
+}
