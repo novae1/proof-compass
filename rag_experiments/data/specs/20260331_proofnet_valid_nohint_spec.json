@@ -1,0 +1,929 @@
+{
+  "problems": {
+    "exercise_1_13a": {
+      "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\nopen scoped BigOperators Topology",
+      "formal_statement": "theorem exercise_1_13a {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, (f z).re = c) :\n  f a = f b :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_13c": {
+      "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology",
+      "formal_statement": "theorem exercise_1_13c {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, abs (f z) = c) :\n  f a = f b :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_19b": {
+      "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology",
+      "formal_statement": "theorem exercise_1_19b (z : ℂ) (hz : abs z = 1) (s : ℕ → ℂ)\n    (h : s = (λ n => ∑ i in (range n), i * z / i ^ 2)) :\n    ∃ y, Tendsto s atTop (𝓝 y) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_26": {
+      "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology",
+      "formal_statement": "theorem exercise_1_26\n  (f F₁ F₂ : ℂ → ℂ) (Ω : Set ℂ) (h1 : IsOpen Ω) (h2 : IsConnected Ω)\n  (hF₁ : DifferentiableOn ℂ F₁ Ω) (hF₂ : DifferentiableOn ℂ F₂ Ω)\n  (hdF₁ : ∀ x ∈ Ω, deriv F₁ x = f x) (hdF₂ : ∀ x ∈ Ω, deriv F₂ x = f x)\n  : ∃ c : ℂ, ∀ x, F₁ x = F₂ x + c :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_9": {
+      "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology",
+      "formal_statement": "theorem exercise_2_9\n  {f : ℂ → ℂ} (Ω : Set ℂ) (b : Bornology.IsBounded Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (z : Ω) (hz : f z = z) (h'z : deriv f z = 1) :\n  ∃ (f_lin : ℂ →L[ℂ] ℂ), ∀ x ∈ Ω, f x = f_lin x :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_3__1": {
+      "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology",
+      "formal_statement": "theorem exercise_3_3 (a : ℝ) (ha : 0 < a) :\n    Tendsto (λ y => ∫ x in -y..y, Real.cos x / (x ^ 2 + a ^ 2))\n    atTop (𝓝 (Real.pi * (Real.exp (-a) / a))) :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_9": {
+      "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology",
+      "formal_statement": "theorem exercise_3_9 : ∫ x in (0 : ℝ)..(1 : ℝ),\n    Real.log (Real.sin (Real.pi * x)) = - Real.log 2 :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_22__1": {
+      "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology",
+      "formal_statement": "theorem exercise_3_22 (D : Set ℂ) (hD : D = ball 0 1) (f : ℂ → ℂ)\n    (hf : DifferentiableOn ℂ f D) (hfc : ContinuousOn f (closure D)) :\n    ¬ ∀ z ∈ (sphere (0 : ℂ) 1), f z = 1 / z :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_1a": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_1a\n  (x : ℝ) (y : ℚ) :\n  ( Irrational x ) -> Irrational ( x + y ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_2": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_2 : ¬ ∃ (x : ℚ), ( x ^ 2 = 12 ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_5": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_5 (A minus_A : Set ℝ) (hA : A.Nonempty)\n  (hA_bdd_below : BddBelow A) (hminus_A : minus_A = {x | -x ∈ A}) :\n  Inf A = Sup minus_A :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_11a": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_11a (z : ℂ) :\n  ∃ (r : ℝ) (w : ℂ), abs w = 1 ∧ z = r * w :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_13": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_13 (x y : ℂ) :\n  |(abs x) - (abs y)| ≤ abs (x - y) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_16a": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_16a\n  (n : ℕ)\n  (d r : ℝ)\n  (x y z : EuclideanSpace ℝ (Fin n)) -- R^n\n  (h₁ : n ≥ 3)\n  (h₂ : ‖x - y‖ = d)\n  (h₃ : d > 0)\n  (h₄ : r > 0)\n  (h₅ : 2 * r > d)\n  : Set.Infinite {z : EuclideanSpace ℝ (Fin n) | ‖z - x‖ = r ∧ ‖z - y‖ = r} :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_18a": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_18a\n  (n : ℕ)\n  (h : n > 1)\n  (x : EuclideanSpace ℝ (Fin n)) -- R^n\n  : ∃ (y : EuclideanSpace ℝ (Fin n)), y ≠ 0 ∧ (inner x y) = (0 : ℝ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_19": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_19\n  (n : ℕ)\n  (a b c x : EuclideanSpace ℝ (Fin n))\n  (r : ℝ)\n  (h₁ : r > 0)\n  (h₂ : 3 • c = 4 • b - a)\n  (h₃ : 3 * r = 2 * ‖x - b‖)\n  : ‖x - a‖ = 2 * ‖x - b‖ ↔ ‖x - c‖ = r :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_24": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_24 {X : Type*} [MetricSpace X]\n  (hX : ∀ (A : Set X), Infinite A → ∃ (x : X), x ∈ closure A) :\n  SeparableSpace X :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_27a": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_27a (k : ℕ) (E P : Set (EuclideanSpace ℝ (Fin k)))\n  (hE : E.Nonempty ∧ ¬ Set.Countable E)\n  (hP : P = {x | ∀ U ∈ 𝓝 x, ¬ Set.Countable (P ∩ E)}) :\n  IsClosed P ∧ P = {x | ClusterPt x (𝓟 P)} :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_28": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_28 (X : Type*) [MetricSpace X] [SeparableSpace X]\n  (A : Set X) (hA : IsClosed A) :\n  ∃ P₁ P₂ : Set X, A = P₁ ∪ P₂ ∧\n  IsClosed P₁ ∧ P₁ = {x | ClusterPt x (𝓟 P₁)} ∧\n  Set.Countable P₂ :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_1a": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_1a\n  (f : ℕ → ℝ)\n  (h : ∃ (a : ℝ), Tendsto (λ (n : ℕ) => f n) atTop (𝓝 a))\n  : ∃ (a : ℝ), Tendsto (λ (n : ℕ) => |f n|) atTop (𝓝 a) :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_3__2": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\nnoncomputable def f : ℕ → ℝ\n| 0 => sqrt 2\n| (n + 1) => sqrt (2 + sqrt (f n))",
+      "formal_statement": "theorem exercise_3_3\n  : ∃ (x : ℝ), Tendsto f atTop (𝓝 x) ∧ ∀ n, f n < 2 :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_6a": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators\n\nnoncomputable section\n\ndef g (n : ℕ) : ℝ := sqrt (n + 1) - sqrt n",
+      "formal_statement": "theorem exercise_3_6a\n: Tendsto (λ (n : ℕ) => (∑ i in range n, g i)) atTop atTop :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_8": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_8\n  (a b : ℕ → ℝ)\n  (h1 : ∃ y, (Tendsto (λ n => (∑ i in (range n), a i)) atTop (𝓝 y)))\n  (h2 : Monotone b)\n  (h3 : Bornology.IsBounded (Set.range b)) :\n  ∃ y, Tendsto (λ n => (∑ i in (range n), (a i) * (b i))) atTop (𝓝 y) :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_20": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_20 {X : Type*} [MetricSpace X]\n  (p : ℕ → X) (l : ℕ) (r : X)\n  (hp : CauchySeq p)\n  (hpl : Tendsto (λ n => p (l * n)) atTop (𝓝 r)) :\n  Tendsto p atTop (𝓝 r) :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_22__2": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_22 (X : Type*) [MetricSpace X] [CompleteSpace X]\n  (G : ℕ → Set X) (hG : ∀ n, IsOpen (G n) ∧ Dense (G n)) :\n  ∃ x, ∀ n, x ∈ G n :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_2a": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_2a\n  {α : Type} [MetricSpace α]\n  {β : Type} [MetricSpace β]\n  (f : α → β)\n  (h₁ : Continuous f)\n  : ∀ (x : Set α), f '' (closure x) ⊆ closure (f '' x) :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_4a": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_4a\n  {α : Type} [MetricSpace α]\n  {β : Type} [MetricSpace β]\n  (f : α → β)\n  (s : Set α)\n  (h₁ : Continuous f)\n  (h₂ : Dense s)\n  : f '' Set.univ ⊆ closure (f '' s) :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5a": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_5a\n  (f : ℝ → ℝ)\n  (E : Set ℝ)\n  (h₁ : IsClosed E)\n  (h₂ : ContinuousOn f E)\n  : ∃ (g : ℝ → ℝ), Continuous g ∧ ∀ x ∈ E, f x = g x :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_6": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_6\n  (f : ℝ → ℝ)\n  (E : Set ℝ)\n  (G : Set (ℝ × ℝ))\n  (h₁ : IsCompact E)\n  (h₂ : G = {(x, f x) | x ∈ E})\n  : ContinuousOn f E ↔ IsCompact G :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_8b": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_8b\n  (E : Set ℝ) :\n  ∃ f : ℝ → ℝ, UniformContinuousOn f E ∧ ¬ Bornology.IsBounded (Set.image f E) :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_12": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_12\n  {α β γ : Type*} [UniformSpace α] [UniformSpace β] [UniformSpace γ]\n  {f : α → β} {g : β → γ}\n  (hf : UniformContinuous f) (hg : UniformContinuous g) :\n  UniformContinuous (g ∘ f) :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_19": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_19\n  {f : ℝ → ℝ} (hf : ∀ a b c, a < b → f a < c → c < f b → ∃ x, a < x ∧ x < b ∧ f x = c)\n  (hg : ∀ r : ℚ, IsClosed {x | f x = r}) : Continuous f :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_24": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_24 {f : ℝ → ℝ}\n  (hf : Continuous f) (a b : ℝ) (hab : a < b)\n  (h : ∀ x y : ℝ, a < x → x < b → a < y → y < b → f ((x + y) / 2) ≤ (f x + f y) / 2) :\n  ConvexOn ℝ (Set.Ioo a b) f :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_2": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_2 {a b : ℝ}\n  {f g : ℝ → ℝ} (hf : ∀ x ∈ Set.Ioo a b, deriv f x > 0)\n  (hg : g = f⁻¹)\n  (hg_diff : DifferentiableOn ℝ g (Set.Ioo a b)) :\n  DifferentiableOn ℝ g (Set.Ioo a b) ∧\n  ∀ x ∈ Set.Ioo a b, deriv g x = 1 / deriv f x :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_4__1": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_4 {n : ℕ}\n  (C : ℕ → ℝ)\n  (hC : ∑ i in (range (n + 1)), (C i) / (i + 1) = 0) :\n  ∃ x, x ∈ (Set.Icc (0 : ℝ) 1) ∧ ∑ i in range (n + 1), (C i) * (x^i) = 0 :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_6": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_6\n  {f : ℝ → ℝ}\n  (hf1 : Continuous f)\n  (hf2 : ∀ x, DifferentiableAt ℝ f x)\n  (hf3 : f 0 = 0)\n  (hf4 : Monotone (deriv f)) :\n  MonotoneOn (λ x => f x / x) (Set.Ioi 0) :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_15": {
+      "header": "import Mathlib\n\nopen Topology Filter Real Complex TopologicalSpace Finset\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_15 {f : ℝ → ℝ} (a M0 M1 M2 : ℝ)\n  (hf' : DifferentiableOn ℝ f (Set.Ici a))\n  (hf'' : DifferentiableOn ℝ (deriv f) (Set.Ici a))\n  (hM0 : M0 = sSup {(|f x|) | x ∈ (Set.Ici a)})\n  (hM1 : M1 = sSup {(|deriv f x|) | x ∈ (Set.Ici a)})\n  (hM2 : M2 = sSup {(|deriv (deriv f) x|) | x ∈ (Set.Ici a)}) :\n  (M1 ^ 2) ≤ 4 * M0 * M2 :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_1_21": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "def exercise_2_1_21 (G : Type*) [Group G] [Fintype G]\n  (hG : card G = 5) :\n  CommGroup G :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_1_27": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_1_27 {G : Type*} [Group G]\n  [Fintype G] : ∃ (m : ℕ), ∀ (a : G), a ^ m = 1 :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_2_5": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "def exercise_2_2_5 {G : Type*} [Group G]\n  (h : ∀ (a b : G), (a * b) ^ 3 = a ^ 3 * b ^ 3 ∧ (a * b) ^ 5 = a ^ 5 * b ^ 5) :\n  CommGroup G :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_3_17": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_3_17 {G : Type*} [Mul G] [Group G] (a x : G) :\n  centralizer {x⁻¹*a*x} =\n  (λ g : G => x⁻¹*g*x) '' (centralizer {a}) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_4_36": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_4_36 {a n : ℕ} (h : a > 1) :\n  n ∣ (a ^ n - 1).totient :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_5_30": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_5_30 {G : Type*} [Group G] [Fintype G]\n  {p m : ℕ} (hp : Nat.Prime p) (hp1 : ¬ p ∣ m) (hG : card G = p*m)\n  {H : Subgroup G} [Fintype H] [H.Normal] (hH : card H = p):\n  Subgroup.Characteristic H :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_5_37": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "def exercise_2_5_37 (G : Type*) [Group G] [Fintype G]\n  (hG : card G = 6) (hG' : IsEmpty (CommGroup G)) :\n  G ≃* Equiv.Perm (Fin 3) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_5_44": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_5_44 {G : Type*} [Group G] [Fintype G] {p : ℕ}\n  (hp : Nat.Prime p) (hG : card G = p^2) :\n  ∃ (N : Subgroup G) (Fin : Fintype N), @card N Fin = p ∧ N.Normal :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_6_15": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_6_15 {G : Type*} [CommGroup G] {m n : ℕ}\n  (hm : ∃ (g : G), orderOf g = m)\n  (hn : ∃ (g : G), orderOf g = n)\n  (hmn : m.Coprime n) :\n  ∃ (g : G), orderOf g = m * n :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_8_12": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "def exercise_2_8_12 {G H : Type*} [Fintype G] [Fintype H]\n  [Group G] [Group H] (hG : card G = 21) (hH : card H = 21)\n  (hG1 : IsEmpty (CommGroup G)) (hH1 : IsEmpty (CommGroup H)) :\n  G ≃* H :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_9_2": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_9_2 {G H : Type*} [Fintype G] [Fintype H] [Group G]\n  [Group H] (hG : IsCyclic G) (hH : IsCyclic H) :\n  IsCyclic (G × H) ↔ (card G).Coprime (card H) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_11_6": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_11_6 {G : Type*} [Group G] {p : ℕ} (hp : Nat.Prime p)\n  {P : Sylow p G} (hP : P.Normal) :\n  ∀ (Q : Sylow p G), P = Q :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_11_22": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_11_22 {p : ℕ} {n : ℕ} {G : Type*} [Fintype G]\n  [Group G] (hp : Nat.Prime p) (hG : card G = p ^ n) {K : Subgroup G}\n  [Fintype K] (hK : card K = p ^ (n-1)) :\n  K.Normal :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_1_19": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_1_19 : Infinite {x : Quaternion ℝ | x^2 = -1} :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_2_5": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "def exercise_4_2_5 {R : Type*} [Ring R]\n  (h : ∀ x : R, x ^ 3 = x) : CommRing R :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_2_9": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_2_9 {p : ℕ} (hp : Nat.Prime p) (hp1 : Odd p) :\n  ∃ (a b : ℤ), (a / b : ℚ) = ∑ i in Finset.range p, 1 / (i + 1) → ↑p ∣ a :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_3_25": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_3_25 (I : Ideal (Matrix (Fin 2) (Fin 2) ℝ)) :\n  I = ⊥ ∨ I = ⊤ :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5_16__1": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_5_16 {p n: ℕ} (hp : Nat.Prime p)\n  {q : Polynomial (ZMod p)} (hq : Irreducible q) (hn : q.degree = n) :\n  ∃ is_fin : Fintype $ Polynomial (ZMod p) ⧸ span ({q} : Set (Polynomial $ ZMod p)),\n  @card (Polynomial (ZMod p) ⧸ span {q}) is_fin = p ^ n ∧\n  IsField (Polynomial $ ZMod p) :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5_25": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_5_25 {p : ℕ} (hp : Nat.Prime p) :\n  Irreducible (∑ i : Finset.range p, X ^ p : Polynomial ℚ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_6_3": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_6_3 :\n  Infinite {a : ℤ | Irreducible (X^7 + 15*X^2 - 30*X + (a : Polynomial ℚ) : Polynomial ℚ)} :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_2_20": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_2_20 {F V ι: Type*} [Infinite F] [Field F]\n  [AddCommGroup V] [Module F V] {u : ι → Submodule F V}\n  (hu : ∀ i : ι, u i ≠ ⊤) :\n  (⋃ i : ι, (u i : Set V)) ≠ ⊤ :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_3_10": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_3_10 : IsAlgebraic ℚ (cos (Real.pi / 180)) :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_5_2": {
+      "header": "import Mathlib\n\nopen Fintype Set Real Ideal Polynomial\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_5_2 : Irreducible (X^3 - 3*X - 1 : Polynomial ℚ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_12a": {
+      "header": "import Mathlib\n\nopen Filter Real Function\nopen scoped Topology",
+      "formal_statement": "theorem exercise_2_12a (f : ℕ → ℕ) (p : ℕ → ℝ) (a : ℝ)\n  (hf : Injective f) (hp : Tendsto p atTop (𝓝 a)) :\n  Tendsto (λ n => p (f n)) atTop (𝓝 a) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_29": {
+      "header": "import Mathlib\n\nopen Filter Real Function\nopen scoped Topology",
+      "formal_statement": "theorem exercise_2_29 (M : Type*) [MetricSpace M]\n  (O C : Set (Set M))\n  (hO : O = {s | IsOpen s})\n  (hC : C = {s | IsClosed s}) :\n  ∃ f : O → C, Bijective f :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_41": {
+      "header": "import Mathlib\n\nopen Filter Real Function\nopen scoped Topology",
+      "formal_statement": "theorem exercise_2_41 (m : ℕ) {X : Type*} [NormedSpace ℝ ((Fin m) → ℝ)] :\n  IsCompact (Metric.closedBall 0 1) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_57": {
+      "header": "import Mathlib\n\nopen Filter Real Function\nopen scoped Topology",
+      "formal_statement": "theorem exercise_2_57 {X : Type*} [TopologicalSpace X]\n  : ∃ (S : Set X), IsConnected S ∧ ¬ IsConnected (interior S) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_126": {
+      "header": "import Mathlib\n\nopen Filter Real Function\nopen scoped Topology",
+      "formal_statement": "theorem exercise_2_126 {E : Set ℝ}\n  (hE : ¬ Set.Countable E) : ∃ (p : ℝ), ClusterPt p (𝓟 E) :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_4": {
+      "header": "import Mathlib\n\nopen Filter Real Function\nopen scoped Topology",
+      "formal_statement": "theorem exercise_3_4 (n : ℕ) :\n  Tendsto (λ n => (sqrt (n + 1) - sqrt n)) atTop (𝓝 0) :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_63b": {
+      "header": "import Mathlib\n\nopen Filter Real Function\nopen scoped Topology",
+      "formal_statement": "theorem exercise_3_63b (p : ℝ) (f : ℕ → ℝ) (hp : p ≤ 1)\n  (h : f = λ (k : ℕ) => (1 : ℝ) / (k * (log k) ^ p)) :\n  ¬ ∃ l, Tendsto f atTop (𝓝 l) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_2_9": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_2_9 {G : Type} [Group G] {a b : G} (h : a * b = b * a) :\n    ∀ x y : closure {x| x = a ∨ x = b}, x * y = y * x :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_4_19": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_4_19 {G : Type*} [Group G] {x : G}\n  (hx : orderOf x = 2) (hx1 : ∀ y, orderOf y = 2 → y = x) :\n  x ∈ center G :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_11_3": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_11_3 {G : Type*} [Group G] [Fintype G](hG : Even (card G)) :\n  ∃ x : G, orderOf x = 2 :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_5_6": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_5_6 {K V : Type*} [Field K] [AddCommGroup V]\n  [Module K V] {S : Set V} (hS : Set.Countable S)\n  (hS1 : span K S = ⊤) {ι : Type*} (R : ι → V)\n  (hR : LinearIndependent K R) : Countable ι :=",
+      "theorem_hint": ""
+    },
+    "exercise_6_1_14": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_6_1_14 (G : Type*) [Group G]\n  (hG : IsCyclic $ G ⧸ (center G)) :\n  center G = ⊤ :=",
+      "theorem_hint": ""
+    },
+    "exercise_6_4_3": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_6_4_3 {G : Type*} [Group G] [Fintype G] {p q : ℕ}\n  (hp : Prime p) (hq : Prime q) (hG : card G = p^2 *q) :\n  IsSimpleGroup G → false :=",
+      "theorem_hint": ""
+    },
+    "exercise_6_8_1": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_6_8_1 {G : Type*} [Group G]\n  (a b : G) : closure ({a, b} : Set G) = Subgroup.closure {b*a*b^2, b*a*b^3} :=",
+      "theorem_hint": ""
+    },
+    "exercise_10_2_4": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_10_2_4 :\n  span ({2} : Set $ Polynomial ℤ) ⊓ (span {X}) =\n  span ({2 * X} : Set $ Polynomial ℤ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_10_4_6": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_10_4_6 {R : Type*} [CommRing R]\n  [NoZeroDivisors R] (I J : Ideal R) (x : ↑(I ⊓ J)) :\n  IsNilpotent ((Ideal.Quotient.mk (I*J)) x) :=",
+      "theorem_hint": ""
+    },
+    "exercise_10_7_10": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_10_7_10 {R : Type*} [Ring R]\n  (M : Ideal R) (hM : ∀ (x : R), x ∉ M → IsUnit x)\n  (hProper : ∃ x : R, x ∉ M) :\n  IsMaximal M ∧ ∀ (N : Ideal R), IsMaximal N → N = M :=",
+      "theorem_hint": ""
+    },
+    "exercise_11_4_1b": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_11_4_1b {F : Type*} [Field F] [Fintype F] (hF : card F = 2) :\n  Irreducible (12 + 6 * X + X ^ 3 : Polynomial F) :=",
+      "theorem_hint": ""
+    },
+    "exercise_11_4_6b": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_11_4_6b {F : Type*} [Field F] [Fintype F] (hF : card F = 31) :\n  Irreducible (X ^ 3 - 9 : Polynomial F) :=",
+      "theorem_hint": ""
+    },
+    "exercise_11_4_8": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_11_4_8 (p : ℕ) (hp : Prime p) (n : ℕ) :\n  -- p ∈ ℕ can be written as p ∈ ℚ[X]\n  Irreducible (X ^ n - (p : Polynomial ℚ) : Polynomial ℚ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_13_4_10": {
+      "header": "import Mathlib\n\nopen Function Fintype Subgroup Ideal Polynomial Submodule Zsqrtd\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_13_4_10\n    {p : ℕ} {hp : Nat.Prime p} (h : ∃ r : ℕ, p = 2 ^ r + 1) :\n    ∃ (k : ℕ), p = 2 ^ (2 ^ k) + 1 :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_3": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_3 {F V : Type*} [AddCommGroup V] [Field F]\n  [Module F V] {v : V} : -(-v) = v :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_6": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_6 : ∃ U : Set (ℝ × ℝ),\n  (U ≠ ∅) ∧\n  (∀ (u v : ℝ × ℝ), u ∈ U ∧ v ∈ U → u + v ∈ U) ∧\n  (∀ (u : ℝ × ℝ), u ∈ U → -u ∈ U) ∧\n  (∀ U' : Submodule ℝ (ℝ × ℝ), U ≠ ↑U') :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_8": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_8 {F V : Type*} [AddCommGroup V] [Field F]\n  [Module F V] {ι : Type*} (u : ι → Submodule F V) :\n  ∃ U : Submodule F V, (⋂ (i : ι), (u i).carrier) = ↑U :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_1__1": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_1 {F V : Type*}\n  [AddCommGroup V] [Field F] [Module F V] [FiniteDimensional F V]\n  (T : V →ₗ[F] V) (hT : finrank F V = 1) :\n  ∃ c : F, ∀ v : V, T v = c • v :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_4": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_4 (p : Polynomial ℂ) :\n  p.degree = @card (rootSet p ℂ) (rootSetFintype p ℂ) ↔\n  Disjoint\n  (@card (rootSet (derivative p) ℂ) (rootSetFintype (derivative p) ℂ))\n  (@card (rootSet p ℂ) (rootSetFintype p ℂ)) :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_4__2": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_4 {F V : Type*} [AddCommGroup V] [Field F]\n  [Module F V] (S T : V →ₗ[F] V) (hST : S ∘ T = T ∘ S) (c : F):\n  Submodule.map S (ker (T - c • LinearMap.id)) = ker (T - c • LinearMap.id) :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_12": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_12 {F V : Type*} [AddCommGroup V] [Field F]\n  [Module F V] {S : End F V}\n  (hS : ∀ v : V, ∃ c : F, v ∈ eigenspace S c) :\n  ∃ c : F, S = c • LinearMap.id :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_20": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_20 {F V : Type*} [AddCommGroup V] [Field F]\n  [Module F V] [FiniteDimensional F V] {S T : End F V}\n  (h1 : card (T.Eigenvalues) = finrank F V)\n  (h2 : ∀ v : V, ∃ c : F, v ∈ eigenspace S c ↔ ∃ c : F, v ∈ eigenspace T c) :\n  S * T = T * S :=",
+      "theorem_hint": ""
+    },
+    "exercise_6_2": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_6_2 {V : Type*} [NormedAddCommGroup V] [Module ℂ V]\n[InnerProductSpace ℂ V] (u v : V) :\n  ⟪u, v⟫_ℂ = 0 ↔ ∀ (a : ℂ), ‖u‖  ≤ ‖u + a • v‖ :=",
+      "theorem_hint": ""
+    },
+    "exercise_6_7": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_6_7 {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V] (u v : V) :\n  ⟪u, v⟫_ℂ = (‖u + v‖^2 - ‖u - v‖^2 + I*‖u + I•v‖^2 - I*‖u-I•v‖^2) / 4 :=",
+      "theorem_hint": ""
+    },
+    "exercise_6_16": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_6_16 {K V : Type*} [RCLike K] [NormedAddCommGroup V] [InnerProductSpace K V]\n  {U : Submodule K V} :\n  U.orthogonal = ⊥  ↔ U = ⊤ :=",
+      "theorem_hint": ""
+    },
+    "exercise_7_6": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_7_6 {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]\n  [FiniteDimensional ℂ V] (T : End ℂ V)\n  (hT : T * adjoint T = adjoint T * T) :\n  range T = range (adjoint T) :=",
+      "theorem_hint": ""
+    },
+    "exercise_7_10": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_7_10 {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]\n  [FiniteDimensional ℂ V] (T : End ℂ V)\n  (hT : T * adjoint T = adjoint T * T) (hT1 : T^9 = T^8) :\n  IsSelfAdjoint T ∧ T^2 = T :=",
+      "theorem_hint": ""
+    },
+    "exercise_7_14": {
+      "header": "import Mathlib\n\nopen Fintype Complex Polynomial LinearMap FiniteDimensional Module Module.End\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_7_14 {𝕜 V : Type*} [RCLike 𝕜] [NormedAddCommGroup V]\n  [InnerProductSpace 𝕜 V] [FiniteDimensional 𝕜 V]\n  {T : Module.End 𝕜 V} (hT : IsSelfAdjoint T)\n  {l : 𝕜} {ε : ℝ} (he : ε > 0) : ∃ v : V, ‖v‖= 1 ∧ (‖T v - l • v‖ < ε →\n  (∃ l' : T.Eigenvalues, ‖l - l'‖ < ε)) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_1_3": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_1_3 (n : ℤ) :\n  ∀ (a b c : ℤ), (a+b)+c ≡ a+(b+c) [ZMOD n] :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_1_5": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_1_5 (n : ℕ) (hn : 1 < n) :\n  IsEmpty (Group (ZMod n)) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_1_16": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_1_16 {G : Type*} [Group G]\n  (x : G) (hx : x ^ 2 = 1) :\n  orderOf x = 1 ∨ orderOf x = 2 :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_1_18": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_1_18 {G : Type*} [Group G]\n  (x y : G) : (x * y = y * x ↔ y⁻¹ * x * y = x) ↔ (x⁻¹ * y⁻¹ * x * y = 1) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_1_22a": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_1_22a {G : Type*} [Group G] (x g : G) :\n  orderOf x = orderOf (g⁻¹ * x * g) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_1_25": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_1_25 {G : Type*} [Group G]\n  (h : ∀ x : G, x ^ 2 = 1) : ∀ a b : G, a*b = b*a :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_1_34": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_1_34 {G : Type*} [Group G] {x : G}\n  (hx_inf : orderOf x = 0) (n m : ℤ) :\n  x ^ n ≠ x ^ m :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_6_4": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_6_4 :\n  IsEmpty (Multiplicative ℝ ≃* Multiplicative ℂ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_6_17": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_6_17 {G : Type*} [Group G] (f : G → G)\n  (hf : f = λ g => g⁻¹) :\n  ∀ x y : G, f x * f y = f (x*y) ↔ ∀ x y : G, x*y = y*x :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_1_5": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_1_5 {G : Type*} [Group G] [Fintype G]\n  (hG : card G > 2) (H : Subgroup G) [Fintype H] :\n  card H ≠ card G - 1 :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_4_4": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_4_4 {G : Type*} [Group G] (H : Subgroup G) :\n  closure ((H : Set G) \\ {1}) = ⊤ :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_4_16b": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_4_16b {n : ℕ} {hn : n ≠ 0}\n  {R : Subgroup (DihedralGroup n)}\n  (hR : R = Subgroup.closure {DihedralGroup.r 1}) :\n  R ≠ ⊤ ∧\n  ∀ K : Subgroup (DihedralGroup n), R ≤ K → K = R ∨ K = ⊤ :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_1_3a": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_1_3a {A : Type*} [CommGroup A] (B : Subgroup A) :\n  ∀ a b : A ⧸ B, a*b = b*a :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_1_22b": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_1_22b {G : Type*} [Group G] (I : Type*)\n  (H : I → Subgroup G) (hH : ∀ i : I, Normal (H i)) :\n  Normal (⨅ (i : I), H i) :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_2_11": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_2_11 {G : Type*} [Group G] {H K : Subgroup G}\n  (hHK : H ≤ K) :\n  H.index = K.index * H.relindex K :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_2_21a": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_2_21a (H : AddSubgroup ℚ) (hH : H ≠ ⊤) : H.index = 0 :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_4_1": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_4_1 (G : Type*) [CommGroup G] [IsSimpleGroup G] :\n    IsCyclic G ∧ ∃ G_fin : Fintype G, Nat.Prime (@card G G_fin) :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_4_5a": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_4_5a {G : Type*} [Group G]\n  (H : Subgroup G) [IsSolvable G] : IsSolvable H :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_4_11": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_4_11 {G : Type*} [Group G] [IsSolvable G]\n  {H : Subgroup G} (hH : H ≠ ⊥) [H.Normal] :\n  ∃ A ≤ H, A.Normal ∧ ∀ a b : A, a*b = b*a :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_3_26": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_3_26 {α : Type*} [Fintype α] (ha : card α > 1)\n  (h_tran : ∀ a b: α, ∃ σ : Equiv.Perm α, σ a = b) :\n  ∃ σ : Equiv.Perm α, ∀ a : α, σ a ≠ a :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_2_14": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_2_14 {G : Type*} [Fintype G] [Group G]\n  (hG : ¬ (card G).Prime) (hG1 : ∀ k : ℕ, k ∣ card G →\n  ∃ (H : Subgroup G) (fH : Fintype H), @card H fH = k) :\n  ¬ IsSimpleGroup G :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_4_6a": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_4_6a {G : Type*} [Group G] (H : Subgroup G)\n  [Characteristic H] : Normal H :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_4_7": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_4_7 {G : Type*} [Group G] {H : Subgroup G} [Fintype H]\n  (hH : ∀ (K : Subgroup G) (fK : Fintype K), card H = @card K fK → H = K) :\n  H.Characteristic :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5_1a": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_5_1a {p : ℕ} {G : Type*} [Group G]\n  {P : Subgroup G} (hP : IsPGroup p P) (H : Subgroup G)\n  (hH : P ≤ H) : IsPGroup p H :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5_14": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_5_14 {G : Type*} [Group G] [Fintype G]\n  (hG : card G = 312) :\n  ∃ (p : ℕ) (P : Sylow p G), P.Normal :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5_16__2": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_5_16 {p q r : ℕ} {G : Type*} [Group G]\n  [Fintype G]  (hpqr : p < q ∧ q < r)\n  (hpqr1 : p.Prime ∧ q.Prime ∧ r.Prime)(hG : card G = p*q*r) :\n  Nonempty (Sylow p G) ∨ Nonempty (Sylow q G) ∨ Nonempty (Sylow r G) :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5_18": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_5_18 {G : Type*} [Fintype G] [Group G]\n  (hG : card G = 200) :\n  ∃ N : Sylow 5 G, N.Normal :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5_20": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_5_20 {G : Type*} [Fintype G] [Group G]\n  (hG : card G = 1365) : ¬ IsSimpleGroup G :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5_22": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_5_22 {G : Type*} [Fintype G] [Group G]\n  (hG : card G = 132) : ¬ IsSimpleGroup G :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5_28": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "def exercise_4_5_28 {G : Type*} [Group G] [Fintype G]\n  (hG : card G = 105) (P : Sylow 3 G) [hP : P.Normal] :\n  CommGroup G :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_4_2": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_4_2 {G : Type*} [Group G] (H : Subgroup G) :\n  H.Normal ↔ ⁅(⊤ : Subgroup G), H⁆ ≤ H :=",
+      "theorem_hint": ""
+    },
+    "exercise_7_1_11": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_7_1_11 {R : Type*} [Ring R] [IsDomain R]\n  {x : R} (hx : x^2 = 1) : x = 1 ∨ x = -1 :=",
+      "theorem_hint": ""
+    },
+    "exercise_7_1_15": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "def exercise_7_1_15 {R : Type*} [Ring R] (hR : ∀ a : R, a^2 = a) :\n  CommRing R :=",
+      "theorem_hint": ""
+    },
+    "exercise_7_2_12": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_7_2_12 {R G : Type*} [Ring R] [Group G] [Fintype G] :\n  ∑ g : G, MonoidAlgebra.of R G g ∈ center (MonoidAlgebra R G) :=",
+      "theorem_hint": ""
+    },
+    "exercise_7_3_37": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_7_3_37 {p m : ℕ} (hp : p.Prime) :\n  IsNilpotent (span ({↑p} : Set $ ZMod $ p^m) : Ideal $ ZMod $ p^m) :=",
+      "theorem_hint": ""
+    },
+    "exercise_8_1_12": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_8_1_12 {N : ℕ} (hN : N > 0) {M M': ℤ} {d : ℕ}\n  (hMN : M.gcd N = 1) (hMd : d.gcd N.totient = 1)\n  (hM' : M' ≡ M^d [ZMOD N]) :\n  ∃ d' : ℕ, d' * d ≡ 1 [ZMOD N.totient] ∧\n  M ≡ M'^d' [ZMOD N] :=",
+      "theorem_hint": ""
+    },
+    "exercise_8_3_4": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_8_3_4 {R : Type*} {n : ℤ} {r s : ℚ}\n  (h : r^2 + s^2 = n) :\n  ∃ a b : ℤ, a^2 + b^2 = n :=",
+      "theorem_hint": ""
+    },
+    "exercise_8_3_6a": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_8_3_6a {R : Type} [Ring R]\n  (hR : R = (GaussianInt ⧸ span ({⟨0, 1⟩} : Set GaussianInt))) :\n  IsField R ∧ ∃ finR : Fintype R, @card R finR = 2 :=",
+      "theorem_hint": ""
+    },
+    "exercise_9_1_6": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_9_1_6 : ¬ Submodule.IsPrincipal\n  (span ({MvPolynomial.X 0, MvPolynomial.X 1} : Set (MvPolynomial (Fin 2) ℚ))) :=",
+      "theorem_hint": ""
+    },
+    "exercise_9_3_2": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_9_3_2 {f g : Polynomial ℚ} (i j : ℕ)\n  (hfg : ∀ n : ℕ, ∃ a : ℤ, (f*g).coeff = a) :\n  ∃ a : ℤ, f.coeff i * g.coeff j = a :=",
+      "theorem_hint": ""
+    },
+    "exercise_9_4_2b": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_9_4_2b : Irreducible\n  (X^6 + 30*X^5 - 15*X^3 + 6*X - 120 : Polynomial ℤ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_9_4_2d": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_9_4_2d {p : ℕ} (hp : p.Prime ∧ p > 2)\n  {f : Polynomial ℤ} (hf : f = (X + 2)^p):\n  Irreducible (∑ n in (f.support \\ {0}), (f.coeff n : Polynomial ℤ) * X ^ (n-1) :\n  Polynomial ℤ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_9_4_11": {
+      "header": "import Mathlib\n\nopen Fintype Subgroup Set Polynomial Ideal\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_9_4_11 :\n  Irreducible ((MvPolynomial.X 0)^2 + (MvPolynomial.X 1)^2 - 1 : MvPolynomial (Fin 2) ℚ) :=",
+      "theorem_hint": ""
+    },
+    "exercise_13_1": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_13_1 (X : Type*) [TopologicalSpace X] (A : Set X)\n  (h1 : ∀ x ∈ A, ∃ U : Set X, x ∈ U ∧ IsOpen U ∧ U ⊆ A) :\n  IsOpen A :=",
+      "theorem_hint": ""
+    },
+    "exercise_13_4a1": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ndef is_topology (X : Type*) (T : Set (Set X)) :=\n  univ ∈ T ∧\n  (∀ s t, s ∈ T → t ∈ T → s ∩ t ∈ T) ∧\n  (∀s, (∀t ∈ s, t ∈ T) → sUnion s ∈ T)",
+      "formal_statement": "theorem exercise_13_4a1 (X I : Type*) (T : I → Set (Set X)) (h : ∀ i, is_topology X (T i)) :\n  is_topology X (⋂ i : I, T i) :=",
+      "theorem_hint": ""
+    },
+    "exercise_13_4b1": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ndef is_topology (X : Type*) (T : Set (Set X)) :=\n  univ ∈ T ∧\n  (∀ s t, s ∈ T → t ∈ T → s ∩ t ∈ T) ∧\n  (∀s, (∀t ∈ s, t ∈ T) → sUnion s ∈ T)",
+      "formal_statement": "theorem exercise_13_4b1 (X I : Type*) (T : I → Set (Set X)) (h : ∀ i, is_topology X (T i)) :\n  ∃! T', is_topology X T' ∧ (∀ i, T i ⊆ T') ∧\n  ∀ T'', is_topology X T'' → (∀ i, T i ⊆ T'') → T'' ⊆ T' :=",
+      "theorem_hint": ""
+    },
+    "exercise_13_5a": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ndef is_topology (X : Type*) (T : Set (Set X)) :=\n  univ ∈ T ∧\n  (∀ s t, s ∈ T → t ∈ T → s ∩ t ∈ T) ∧\n  (∀s, (∀t ∈ s, t ∈ T) → sUnion s ∈ T)",
+      "formal_statement": "theorem exercise_13_5a {X : Type*}\n  [TopologicalSpace X] (A : Set (Set X)) (hA : IsTopologicalBasis A) :\n  generateFrom A = generateFrom (sInter {T | is_topology X T ∧ A ⊆ T}) :=",
+      "theorem_hint": ""
+    },
+    "exercise_13_6": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ndef lower_limit_topology (X : Type) [Preorder X] :=\n  generateFrom {S : Set X | ∃ a b, a < b ∧ S = Ico a b}\n\ndef Rl := lower_limit_topology ℝ\n\ndef K : Set ℝ := {r | ∃ n : ℕ, r = 1 / n}\n\ndef K_topology := generateFrom\n  ({S : Set ℝ | ∃ a b, a < b ∧ S = Ioo a b} ∪ {S : Set ℝ | ∃ a b, a < b ∧ S = Ioo a b \\ K})",
+      "formal_statement": "theorem exercise_13_6 :\n  ¬ (∀ U, Rl.IsOpen U → K_topology.IsOpen U) ∧ ¬ (∀ U, K_topology.IsOpen U → Rl.IsOpen U) :=",
+      "theorem_hint": ""
+    },
+    "exercise_13_8b": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ndef lower_limit_topology (X : Type) [Preorder X] :=\n  generateFrom {S : Set X | ∃ a b, a < b ∧ S = Ico a b}",
+      "formal_statement": "theorem exercise_13_8b :\n  (generateFrom {S : Set ℝ | ∃ a b : ℚ, a < b ∧ S = Ico ↑a ↑b}).IsOpen ≠\n  (lower_limit_topology ℝ).IsOpen :=",
+      "theorem_hint": ""
+    },
+    "exercise_16_4": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_16_4 {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  (π₁ : X × Y → X)\n  (π₂ : X × Y → Y)\n  (h₁ : π₁ = Prod.fst)\n  (h₂ : π₂ = Prod.snd) :\n  IsOpenMap π₁ ∧ IsOpenMap π₂ :=",
+      "theorem_hint": ""
+    },
+    "exercise_17_4": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_17_4 {X : Type*} [TopologicalSpace X]\n  (U A : Set X) (hU : IsOpen U) (hA : IsClosed A) :\n  IsOpen (U \\ A) ∧ IsClosed (A \\ U) :=",
+      "theorem_hint": ""
+    },
+    "exercise_18_8b": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_18_8b {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]\n  [LinearOrder Y] [OrderTopology Y] {f g : X → Y}\n  (hf : Continuous f) (hg : Continuous g) :\n  Continuous (λ x => min (f x) (g x)) :=",
+      "theorem_hint": ""
+    },
+    "exercise_19_6a": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_19_6a\n  {n : ℕ}\n  {f : Fin n → Type*} {x : ℕ → Πa, f a}\n  (y : Πi, f i)\n  [Πa, TopologicalSpace (f a)] :\n  Tendsto x atTop (𝓝 y) ↔ ∀ i, Tendsto (λ j => (x j) i) atTop (𝓝 (y i)) :=",
+      "theorem_hint": ""
+    },
+    "exercise_21_6a": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\nabbrev I : Set ℝ := Icc 0 1",
+      "formal_statement": "theorem exercise_21_6a\n  (f : ℕ → I → ℝ )\n  (h : ∀ x n, f n x = x ^ n) :\n  ∀ x, ∃ y, Tendsto (λ n => f n x) atTop (𝓝 y) :=",
+      "theorem_hint": ""
+    },
+    "exercise_21_8": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_21_8\n  {X : Type*} [TopologicalSpace X] {Y : Type*} [MetricSpace Y]\n  {f : ℕ → X → Y} {x : ℕ → X}\n  (hf : ∀ n, Continuous (f n))\n  (x₀ : X)\n  (hx : Tendsto x atTop (𝓝 x₀))\n  (f₀ : X → Y)\n  (hh : TendstoUniformly f f₀ atTop) :\n  Tendsto (λ n => f n (x n)) atTop (𝓝 (f₀ x₀)) :=",
+      "theorem_hint": ""
+    },
+    "exercise_22_2b": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_22_2b {X : Type*} [TopologicalSpace X]\n  {A : Set X} (r : X → A) (hr : Continuous r) (h : ∀ x : A, r x = x) :\n  QuotientMap r :=",
+      "theorem_hint": ""
+    },
+    "exercise_23_2": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_23_2 {X : Type*}\n  [TopologicalSpace X] {A : ℕ → Set X} (hA : ∀ n, IsConnected (A n))\n  (hAn : ∀ n, A n ∩ A (n + 1) ≠ ∅) :\n  IsConnected (⋃ n, A n) :=",
+      "theorem_hint": ""
+    },
+    "exercise_23_4": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\nset_option checkBinderAnnotations false",
+      "formal_statement": "theorem exercise_23_4 {X : Type*} [TopologicalSpace X] [CofiniteTopology X]\n  (s : Set X) : Infinite s → IsConnected s :=",
+      "theorem_hint": ""
+    },
+    "exercise_23_9": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_23_9 {X Y : Type*}\n  [TopologicalSpace X] [TopologicalSpace Y]\n  (A₁ A₂ : Set X)\n  (B₁ B₂ : Set Y)\n  (hA : A₁ ⊂ A₂)\n  (hB : B₁ ⊂ B₂)\n  (hA : IsConnected A₂)\n  (hB : IsConnected B₂) :\n  IsConnected ({x | ∃ a b, x = (a, b) ∧ a ∈ A₂ ∧ b ∈ B₂} \\\n      {x | ∃ a b, x = (a, b) ∧ a ∈ A₁ ∧ b ∈ B₁}) :=",
+      "theorem_hint": ""
+    },
+    "exercise_24_2": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_24_2 {f : (Metric.sphere 0 1 : Set ℝ) → ℝ}\n  (hf : Continuous f) : ∃ x, f x = f (-x) :=",
+      "theorem_hint": ""
+    },
+    "exercise_25_4": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_25_4 {X : Type*} [TopologicalSpace X]\n  [LocPathConnectedSpace X] (U : Set X) (hU : IsOpen U)\n  (hcU : IsConnected U) : IsPathConnected U :=",
+      "theorem_hint": ""
+    },
+    "exercise_26_11": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_26_11\n  {X : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X]\n  (A : Set (Set X)) (hA : ∀ (a b : Set X), a ∈ A → b ∈ A → a ⊆ b ∨ b ⊆ a)\n  (hA' : ∀ a ∈ A, IsClosed a) (hA'' : ∀ a ∈ A, IsConnected a) :\n  IsConnected (⋂₀ A) :=",
+      "theorem_hint": ""
+    },
+    "exercise_27_4": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_27_4\n  {X : Type*} [MetricSpace X] [ConnectedSpace X] (hX : ∃ x y : X, x ≠ y) :\n  ¬ Countable (univ : Set X) :=",
+      "theorem_hint": ""
+    },
+    "exercise_28_5": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\ndef countably_compact (X : Type*) [TopologicalSpace X] :=\n  ∀ U : ℕ → Set X,\n  (∀ i, IsOpen (U i)) ∧ ((univ : Set X) ⊆ ⋃ i, U i) →\n  (∃ t : Finset ℕ, (univ : Set X) ⊆ ⋃ i ∈ t, U i)",
+      "formal_statement": "theorem exercise_28_5\n  (X : Type*) [TopologicalSpace X] :\n  countably_compact X ↔ ∀ (C : ℕ → Set X), (∀ n, IsClosed (C n)) ∧\n  (∀ n, C n ≠ ∅) ∧ (∀ n, C n ⊆ C (n + 1)) → ∃ x, ∀ n, x ∈ C n :=",
+      "theorem_hint": ""
+    },
+    "exercise_29_1": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_29_1 : ¬ LocallyCompactSpace ℚ :=",
+      "theorem_hint": ""
+    },
+    "exercise_29_10": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_29_10 {X : Type*}\n  [TopologicalSpace X] [T2Space X] (x : X)\n  (hx : ∃ U : Set X, x ∈ U ∧ IsOpen U ∧ (∃ K : Set X, U ⊂ K ∧ IsCompact K))\n  (U : Set X) (hU : IsOpen U) (hxU : x ∈ U) :\n  ∃ (V : Set X), IsOpen V ∧ x ∈ V ∧ IsCompact (closure V) ∧ closure V ⊆ U :=",
+      "theorem_hint": ""
+    },
+    "exercise_30_13": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_30_13 {X : Type*} [TopologicalSpace X]\n  (h : ∃ (s : Set X), Countable s ∧ Dense s) (U : Set (Set X))\n  (hU : ∀ (x y : Set X), x ∈ U → y ∈ U → x ≠ y → x ∩ y = ∅) :\n  Countable U :=",
+      "theorem_hint": ""
+    },
+    "exercise_31_2": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_31_2 {X : Type*}\n  [TopologicalSpace X] [NormalSpace X] {A B : Set X}\n  (hA : IsClosed A) (hB : IsClosed B) (hAB : Disjoint A B) :\n  ∃ (U V : Set X), IsOpen U ∧ IsOpen V ∧ A ⊆ U ∧ B ⊆ V ∧ closure U ∩ closure V = ∅ :=",
+      "theorem_hint": ""
+    },
+    "exercise_32_1": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_32_1 {X : Type*} [TopologicalSpace X]\n  (hX : NormalSpace X) (A : Set X) (hA : IsClosed A) :\n  NormalSpace {x // x ∈ A} :=",
+      "theorem_hint": ""
+    },
+    "exercise_32_2b": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_32_2b\n  {ι : Type*} {X : ι → Type*} [∀ i, TopologicalSpace (X i)]\n  (h : ∀ i, Nonempty (X i)) (h2 : RegularSpace (Π i, X i)) :\n  ∀ i, RegularSpace (X i) :=",
+      "theorem_hint": ""
+    },
+    "exercise_32_3": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology",
+      "formal_statement": "theorem exercise_32_3 {X : Type*} [TopologicalSpace X]\n  (hX : LocallyCompactSpace X) (hX' : T2Space X) :\n  RegularSpace X :=",
+      "theorem_hint": ""
+    },
+    "exercise_33_8": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\nabbrev I : Set ℝ := Icc 0 1",
+      "formal_statement": "theorem exercise_33_8\n  (X : Type*) [TopologicalSpace X] [RegularSpace X]\n  (h : ∀ x A, IsClosed A ∧ ¬ x ∈ A →\n  ∃ (f : X → I), Continuous f ∧ f x = (1 : I) ∧ f '' A = {0})\n  (A B : Set X) (hA : IsClosed A) (hB : IsClosed B)\n  (hAB : Disjoint A B)\n  (hAc : IsCompact A) :\n  ∃ (f : X → I), Continuous f ∧ f '' A = {0} ∧ f '' B = {1} :=",
+      "theorem_hint": ""
+    },
+    "exercise_38_6": {
+      "header": "import Mathlib\n\nopen Filter Set TopologicalSpace\nopen scoped Topology\n\nabbrev I : Set ℝ := Icc 0 1",
+      "formal_statement": "theorem exercise_38_6 {X : Type*}\n  (X : Type*) [TopologicalSpace X] [RegularSpace X]\n  (h : ∀ x A, IsClosed A ∧ ¬ x ∈ A →\n  ∃ (f : X → I), Continuous f ∧ f x = (1 : I) ∧ f '' A = {0}) :\n  IsConnected (univ : Set X) ↔ IsConnected (univ : Set (StoneCech X)) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_27": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_27 {n : ℕ} (hn : Odd n) : 8 ∣ (n^2 - 1) :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_31": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1_31  : (⟨1, 1⟩ : GaussianInt) ^ 2 ∣ 2 :=",
+      "theorem_hint": ""
+    },
+    "exercise_2_21": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2_21 {l : ℕ → ℝ}\n  (hl : ∀ p n : ℕ, p.Prime → l (p^n) = log p )\n  (hl1 : ∀ m : ℕ, ¬ IsPrimePow m → l m = 0) :\n  l = λ n => ∑ d : Nat.divisors n, ArithmeticFunction.moebius (n/d) * log d :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_1__2": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_1 : Infinite {p : Nat.Primes // p ≡ -1 [ZMOD 6]} :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_5": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_5 : ¬ ∃ x y : ℤ, 7*x^3 + 2 = y^3 :=",
+      "theorem_hint": ""
+    },
+    "exercise_3_14": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_3_14 {p q n : ℕ} (hp0 : p.Prime ∧ p > 2)\n  (hq0 : q.Prime ∧ q > 2) (hpq0 : p ≠ q) (hpq1 : p - 1 ∣ q - 1)\n  (hn : n.gcd (p*q) = 1) :\n  n^(q-1) ≡ 1 [MOD p*q] :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_5": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_5 {p t : ℕ} (hp0 : p.Prime) (hp1 : p = 4*t + 3)\n  (a : ZMod p) :\n  IsPrimitiveRoot a p ↔ ((-a) ^ ((p-1)/2) = 1 ∧ ∀ (k : ℕ), k < (p-1)/2 → (-a)^k ≠ 1) :=",
+      "theorem_hint": ""
+    },
+    "exercise_4_8": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_4_8 {p a : ℕ} (hp : Odd p) :\n  IsPrimitiveRoot a p ↔ (∀ q : ℕ, q ∣ (p-1) → q.Prime → ¬ a^(p-1) ≡ 1 [MOD p]) :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_13": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_13 {p x: ℤ} (hp : Prime p)\n  (hpx : p ∣ (x^4 - x^2 + 1)) : p ≡ 1 [ZMOD 12] :=",
+      "theorem_hint": ""
+    },
+    "exercise_5_37": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_5_37 {p q : ℕ} [Fact (p.Prime)] [Fact (q.Prime)] {a : ℤ}\n  (ha : a < 0) (h0 : p ≡ q [ZMOD 4*a]) (h1 : ¬ ((p : ℤ) ∣ a)) :\n  legendreSym p a = legendreSym q a :=",
+      "theorem_hint": ""
+    },
+    "exercise_18_4": {
+      "header": "import Mathlib\n\nopen Real\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_18_4 {n : ℕ} (hn : ∃ x y z w : ℤ,\n  x^3 + y^3 = n ∧ z^3 + w^3 = n ∧ x ≠ z ∧ x ≠ w ∧ y ≠ z ∧ y ≠ w) :\n  n ≥ 1729 :=",
+      "theorem_hint": ""
+    },
+    "exercise_2020_b5": {
+      "header": "import Mathlib\n\nopen scoped BigOperators\n\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2020_b5 (z : Fin 4 → ℂ) (hz0 : ∀ n, ‖z n‖ < 1)\n  (hz1 : ∀ n : Fin 4, z n ≠ 1) :\n  3 - z 0 - z 1 - z 2 - z 3 + (z 0) * (z 1) * (z 2) * (z 3) ≠ 0 :=",
+      "theorem_hint": ""
+    },
+    "exercise_2018_b2": {
+      "header": "import Mathlib\n\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2018_b2 (n : ℕ) (hn : n > 0) (f : ℕ → ℂ → ℂ)\n  (hf : ∀ n : ℕ, f n = λ (z : ℂ) => (∑ i : Fin n, (n-i)* z^(i : ℕ))) :\n  ¬ (∃ z : ℂ, ‖z‖ ≤ 1 ∧ f n z = 0) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2017_b3": {
+      "header": "import Mathlib\n\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2017_b3 (f : ℝ → ℝ) (c : ℕ → ℝ)\n  (hf : f = λ x => (∑' (i : ℕ), (c i) * x^i))\n  (hc : ∀ n, c n = 0 ∨ c n = 1)\n  (hf1 : f (2/3) = 3/2) :\n  Irrational (f (1/2)) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2010_a4": {
+      "header": "import Mathlib\n\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2010_a4 (n : ℕ) :\n  ¬ Nat.Prime (10^10^10^n + 10^10^n + 10^n - 1) :=",
+      "theorem_hint": ""
+    },
+    "exercise_2000_a2": {
+      "header": "import Mathlib\n\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_2000_a2 :\n  ∀ N : ℕ, ∃ n : ℕ, n > N ∧ ∃ i : Fin 6 → ℕ, n = (i 0)^2 + (i 1)^2 ∧\n  n + 1 = (i 2)^2 + (i 3)^2 ∧ n + 2 = (i 4)^2 + (i 5)^2 :=",
+      "theorem_hint": ""
+    },
+    "exercise_1998_a3": {
+      "header": "import Mathlib\n\nopen scoped BigOperators",
+      "formal_statement": "theorem exercise_1998_a3 (f : ℝ → ℝ) (hf : ContDiff ℝ 3 f) :\n  ∃ a : ℝ, (f a) * (deriv f a) * (iteratedDeriv 2 f a) * (iteratedDeriv 3 f a) ≥ 0 :=",
+      "theorem_hint": ""
+    }
+  }
+}
