@@ -52,3 +52,17 @@ current canonical view.
   - add the first distinct retrieved theorem from the top-`5`
 - Small validation runs on representative problems showed the right general behavior: pass 1 recovers the global theorem family, while pass 2 adds more local theorem-family signal derived from frequent hallucinations.
 - One practical lesson from the builder validation is that we should prefer theorem/lemma results over defs when selecting hallucination-derived additions. That keeps the added context closer to what the model can actually use in a proof.
+
+## 2026-03-30
+
+- Built and committed the first uncontaminated iterative-RAG specs from the no-hint MSC-180 base run only. The pass1 spec uses statement-only LeanFinder retrieval, and the pass2 spec augments that with hallucination-conditioned retrieved theorems.
+- Ran and verified the first pass2 experiment. Result: `87/400` successful attempts and `11/20` solved problems, versus the no-hint base at `77/400` and `6/20`.
+- Pass2 also reduced unresolved-name style failures materially relative to base: attempts with `unknown` dropped from `111/400` to `86/400`.
+- Realized the statement-only ablation was still missing, then ran and verified pass1. Result: `92/400` successful attempts and `9/20` solved problems.
+- This changed the interpretation in an important way: statement-only retrieval already accounts for a large share of the gain. Hallucination-conditioned additions still help, but mainly by improving solved-problem coverage and reducing unknown-name failures rather than by maximizing raw attempt pass rate.
+- Current picture:
+  - base: weaker on both attempts and solved problems
+  - pass1: best raw attempt pass rate
+  - pass2: best solved-problem count and best unknown-name reduction
+- The main belief update is that the iterative-RAG idea is working, but the hallucination-conditioned step should be treated as a targeted augmentation on top of strong statement-based retrieval, not as the whole story.
+- Wrote a dedicated synthesis note at `rag_experiments/reports/iterative_rag/20260330_iterative_rag_pass1_pass2_analysis.md`.
