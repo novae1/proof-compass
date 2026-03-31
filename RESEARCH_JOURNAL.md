@@ -66,3 +66,15 @@ current canonical view.
   - pass2: best solved-problem count and best unknown-name reduction
 - The main belief update is that the iterative-RAG idea is working, but the hallucination-conditioned step should be treated as a targeted augmentation on top of strong statement-based retrieval, not as the whole story.
 - Wrote a dedicated synthesis note at `rag_experiments/reports/iterative_rag/20260330_iterative_rag_pass1_pass2_analysis.md`.
+
+## 2026-03-31
+
+- Extended the pass1/pass2 iterative-RAG analysis with direct qualitative inspection of full outputs, error messages, and per-problem hallucination behavior.
+- The main caution is now explicit: several pass2-only solved problems are only `1/20` or `2/20`, so they cannot be treated as strong evidence on counts alone.
+- After reading the outputs, the pass2 gains split into two groups:
+  - robust/genuine improvements, such as `MSC-180_14_001`, where pass2 adds the correct quotient-kernel theorem family and sharply reduces hallucinations
+  - low-count gains that are promising but ambiguous, such as `MSC-180_60_002` and especially `MSC-180_90_001`, where some of the improvement may just be sampling luck
+- The regressions are also now clearer:
+  - `MSC-180_08_001` is a strong negative example where extra pass2 context appears to induce namespace confusion (`ext_of_adjoin_eq_top` vs `AlgHom.ext_of_adjoin_eq_top`)
+  - `MSC-180_12_003` is another strong negative example where pass2 adds nearby quotient/field lemmas and the model starts hallucinating the wrong variants
+- The more precise current hypothesis is: hallucination-conditioned retrieval is helpful when the model is genuinely missing a theorem family, but once statement-only retrieval already provides a clean anchor, extra related theorems can over-expand the local search space and create new hallucinations.
