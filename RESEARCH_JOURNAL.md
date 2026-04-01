@@ -78,3 +78,28 @@ current canonical view.
   - `MSC-180_08_001` is a strong negative example where extra pass2 context appears to induce namespace confusion (`ext_of_adjoin_eq_top` vs `AlgHom.ext_of_adjoin_eq_top`)
   - `MSC-180_12_003` is another strong negative example where pass2 adds nearby quotient/field lemmas and the model starts hallucinating the wrong variants
 - The more precise current hypothesis is: hallucination-conditioned retrieval is helpful when the model is genuinely missing a theorem family, but once statement-only retrieval already provides a clean anchor, extra related theorems can over-expand the local search space and create new hallucinations.
+- Switched the next development benchmark to `ProofNet-valid` and built two non-CoT specs:
+  - no-hint
+  - statement-only RAG with statement-query LeanFinder top-`2` theorem hints
+- Verified both ProofNet-valid runs and compared them. Headline result:
+  - no-hint: `155/740` successful attempts, `47/185` solved problems
+  - statement-RAG-top2: `156/740` successful attempts, `47/185` solved problems
+- So statement-only RAG did not improve solved-problem count on this `4`-attempt run, but it did reduce unresolved-name burden:
+  - attempts with `unknown`: `122 -> 108`
+  - total `unknown` occurrences: `158 -> 134`
+- Hallucinations on ProofNet-valid are present but not dominant. With the filtered theorem-like metric:
+  - no-hint has hallucinations on `63/185` problems
+  - statement-RAG-top2 has hallucinations on `52/185` problems
+  - among failed problems, the corresponding rates are `58/138` and `50/138`
+- Built two iterative pass2 specs for ProofNet-valid, each restricted to problems that are:
+  - unsolved
+  - and have at least one filtered theorem-like hallucination
+- Trigger counts differ materially:
+  - no-hint pass2 triggers on `58` problems
+  - statement-RAG-top2 pass2 triggers on `50` problems
+  - overlap is only `31` problems
+- The two pass2 specs are not redundant. Even on shared triggered problems, the hallucination-conditioned theorem additions only partially align:
+  - exact added-theorem-set match on `12/31`
+  - disjoint added-theorem sets on `9/31`
+  - average added-set Jaccard `0.5`
+- Wrote the overlap analysis at `rag_experiments/reports/iterative_rag/20260331_proofnet_valid_pass2_spec_overlap_analysis.md`.
