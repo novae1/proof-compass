@@ -103,3 +103,23 @@ current canonical view.
   - disjoint added-theorem sets on `9/31`
   - average added-set Jaccard `0.5`
 - Wrote the overlap analysis at `rag_experiments/reports/iterative_rag/20260331_proofnet_valid_pass2_spec_overlap_analysis.md`.
+
+## 2026-04-01
+
+- Diagnosed a false-negative ProofNet pass2 verification failure. The initial all-zero pass2 result was caused by an external Lean REPL mismatch, not by the model: `lean_project` was on Lean `4.15.0`, while the REPL binary had been built from tag `v4.27.0-rc1`.
+- After rebuilding the external REPL at `v4.15.0` and restarting the Flask server, verification behaved normally again. This confirmed that the stripped-header verification path is still valid when the base REPL environment is actually correct.
+- Re-verified both ProofNet-valid pass2 runs under the corrected REPL:
+  - `20260401_proofnet-valid_nohint-pass2_base_deepseekv2_7b_lean4-15_verified.json`
+  - `20260401_proofnet-valid_statement-rag-top2-pass2_base_deepseekv2_7b_lean4-15_verified.json`
+- Corrected results are positive for both iterative branches.
+  - `no-hint -> pass2` improves the full-benchmark composite from `47/185` solved problems to `52/185`.
+  - `statement-RAG-top2 -> pass2` improves the full-benchmark composite from `47/185` to `51/185`.
+- The most important new belief update is about hallucination reduction, not just solve counts.
+  - On ProofNet-valid, first-pass statement-only RAG reduced filtered theorem-like hallucination prevalence only modestly:
+    - failed problems with hallucinations: `42.0% -> 36.2%`
+    - failed attempts with hallucinations: `20.3% -> 17.6%`
+  - The hallucination-conditioned pass2 reduces them much more strongly:
+    - `no-hint -> pass2` composite: failed problems with hallucinations `42.0% -> 17.3%`, failed attempts `20.3% -> 11.6%`
+    - `statement-RAG-top2 -> pass2` composite: failed problems `36.2% -> 22.4%`, failed attempts `17.6% -> 11.9%`
+- This is now one of the clearest project-level results so far: theorem retrieval from the formal statement alone does not substantially suppress hallucinations, but theorem retrieval conditioned on the model's actual hallucinated names does.
+- Wrote the corrected analysis to `rag_experiments/reports/iterative_rag/20260401_proofnet_valid_iterative_pass2_analysis.md`.
