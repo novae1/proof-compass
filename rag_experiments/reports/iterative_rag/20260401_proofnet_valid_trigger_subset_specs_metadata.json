@@ -1,0 +1,16 @@
+{
+  "source_specs": {
+    "full_nohint": "rag_experiments/data/specs/20260331_proofnet_valid_nohint_spec.json",
+    "full_statement_rag_top2": "rag_experiments/data/specs/20260331_proofnet_valid_statement_rag_top2_spec.json",
+    "nohint_trigger_source": "rag_experiments/data/specs/20260331_proofnet_valid_nohint_iterative_pass2_spec.json",
+    "statement_rag_top2_trigger_source": "rag_experiments/data/specs/20260331_proofnet_valid_statement_rag_top2_iterative_pass2_spec.json"
+  },
+  "generated_specs": {
+    "nohint_trigger_subset": "rag_experiments/data/specs/20260401_proofnet_valid_nohint_trigger_subset_spec.json",
+    "statement_rag_top2_trigger_subset": "rag_experiments/data/specs/20260401_proofnet_valid_statement_rag_top2_trigger_subset_spec.json"
+  },
+  "counts": {
+    "nohint_trigger_subset": 58,
+    "statement_rag_top2_trigger_subset": 50
+  }
+}
