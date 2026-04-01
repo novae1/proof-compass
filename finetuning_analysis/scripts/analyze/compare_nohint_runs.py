@@ -10,9 +10,13 @@ from pathlib import Path
 UNKNOWN_RE = re.compile(r"\bunknown\b", flags=re.IGNORECASE)
 
 
+def canonical_problem_key(key: str) -> str:
+    return key.split("/", 1)[-1]
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Compare two verified MSC-180 no-hint runs and write JSON/Markdown summaries."
+        description="Compare two verified run outputs and write JSON/Markdown summaries."
     )
     parser.add_argument("--baseline", type=Path, required=True)
     parser.add_argument("--candidate", type=Path, required=True)
@@ -52,6 +56,9 @@ def summarize(payload: dict) -> dict:
     for key, entry in payload.items():
         if not isinstance(entry, dict):
             continue
+        canonical_key = canonical_problem_key(key)
+        if canonical_key in per_problem_successes:
+            raise ValueError(f"Duplicate canonical problem key after prefix stripping: {canonical_key}")
         attempts = entry.get("attempts")
         if not isinstance(attempts, list):
             attempts = []
@@ -72,8 +79,8 @@ def summarize(payload: dict) -> dict:
                 attempts_with_unknown += 1
                 total_unknown_occurrences += occurrences
 
-        per_problem_successes[key] = success_count
-        per_problem_attempts[key] = attempt_count
+        per_problem_successes[canonical_key] = success_count
+        per_problem_attempts[canonical_key] = attempt_count
 
     problems_total = len(per_problem_successes)
     problems_solved = sum(1 for v in per_problem_successes.values() if v > 0)
@@ -160,7 +167,7 @@ def main() -> int:
     md_path = args.output_prefix.with_suffix(".md")
     write_json(json_path, summary)
 
-    md = f"""# MSC-180 No-Hint Comparison
+    md = f"""# Verified Run Comparison
 
 ## Scope
 - baseline: `{args.baseline}`
@@ -197,14 +204,40 @@ Delta:
 """
     if improved:
         for row in improved[:20]:
-            md += f"- `{row['problem']}`: `{row['baseline_successes']}/20 -> {row['candidate_successes']}/20`\n"
+            baseline_attempts = baseline_summary["per_problem_attempts"].get(row["problem"], 0)
+            candidate_attempts = candidate_summary["per_problem_attempts"].get(row["problem"], 0)
+            if baseline_attempts == candidate_attempts:
+                denom_text = str(baseline_attempts)
+                md += (
+                    f"- `{row['problem']}`: "
+                    f"`{row['baseline_successes']}/{denom_text} -> {row['candidate_successes']}/{denom_text}`\n"
+                )
+            else:
+                md += (
+                    f"- `{row['problem']}`: "
+                    f"`{row['baseline_successes']}/{baseline_attempts} -> "
+                    f"{row['candidate_successes']}/{candidate_attempts}`\n"
+                )
     else:
         md += "- none\n"
 
     md += "\n## Regressed Problems\n"
     if regressed:
         for row in regressed[:20]:
-            md += f"- `{row['problem']}`: `{row['baseline_successes']}/20 -> {row['candidate_successes']}/20`\n"
+            baseline_attempts = baseline_summary["per_problem_attempts"].get(row["problem"], 0)
+            candidate_attempts = candidate_summary["per_problem_attempts"].get(row["problem"], 0)
+            if baseline_attempts == candidate_attempts:
+                denom_text = str(baseline_attempts)
+                md += (
+                    f"- `{row['problem']}`: "
+                    f"`{row['baseline_successes']}/{denom_text} -> {row['candidate_successes']}/{denom_text}`\n"
+                )
+            else:
+                md += (
+                    f"- `{row['problem']}`: "
+                    f"`{row['baseline_successes']}/{baseline_attempts} -> "
+                    f"{row['candidate_successes']}/{candidate_attempts}`\n"
+                )
     else:
         md += "- none\n"
 
