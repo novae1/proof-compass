@@ -41,6 +41,14 @@ Artifacts:
 - `transfer_subset_5pct_eval100/lora_eval.json`
 - `transfer_subset_5pct_eval100/base_inference.json`
 - `transfer_subset_5pct_eval100/lora_inference.json`
+- `transfer_subset_5pct_eval100/base_repl_verification.json`
+- `transfer_subset_5pct_eval100/lora_repl_verification.json`
+- `20260408_transfer_subset_5pct_eval100_repl_and_similarity_analysis.md`
+
+Post-hoc note:
+- Lean REPL verification on reconstructed standalone files gives a different result from the string-match analysis.
+- On this held-out `100`-example slice, the base model verifies more often than the LoRA model: `32/100` vs `13/100`.
+- The LoRA model is still syntactically closer to the gold proofs on normalized edit-similarity metrics.
 
 Notes:
 - No model weights are included here.
