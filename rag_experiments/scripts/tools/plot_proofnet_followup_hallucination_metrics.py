@@ -191,35 +191,31 @@ def main() -> int:
     rag_keys = set(spec_rag.keys())
 
     nohint_runs = {
-        "Base4": args.base_nohint,
-        "Extra4": args.extra_nohint,
-        "Pass2": args.pass2_nohint,
-        "Top4": args.top4_nohint,
-        "Top6": args.top6_nohint,
+        "Base4": args.extra_nohint,
+        "Name-RAG": args.pass2_nohint,
+        "Attempt-4": args.top4_nohint,
+        "Attempt-6": args.top6_nohint,
     }
     rag_runs = {
-        "Base4": args.base_rag,
-        "Extra4": args.extra_rag,
-        "Pass2": args.pass2_rag,
-        "Top4": args.top4_rag,
-        "Top6": args.top6_rag,
+        "Base4": args.extra_rag,
+        "Name-RAG": args.pass2_rag,
+        "Attempt-4": args.top4_rag,
+        "Attempt-6": args.top6_rag,
     }
 
     metrics_nohint = build_run_metrics(nohint_runs, nohint_keys)
     metrics_rag = build_run_metrics(rag_runs, rag_keys)
 
     run_labels = list(nohint_runs.keys())
-    colors = ["#7a1f1f", "#c46b48", "#f0b37e", "#4c956c", "#2d6a8e"]
+    colors = ["#c46b48", "#f0b37e", "#4c956c", "#2d6a8e"]
     positions = list(range(len(run_labels)))
 
     panels = [
         ("attempt_hall_rate", "Attempt Hallucination Rate"),
-        ("failed_attempt_hall_rate", "Failed-Attempt Hallucination Rate"),
         ("problem_hall_rate", "Problem Hallucination Rate"),
-        ("failed_problem_hall_rate", "Failed-Problem Hallucination Rate"),
     ]
 
-    fig, axes = plt.subplots(2, 4, figsize=(18, 8), constrained_layout=True)
+    fig, axes = plt.subplots(2, 2, figsize=(10, 8), constrained_layout=True)
 
     for row_idx, (row_title, metrics) in enumerate(
         [("NoHint Trigger Set N", metrics_nohint), ("RAG-Top2 Trigger Set R", metrics_rag)]
