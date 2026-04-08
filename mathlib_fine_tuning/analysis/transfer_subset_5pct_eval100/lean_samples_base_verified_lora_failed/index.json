@@ -1,0 +1,175 @@
+[
+  {
+    "sample_number": 1,
+    "index": 2,
+    "name_qualified": "inv_antitoneOn_Ioi",
+    "module": "Mathlib.Algebra.Order.Field.Basic",
+    "base_file": "01_inv_antitoneOn_Ioi__base.lean",
+    "lora_file": "01_inv_antitoneOn_Ioi__lora.lean",
+    "base_verified": true,
+    "lora_verified": false,
+    "base_message": "Proof verified successfully",
+    "lora_message": [
+      {
+        "data": "`inv_le_inv` has been deprecated: use `inv_le_inv₀` instead",
+        "endPos": {
+          "column": 16,
+          "line": 11
+        },
+        "pos": {
+          "column": 6,
+          "line": 11
+        },
+        "severity": "warning"
+      },
+      {
+        "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  x⁻¹ ≤ y⁻¹\nα : Type u_2\ninst✝ : LinearOrderedField α\nx : α\nhx : 0 < x\ny : α\nhy : 0 < y\nhxy : x ≤ y\n⊢ (fun x => x⁻¹) y ≤ (fun x => x⁻¹) x",
+        "endPos": {
+          "column": 22,
+          "line": 11
+        },
+        "pos": {
+          "column": 6,
+          "line": 11
+        },
+        "severity": "error"
+      }
+    ]
+  },
+  {
+    "sample_number": 2,
+    "index": 4,
+    "name_qualified": "inv_neg''",
+    "module": "Mathlib.Algebra.Order.GroupWithZero.Unbundled",
+    "base_file": "02_inv_neg__base.lean",
+    "lora_file": "02_inv_neg__lora.lean",
+    "base_verified": true,
+    "lora_verified": false,
+    "base_message": "Proof verified successfully",
+    "lora_message": [
+      {
+        "data": "failed to synthesize\n  PosMulReflectLT G₀\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+        "endPos": {
+          "column": 36,
+          "line": 16
+        },
+        "pos": {
+          "column": 26,
+          "line": 16
+        },
+        "severity": "error"
+      },
+      {
+        "data": "unsolved goals\nG₀ : Type u_2\ninst✝³ : GroupWithZero G₀\ninst✝² : LinearOrder G₀\ninst✝¹ : ZeroLEOneClass G₀\na : G₀\ninst✝ : PosMulMono G₀\n⊢ PosMulReflectLT G₀",
+        "endPos": {
+          "column": 37,
+          "line": 16
+        },
+        "pos": {
+          "column": 42,
+          "line": 15
+        },
+        "severity": "error"
+      }
+    ]
+  },
+  {
+    "sample_number": 3,
+    "index": 9,
+    "name_qualified": "Nat.one_mem_properDivisors_iff_one_lt",
+    "module": "Mathlib.NumberTheory.Divisors",
+    "base_file": "03_Nat.one_mem_properDivisors_iff_one_lt__base.lean",
+    "lora_file": "03_Nat.one_mem_properDivisors_iff_one_lt__lora.lean",
+    "base_verified": true,
+    "lora_verified": false,
+    "base_message": "Proof verified successfully",
+    "lora_message": [
+      {
+        "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  ?m.91 ∣ 1\nn : ℕ\n⊢ 1 ∣ n ∧ 1 < n ↔ 1 < n",
+        "endPos": {
+          "column": 37,
+          "line": 9
+        },
+        "pos": {
+          "column": 26,
+          "line": 9
+        },
+        "severity": "error"
+      }
+    ]
+  },
+  {
+    "sample_number": 4,
+    "index": 11,
+    "name_qualified": "DualNumber.isMaximal_span_singleton_eps",
+    "module": "Mathlib.RingTheory.DualNumber",
+    "base_file": "04_DualNumber.isMaximal_span_singleton_eps__base.lean",
+    "lora_file": "04_DualNumber.isMaximal_span_singleton_eps__lora.lean",
+    "base_verified": true,
+    "lora_verified": false,
+    "base_message": "Proof verified successfully",
+    "lora_message": [
+      {
+        "data": "unknown identifier 'isMaximal_iff_isMaximal_span_singleton_eps'",
+        "endPos": {
+          "column": 50,
+          "line": 11
+        },
+        "pos": {
+          "column": 8,
+          "line": 11
+        },
+        "severity": "error"
+      },
+      {
+        "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.9981\nK : Type u_2\ninst✝ : DivisionRing K\n⊢ (Ideal.span {ε}).IsMaximal",
+        "endPos": {
+          "column": 50,
+          "line": 11
+        },
+        "pos": {
+          "column": 6,
+          "line": 11
+        },
+        "severity": "error"
+      }
+    ]
+  },
+  {
+    "sample_number": 5,
+    "index": 14,
+    "name_qualified": "Finset.norm_prod_le",
+    "module": "Mathlib.Analysis.Normed.Field.Basic",
+    "base_file": "05_Finset.norm_prod_le__base.lean",
+    "lora_file": "05_Finset.norm_prod_le__lora.lean",
+    "base_verified": true,
+    "lora_verified": false,
+    "base_message": "Proof verified successfully",
+    "lora_message": [
+      {
+        "data": "typeclass instance problem is stuck, it is often due to metavariables\n  NormOneClass (?m.1000 → ℝ)",
+        "endPos": {
+          "column": 70,
+          "line": 11
+        },
+        "pos": {
+          "column": 39,
+          "line": 11
+        },
+        "severity": "error"
+      },
+      {
+        "data": "stuck at solving universe constraint\n  ?u.903+1 =?= max 1 ?u.918\nwhile trying to unify\n  ι → ?m.1000 → ℝ : Sort (max (u_3 + 1) ?u.918)\nwith\n  ι → ?m.1000 → ℝ : Sort (max (u_3 + 1) ?u.918)",
+        "endPos": {
+          "column": 70,
+          "line": 11
+        },
+        "pos": {
+          "column": 50,
+          "line": 10
+        },
+        "severity": "error"
+      }
+    ]
+  }
+]
