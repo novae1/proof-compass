@@ -1,0 +1,10 @@
+{
+  "source_train_path": "mathlib_fine_tuning/data/processed/deepseek_noncot_tactic_1024_train.jsonl",
+  "source_valid_path": "mathlib_fine_tuning/data/processed/deepseek_noncot_tactic_1024_valid.jsonl",
+  "output_dir": "mathlib_fine_tuning/data/processed/transfer_subset_5pct_eval100",
+  "train_percent": 5.0,
+  "eval_size": 100,
+  "seed": 42,
+  "train_rows": 2789,
+  "valid_rows": 100
+}

@@ -1,0 +1,811 @@
+{
+  "dataset_path": "/workspace/proof-compass/mathlib_fine_tuning/data/processed/transfer_subset_5pct_eval100/valid.jsonl",
+  "adapter_dir": null,
+  "num_examples": 100,
+  "exact_match_count": 0,
+  "normalized_match_count": 0,
+  "exact_match_rate": 0.0,
+  "normalized_match_rate": 0.0,
+  "results": [
+    {
+      "index": 0,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function\nvariable {ι α β : Type*} {π : ι → Type*}\nsection PartialOrder\nvariable [PartialOrder α] {a b : α}\nlemma manual_eq_iff_not_lt_of_le (hab : a ≤ b) : a = b ↔ ¬ a < b := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_eq_iff_not_lt_of_le (hab : a ≤ b) : a = b ↔ ¬ a < b := by simp [hab, lt_iff_le_and_ne]\n```",
+      "generated_completion": "```lean4\nlemma manual_eq_iff_not_lt_of_le (hab : a ≤ b) : a = b ↔ ¬ a < b := by\n  constructor\n  · -- Forward direction: If a = b, then ¬a < b\n    intro h\n    rw [h]\n    exact lt_irrefl b\n  · -- Reverse direction: If ¬a < b, then a = b\n    intro h\n    by_contra h'\n    -- If a ≠ b, then either a < b or b < a\n    cases' lt_or_gt_of_ne h' with h₁ h₁\n    · -- Case: a < b\n      exact h h₁\n    · -- Case: b < a\n      exact absurd h₁ (not_lt_of_le hab)\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 1,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Filter Function MeasureTheory RCLike Set TopologicalSpace Topology\nopen scoped Classical ENNReal NNReal\nvariable {X Y E F : Type*}\nvariable {X : Type*}\nsection ParametricIntegral\nvariable {G 𝕜 : Type*} [TopologicalSpace X]\n  [TopologicalSpace Y] [MeasurableSpace Y] [OpensMeasurableSpace Y] {μ : Measure Y}\n  [NontriviallyNormedField 𝕜] [NormedAddCommGroup E] [NormedSpace ℝ E]\n  [NormedAddCommGroup F] [NormedSpace 𝕜 F] [NormedAddCommGroup G] [NormedSpace 𝕜 G]\nopen Metric ContinuousLinearMap\n\n/-- Consider a parameterized integral `x ↦ ∫ y, f x y` where `f` is continuous and uniformly\ncompactly supported. Then the integral depends continuously on `x`. -/\nlemma manual_continuousOn_integral_of_compact_support\n    {f : X → Y → E} {s : Set X} {k : Set Y} [IsFiniteMeasureOnCompacts μ]\n    (hk : IsCompact k) (hf : ContinuousOn f.uncurry (s ×ˢ univ))\n    (hfs : ∀ p, ∀ x, p ∈ s → x ∉ k → f p x = 0) :\n    ContinuousOn (fun x ↦ ∫ y, f x y ∂μ) s := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_continuousOn_integral_of_compact_support\n    {f : X → Y → E} {s : Set X} {k : Set Y} [IsFiniteMeasureOnCompacts μ]\n    (hk : IsCompact k) (hf : ContinuousOn f.uncurry (s ×ˢ univ))\n    (hfs : ∀ p, ∀ x, p ∈ s → x ∉ k → f p x = 0) :\n    ContinuousOn (fun x ↦ ∫ y, f x y ∂μ) s := by\n  simpa using continuousOn_integral_bilinear_of_locally_integrable_of_compact_support (lsmul ℝ ℝ)\n    hk hf hfs (integrableOn_const.2 (Or.inr hk.measure_lt_top)) (μ := μ) (g := fun _ ↦ 1)\n```",
+      "generated_completion": "```lean4\nlemma manual_continuousOn_integral_of_compact_support\n    {f : X → Y → E} {s : Set X} {k : Set Y} [IsFiniteMeasureOnCompacts μ]\n    (hk : IsCompact k) (hf : ContinuousOn f.uncurry (s ×ˢ univ))\n    (hfs : ∀ p, ∀ x, p ∈ s → x ∉ k → f p x = 0) :\n    ContinuousOn (fun x ↦ ∫ y, f x y ∂μ) s := by\n  rw [continuousOn_iff_continuous_restrict] at hf ⊢\n  have h₁ : ContinuousOn (fun p : X × Y ↦ f p.1 p.2) (s ×ˢ univ) := hf\n  have h₂ : ContinuousOn (fun x : X ↦ ∫ y : Y, f x y ∂μ) s := by\n    refine' continuousOn_integral_of_dominated_convergence (fun x ↦ ?_) _ _ _\n    · exact hk.bddAbove\n    · exact fun x ↦ hf.comp (continuous_id.prod_mk continuous_const) (by aesop)\n    · exact fun x ↦ eventually_of_forall fun y ↦ hfs x y\n    · exact eventually_of_forall fun x ↦ eventually_of_forall fun y ↦ by simp_all\n  exact h₂\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 2,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function OrderDual\nvariable {ι α β : Type*}\nsection\nvariable [LinearOrderedField α] {a b c d : α} {n : ℤ}\ntheorem manual_inv_antitoneOn_Ioi :\n    AntitoneOn (fun x : α ↦ x⁻¹) (Set.Ioi 0) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_inv_antitoneOn_Ioi :\n    AntitoneOn (fun x : α ↦ x⁻¹) (Set.Ioi 0) := by\n  convert sub_inv_antitoneOn_Ioi\n  exact (sub_zero _).symm\n```",
+      "generated_completion": "```lean4\ntheorem manual_inv_antitoneOn_Ioi :\n    AntitoneOn (fun x : α ↦ x⁻¹) (Set.Ioi 0) := by\n  intro x hx y hy hxy\n  have hx' : 0 < x := hx\n  have hy' : 0 < y := hy\n  have hxy' : x ≤ y := hxy\n  rw [inv_le_inv] <;> linarith\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 3,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace Nat\n\n/-- The set of `k`-smooth numbers `≤ N` is contained in the set of numbers of the form `m^2 * P`,\nwhere `m ≤ √N` and `P` is a product of distinct primes `< k`. -/\nlemma manual_smoothNumbersUpTo_subset_image (N k : ℕ) :\n    smoothNumbersUpTo N k ⊆ Finset.image (fun (s, m) ↦ m ^ 2 * (s.prod id))\n      (k.primesBelow.powerset ×ˢ (Finset.range N.sqrt.succ).erase 0) := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_smoothNumbersUpTo_subset_image (N k : ℕ) :\n    smoothNumbersUpTo N k ⊆ Finset.image (fun (s, m) ↦ m ^ 2 * (s.prod id))\n      (k.primesBelow.powerset ×ˢ (Finset.range N.sqrt.succ).erase 0) := by\n  intro n hn\n  obtain ⟨hn₁, hn₂⟩ := mem_smoothNumbersUpTo.mp hn\n  obtain ⟨s, hs, m, hm⟩ := eq_prod_primes_mul_sq_of_mem_smoothNumbers hn₂\n  simp only [id_eq, Finset.mem_range, zero_lt_succ, not_true_eq_false, Finset.mem_image,\n    Finset.mem_product, Finset.mem_powerset, Finset.mem_erase, Prod.exists]\n  refine ⟨s, m, ⟨Finset.mem_powerset.mp hs, ?_, ?_⟩, hm.symm⟩\n  · have := hm ▸ ne_zero_of_mem_smoothNumbers hn₂\n    simp only [ne_eq, _root_.mul_eq_zero, sq_eq_zero_iff, not_or] at this\n    exact this.1\n  · rw [lt_succ, le_sqrt']\n    refine LE.le.trans ?_ (hm ▸ hn₁)\n    nth_rw 1 [← mul_one (m ^ 2)]\n    exact mul_le_mul_left' (Finset.one_le_prod' fun p hp ↦\n      (prime_of_mem_primesBelow <| Finset.mem_powerset.mp hs hp).one_lt.le) _\n```",
+      "generated_completion": "```lean4\nlemma manual_smoothNumbersUpTo_subset_image (N k : ℕ) :\n    smoothNumbersUpTo N k ⊆ Finset.image (fun (s, m) ↦ m ^ 2 * (s.prod id))\n      (k.primesBelow.powerset ×ˢ (Finset.range N.sqrt.succ).erase 0) := by\n  intro n hn\n  rw [smoothNumbersUpTo_eq] at hn\n  simp only [Finset.mem_image, Finset.mem_product, Finset.mem_powerset, Finset.mem_range,\n    Finset.mem_erase, Prod.exists] at hn ⊢\n  obtain ⟨p, hp, a, ha, rfl⟩ := hn\n  use ⟨{p}, a⟩\n  simp_all [Finset.prod_singleton, pow_two, mul_assoc, mul_comm, mul_left_comm]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 4,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function\nvariable {M₀ G₀ : Type*} (α : Type*)\nvariable {α} {a b c d : α}\nsection MonoidWithZero\nvariable [MonoidWithZero M₀]\nsection GroupWithZero\nvariable [GroupWithZero G₀]\nsection LinearOrder\nvariable [LinearOrder G₀] [ZeroLEOneClass G₀] {a b c d : G₀}\nsection PosMulMono\nvariable [PosMulMono G₀]\nlemma manual_inv_neg : a⁻¹ < 0 ↔ a < 0 := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_inv_neg : a⁻¹ < 0 ↔ a < 0 := by\n  have := PosMulMono.toPosMulReflectLT (α := G₀); simp only [← not_le, inv_nonneg]\n```",
+      "generated_completion": "```lean4\nlemma manual_inv_neg : a⁻¹ < 0 ↔ a < 0 := by\n  by_cases h : a = 0 <;> simp_all [h, inv_eq_zero, not_lt]\n  <;> exact?\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 5,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Finset Function\nnamespace SimpleGraph\nvariable {V : Type*} (G : SimpleGraph V) {e : Sym2 V}\nsection EdgeFinset\nvariable {G₁ G₂ : SimpleGraph V} [Fintype G.edgeSet] [Fintype G₁.edgeSet] [Fintype G₂.edgeSet]\nvariable {G}\ntheorem manual_edgeFinset_bot : (⊥ : SimpleGraph V).edgeFinset = ∅ := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_edgeFinset_bot : (⊥ : SimpleGraph V).edgeFinset = ∅ := by simp [edgeFinset]\n```",
+      "generated_completion": "```lean4\ntheorem manual_edgeFinset_bot : (⊥ : SimpleGraph V).edgeFinset = ∅ := by\n  simp [edgeFinset]\n  <;> congr\n  <;> simp [bot_adj]\n  <;> ext\n  <;> simp\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 6,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen scoped Classical\nopen MeasureTheory Set Filter Function\nopen scoped Classical Topology Filter ENNReal Interval NNReal\nvariable {ι 𝕜 E F A : Type*} [NormedAddCommGroup E]\nvariable [NormedSpace ℝ E]\nnamespace intervalIntegral\nsection HasSum\nvariable {μ : Measure ℝ} {f : ℝ → E}\ntheorem _root_.MeasureTheory.Integrable.manual_hasSum_intervalIntegral_comp_add_int (hfi : Integrable f) :\n    HasSum (fun n : ℤ => ∫ x in (0 : ℝ)..(1 : ℝ), f (x + n)) (∫ x, f x) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem _root_.MeasureTheory.Integrable.manual_hasSum_intervalIntegral_comp_add_int (hfi : Integrable f) :\n    HasSum (fun n : ℤ => ∫ x in (0 : ℝ)..(1 : ℝ), f (x + n)) (∫ x, f x) := by\n  simpa only [integral_comp_add_right, zero_add, add_comm (1 : ℝ)] using\n    hfi.hasSum_intervalIntegral 0\n```",
+      "generated_completion": "```lean4\ntheorem _root_.MeasureTheory.Integrable.manual_hasSum_intervalIntegral_comp_add_int (hfi : Integrable f) :\n    HasSum (fun n : ℤ => ∫ x in (0 : ℝ)..(1 : ℝ), f (x + n)) (∫ x, f x) := by\n  have h₁ := hfi.hasFiniteIntegral\n  have h₂ := hfi.integrableOn\n  have h₃ := hfi.aestronglyMeasurable\n  -- Use the fact that the integral of f over [0, 1] is the same as the integral of f over [0, 1] shifted by n\n  have h₄ := hfi.integral_comp_add_int (0 : ℝ)\n  simp_all [intervalIntegral, MeasureTheory.Integrable.integral_of_hasFiniteIntegral]\n  <;>\n    exact?\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 7,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Polynomial Set Function minpoly\nnamespace minpoly\nvariable {R S : Type*} [CommRing R] [CommRing S] [IsDomain R] [Algebra R S]\nvariable [IsDomain S] [NoZeroSMulDivisors R S]\nvariable [IsIntegrallyClosed R]\n\n/-- For integrally closed rings, the minimal polynomial divides any polynomial that has the\n  integral element as root. See also `minpoly.dvd` which relaxes the assumptions on `S`\n  in exchange for stronger assumptions on `R`. -/\ntheorem manual_isIntegrallyClosed_dvd {s : S} (hs : IsIntegral R s) {p : R[X]}\n    (hp : Polynomial.aeval s p = 0) : minpoly R s ∣ p := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_isIntegrallyClosed_dvd {s : S} (hs : IsIntegral R s) {p : R[X]}\n    (hp : Polynomial.aeval s p = 0) : minpoly R s ∣ p := by\n  let K := FractionRing R\n  let L := FractionRing S\n  let _ : Algebra K L := FractionRing.liftAlgebra R L\n  have := FractionRing.isScalarTower_liftAlgebra R L\n  have : minpoly K (algebraMap S L s) ∣ map (algebraMap R K) (p %ₘ minpoly R s) := by\n    rw [map_modByMonic _ (minpoly.monic hs), modByMonic_eq_sub_mul_div]\n    · refine dvd_sub (minpoly.dvd K (algebraMap S L s) ?_) ?_\n      · rw [← map_aeval_eq_aeval_map, hp, map_zero]\n        rw [← IsScalarTower.algebraMap_eq, ← IsScalarTower.algebraMap_eq]\n      apply dvd_mul_of_dvd_left\n      rw [isIntegrallyClosed_eq_field_fractions K L hs]\n    exact Monic.map _ (minpoly.monic hs)\n  rw [isIntegrallyClosed_eq_field_fractions _ _ hs,\n    map_dvd_map (algebraMap R K) (IsFractionRing.injective R K) (minpoly.monic hs)] at this\n  rw [← modByMonic_eq_zero_iff_dvd (minpoly.monic hs)]\n  exact Polynomial.eq_zero_of_dvd_of_degree_lt this (degree_modByMonic_lt p <| minpoly.monic hs)\n```",
+      "generated_completion": "```lean4\ntheorem manual_isIntegrallyClosed_dvd {s : S} (hs : IsIntegral R s) {p : R[X]}\n    (hp : Polynomial.aeval s p = 0) : minpoly R s ∣ p := by\n  rw [dvd_iff_isRoot]\n  exact minpoly.aeval_dvd R s hp\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 8,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Polynomial\nuniverse u v w\nvariable {R : Type*} {F : Type u} {K : Type v} {L : Type w}\nnamespace Polynomial\nsection Splits\nvariable [CommRing R] [Field K] [Field L] [Field F]\nvariable (i : K →+* L)\ntheorem manual_eq_prod_roots_of_splits_id {p : K[X]} (hsplit : Splits (RingHom.id K) p) :\n    p = C p.leadingCoeff * (p.roots.map fun a => X - C a).prod := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_eq_prod_roots_of_splits_id {p : K[X]} (hsplit : Splits (RingHom.id K) p) :\n    p = C p.leadingCoeff * (p.roots.map fun a => X - C a).prod := by\n  simpa using eq_prod_roots_of_splits hsplit\n```",
+      "generated_completion": "```lean4\ntheorem manual_eq_prod_roots_of_splits_id {p : K[X]} (hsplit : Splits (RingHom.id K) p) :\n    p = C p.leadingCoeff * (p.roots.map fun a => X - C a).prod := by\n  have h₁ : p = C p.leadingCoeff * (p.roots.map fun a => X - C a).prod := by\n    apply eq_of_sub_eq_zero\n    rw [sub_eq_zero]\n    have h₂ : p.map (RingHom.id K) = p := by simp\n    rw [← h₂]\n    rw [eq_prod_roots_of_splits hsplit]\n    <;> simp [hsplit]\n  exact h₁\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 9,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Finset\nnamespace Nat\nvariable (n : ℕ)\nvariable {n}\ntheorem manual_one_mem_properDivisors_iff_one_lt : 1 ∈ n.properDivisors ↔ 1 < n := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_one_mem_properDivisors_iff_one_lt : 1 ∈ n.properDivisors ↔ 1 < n := by\n  rw [mem_properDivisors, and_iff_right (one_dvd _)]\n```",
+      "generated_completion": "```lean4\ntheorem manual_one_mem_properDivisors_iff_one_lt : 1 ∈ n.properDivisors ↔ 1 < n := by\n  rw [mem_properDivisors]\n  <;>\n    rcases n with (_ | _ | n) <;>\n    simp_all [Nat.lt_succ_iff, Nat.div_eq_of_lt]\n  <;>\n    omega\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 10,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Polynomial\nnamespace Mathlib.Tactic.ComputeDegree\nsection recursion_lemmas\nvariable {R : Type*}\nsection semiring\nvariable [Semiring R]\ntheorem manual_coeff_add_of_eq {n : ℕ} {a b : R} {f g : R[X]}\n    (h_add_left : f.coeff n = a) (h_add_right : g.coeff n = b) :\n    (f + g).coeff n = a + b := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_coeff_add_of_eq {n : ℕ} {a b : R} {f g : R[X]}\n    (h_add_left : f.coeff n = a) (h_add_right : g.coeff n = b) :\n    (f + g).coeff n = a + b := by subst ‹_› ‹_›; apply coeff_add\n```",
+      "generated_completion": "```lean4\ntheorem manual_coeff_add_of_eq {n : ℕ} {a b : R} {f g : R[X]}\n    (h_add_left : f.coeff n = a) (h_add_right : g.coeff n = b) :\n    (f + g).coeff n = a + b := by\n  rw [coeff_add]\n  <;> simp_all\n  <;> rfl\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 11,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace DualNumber\nvariable {R : Type*}\nopen TrivSqZeroExt\nsection Field\nvariable {K : Type*}\nlemma manual_isMaximal_span_singleton_eps [DivisionRing K] :\n    (Ideal.span {ε} : Ideal K[ε]).IsMaximal := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_isMaximal_span_singleton_eps [DivisionRing K] :\n    (Ideal.span {ε} : Ideal K[ε]).IsMaximal := by\n  refine ⟨?_, fun I hI ↦ ?_⟩\n  · simp [ne_eq, Ideal.eq_top_iff_one, Ideal.mem_span_singleton', TrivSqZeroExt.ext_iff]\n  · rcases ideal_trichotomy I with rfl|rfl|rfl <;>\n    first | simp at hI | simp\n```",
+      "generated_completion": "```lean4\nlemma manual_isMaximal_span_singleton_eps [DivisionRing K] :\n    (Ideal.span {ε} : Ideal K[ε]).IsMaximal := by\n  apply?\n  <;> simp_all [Ideal.span_singleton_eq_bot, Ideal.mem_span_singleton, Ideal.IsMaximal]\n  <;> exact ⟨fun h => by simp_all [ε, TrivSqZeroExt.mk, TrivSqZeroExt.re, TrivSqZeroExt.im]\n    , fun h => by simp_all [ε, TrivSqZeroExt.mk, TrivSqZeroExt.re, TrivSqZeroExt.im]⟩\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 12,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function ZMod\nnamespace ZMod\nvariable {m n : ℕ}\ntheorem manual_intCast_mod (a : ℤ) (b : ℕ) : ((a % b : ℤ) : ZMod b) = (a : ZMod b) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_intCast_mod (a : ℤ) (b : ℕ) : ((a % b : ℤ) : ZMod b) = (a : ZMod b) := by\n  rw [ZMod.intCast_eq_intCast_iff]\n  apply Int.mod_modEq\n```",
+      "generated_completion": "```lean4\ntheorem manual_intCast_mod (a : ℤ) (b : ℕ) : ((a % b : ℤ) : ZMod b) = (a : ZMod b) := by\n  cases b with\n  | zero =>\n    simp\n  | succ b =>\n    apply Eq.symm\n    apply Eq.symm\n    rfl\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 13,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Circle Finset Function Multiplicative\nopen Fintype (card)\nopen Real hiding exp\nopen scoped BigOperators DirectSum\nvariable {α : Type*} [AddCommGroup α] {n : ℕ} {a b : α}\nnamespace AddChar\nvariable (n : ℕ) [NeZero n]\nvariable {n}\nsection Finite\nvariable (α) [Finite α]\nvariable {α}\nlemma manual_complexBasis_apply (ψ : AddChar α ℂ) : complexBasis α ψ = ψ := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_complexBasis_apply (ψ : AddChar α ℂ) : complexBasis α ψ = ψ := by rw [coe_complexBasis]\n```",
+      "generated_completion": "```lean4\nlemma manual_complexBasis_apply (ψ : AddChar α ℂ) : complexBasis α ψ = ψ := by\n  simp [complexBasis, Finset.sum_const, nsmul_eq_mul, mul_comm]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 14,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nvariable {α : Type*} {β : Type*} {ι : Type*}\nopen Filter\nopen scoped Topology NNReal\nsection SeminormedRing\nvariable [SeminormedRing α] {a b c : α}\ntheorem Finset.manual_norm_prod_le {α : Type*} [NormedCommRing α] [NormOneClass α] (s : Finset ι)\n    (f : ι → α) : ‖∏ i ∈ s, f i‖ ≤ ∏ i ∈ s, ‖f i‖ := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem Finset.manual_norm_prod_le {α : Type*} [NormedCommRing α] [NormOneClass α] (s : Finset ι)\n    (f : ι → α) : ‖∏ i ∈ s, f i‖ ≤ ∏ i ∈ s, ‖f i‖ := by\n  rcases s with ⟨⟨l⟩, hl⟩\n  simpa using (l.map f).norm_prod_le\n```",
+      "generated_completion": "```lean4\ntheorem Finset.manual_norm_prod_le {α : Type*} [NormedCommRing α] [NormOneClass α] (s : Finset ι)\n    (f : ι → α) : ‖∏ i ∈ s, f i‖ ≤ ∏ i ∈ s, ‖f i‖ := by\n  classical\n  induction' s using Finset.induction_on with i s hi ih\n  · simp\n  · rw [Finset.prod_insert hi]\n    rw [Finset.prod_insert hi]\n    exact norm_mul_le_of_le (by simp) (ih)\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 15,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen NNReal Topology Filter\nopen Set Fin Filter Function\nopen scoped ContDiff\nuniverse u uE uF uG uX\nvariable {𝕜 : Type u} [NontriviallyNormedField 𝕜] {E : Type uE} [NormedAddCommGroup E]\n  [NormedSpace 𝕜 E] {F : Type uF} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {G : Type uG}\n  [NormedAddCommGroup G] [NormedSpace 𝕜 G] {X : Type uX} [NormedAddCommGroup X] [NormedSpace 𝕜 X]\n  {s s₁ t u : Set E} {f f₁ : E → F} {g : F → G} {x x₀ : E} {c : F} {m n : WithTop ℕ∞}\n  {p : E → FormalMultilinearSeries 𝕜 E F}\ntheorem ContDiffAt.manual_analyticAt (h : ContDiffAt 𝕜 ω f x) : AnalyticAt 𝕜 f x := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem ContDiffAt.manual_analyticAt (h : ContDiffAt 𝕜 ω f x) : AnalyticAt 𝕜 f x := by\n  rw [← contDiffWithinAt_univ] at h\n  rw [← analyticWithinAt_univ]\n  exact h.analyticWithinAt\n```",
+      "generated_completion": "```lean4\ntheorem ContDiffAt.manual_analyticAt (h : ContDiffAt 𝕜 ω f x) : AnalyticAt 𝕜 f x := by\n  have h₁ : ContDiffAt 𝕜 ω f x := h\n  have h₂ : AnalyticAt 𝕜 f x := by\n    -- Use the fact that `f` is continuously differentiable up to any order to show it is analytic.\n    exact h₁.analyticAt\n  exact h₂\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 16,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Filter Topology Asymptotics Real Set MeasureTheory\nopen Complex\nvariable {ι : Type*} [Countable ι]\n\n/-- Tailored version for even Jacobi theta functions. -/\nlemma manual_hasSum_mellin_pi_mul_sq {a : ι → ℂ} {r : ι → ℝ} {F : ℝ → ℂ} {s : ℂ} (hs : 0 < s.re)\n    (hF : ∀ t ∈ Ioi 0, HasSum (fun i ↦ if r i = 0 then 0 else a i * rexp (-π * r i ^ 2 * t)) (F t))\n    (h_sum : Summable fun i ↦ ‖a i‖ / |r i| ^ s.re) :\n    HasSum (fun i ↦ Gammaℝ s * a i / |r i| ^ s) (mellin F (s / 2)) := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_hasSum_mellin_pi_mul_sq {a : ι → ℂ} {r : ι → ℝ} {F : ℝ → ℂ} {s : ℂ} (hs : 0 < s.re)\n    (hF : ∀ t ∈ Ioi 0, HasSum (fun i ↦ if r i = 0 then 0 else a i * rexp (-π * r i ^ 2 * t)) (F t))\n    (h_sum : Summable fun i ↦ ‖a i‖ / |r i| ^ s.re) :\n    HasSum (fun i ↦ Gammaℝ s * a i / |r i| ^ s) (mellin F (s / 2)) := by\n  have hs' : 0 < (s / 2).re := by rw [div_ofNat_re]; positivity\n  simp_rw [← sq_eq_zero_iff (a := r _)] at hF\n  convert hasSum_mellin_pi_mul₀ (fun i ↦ sq_nonneg (r i)) hs' hF ?_ using 3 with i\n  · rw [← neg_div, Gammaℝ_def]\n  · rw [← _root_.sq_abs, ofReal_pow, ← cpow_nat_mul']\n    · ring_nf\n    all_goals rw [arg_ofReal_of_nonneg (abs_nonneg _)]; linarith [pi_pos]\n  · convert h_sum using 3 with i\n    rw [← _root_.sq_abs, ← rpow_natCast_mul (abs_nonneg _), div_ofNat_re, Nat.cast_ofNat,\n      mul_div_cancel₀ _ two_pos.ne']\n```",
+      "generated_completion": "```lean4\nlemma manual_hasSum_mellin_pi_mul_sq {a : ι → ℂ} {r : ι → ℝ} {F : ℝ → ℂ} {s : ℂ} (hs : 0 < s.re)\n    (hF : ∀ t ∈ Ioi 0, HasSum (fun i ↦ if r i = 0 then 0 else a i * rexp (-π * r i ^ 2 * t)) (F t))\n    (h_sum : Summable fun i ↦ ‖a i‖ / |r i| ^ s.re) :\n    HasSum (fun i ↦ Gammaℝ s * a i / |r i| ^ s) (mellin F (s / 2)) := by\n  have h1 := hF 1 (by norm_num)\n  have h2 := hF 2 (by norm_num)\n  have h3 := hF 3 (by norm_num)\n  have h4 := hF 4 (by norm_num)\n  have h5 := hF 5 (by norm_num)\n  have h6 := hF 6 (by norm_num)\n  have h7 := hF 7 (by norm_num)\n  have h8 := hF 8 (by norm_num)\n  have h9 := hF 9 (by norm_num)\n  have h10 := hF 10 (by norm_num)\n  simp_all [HasSum]\n  <;> norm_num\n  <;> linarith\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 17,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Set\nopen Filter hiding map\nopen Function MeasurableSpace Topology Filter ENNReal NNReal Interval MeasureTheory\nopen scoped symmDiff\nvariable {α β γ δ ι R R' : Type*}\nnamespace MeasureTheory\nsection\nvariable {m : MeasurableSpace α} {μ μ₁ μ₂ : Measure α} {s s₁ s₂ t : Set α}\n\n/-- **Continuity from above**:\nthe measure of the intersection of a monotone family of measurable sets\nindexed by a type with countably generated `atBot` filter\nis equal to the infimum of the measures. -/\ntheorem _root_.Monotone.manual_measure_iInter [Preorder ι] [IsDirected ι (· ≥ ·)]\n    [(atBot : Filter ι).IsCountablyGenerated] {s : ι → Set α} (hs : Monotone s)\n    (hsm : ∀ i, NullMeasurableSet (s i) μ) (hfin : ∃ i, μ (s i) ≠ ∞) :\n    μ (⋂ i, s i) = ⨅ i, μ (s i) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem _root_.Monotone.manual_measure_iInter [Preorder ι] [IsDirected ι (· ≥ ·)]\n    [(atBot : Filter ι).IsCountablyGenerated] {s : ι → Set α} (hs : Monotone s)\n    (hsm : ∀ i, NullMeasurableSet (s i) μ) (hfin : ∃ i, μ (s i) ≠ ∞) :\n    μ (⋂ i, s i) = ⨅ i, μ (s i) := by\n  refine le_antisymm (le_iInf fun i ↦ measure_mono <| iInter_subset _ _) ?_\n  have := hfin.nonempty\n  rcases exists_seq_antitone_tendsto_atTop_atBot ι with ⟨x, hxm, hx⟩\n  calc\n    ⨅ i, μ (s i) ≤ ⨅ n, μ (s (x n)) := le_iInf_comp (μ ∘ s) x\n    _ = μ (⋂ n, s (x n)) := by\n      refine .symm <| (hs.comp_antitone hxm).directed_ge.measure_iInter (fun n ↦ hsm _) ?_\n      rcases hfin with ⟨k, hk⟩\n      rcases (hx.eventually_le_atBot k).exists with ⟨n, hn⟩\n      exact ⟨n, ne_top_of_le_ne_top hk <| measure_mono <| hs hn⟩\n    _ ≤ μ (⋂ i, s i) := by\n      refine measure_mono <| iInter_mono' fun i ↦ ?_\n      rcases (hx.eventually_le_atBot i).exists with ⟨n, hn⟩\n      exact ⟨n, hs hn⟩\n```",
+      "generated_completion": "```lean4\ntheorem _root_.Monotone.manual_measure_iInter [Preorder ι] [IsDirected ι (· ≥ ·)]\n    [(atBot : Filter ι).IsCountablyGenerated] {s : ι → Set α} (hs : Monotone s)\n    (hsm : ∀ i, NullMeasurableSet (s i) μ) (hfin : ∃ i, μ (s i) ≠ ∞) :\n    μ (⋂ i, s i) = ⨅ i, μ (s i) := by\n  -- Use the fact that the measure of the intersection is the infimum of the measures\n  have h_meas : ∀ i, NullMeasurableSet (s i) μ := hsm\n  have h_fin : ∃ i, μ (s i) ≠ ∞ := hfin\n  exact?\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 18,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen LinearMap Matrix Set Submodule\nsection ToMatrix'\nvariable {R : Type*} [CommSemiring R]\nvariable {k l m n : Type*} [DecidableEq n] [Fintype n]\ntheorem LinearMap.manual_toMatrix__id : LinearMap.toMatrix' (LinearMap.id : (n → R) →ₗ[R] n → R) = 1 := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem LinearMap.manual_toMatrix__id : LinearMap.toMatrix' (LinearMap.id : (n → R) →ₗ[R] n → R) = 1 := by\n  ext\n  rw [Matrix.one_apply, LinearMap.toMatrix'_apply, id_apply]\n```",
+      "generated_completion": "```lean4\ntheorem LinearMap.manual_toMatrix__id : LinearMap.toMatrix' (LinearMap.id : (n → R) →ₗ[R] n → R) = 1 := by\n  ext i j\n  simp [LinearMap.toMatrix', Matrix.one_apply, Finsupp.single_apply, eq_comm]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 19,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen scoped Classical Topology ENNReal MeasureTheory\nopen Set Function Real ENNReal\nopen MeasureTheory MeasurableSpace MeasureTheory.Measure\nopen TopologicalSpace\nopen Filter hiding prod_eq map\nvariable {α β E : Type*} [MeasurableSpace α] [MeasurableSpace β] {μ : Measure α} {ν : Measure β}\nvariable [NormedAddCommGroup E]\nopen MeasureTheory.Measure\nnamespace MeasureTheory\nvariable [SFinite ν]\nvariable [NormedSpace ℝ E]\nvariable [SFinite μ]\nvariable {E' : Type*} [NormedAddCommGroup E'] [NormedSpace ℝ E']\n\n/-- **Fubini's Theorem** for set integrals. -/\ntheorem manual_setIntegral_prod (f : α × β → E) {s : Set α} {t : Set β}\n    (hf : IntegrableOn f (s ×ˢ t) (μ.prod ν)) :\n    ∫ z in s ×ˢ t, f z ∂μ.prod ν = ∫ x in s, ∫ y in t, f (x, y) ∂ν ∂μ := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_setIntegral_prod (f : α × β → E) {s : Set α} {t : Set β}\n    (hf : IntegrableOn f (s ×ˢ t) (μ.prod ν)) :\n    ∫ z in s ×ˢ t, f z ∂μ.prod ν = ∫ x in s, ∫ y in t, f (x, y) ∂ν ∂μ := by\n  simp only [← Measure.prod_restrict s t, IntegrableOn] at hf ⊢\n  exact integral_prod f hf\n```",
+      "generated_completion": "```lean4\ntheorem manual_setIntegral_prod (f : α × β → E) {s : Set α} {t : Set β}\n    (hf : IntegrableOn f (s ×ˢ t) (μ.prod ν)) :\n    ∫ z in s ×ˢ t, f z ∂μ.prod ν = ∫ x in s, ∫ y in t, f (x, y) ∂ν ∂μ := by\n  simp_all [← integral_prod_of_integrable, Prod.fst, Prod.snd]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 20,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Real Topology NNReal ENNReal Filter ComplexConjugate Finset Set\nsection Limits\nopen Real Filter\nopen Asymptotics\nlemma manual_tendsto_rpow_atTop_of_base_lt_one (b : ℝ) (hb₀ : -1 < b) (hb₁ : b < 1) :\n    Tendsto (b ^ · : ℝ → ℝ) atTop (𝓝 (0 : ℝ)) := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_tendsto_rpow_atTop_of_base_lt_one (b : ℝ) (hb₀ : -1 < b) (hb₁ : b < 1) :\n    Tendsto (b ^ · : ℝ → ℝ) atTop (𝓝 (0 : ℝ)) := by\n  rcases lt_trichotomy b 0 with hb|rfl|hb\n  case inl => -- b < 0\n    simp_rw [Real.rpow_def_of_nonpos hb.le, hb.ne, ite_false]\n    rw [← isLittleO_const_iff (c := (1 : ℝ)) one_ne_zero, (one_mul (1 : ℝ)).symm]\n    refine IsLittleO.mul_isBigO ?exp ?cos\n    case exp =>\n      rw [isLittleO_const_iff one_ne_zero]\n      refine tendsto_exp_atBot.comp <| (tendsto_const_mul_atBot_of_neg ?_).mpr tendsto_id\n      rw [← log_neg_eq_log, log_neg_iff (by linarith)]\n      linarith\n    case cos =>\n      rw [isBigO_iff]\n      exact ⟨1, Eventually.of_forall fun x => by simp [Real.abs_cos_le_one]⟩\n  case inr.inl => -- b = 0\n    refine Tendsto.mono_right ?_ (Iff.mpr pure_le_nhds_iff rfl)\n    rw [tendsto_pure]\n    filter_upwards [eventually_ne_atTop 0] with _ hx\n    simp [hx]\n  case inr.inr => -- b > 0\n    simp_rw [Real.rpow_def_of_pos hb]\n    refine tendsto_exp_atBot.comp <| (tendsto_const_mul_atBot_of_neg ?_).mpr tendsto_id\n    exact (log_neg_iff hb).mpr hb₁\n```",
+      "generated_completion": "```lean4\nlemma manual_tendsto_rpow_atTop_of_base_lt_one (b : ℝ) (hb₀ : -1 < b) (hb₁ : b < 1) :\n    Tendsto (b ^ · : ℝ → ℝ) atTop (𝓝 (0 : ℝ)) := by\n  apply tendsto_rpow_atTop_of_lt_one (by linarith) (by linarith)\n  <;> assumption\n  <;> norm_num\n  <;> linarith\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 21,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace SimpleGraph\nvariable {V : Type*} {G : SimpleGraph V}\nnamespace Walk\nvariable [DecidableEq V]\ntheorem IsEulerian.manual_even_degree_iff {x u v : V} {p : G.Walk u v} (ht : p.IsEulerian) [Fintype V]\n    [DecidableRel G.Adj] : Even (G.degree x) ↔ u ≠ v → x ≠ u ∧ x ≠ v := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem IsEulerian.manual_even_degree_iff {x u v : V} {p : G.Walk u v} (ht : p.IsEulerian) [Fintype V]\n    [DecidableRel G.Adj] : Even (G.degree x) ↔ u ≠ v → x ≠ u ∧ x ≠ v := by\n  convert ht.isTrail.even_countP_edges_iff x\n  rw [← Multiset.coe_countP, Multiset.countP_eq_card_filter, ← card_incidenceFinset_eq_degree]\n  change Multiset.card _ = _\n  congr 1\n  convert_to _ = (ht.isTrail.edgesFinset.filter (x ∈ ·)).val\n  have : Fintype G.edgeSet := fintypeEdgeSet ht\n  rw [ht.edgesFinset_eq, G.incidenceFinset_eq_filter x]\n```",
+      "generated_completion": "```lean4\ntheorem IsEulerian.manual_even_degree_iff {x u v : V} {p : G.Walk u v} (ht : p.IsEulerian) [Fintype V]\n    [DecidableRel G.Adj] : Even (G.degree x) ↔ u ≠ v → x ≠ u ∧ x ≠ v := by\n  rw [even_iff_two_dvd]\n  rw [Nat.dvd_iff_mod_eq_zero]\n  cases' eq_or_ne u v with h h <;> simp_all [ht.two_mul_odd_degree_iff, Nat.mod_eq_of_lt]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 22,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nuniverse u v\nopen Set Filter TopologicalSpace Topology\nopen scoped Topology Pointwise\nvariable {ι α M N X : Type*} [TopologicalSpace X]\nsection GroupWithZero\nlemma GroupWithZero.manual_isOpen_singleton_zero [GroupWithZero M] [TopologicalSpace M]\n    [ContinuousMul M] [CompactSpace M] [T1Space M] :\n    IsOpen {(0 : M)} := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma GroupWithZero.manual_isOpen_singleton_zero [GroupWithZero M] [TopologicalSpace M]\n    [ContinuousMul M] [CompactSpace M] [T1Space M] :\n    IsOpen {(0 : M)} := by\n  obtain ⟨U, hU, h0U, h1U⟩ := t1Space_iff_exists_open.mp ‹_› zero_ne_one\n  obtain ⟨W, hW, hW'⟩ := exists_mem_nhds_zero_mul_subset isCompact_univ (hU.mem_nhds h0U)\n  by_cases H : ∃ x ≠ 0, x ∈ W\n  · obtain ⟨x, hx, hxW⟩ := H\n    cases h1U (hW' (by simpa [hx] using Set.mul_mem_mul (Set.mem_univ x⁻¹) hxW))\n  · obtain rfl : W = {0} := subset_antisymm\n      (by simpa [not_imp_not] using H) (by simpa using mem_of_mem_nhds hW)\n    simpa [isOpen_iff_mem_nhds]\n```",
+      "generated_completion": "```lean4\nlemma GroupWithZero.manual_isOpen_singleton_zero [GroupWithZero M] [TopologicalSpace M]\n    [ContinuousMul M] [CompactSpace M] [T1Space M] :\n    IsOpen {(0 : M)} := by\n  have h : (0 : M) = 1⁻¹ := by\n    simp\n  rw [h]\n  -- We need to show that the singleton set {1⁻¹} is open.\n  -- Since M is a group with zero, 1 is the identity element, and 0 is the zero element.\n  -- We use the fact that M is a T1 space and compact to conclude that the singleton set {1⁻¹} is open.\n  exact isOpen_compl_singleton.preimage (continuous_inv.comp continuous_const)\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 23,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Finset Nat FiniteField ZMod\nopen scoped Nat\nnamespace Nat\nvariable {n : ℕ}\n\n/-- For `n ≠ 1`, `(n-1)!` is congruent to `-1` modulo `n` only if n is prime. -/\ntheorem manual_prime_of_fac_equiv_neg_one (h : ((n - 1)! : ZMod n) = -1) (h1 : n ≠ 1) : Prime n := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_prime_of_fac_equiv_neg_one (h : ((n - 1)! : ZMod n) = -1) (h1 : n ≠ 1) : Prime n := by\n  rcases eq_or_ne n 0 with (rfl | h0)\n  · norm_num at h\n  replace h1 : 1 < n := n.two_le_iff.mpr ⟨h0, h1⟩\n  by_contra h2\n  obtain ⟨m, hm1, hm2 : 1 < m, hm3⟩ := exists_dvd_of_not_prime2 h1 h2\n  have hm : m ∣ (n - 1)! := Nat.dvd_factorial (pos_of_gt hm2) (le_pred_of_lt hm3)\n  refine hm2.ne' (Nat.dvd_one.mp ((Nat.dvd_add_right hm).mp (hm1.trans ?_)))\n  rw [← ZMod.natCast_zmod_eq_zero_iff_dvd, cast_add, cast_one, h, neg_add_cancel]\n```",
+      "generated_completion": "```lean4\ntheorem manual_prime_of_fac_equiv_neg_one (h : ((n - 1)! : ZMod n) = -1) (h1 : n ≠ 1) : Prime n := by\n  haveI := Fact.mk h1\n  have h2 : n ≠ 0 := by\n    rintro rfl\n    simp_all\n  simp_all [← ZMod.int_cast_eq_int_cast_iff, ← ZMod.eq_iff_modEq_nat]\n  <;>\n    try\n      cases n with\n      | zero => contradiction\n      | succ n =>\n        cases n with\n        | zero => contradiction\n        | succ n =>\n          simp_all [Nat.factorial_succ, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt]\n          <;>\n            norm_num\n          <;>\n            omega\n  <;>\n    try\n      exact Nat.prime_def_lt'.mpr ⟨by omega, fun m hm1 hm2 => by\n        have h3 := h\n        simp_all [Nat.factorial_succ, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt]\n        <;>\n          norm_num\n        <;>\n          omega\n      ⟩\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 24,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Function Cardinal Set Equiv Order\nopen scoped Ordinal\nuniverse u v w\nnamespace Ordinal\nvariable {α β γ : Type*} {r : α → α → Prop} {s : β → β → Prop} {t : γ → γ → Prop}\ntheorem manual_iSup_eq_zero_iff {ι} {f : ι → Ordinal.{u}} [Small.{u} ι] :\n    iSup f = 0 ↔ ∀ i, f i = 0 := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_iSup_eq_zero_iff {ι} {f : ι → Ordinal.{u}} [Small.{u} ι] :\n    iSup f = 0 ↔ ∀ i, f i = 0 := by\n  refine\n    ⟨fun h i => ?_, fun h =>\n      le_antisymm (Ordinal.iSup_le fun i => Ordinal.le_zero.2 (h i)) (Ordinal.zero_le _)⟩\n  rw [← Ordinal.le_zero, ← h]\n  exact Ordinal.le_iSup f i\n```",
+      "generated_completion": "```lean4\ntheorem manual_iSup_eq_zero_iff {ι} {f : ι → Ordinal.{u}} [Small.{u} ι] :\n    iSup f = 0 ↔ ∀ i, f i = 0 := by\n  refine ⟨fun h i ↦ ?_, fun h ↦ ?_⟩\n  · -- If the supremum of f is 0, then each f i must be 0.\n    have : f i ≤ iSup f := le_iSup f i\n    rw [h] at this\n    exact le_zero_iff.1 this\n  · -- If each f i is 0, then the supremum of f is 0.\n    rw [iSup_eq_zero]\n    simp_all\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 25,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Polynomial Set Function Finsupp AddMonoidAlgebra\nuniverse u v w x\nvariable {R : Type u} {S₁ : Type v} {S₂ : Type w} {S₃ : Type x}\nnamespace MvPolynomial\nvariable {σ : Type*} {a a' a₁ a₂ : R} {e : ℕ} {s : σ →₀ ℕ}\nsection Equiv\nvariable (R) [CommSemiring R]\nsection\nvariable (S₁ S₂ S₃)\nvariable (σ)\nvariable {σ}\nlemma manual_sumAlgEquiv_comp_rename_inr :\n    (sumAlgEquiv R S₁ S₂).toAlgHom.comp (rename Sum.inr) = IsScalarTower.toAlgHom R\n        (MvPolynomial S₂ R) (MvPolynomial S₁ (MvPolynomial S₂ R)) := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_sumAlgEquiv_comp_rename_inr :\n    (sumAlgEquiv R S₁ S₂).toAlgHom.comp (rename Sum.inr) = IsScalarTower.toAlgHom R\n        (MvPolynomial S₂ R) (MvPolynomial S₁ (MvPolynomial S₂ R)) := by\n  ext i\n  simp\n```",
+      "generated_completion": "```lean4\nlemma manual_sumAlgEquiv_comp_rename_inr :\n    (sumAlgEquiv R S₁ S₂).toAlgHom.comp (rename Sum.inr) = IsScalarTower.toAlgHom R\n        (MvPolynomial S₂ R) (MvPolynomial S₁ (MvPolynomial S₂ R)) := by\n  ext\n  simp [sumAlgEquiv, IsScalarTower.toAlgHom, AlgHom.comp_apply, rename_X]\n  <;> rfl\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 26,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Set Function Finsupp AddMonoidAlgebra\nopen scoped Pointwise\nuniverse u v w x\nvariable {R : Type u} {S₁ : Type v} {S₂ : Type w} {S₃ : Type x}\nnamespace MvPolynomial\nvariable {σ : Type*} {a a' a₁ a₂ : R} {e : ℕ} {n m : σ} {s : σ →₀ ℕ}\nsection CommSemiring\nvariable [CommSemiring R] [CommSemiring S₁] {p q : MvPolynomial σ R}\nvariable (R σ)\nvariable {R σ}\nvariable (σ R)\nvariable {σ R}\ntheorem manual_adjoin_range_X : Algebra.adjoin R (range (X : σ → MvPolynomial σ R)) = ⊤ := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_adjoin_range_X : Algebra.adjoin R (range (X : σ → MvPolynomial σ R)) = ⊤ := by\n  set S := Algebra.adjoin R (range (X : σ → MvPolynomial σ R))\n  refine top_unique fun p hp => ?_; clear hp\n  induction p using MvPolynomial.induction_on with\n  | h_C => exact S.algebraMap_mem _\n  | h_add p q hp hq => exact S.add_mem hp hq\n  | h_X p i hp => exact S.mul_mem hp (Algebra.subset_adjoin <| mem_range_self _)\n```",
+      "generated_completion": "```lean4\ntheorem manual_adjoin_range_X : Algebra.adjoin R (range (X : σ → MvPolynomial σ R)) = ⊤ := by\n  apply top_unique\n  intro p _\n  induction p using MvPolynomial.induction_on <;> simp_all [Algebra.adjoin_union, Algebra.adjoin_range_X]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 27,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Finset Function Real\nopen scoped BigOperators ComplexConjugate ComplexOrder ENNReal NNReal NNRat\nvariable {ι κ 𝕜 : Type*} {E : ι → Type*} [Fintype ι]\nnamespace RCLike\nvariable [RCLike 𝕜]\nsection Function\nvariable {w : ι → ℝ} {f g : ι → 𝕜}\nlemma manual_wInner_cWeight_const_left (a : 𝕜) (f : ι → 𝕜) :\n    ⟪const _ a, f⟫ₙ_[𝕜] = conj a * 𝔼 i, f i := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_wInner_cWeight_const_left (a : 𝕜) (f : ι → 𝕜) :\n    ⟪const _ a, f⟫ₙ_[𝕜] = conj a * 𝔼 i, f i := by simp [wInner_cWeight_eq_expect, mul_expect]\n```",
+      "generated_completion": "```lean4\nlemma manual_wInner_cWeight_const_left (a : 𝕜) (f : ι → 𝕜) :\n    ⟪const _ a, f⟫ₙ_[𝕜] = conj a * 𝔼 i, f i := by\n  simp [inner_apply, Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum_const, nsmul_eq_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;> ring_nf\n  <;> simp_all [Finset.sum",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 28,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace Matrix.charpoly\nvariable {R S : Type*} (n : Type*) [CommRing R] [CommRing S] [Fintype n] [DecidableEq n]\nvariable (f : R →+* S)\nvariable (R)\nvariable {R}\nlemma manual_univ_coeff_eval_Hom (M : n × n → S) (i : ℕ) :\n    MvPolynomial.eval₂Hom f M ((univ R n).coeff i) =\n      (charpoly (Matrix.of M.curry)).coeff i := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_univ_coeff_eval_Hom (M : n × n → S) (i : ℕ) :\n    MvPolynomial.eval₂Hom f M ((univ R n).coeff i) =\n      (charpoly (Matrix.of M.curry)).coeff i := by\n  rw [← univ_map_eval₂Hom n f M, Polynomial.coeff_map]\n```",
+      "generated_completion": "```lean4\nlemma manual_univ_coeff_eval_Hom (M : n × n → S) (i : ℕ) :\n    MvPolynomial.eval₂Hom f M ((univ R n).coeff i) =\n      (charpoly (Matrix.of M.curry)).coeff i := by\n  rw [charpoly]\n  <;> simp_all [Matrix.charpoly, Matrix.det_fin_one, Matrix.sub_apply, Matrix.one_apply, Matrix.mul_apply,\n    Matrix.of_apply, Function.comp_apply, MvPolynomial.eval₂Hom, MvPolynomial.eval₂]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 29,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Polynomial Finsupp\nvariable {R S T : Type*} [CommRing R] [Ring S] [Algebra R S]\nvariable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]\nvariable {K : Type*} [Field K]\nopen PowerBasis\ntheorem IsIntegral.manual_mem_span_pow [Nontrivial R] {x y : S} (hx : IsIntegral R x)\n    (hy : ∃ f : R[X], y = aeval x f) :\n    y ∈ Submodule.span R (Set.range fun i : Fin (minpoly R x).natDegree => x ^ (i : ℕ)) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem IsIntegral.manual_mem_span_pow [Nontrivial R] {x y : S} (hx : IsIntegral R x)\n    (hy : ∃ f : R[X], y = aeval x f) :\n    y ∈ Submodule.span R (Set.range fun i : Fin (minpoly R x).natDegree => x ^ (i : ℕ)) := by\n  obtain ⟨f, rfl⟩ := hy\n  apply mem_span_pow'.mpr _\n  have := minpoly.monic hx\n  refine ⟨f %ₘ minpoly R x, (degree_modByMonic_lt _ this).trans_le degree_le_natDegree, ?_⟩\n  conv_lhs => rw [← modByMonic_add_div f this]\n  simp only [add_zero, zero_mul, minpoly.aeval, aeval_add, map_mul]\n```",
+      "generated_completion": "```lean4\ntheorem IsIntegral.manual_mem_span_pow [Nontrivial R] {x y : S} (hx : IsIntegral R x)\n    (hy : ∃ f : R[X], y = aeval x f) :\n    y ∈ Submodule.span R (Set.range fun i : Fin (minpoly R x).natDegree => x ^ (i : ℕ)) := by\n  obtain ⟨f, hf⟩ := hy\n  subst_vars\n  exact?\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 30,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen TopologicalSpace Filter Set Bundle Function\nopen scoped Topology\nvariable {B : Type*} (F : Type*) {E : B → Type*}\nvariable {Z : Type*} [TopologicalSpace B] [TopologicalSpace F] {proj : Z → B}\nvariable [TopologicalSpace Z] [TopologicalSpace (TotalSpace F E)]\nnamespace Trivialization\nvariable {F}\nvariable (e : Trivialization F proj) {x : Z}\nvariable (e' : Trivialization F (π F E)) {b : B} {y : E b}\ntheorem manual_coordChange_coordChange (e₁ e₂ e₃ : Trivialization F proj) {b : B} (h₁ : b ∈ e₁.baseSet)\n    (h₂ : b ∈ e₂.baseSet) (x : F) :\n    e₂.coordChange e₃ b (e₁.coordChange e₂ b x) = e₁.coordChange e₃ b x := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_coordChange_coordChange (e₁ e₂ e₃ : Trivialization F proj) {b : B} (h₁ : b ∈ e₁.baseSet)\n    (h₂ : b ∈ e₂.baseSet) (x : F) :\n    e₂.coordChange e₃ b (e₁.coordChange e₂ b x) = e₁.coordChange e₃ b x := by\n  rw [coordChange, e₁.mk_coordChange _ h₁ h₂, ← e₂.coe_coe, e₂.left_inv, coordChange]\n  rwa [e₂.mem_source, e₁.proj_symm_apply' h₁]\n```",
+      "generated_completion": "```lean4\ntheorem manual_coordChange_coordChange (e₁ e₂ e₃ : Trivialization F proj) {b : B} (h₁ : b ∈ e₁.baseSet)\n    (h₂ : b ∈ e₂.baseSet) (x : F) :\n    e₂.coordChange e₃ b (e₁.coordChange e₂ b x) = e₁.coordChange e₃ b x := by\n  rw [e₂.coordChange_comp] <;> simp_all\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 31,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Polynomial Submodule\nsection\nvariable {R A B S : Type*}\nvariable [CommRing R] [CommRing A] [Ring B] [CommRing S]\nvariable [Algebra R A] [Algebra R B] (f : R →+* S)\nvariable {f}\nvariable (f)\nvariable (f : R →+* B)\nvariable (f : R →+* S)\ntheorem RingHom.IsIntegralElem.manual_sub {x y : S} (hx : f.IsIntegralElem x) (hy : f.IsIntegralElem y) :\n    f.IsIntegralElem (x - y) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem RingHom.IsIntegralElem.manual_sub {x y : S} (hx : f.IsIntegralElem x) (hy : f.IsIntegralElem y) :\n    f.IsIntegralElem (x - y) := by\n  simpa only [sub_eq_add_neg] using hx.add f (hy.neg f)\n```",
+      "generated_completion": "```lean4\ntheorem RingHom.IsIntegralElem.manual_sub {x y : S} (hx : f.IsIntegralElem x) (hy : f.IsIntegralElem y) :\n    f.IsIntegralElem (x - y) := by\n  rw [sub_eq_add_neg]\n  apply hx.add\n  exact hy.neg\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 32,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Real ComplexConjugate Finset Set\nnamespace Real\nvariable {x y z : ℝ} {n : ℕ}\nlemma manual_lt_rpow_of_log_lt (hy : 0 < y) (h : log x < z * log y) : x < y ^ z := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_lt_rpow_of_log_lt (hy : 0 < y) (h : log x < z * log y) : x < y ^ z := by\n  obtain hx | hx := le_or_lt x 0\n  · exact hx.trans_lt (rpow_pos_of_pos hy _)\n  · exact (lt_rpow_iff_log_lt hx hy).2 h\n```",
+      "generated_completion": "```lean4\nlemma manual_lt_rpow_of_log_lt (hy : 0 < y) (h : log x < z * log y) : x < y ^ z := by\n  by_cases hx : x ≤ 0\n  · have : y ^ z > 0 := by positivity\n    nlinarith [log_le_sub_one_of_pos hy, log_nonpos_iff.2 (by nlinarith : x ≤ 1)]\n  have hx' : 0 < x := lt_of_not_ge hx\n  have : x < y ^ z := by\n    rw [← exp_log hx', ← exp_log (by positivity : 0 < y ^ z)]\n    simp [exp_lt_exp]\n    nlinarith [log_lt_log (by positivity) h]\n  exact this\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 33,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Set Filter Topology TopologicalSpace Function\nuniverse u v\nvariable {X : Type u} {Y : Type v} {ι : Type*}\nvariable [TopologicalSpace X] [TopologicalSpace Y] {s t : Set X} {f : X → Y}\nsection Compact\nnamespace Filter\ntheorem Tendsto.manual_isCompact_insert_range_of_cocompact {f : X → Y} {y}\n    (hf : Tendsto f (cocompact X) (𝓝 y)) (hfc : Continuous f) : IsCompact (insert y (range f)) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem Tendsto.manual_isCompact_insert_range_of_cocompact {f : X → Y} {y}\n    (hf : Tendsto f (cocompact X) (𝓝 y)) (hfc : Continuous f) : IsCompact (insert y (range f)) := by\n  intro l hne hle\n  by_cases hy : ClusterPt y l\n  · exact ⟨y, Or.inl rfl, hy⟩\n  simp only [clusterPt_iff, not_forall, ← not_disjoint_iff_nonempty_inter, not_not] at hy\n  rcases hy with ⟨s, hsy, t, htl, hd⟩\n  rcases mem_cocompact.1 (hf hsy) with ⟨K, hKc, hKs⟩\n  have : f '' K ∈ l := by\n    filter_upwards [htl, le_principal_iff.1 hle] with y hyt hyf\n    rcases hyf with (rfl | ⟨x, rfl⟩)\n    exacts [(hd.le_bot ⟨mem_of_mem_nhds hsy, hyt⟩).elim,\n      mem_image_of_mem _ (not_not.1 fun hxK => hd.le_bot ⟨hKs hxK, hyt⟩)]\n  rcases hKc.image hfc (le_principal_iff.2 this) with ⟨y, hy, hyl⟩\n  exact ⟨y, Or.inr <| image_subset_range _ _ hy, hyl⟩\n```",
+      "generated_completion": "```lean4\ntheorem Tendsto.manual_isCompact_insert_range_of_cocompact {f : X → Y} {y}\n    (hf : Tendsto f (cocompact X) (𝓝 y)) (hfc : Continuous f) : IsCompact (insert y (range f)) := by\n  haveI := hfc.isCompact_preimage (cocompact X)\n  have : IsCompact (f ⁻¹' {y}) := by simpa using hf (isOpen_singleton_iff.mpr (by simp))\n  simpa [preimage, range] using this.insert y\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 34,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen scoped NNReal\nnamespace CFC\nsection Unital\nvariable {A : Type*} [PartialOrder A] [Ring A] [StarRing A] [TopologicalSpace A]\n  [Algebra ℝ A] [ContinuousFunctionalCalculus ℝ≥0 (fun (a : A) => 0 ≤ a)]\nlemma manual_rpow_algebraMap {x : ℝ≥0} {y : ℝ} :\n    (algebraMap ℝ≥0 A x) ^ y = algebraMap ℝ≥0 A (x ^ y) := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_rpow_algebraMap {x : ℝ≥0} {y : ℝ} :\n    (algebraMap ℝ≥0 A x) ^ y = algebraMap ℝ≥0 A (x ^ y) := by\n  rw [rpow_def, cfc_algebraMap ..]\n```",
+      "generated_completion": "```lean4\nlemma manual_rpow_algebraMap {x : ℝ≥0} {y : ℝ} :\n    (algebraMap ℝ≥0 A x) ^ y = algebraMap ℝ≥0 A (x ^ y) := by\n  simp [← map_rpow_of_nonneg (algebraMap ℝ≥0 A) (algebraMap_nonneg x) y]\n  <;> congr\n  <;> simp [algebraMap_rpow]\n  <;> simp [algebraMap_rpow]\n  <;> simp [algebraMap_rpow]\n  <;> simp [algebraMap_rpow]\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 35,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Set LinearMap Submodule\nnamespace Finsupp\nvariable {α : Type*} {M : Type*} {N : Type*} {P : Type*} {R : Type*} {S : Type*}\nvariable [Semiring R] [Semiring S] [AddCommMonoid M] [Module R M]\nvariable [AddCommMonoid N] [Module R N]\nvariable [AddCommMonoid P] [Module R P]\ntheorem manual_domLCongr_single {α₁ : Type*} {α₂ : Type*} (e : α₁ ≃ α₂) (i : α₁) (m : M) :\n    (Finsupp.domLCongr e : _ ≃ₗ[R] _) (Finsupp.single i m) = Finsupp.single (e i) m := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_domLCongr_single {α₁ : Type*} {α₂ : Type*} (e : α₁ ≃ α₂) (i : α₁) (m : M) :\n    (Finsupp.domLCongr e : _ ≃ₗ[R] _) (Finsupp.single i m) = Finsupp.single (e i) m := by\n  simp\n```",
+      "generated_completion": "```lean4\ntheorem manual_domLCongr_single {α₁ : Type*} {α₂ : Type*} (e : α₁ ≃ α₂) (i : α₁) (m : M) :\n    (Finsupp.domLCongr e : _ ≃ₗ[R] _) (Finsupp.single i m) = Finsupp.single (e i) m := by\n  simp [Finsupp.domLCongr, LinearEquiv.trans_apply, Equiv.symm_apply_apply]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 36,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Affine\nopen Set\nopen scoped Pointwise\nnamespace AffineSubspace\nopen AffineEquiv\nvariable {k : Type*} {V : Type*} {P : Type*} [Ring k] [AddCommGroup V] [Module k V]\nvariable [AffineSpace V P]\ntheorem Parallel.manual_direction_eq {s₁ s₂ : AffineSubspace k P} (h : s₁ ∥ s₂) :\n    s₁.direction = s₂.direction := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem Parallel.manual_direction_eq {s₁ s₂ : AffineSubspace k P} (h : s₁ ∥ s₂) :\n    s₁.direction = s₂.direction := by\n  rcases h with ⟨v, rfl⟩\n  simp\n```",
+      "generated_completion": "```lean4\ntheorem Parallel.manual_direction_eq {s₁ s₂ : AffineSubspace k P} (h : s₁ ∥ s₂) :\n    s₁.direction = s₂.direction := by\n  rcases h with (_ | _)\n  <;> simp_all [AffineSubspace.direction_eq_direction_iff_of_mem]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 37,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nuniverse u₁ u₂ v₁ v₂ v w\nnamespace CategoryTheory\nnamespace PreGaloisCategory\nopen Limits Functor\nvariable {C : Type u₁} [Category.{u₂, u₁} C]\nvariable [GaloisCategory C] (F : C ⥤ FintypeCat.{w}) [FiberFunctor F]\n\n/-- Given a fiber functor `F` and a connected object `X` of `C`. Then `X` is Galois if and only if\nthe natural action of `Aut X` on `F.obj X` is transitive. -/\ntheorem manual_isGalois_iff_pretransitive (X : C) [IsConnected X] :\n    IsGalois X ↔ MulAction.IsPretransitive (Aut X) (F.obj X) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_isGalois_iff_pretransitive (X : C) [IsConnected X] :\n    IsGalois X ↔ MulAction.IsPretransitive (Aut X) (F.obj X) := by\n  rw [isGalois_iff_aux, Equiv.nonempty_congr <| quotientByAutTerminalEquivUniqueQuotient F X]\n  exact (MulAction.pretransitive_iff_unique_quotient_of_nonempty (Aut X) (F.obj X)).symm\n```",
+      "generated_completion": "```lean4\ntheorem manual_isGalois_iff_pretransitive (X : C) [IsConnected X] :\n    IsGalois X ↔ MulAction.IsPretransitive (Aut X) (F.obj X) := by\n  constructor\n  · intro _\n    exact?\n  · intro _\n    exact?\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 38,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Complex Real Set\nopen scoped Nat\nnamespace HurwitzZeta\nvariable {k : ℕ} {x : ℝ}\ntheorem manual_hurwitzZetaEven_one_sub_two_mul_nat (hk : k ≠ 0) (hx : x ∈ Icc (0 : ℝ) 1) :\n    hurwitzZetaEven x (1 - 2 * k) =\n      -1 / (2 * k) * ((Polynomial.bernoulli (2 * k)).map (algebraMap ℚ ℂ)).eval (x : ℂ) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_hurwitzZetaEven_one_sub_two_mul_nat (hk : k ≠ 0) (hx : x ∈ Icc (0 : ℝ) 1) :\n    hurwitzZetaEven x (1 - 2 * k) =\n      -1 / (2 * k) * ((Polynomial.bernoulli (2 * k)).map (algebraMap ℚ ℂ)).eval (x : ℂ) := by\n  have h1 (n : ℕ) : (2 * k : ℂ) ≠ -n := by\n    rw [← Int.cast_ofNat, ← Int.cast_natCast, ← Int.cast_mul, ← Int.cast_natCast n, ← Int.cast_neg,\n      Ne, Int.cast_inj, ← Ne]\n    refine ne_of_gt ((neg_nonpos_of_nonneg n.cast_nonneg).trans_lt (mul_pos two_pos ?_))\n    exact Nat.cast_pos.mpr (Nat.pos_of_ne_zero hk)\n  have h2 : (2 * k : ℂ) ≠ 1 := by norm_cast; simp only [mul_eq_one, OfNat.ofNat_ne_one,\n    false_and, not_false_eq_true]\n  have h3 : Gammaℂ (2 * k) ≠ 0 := by\n    refine mul_ne_zero (mul_ne_zero two_ne_zero ?_) (Gamma_ne_zero h1)\n    simp only [ne_eq, cpow_eq_zero_iff, mul_eq_zero, OfNat.ofNat_ne_zero, ofReal_eq_zero,\n      pi_ne_zero, Nat.cast_eq_zero, false_or, false_and, not_false_eq_true]\n  rw [hurwitzZetaEven_one_sub _ h1 (Or.inr h2), ← Gammaℂ, cosZeta_two_mul_nat' hk hx, ← mul_assoc,\n    ← mul_div_assoc, mul_assoc, mul_div_cancel_left₀ _ h3, ← mul_div_assoc]\n  congr 2\n  rw [mul_div_assoc, mul_div_cancel_left₀ _ two_ne_zero, ← ofReal_natCast, ← ofReal_mul,\n    ← ofReal_cos, mul_comm π, ← sub_zero (k * π), cos_nat_mul_pi_sub, Real.cos_zero, mul_one,\n    ofReal_pow, ofReal_neg, ofReal_one, pow_succ, mul_neg_one, mul_neg, ← mul_pow, neg_one_mul,\n    neg_neg, one_pow]\n```",
+      "generated_completion": "```lean4\ntheorem manual_hurwitzZetaEven_one_sub_two_mul_nat (hk : k ≠ 0) (hx : x ∈ Icc (0 : ℝ) 1) :\n    hurwitzZetaEven x (1 - 2 * k) =\n      -1 / (2 * k) * ((Polynomial.bernoulli (2 * k)).map (algebraMap ℚ ℂ)).eval (x : ℂ) := by\n  rw [hurwitzZetaEven]\n  simp_all [hurwitzZeta, Complex.ofReal_mul, mul_assoc]\n  <;> field_simp [hk, Complex.ofReal_mul, mul_assoc]\n  <;> ring_nf\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm_cast\n  <;> simp_all [Complex.ofReal_mul, mul_assoc]\n  <;> norm",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 39,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen scoped Manifold\nopen Bundle Set Topology\nsection SpecificFunctions\nvariable {𝕜 : Type*} [NontriviallyNormedField 𝕜]\n  -- declare a charted space `M` over the pair `(E, H)`.\n  {E : Type*} [NormedAddCommGroup E]\n  [NormedSpace 𝕜 E] {H : Type*} [TopologicalSpace H] {I : ModelWithCorners 𝕜 E H} {M : Type*}\n  [TopologicalSpace M] [ChartedSpace H M]\n  -- declare a charted space `M'` over the pair `(E', H')`.\n  {E' : Type*} [NormedAddCommGroup E'] [NormedSpace 𝕜 E'] {H' : Type*} [TopologicalSpace H']\n  {I' : ModelWithCorners 𝕜 E' H'} {M' : Type*} [TopologicalSpace M'] [ChartedSpace H' M']\n  -- declare a charted space `M''` over the pair `(E'', H'')`.\n  {E'' : Type*} [NormedAddCommGroup E''] [NormedSpace 𝕜 E'']\n  {H'' : Type*} [TopologicalSpace H''] {I'' : ModelWithCorners 𝕜 E'' H''} {M'' : Type*}\n  [TopologicalSpace M''] [ChartedSpace H'' M'']\n  -- declare a charted space `N` over the pair `(F, G)`.\n  {F : Type*}\n  [NormedAddCommGroup F] [NormedSpace 𝕜 F] {G : Type*} [TopologicalSpace G]\n  {J : ModelWithCorners 𝕜 F G} {N : Type*} [TopologicalSpace N] [ChartedSpace G N]\n  -- declare a charted space `N'` over the pair `(F', G')`.\n  {F' : Type*}\n  [NormedAddCommGroup F'] [NormedSpace 𝕜 F'] {G' : Type*} [TopologicalSpace G']\n  {J' : ModelWithCorners 𝕜 F' G'} {N' : Type*} [TopologicalSpace N'] [ChartedSpace G' N']\n  -- F₁, F₂, F₃, F₄ are normed spaces\n  {F₁ : Type*}\n  [NormedAddCommGroup F₁] [NormedSpace 𝕜 F₁] {F₂ : Type*} [NormedAddCommGroup F₂]\n  [NormedSpace 𝕜 F₂] {F₃ : Type*} [NormedAddCommGroup F₃] [NormedSpace 𝕜 F₃] {F₄ : Type*}\n  [NormedAddCommGroup F₄] [NormedSpace 𝕜 F₄]\nvariable {s : Set M} {x : M}\nsection Prod\ntheorem manual_mfderiv_prod_left {x₀ : M} {y₀ : M'} :\n    mfderiv I (I.prod I') (fun x => (x, y₀)) x₀ =\n      ContinuousLinearMap.inl 𝕜 (TangentSpace I x₀) (TangentSpace I' y₀) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_mfderiv_prod_left {x₀ : M} {y₀ : M'} :\n    mfderiv I (I.prod I') (fun x => (x, y₀)) x₀ =\n      ContinuousLinearMap.inl 𝕜 (TangentSpace I x₀) (TangentSpace I' y₀) := by\n  refine (mdifferentiableAt_id.mfderiv_prod mdifferentiableAt_const).trans ?_\n  rw [mfderiv_id, mfderiv_const, ContinuousLinearMap.inl]\n```",
+      "generated_completion": "```lean4\ntheorem manual_mfderiv_prod_left {x₀ : M} {y₀ : M'} :\n    mfderiv I (I.prod I') (fun x => (x, y₀)) x₀ =\n      ContinuousLinearMap.inl 𝕜 (TangentSpace I x₀) (TangentSpace I' y₀) := by\n  apply HasMFDerivAt.mfderiv\n  apply hasMFDerivAt_fst.prod\n  exact hasMFDerivAt_const _ _\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 40,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace Matrix\nuniverse u u' v\nvariable {l : Type*} {m : Type u} {n : Type u'} {α : Type v}\nopen Matrix Equiv Equiv.Perm Finset\nsection Inv\nvariable [Fintype n] [DecidableEq n] [CommRing α]\nvariable (A : Matrix n n α) (B : Matrix n n α)\nlemma manual_inv_mulVec_eq_vec {A : Matrix n n α} [Invertible A]\n    {u v : n → α} (hM : u = A.mulVec v) : A⁻¹.mulVec u = v := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_inv_mulVec_eq_vec {A : Matrix n n α} [Invertible A]\n    {u v : n → α} (hM : u = A.mulVec v) : A⁻¹.mulVec u = v := by\n  rw [hM, Matrix.mulVec_mulVec, Matrix.inv_mul_of_invertible, Matrix.one_mulVec]\n```",
+      "generated_completion": "```lean4\nlemma manual_inv_mulVec_eq_vec {A : Matrix n n α} [Invertible A]\n    {u v : n → α} (hM : u = A.mulVec v) : A⁻¹.mulVec u = v := by\n  rw [hM]\n  simp [mulVec_mulVec, mul_invOf_self]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 41,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Topology Filter Function\nvariable {α β G₀ : Type*}\nsection Div\nvariable [GroupWithZero G₀] [TopologicalSpace G₀] [HasContinuousInv₀ G₀] [ContinuousMul G₀]\n  {f g : α → G₀}\ntheorem Filter.Tendsto.manual_div {l : Filter α} {a b : G₀} (hf : Tendsto f l (𝓝 a))\n    (hg : Tendsto g l (𝓝 b)) (hy : b ≠ 0) : Tendsto (f / g) l (𝓝 (a / b)) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem Filter.Tendsto.manual_div {l : Filter α} {a b : G₀} (hf : Tendsto f l (𝓝 a))\n    (hg : Tendsto g l (𝓝 b)) (hy : b ≠ 0) : Tendsto (f / g) l (𝓝 (a / b)) := by\n  simpa only [div_eq_mul_inv] using hf.mul (hg.inv₀ hy)\n```",
+      "generated_completion": "```lean4\ntheorem Filter.Tendsto.manual_div {l : Filter α} {a b : G₀} (hf : Tendsto f l (𝓝 a))\n    (hg : Tendsto g l (𝓝 b)) (hy : b ≠ 0) : Tendsto (f / g) l (𝓝 (a / b)) := by\n  simpa only [div_eq_mul_inv] using\n    hf.mul (hg.inv₀ hy)\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 42,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Set Filter Function\nopen scoped Topology\nvariable {α G : Type*} [TopologicalSpace G] [LinearOrderedAddCommGroup G] [OrderTopology G]\nvariable {l : Filter α} {f g : α → G}\nvariable [TopologicalSpace α] {a : α} {s : Set α}\n\n/-- In a linearly ordered additive group, the integer multiples of an element are dense\niff they are the whole group. -/\ntheorem manual_denseRange_zsmul_iff_surjective {a : G} :\n    DenseRange (· • a : ℤ → G) ↔ Surjective (· • a : ℤ → G) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_denseRange_zsmul_iff_surjective {a : G} :\n    DenseRange (· • a : ℤ → G) ↔ Surjective (· • a : ℤ → G) := by\n  refine ⟨fun h ↦ ?_, fun h ↦ h.denseRange⟩\n  wlog ha₀ : 0 < a generalizing a\n  · simp only [← range_eq_univ, DenseRange] at *\n    rcases (not_lt.1 ha₀).eq_or_lt with rfl | hlt\n    · simpa only [smul_zero, range_const, dense_iff_closure_eq, closure_singleton] using h\n    · have H : range (· • -a : ℤ → G) = range (· • a : ℤ → G) := by\n        simpa only [smul_neg, ← neg_smul] using neg_surjective.range_comp (· • a)\n      rw [← H]\n      apply this <;> simpa only [H, neg_pos]\n  intro b\n  obtain ⟨m, hm, hm'⟩ : ∃ m : ℤ, m • a ∈ Ioo b (b + a + a) := by\n    have hne : (Ioo b (b + a + a)).Nonempty := ⟨b + a, by simpa⟩\n    simpa using h.exists_mem_open isOpen_Ioo hne\n  rcases eq_or_ne b ((m - 1) • a) with rfl | hne; · simp\n  suffices (Ioo (m • a) ((m + 1) • a)).Nonempty by\n    rcases h.exists_mem_open isOpen_Ioo this with ⟨l, hl⟩\n    have : m < l ∧ l < m + 1 := by simpa [zsmul_lt_zsmul_iff_left ha₀] using hl\n    omega\n  rcases hne.lt_or_lt with hlt | hlt\n  · refine ⟨b + a + a, hm', ?_⟩\n    simpa only [add_smul, sub_smul, one_smul, lt_sub_iff_add_lt, add_lt_add_iff_right] using hlt\n  · use b + a\n    simp only [mem_Ioo, add_smul, sub_smul, one_smul, add_lt_add_iff_right] at hlt ⊢\n    exact ⟨sub_lt_iff_lt_add.1 hlt, hm⟩\n```",
+      "generated_completion": "```lean4\ntheorem manual_denseRange_zsmul_iff_surjective {a : G} :\n    DenseRange (· • a : ℤ → G) ↔ Surjective (· • a : ℤ → G) := by\n  rw [denseRange_iff_closure_range]\n  simp [Set.range_zsmul, closure_singleton]\n  <;> exact ⟨fun h => ⟨a, by simp_all [Set.mem_singleton_iff]⟩, fun ⟨k, hk⟩ => by simp_all [Set.mem_singleton_iff]⟩\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 43,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Set Metric\nvariable {α : Type*} {β : Type*} [PseudoMetricSpace α] [ProperSpace α] {x : α} {r : ℝ} {s : Set α}\n\n/-- If a nonempty ball in a proper space includes a closed set `s`, then there exists a nonempty\nball with the same center and a strictly smaller radius that includes `s`. -/\ntheorem manual_exists_pos_lt_subset_ball (hr : 0 < r) (hs : IsClosed s) (h : s ⊆ ball x r) :\n    ∃ r' ∈ Ioo 0 r, s ⊆ ball x r' := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_exists_pos_lt_subset_ball (hr : 0 < r) (hs : IsClosed s) (h : s ⊆ ball x r) :\n    ∃ r' ∈ Ioo 0 r, s ⊆ ball x r' := by\n  rcases eq_empty_or_nonempty s with (rfl | hne)\n  · exact ⟨r / 2, ⟨half_pos hr, half_lt_self hr⟩, empty_subset _⟩\n  have : IsCompact s :=\n    (isCompact_closedBall x r).of_isClosed_subset hs (h.trans ball_subset_closedBall)\n  obtain ⟨y, hys, hy⟩ : ∃ y ∈ s, s ⊆ closedBall x (dist y x) :=\n    this.exists_isMaxOn (β := α) (α := ℝ) hne (continuous_id.dist continuous_const).continuousOn\n  have hyr : dist y x < r := h hys\n  rcases exists_between hyr with ⟨r', hyr', hrr'⟩\n  exact ⟨r', ⟨dist_nonneg.trans_lt hyr', hrr'⟩, hy.trans <| closedBall_subset_ball hyr'⟩\n```",
+      "generated_completion": "```lean4\ntheorem manual_exists_pos_lt_subset_ball (hr : 0 < r) (hs : IsClosed s) (h : s ⊆ ball x r) :\n    ∃ r' ∈ Ioo 0 r, s ⊆ ball x r' := by\n  obtain ⟨r', h₁, h₂⟩ := exists_between hr\n  refine' ⟨r', h₁, _⟩\n  have h₃ : s ⊆ ball x r' := fun y hy => h (by\n    simp_all [Metric.mem_ball, dist_comm]\n    <;> linarith)\n  exact h₃\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 44,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Function Set Cardinal Equiv Order Ordinal\nuniverse u v w\nnamespace Cardinal\nsection add\ntheorem manual_add_le_max (a b : Cardinal) : a + b ≤ max (max a b) ℵ₀ := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_add_le_max (a b : Cardinal) : a + b ≤ max (max a b) ℵ₀ := by\n  rcases le_or_lt ℵ₀ a with ha | ha\n  · rw [add_eq_max ha]\n    exact le_max_left _ _\n  · rcases le_or_lt ℵ₀ b with hb | hb\n    · rw [add_comm, add_eq_max hb, max_comm]\n      exact le_max_left _ _\n    · exact le_max_of_le_right (add_lt_aleph0 ha hb).le\n```",
+      "generated_completion": "```lean4\ntheorem manual_add_le_max (a b : Cardinal) : a + b ≤ max (max a b) ℵ₀ := by\n  cases' le_total a b with h h <;> cases' le_total a ℵ₀ with h₁ h₁ <;>\n    cases' le_total b ℵ₀ with h₂ h₂ <;>\n    simp_all [add_eq_max, max_comm, max_left_comm, max_assoc] <;>\n    (try { exact le_max_of_le_right (le_trans (le_add_left _ _) (le_max_left _ _)) }) <;>\n    (try { exact le_max_of_le_right (le_trans (le_add_right _ _) (le_max_right _ _)) }) <;>\n    (try { exact le_max_of_le_left (le_trans (le_add_left _ _) (le_max_left _ _)) }) <;>\n    (try { exact le_max_of_le_left (le_trans (le_add_right _ _) (le_max_right _ _)) }) <;>\n    (try { exact le_trans (le_add_left _ _) (le_max_left _ _) }) <;>\n    (try { exact le_trans (le_add_right _ _) (le_max_right _ _) })\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 45,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nuniverse uι uE uH uM uF\nopen Function Filter Module Set\nopen scoped Topology Manifold\nlocal notation \"∞\" => (⊤ : ℕ∞)\nnoncomputable section\nvariable {ι : Type uι} {E : Type uE} [NormedAddCommGroup E] [NormedSpace ℝ E]\n  {F : Type uF} [NormedAddCommGroup F] [NormedSpace ℝ F] {H : Type uH}\n  [TopologicalSpace H] (I : ModelWithCorners ℝ E H) {M : Type uM} [TopologicalSpace M]\n  [ChartedSpace H M]\nvariable (ι M)\nvariable {ι I M}\nnamespace SmoothBumpCovering\nvariable [FiniteDimensional ℝ E]\nvariable {s : Set M} {U : M → Set M} (fs : SmoothBumpCovering ι I M s)\ntheorem manual_mem_extChartAt_source_of_eq_one {i : ι} {x : M} (h : fs i x = 1) :\n    x ∈ (extChartAt I (fs.c i)).source := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_mem_extChartAt_source_of_eq_one {i : ι} {x : M} (h : fs i x = 1) :\n    x ∈ (extChartAt I (fs.c i)).source := by\n  rw [extChartAt_source]; exact fs.mem_chartAt_source_of_eq_one h\n```",
+      "generated_completion": "```lean4\ntheorem manual_mem_extChartAt_source_of_eq_one {i : ι} {x : M} (h : fs i x = 1) :\n    x ∈ (extChartAt I (fs.c i)).source := by\n  have h₁ : x ∈ fs.c i := by\n    have h₂ : fs i x = 1 := h\n    have h₃ : fs i x ≠ 0 := by\n      intro h₄\n      rw [h₄] at h₂\n      norm_num at h₂\n    have h₄ : fs i x = 1 := h₂\n    have h₅ : fs i x ∈ Set.Icc (0 : ℝ) 1 := fs.mem_Icc i x\n    have h₆ : fs i x = 1 := h₄\n    have h₇ : (1 : ℝ) ∈ Set.Icc (0 : ℝ) 1 := by norm_num\n    have h₈ : fs i x = 1 := h₆\n    have h₉ : fs i x = 1 := h₆\n    simp_all [Set.mem_Icc]\n    <;> linarith\n  have h₂ : x ∈ (extChartAt I (fs.c i)).source := by\n    have h₃ : x ∈ fs.c i := h₁\n    have h₄ : x ∈ (extChartAt I (fs.c i)).source := by\n      apply (extChartAt I (fs.c i)).mapsTo\n      simp_all [fs.mem_chart_source]\n    exact h₄\n  exact h₂\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 46,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Finset (antidiagonal mem_antidiagonal)\nnamespace PowerSeries\nopen Finsupp (single)\nvariable {R : Type*}\nsection Semiring\nvariable (R) [Semiring R]\nvariable {R}\nvariable (R)\nvariable {R}\ntheorem manual_coeff_X_pow_self (n : ℕ) : coeff R n ((X : R⟦X⟧) ^ n) = 1 := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_coeff_X_pow_self (n : ℕ) : coeff R n ((X : R⟦X⟧) ^ n) = 1 := by\n  rw [coeff_X_pow, if_pos rfl]\n```",
+      "generated_completion": "```lean4\ntheorem manual_coeff_X_pow_self (n : ℕ) : coeff R n ((X : R⟦X⟧) ^ n) = 1 := by\n  rw [coeff_X_pow]\n  <;> simp_all [coeff_X_pow]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 47,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function\nuniverse u\nlemma CommGroup.manual_toGroup_injective {G : Type*} : Injective (@CommGroup.toGroup G) := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma CommGroup.manual_toGroup_injective {G : Type*} : Injective (@CommGroup.toGroup G) := by\n  rintro ⟨⟩ ⟨⟩ ⟨⟩; rfl\n```",
+      "generated_completion": "```lean4\nlemma CommGroup.manual_toGroup_injective {G : Type*} : Injective (@CommGroup.toGroup G) := by\n  intro A B h\n  cases A\n  cases B\n  congr\n  <;> simp_all [Function.funext_iff]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 48,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Set Encodable Function Equiv Filter MeasureTheory\nuniverse uι\nvariable {α β γ δ δ' : Type*} {ι : Sort uι} {s : Set α}\nsection MeasurableFunctions\nopen MeasurableSpace\nvariable {f g : α → β}\nsection TypeclassMeasurableSpace\nvariable [MeasurableSpace α] [MeasurableSpace β]\n\n/-- A version of `measurable_const` that assumes `f x = f y` for all `x, y`. This version works\nfor functions between empty types. -/\ntheorem manual_measurable_const {f : β → α} (hf : ∀ x y, f x = f y) : Measurable f := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_measurable_const {f : β → α} (hf : ∀ x y, f x = f y) : Measurable f := by\n  nontriviality β\n  inhabit β\n  convert @measurable_const α β _ _ (f default) using 2\n  apply hf\n```",
+      "generated_completion": "```lean4\ntheorem manual_measurable_const {f : β → α} (hf : ∀ x y, f x = f y) : Measurable f := by\n  rw [measurable_congr (show f = fun _ => f (Classical.arbitrary β) by\n    ext x\n    rw [hf x (Classical.arbitrary β)]\n  )]\n  exact measurable_const\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 49,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Function Set Submodule\nuniverse u' u\nvariable {ι : Type u'} {ι' : Type*} {R : Type*} {K : Type*}\nvariable {M : Type*} {M' : Type*} {V : Type u}\nsection Module\nvariable [DivisionRing K] [AddCommGroup V] [Module K V]\nvariable {v : ι → V} {s t : Set V} {x y : V}\nopen Submodule\ntheorem manual_mem_span_insert_exchange :\n    x ∈ span K (insert y s) → x ∉ span K s → y ∈ span K (insert x s) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_mem_span_insert_exchange :\n    x ∈ span K (insert y s) → x ∉ span K s → y ∈ span K (insert x s) := by\n  simp only [mem_span_insert, forall_exists_index, and_imp]\n  rintro a z hz rfl h\n  refine ⟨a⁻¹, -a⁻¹ • z, smul_mem _ _ hz, ?_⟩\n  have a0 : a ≠ 0 := by\n    rintro rfl\n    simp_all\n  match_scalars <;> simp [a0]\n```",
+      "generated_completion": "```lean4\ntheorem manual_mem_span_insert_exchange :\n    x ∈ span K (insert y s) → x ∉ span K s → y ∈ span K (insert x s) := by\n  intro hx hxs\n  rw [span_insert] at *\n  exact?\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 50,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Matrix Matrix.SpecialLinearGroup\nopen scoped MatrixGroups\nopen UpperHalfPlane\nnamespace UpperHalfPlane\ntheorem manual_im_inv_neg_coe_pos (z : ℍ) : 0 < (-z : ℂ)⁻¹.im := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_im_inv_neg_coe_pos (z : ℍ) : 0 < (-z : ℂ)⁻¹.im := by\n  simpa using div_pos z.property (normSq_pos z)\n```",
+      "generated_completion": "```lean4\ntheorem manual_im_inv_neg_coe_pos (z : ℍ) : 0 < (-z : ℂ)⁻¹.im := by\n  have h : 0 < z.im := z.2\n  simp [Complex.ext_iff, Complex.normSq, pow_two, mul_comm, mul_assoc, mul_left_comm, h]\n  <;> norm_num\n  <;> positivity\n  <;> field_simp [h]\n  <;> ring_nf\n  <;> norm_num\n  <;> positivity\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 51,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nvariable {α : Type*} {β : Type*} [LinearOrder α] [PartialOrder β] {f : α → β}\nopen Set Function\nopen OrderDual (toDual)\ntheorem manual_surjOn_Ico_of_monotone_surjective (h_mono : Monotone f) (h_surj : Function.Surjective f)\n    (a b : α) : SurjOn f (Ico a b) (Ico (f a) (f b)) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_surjOn_Ico_of_monotone_surjective (h_mono : Monotone f) (h_surj : Function.Surjective f)\n    (a b : α) : SurjOn f (Ico a b) (Ico (f a) (f b)) := by\n  obtain hab | hab := lt_or_le a b\n  · intro p hp\n    rcases eq_left_or_mem_Ioo_of_mem_Ico hp with (rfl | hp')\n    · exact mem_image_of_mem f (left_mem_Ico.mpr hab)\n    · exact image_subset f Ioo_subset_Ico_self <|\n        surjOn_Ioo_of_monotone_surjective h_mono h_surj a b hp'\n  · rw [Ico_eq_empty (h_mono hab).not_lt]\n    exact surjOn_empty f _\n```",
+      "generated_completion": "```lean4\ntheorem manual_surjOn_Ico_of_monotone_surjective (h_mono : Monotone f) (h_surj : Function.Surjective f)\n    (a b : α) : SurjOn f (Ico a b) (Ico (f a) (f b)) := by\n  intro p hp\n  obtain ⟨x, rfl⟩ := h_surj p\n  have h₁ : a ≤ x := by\n    have h₁ : a ≤ x := by\n      by_contra h\n      have h' := hp.1\n      have h'' := hp.2\n      simp_all [not_le]\n      <;> exact lt_irrefl _ (lt_of_le_of_lt (h_mono (by simp_all)) (by simp_all))\n    exact h₁\n  have h₂ : x < b := by\n    by_contra h\n    have h' := hp.1\n    have h'' := hp.2\n    simp_all [not_lt]\n    <;> exact lt_irrefl _ (lt_of_le_of_lt (h_mono (by simp_all)) (by simp_all))\n  exact ⟨x, ⟨h₁, h₂⟩, rfl⟩\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 52,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function\nuniverse u u' u'' v\nvariable {S : Type u'} {T : Type u''} {R : Type u} {M : Type v}\nnamespace SubMulAction\nsection MulActionGroup\nvariable [Group R] [MulAction R M]\n\n/-- Stabilizers in group SubMulAction coincide with stabilizers in the ambient space -/\ntheorem manual_stabilizer_of_subMul {p : SubMulAction R M} (m : p) :\n    MulAction.stabilizer R m = MulAction.stabilizer R (m : M) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_stabilizer_of_subMul {p : SubMulAction R M} (m : p) :\n    MulAction.stabilizer R m = MulAction.stabilizer R (m : M) := by\n  rw [← Subgroup.toSubmonoid_inj]\n  exact stabilizer_of_subMul.submonoid m\n```",
+      "generated_completion": "```lean4\ntheorem manual_stabilizer_of_subMul {p : SubMulAction R M} (m : p) :\n    MulAction.stabilizer R m = MulAction.stabilizer R (m : M) := by\n  ext\n  constructor <;> simp (config := { contextual := true }) [Set.mem_preimage, Set.mem_setOf_eq]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 53,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen CategoryTheory Category Limits Preadditive\nuniverse v u\nvariable {C : Type u} [Category.{v} C] [Preadditive C] {R : Type*} [Ring R] [Linear R C]\nnamespace CochainComplex\nvariable {F G K L : CochainComplex C ℤ} (n m : ℤ)\nnamespace HomComplex\nvariable (F G)\nnamespace Cochain\nvariable {F G n}\nlemma manual_ofHoms_v (ψ : ∀ (p : ℤ), F.X p ⟶ G.X p) (p : ℤ) :\n    (ofHoms ψ).v p p (add_zero p) = ψ p := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_ofHoms_v (ψ : ∀ (p : ℤ), F.X p ⟶ G.X p) (p : ℤ) :\n    (ofHoms ψ).v p p (add_zero p) = ψ p := by\n  simp only [ofHoms, mk_v, eqToHom_refl, comp_id]\n```",
+      "generated_completion": "```lean4\nlemma manual_ofHoms_v (ψ : ∀ (p : ℤ), F.X p ⟶ G.X p) (p : ℤ) :\n    (ofHoms ψ).v p p (add_zero p) = ψ p := by\n  simp [ofHoms]\n  <;> aesop_cat\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 54,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Finset (antidiagonal mem_antidiagonal)\nnamespace PowerSeries\nopen Finsupp (single)\nvariable {R : Type*}\nsection Semiring\nvariable (R) [Semiring R]\nvariable {R}\nvariable (R)\nvariable {R}\ntheorem manual_coeff_X_pow (m n : ℕ) : coeff R m ((X : R⟦X⟧) ^ n) = if m = n then 1 else 0 := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_coeff_X_pow (m n : ℕ) : coeff R m ((X : R⟦X⟧) ^ n) = if m = n then 1 else 0 := by\n  rw [X_pow_eq, coeff_monomial]\n```",
+      "generated_completion": "```lean4\ntheorem manual_coeff_X_pow (m n : ℕ) : coeff R m ((X : R⟦X⟧) ^ n) = if m = n then 1 else 0 := by\n  rw [X_pow_eq]\n  simp [coeff_monomial]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 55,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function\nuniverse u v\nnamespace Set\nvariable {α : Type u} {β : Type v} {a b : α} {s s₁ s₂ t t₁ t₂ u : Set α}\ntheorem manual_subset_singleton_iff_eq {s : Set α} {x : α} : s ⊆ {x} ↔ s = ∅ ∨ s = {x} := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_subset_singleton_iff_eq {s : Set α} {x : α} : s ⊆ {x} ↔ s = ∅ ∨ s = {x} := by\n  obtain rfl | hs := s.eq_empty_or_nonempty\n  · exact ⟨fun _ => Or.inl rfl, fun _ => empty_subset _⟩\n  · simp [eq_singleton_iff_nonempty_unique_mem, hs, hs.ne_empty]\n```",
+      "generated_completion": "```lean4\ntheorem manual_subset_singleton_iff_eq {s : Set α} {x : α} : s ⊆ {x} ↔ s = ∅ ∨ s = {x} := by\n  constructor\n  · intro h\n    by_cases h₁ : s = ∅\n    · exact Or.inl h₁\n    · right\n      apply Set.eq_singleton_iff_unique_mem.mpr\n      constructor\n      · -- Show that x is in s\n        have h₂ : ∃ y, y ∈ s := by\n          by_contra! h₂\n          exact h₁ (Set.eq_empty_iff_forall_not_mem.mpr fun y hy => h₂ y hy)\n        cases' h₂ with y hy\n        have h₃ : y ∈ {x} := h hy\n        simp at h₃\n        aesop\n      · -- Show that s is a subset of {x}\n        intro y hy\n        have h₃ : y ∈ {x} := h hy\n        simp at h₃\n        aesop\n  · -- If s is either empty or {x}, then s is a subset of {x}\n    rintro (rfl | rfl) <;> simp\n    <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 56,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Nat Function\nvariable {α β : Type*}\nnamespace List\ntheorem manual_map_permutations (f : α → β) (ts : List α) :\n    map (map f) (permutations ts) = permutations (map f ts) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_map_permutations (f : α → β) (ts : List α) :\n    map (map f) (permutations ts) = permutations (map f ts) := by\n  rw [permutations, permutations, map, map_permutationsAux, map]\n```",
+      "generated_completion": "```lean4\ntheorem manual_map_permutations (f : α → β) (ts : List α) :\n    map (map f) (permutations ts) = permutations (map f ts) := by\n  simp [permutations, map_bind, bind_map, map_map]\n  <;> rfl\n  <;> simp [map_permutationsAux]\n  <;> rfl\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 57,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function OrderDual\nvariable {ι α : Type*}\nnamespace Finset\nvariable [OrderedCancelAddCommMonoid α] [ExistsAddOfLE α] [LocallyFiniteOrder α]\nlemma manual_map_add_right_Ioc (a b c : α) :\n    (Ioc a b).map (addRightEmbedding c) = Ioc (a + c) (b + c) := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_map_add_right_Ioc (a b c : α) :\n    (Ioc a b).map (addRightEmbedding c) = Ioc (a + c) (b + c) := by\n  rw [← coe_inj, coe_map, coe_Ioc, coe_Ioc]\n  exact Set.image_add_const_Ioc _ _ _\n```",
+      "generated_completion": "```lean4\nlemma manual_map_add_right_Ioc (a b c : α) :\n    (Ioc a b).map (addRightEmbedding c) = Ioc (a + c) (b + c) := by\n  rw [← Finset.coe_inj]\n  simp [addRightEmbedding, add_comm, add_left_comm, add_assoc]\n  <;>\n    simp_all [Finset.Ioc_eq_empty_of_le]\n  <;>\n    rfl\n  <;>\n    aesop\n  <;>\n    aesop\n  <;>\n    aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 58,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Polynomial\nopen Finset\nvariable {M N G R S F : Type*}\nvariable [CommMonoid M] [CommMonoid N] [DivisionCommMonoid G]\nsection rootsOfUnity\nvariable {k l : ℕ}\nsection Reduced\nvariable (R) [CommRing R] [IsReduced R]\n\n/-- A variant of `mem_rootsOfUnity_prime_pow_mul_iff` in terms of `ζ ^ _`.-/\ntheorem manual_mem_rootsOfUnity_prime_pow_mul_iff (p k : ℕ) (m : ℕ) [ExpChar R p] {ζ : Rˣ} :\n    ζ ^ (p ^ k * m) = 1 ↔ ζ ∈ rootsOfUnity m R := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_mem_rootsOfUnity_prime_pow_mul_iff (p k : ℕ) (m : ℕ) [ExpChar R p] {ζ : Rˣ} :\n    ζ ^ (p ^ k * m) = 1 ↔ ζ ∈ rootsOfUnity m R := by\n  rw [← mem_rootsOfUnity, mem_rootsOfUnity_prime_pow_mul_iff]\n```",
+      "generated_completion": "```lean4\ntheorem manual_mem_rootsOfUnity_prime_pow_mul_iff (p k : ℕ) (m : ℕ) [ExpChar R p] {ζ : Rˣ} :\n    ζ ^ (p ^ k * m) = 1 ↔ ζ ∈ rootsOfUnity m R := by\n  rw [mem_rootsOfUnity']\n  <;> simp_all [pow_mul, ExpChar.iff_def]\n  <;>\n    exact?\n  <;>\n    aesop\n  <;>\n    aesop\n  <;>\n    aesop\n  <;>\n    aesop\n  <;>\n    aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 59,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen CategoryTheory\nuniverse w v₁ v₂ v u u₂\nnamespace CategoryTheory.Limits\nopen WalkingSpan.Hom WalkingCospan.Hom WidePullbackShape.Hom WidePushoutShape.Hom\nvariable {C : Type u} [Category.{v} C] {W X Y Z : C}\ntheorem pullback.manual_mapDesc_comp {X Y S T S' : C} (f : X ⟶ T) (g : Y ⟶ T) (i : T ⟶ S) (i' : S ⟶ S')\n    [HasPullback f g] [HasPullback (f ≫ i) (g ≫ i)] [HasPullback (f ≫ i ≫ i') (g ≫ i ≫ i')]\n    [HasPullback ((f ≫ i) ≫ i') ((g ≫ i) ≫ i')] :\n    pullback.mapDesc f g (i ≫ i') = pullback.mapDesc f g i ≫ pullback.mapDesc _ _ i' ≫\n    (pullback.congrHom (Category.assoc _ _ _) (Category.assoc _ _ _)).hom := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem pullback.manual_mapDesc_comp {X Y S T S' : C} (f : X ⟶ T) (g : Y ⟶ T) (i : T ⟶ S) (i' : S ⟶ S')\n    [HasPullback f g] [HasPullback (f ≫ i) (g ≫ i)] [HasPullback (f ≫ i ≫ i') (g ≫ i ≫ i')]\n    [HasPullback ((f ≫ i) ≫ i') ((g ≫ i) ≫ i')] :\n    pullback.mapDesc f g (i ≫ i') = pullback.mapDesc f g i ≫ pullback.mapDesc _ _ i' ≫\n    (pullback.congrHom (Category.assoc _ _ _) (Category.assoc _ _ _)).hom := by\n  aesop_cat\n```",
+      "generated_completion": "```lean4\ntheorem pullback.manual_mapDesc_comp {X Y S T S' : C} (f : X ⟶ T) (g : Y ⟶ T) (i : T ⟶ S) (i' : S ⟶ S')\n    [HasPullback f g] [HasPullback (f ≫ i) (g ≫ i)] [HasPullback (f ≫ i ≫ i') (g ≫ i ≫ i')]\n    [HasPullback ((f ≫ i) ≫ i') ((g ≫ i) ≫ i')] :\n    pullback.mapDesc f g (i ≫ i') = pullback.mapDesc f g i ≫ pullback.mapDesc _ _ i' ≫\n    (pullback.congrHom (Category.assoc _ _ _) (Category.assoc _ _ _)).hom := by\n  ext <;> simp [pullback.mapDesc, Category.assoc]\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat\n  <;> aesop_cat",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 60,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Set Filter Metric TopologicalSpace Topology\nopen scoped ENNReal\nvariable {α : Type*} [TopologicalSpace α]\nnamespace EReal\nvariable {α : Type*} {u v : α → EReal}\ntheorem manual_continuousAt_add_top_top : ContinuousAt (fun p : EReal × EReal => p.1 + p.2) (⊤, ⊤) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_continuousAt_add_top_top : ContinuousAt (fun p : EReal × EReal => p.1 + p.2) (⊤, ⊤) := by\n  simp only [ContinuousAt, tendsto_nhds_top_iff_real, top_add_top]\n  refine fun r ↦ ((lt_mem_nhds (coe_lt_top 0)).prod_nhds\n    (lt_mem_nhds <| coe_lt_top r)).mono fun _ h ↦ ?_\n  simpa only [coe_zero, zero_add] using add_lt_add h.1 h.2\n```",
+      "generated_completion": "```lean4\ntheorem manual_continuousAt_add_top_top : ContinuousAt (fun p : EReal × EReal => p.1 + p.2) (⊤, ⊤) := by\n  rw [ContinuousAt]\n  simp [continuousAt_id, continuousAt_const]\n  <;> apply tendsto_nhds_top_of_eventually_nhds\n  <;> simp\n  <;> apply eventually_of_forall\n  <;> intro x\n  <;> simp\n  <;> apply le_add_of_nonneg_right\n  <;> simp\n  <;> apply le_add_of_nonneg_left\n  <;> simp\n  <;> apply le_add_of_nonneg_right\n  <;> simp\n  <;> apply le_add_of_nonneg_left\n  <;> simp\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 61,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Set hiding restrict restrict_apply\nopen Filter ENNReal NNReal MeasureTheory.Measure\nnamespace MeasureTheory\nvariable {α : Type*} {m0 : MeasurableSpace α} {μ : Measure α}\nlemma manual_trim_withDensity {m m0 : MeasurableSpace α} {μ : Measure α}\n    (hm : m ≤ m0) {f : α → ℝ≥0∞} (hf : Measurable[m] f) :\n    (μ.withDensity f).trim hm = (μ.trim hm).withDensity f := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_trim_withDensity {m m0 : MeasurableSpace α} {μ : Measure α}\n    (hm : m ≤ m0) {f : α → ℝ≥0∞} (hf : Measurable[m] f) :\n    (μ.withDensity f).trim hm = (μ.trim hm).withDensity f := by\n  refine @Measure.ext _ m _ _ (fun s hs ↦ ?_)\n  rw [withDensity_apply _ hs, restrict_trim _ _ hs, lintegral_trim _ hf, trim_measurableSet_eq _ hs,\n    withDensity_apply _ (hm s hs)]\n```",
+      "generated_completion": "```lean4\nlemma manual_trim_withDensity {m m0 : MeasurableSpace α} {μ : Measure α}\n    (hm : m ≤ m0) {f : α → ℝ≥0∞} (hf : Measurable[m] f) :\n    (μ.withDensity f).trim hm = (μ.trim hm).withDensity f := by\n  refine' Eq.symm _\n  rw [withDensity_trim hm]\n  <;> simp_all\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 62,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Real ComplexConjugate Finset Set\nnamespace Real\nvariable {x y z : ℝ} {n : ℕ}\ntheorem manual_rpow_left_injOn {x : ℝ} (hx : x ≠ 0) : InjOn (fun y : ℝ => y ^ x) { y : ℝ | 0 ≤ y } := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_rpow_left_injOn {x : ℝ} (hx : x ≠ 0) : InjOn (fun y : ℝ => y ^ x) { y : ℝ | 0 ≤ y } := by\n  rintro y hy z hz (hyz : y ^ x = z ^ x)\n  rw [← rpow_one y, ← rpow_one z, ← mul_inv_cancel₀ hx, rpow_mul hy, rpow_mul hz, hyz]\n```",
+      "generated_completion": "```lean4\ntheorem manual_rpow_left_injOn {x : ℝ} (hx : x ≠ 0) : InjOn (fun y : ℝ => y ^ x) { y : ℝ | 0 ≤ y } := by\n  rintro y₁ (hy₁ : 0 ≤ y₁) y₂ (hy₂ : 0 ≤ y₂) h\n  have hx' : x ≠ 0 := by assumption\n  rw [← rpow_one y₁, ← rpow_one y₂]\n  simp_all [rpow_inj, hy₁, hy₂, hx']\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 63,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nuniverse u\nnamespace Nat\ntheorem manual_bit_val (b n) : bit b n = 2 * n + b.toNat := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_bit_val (b n) : bit b n = 2 * n + b.toNat := by\n  cases b <;> rfl\n```",
+      "generated_completion": "```lean4\ntheorem manual_bit_val (b n) : bit b n = 2 * n + b.toNat := by\n  cases b <;> simp_all [bit, bit0, bit1, Nat.mul_add, Nat.add_mul, Nat.mul_one, Nat.mul_zero,\n    Nat.zero_add, Nat.add_zero, Nat.mul_comm]\n  <;> induction n <;> simp_all [Nat.mul_add, Nat.add_mul, Nat.mul_one, Nat.mul_zero,\n    Nat.zero_add, Nat.add_zero, Nat.mul_comm]\n  <;> omega\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 64,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace CategoryTheory\nopen Category Limits Preadditive\nvariable (C : Type*) [Category C] [Abelian C]\nnamespace ShortComplex\nnamespace SnakeInput\nvariable {C}\nvariable (S : SnakeInput C)\nlemma manual_L__f : S.L₀'.f ≫ S.φ₁ = S.v₁₂.τ₁ := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_L__f : S.L₀'.f ≫ S.φ₁ = S.v₁₂.τ₁ := by\n  dsimp only [L₀']\n  simp only [← cancel_mono S.L₂.f, assoc, φ₁_L₂_f, φ₂, pullback.lift_fst_assoc,\n    S.v₁₂.comm₁₂]\n```",
+      "generated_completion": "```lean4\nlemma manual_L__f : S.L₀'.f ≫ S.φ₁ = S.v₁₂.τ₁ := by\n  simp [← cancel_epi S.L₀'.p, ← cancel_mono S.φ₂, S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g,\n    S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g, S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all [S.L₀'.p_f, S.L₁'.p_f, S.L₀'.f_g, S.L₁'.f_g]\n  <;> aesop_cat\n  <;> simp_all",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 65,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Matrix Matrix.SpecialLinearGroup\nopen scoped MatrixGroups\nopen UpperHalfPlane\nnamespace UpperHalfPlane\ntheorem manual_smulAux__im (g : GL(2, ℝ)⁺) (z : ℍ) :\n    (smulAux' g z).im = det ↑ₘg * z.im / Complex.normSq (denom g z) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_smulAux__im (g : GL(2, ℝ)⁺) (z : ℍ) :\n    (smulAux' g z).im = det ↑ₘg * z.im / Complex.normSq (denom g z) := by\n  simp only [smulAux', num, denom, Complex.div_im, Complex.add_im, Complex.mul_im,\n    Complex.ofReal_re, coe_im, Complex.ofReal_im, coe_re, zero_mul, add_zero, Complex.add_re,\n    Complex.mul_re, sub_zero, ← sub_div, g.1.1.det_fin_two]\n  ring\n```",
+      "generated_completion": "```lean4\ntheorem manual_smulAux__im (g : GL(2, ℝ)⁺) (z : ℍ) :\n    (smulAux' g z).im = det ↑ₘg * z.im / Complex.normSq (denom g z) := by\n  simp_all [smulAux', Complex.normSq, Complex.ext_iff, mul_comm]\n  <;> field_simp [Complex.normSq, Complex.ext_iff, mul_comm]\n  <;> ring_nf\n  <;> norm_cast\n  <;> simp_all [Complex.normSq, Complex.ext_iff, mul_comm]\n  <;> field_simp [Complex.normSq, Complex.ext_iff, mul_comm]\n  <;> ring_nf\n  <;> norm_cast\n  <;> simp_all [Complex.normSq, Complex.ext_iff, mul_comm]\n  <;> field_simp [Complex.normSq, Complex.ext_iff, mul_comm]\n  <;> ring_nf\n  <;> norm_cast\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 66,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nvariable {α : Type*} [DecidableEq α] {𝒜 : Finset (Finset α)} {s : Finset α} {a : α}\nnamespace Finset\ntheorem manual_nonMemberSubfamily_nonMemberSubfamily :\n    (𝒜.nonMemberSubfamily a).nonMemberSubfamily a = 𝒜.nonMemberSubfamily a := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_nonMemberSubfamily_nonMemberSubfamily :\n    (𝒜.nonMemberSubfamily a).nonMemberSubfamily a = 𝒜.nonMemberSubfamily a := by\n  ext\n  simp\n```",
+      "generated_completion": "```lean4\ntheorem manual_nonMemberSubfamily_nonMemberSubfamily :\n    (𝒜.nonMemberSubfamily a).nonMemberSubfamily a = 𝒜.nonMemberSubfamily a := by\n  ext s\n  simp [nonMemberSubfamily, mem_filter, and_assoc]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 67,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function MulOpposite\nopen scoped Pointwise\nvariable {F α β γ : Type*}\nnamespace Finset\nopen Pointwise\nopen scoped Pointwise\nopen Pointwise\nsection Instances\nvariable [DecidableEq α] [DecidableEq β]\nopen Pointwise\nsection DivisionMonoid\nvariable [DivisionMonoid α] {s t : Finset α} {n : ℤ}\nlemma manual_inv_subset_div_right (hs : 1 ∈ s) : t⁻¹ ⊆ s / t := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_inv_subset_div_right (hs : 1 ∈ s) : t⁻¹ ⊆ s / t := by\n  rw [div_eq_mul_inv]; exact subset_mul_right _ hs\n```",
+      "generated_completion": "```lean4\nlemma manual_inv_subset_div_right (hs : 1 ∈ s) : t⁻¹ ⊆ s / t := by\n  intro a ha\n  simp_all [Finset.mem_div, Finset.mem_inv, mul_comm]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 68,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen MeasureTheory Set Filter ENNReal\nopen scoped NNReal MeasureTheory Topology ProbabilityTheory\nnamespace ProbabilityTheory.Kernel\nvariable {α γ : Type*} {mα : MeasurableSpace α} {mγ : MeasurableSpace γ} {κ η : Kernel α γ}\n  [hαγ : MeasurableSpace.CountableOrCountablyGenerated α γ]\nlemma manual_setLIntegral_rnDerivAux (κ η : Kernel α γ) [IsFiniteKernel κ] [IsFiniteKernel η]\n    (a : α) {s : Set γ} (hs : MeasurableSet s) :\n    ∫⁻ x in s, ENNReal.ofReal (rnDerivAux κ (κ + η) a x) ∂(κ + η) a = κ a s := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_setLIntegral_rnDerivAux (κ η : Kernel α γ) [IsFiniteKernel κ] [IsFiniteKernel η]\n    (a : α) {s : Set γ} (hs : MeasurableSet s) :\n    ∫⁻ x in s, ENNReal.ofReal (rnDerivAux κ (κ + η) a x) ∂(κ + η) a = κ a s := by\n  have h_le : κ ≤ κ + η := le_add_of_nonneg_right bot_le\n  simp_rw [rnDerivAux]\n  split_ifs with hα\n  · have h_ac : κ a ≪ (κ + η) a := Measure.absolutelyContinuous_of_le (h_le a)\n    rw [← Measure.setLIntegral_rnDeriv h_ac]\n    refine setLIntegral_congr_fun hs ?_\n    filter_upwards [Measure.rnDeriv_lt_top (κ a) ((κ + η) a)] with x hx_lt _\n    rw [ENNReal.ofReal_toReal hx_lt.ne]\n  · have := hαγ.countableOrCountablyGenerated.resolve_left hα\n    rw [setLIntegral_density ((fst_map_id_prod _ measurable_const).trans_le h_le) _\n      MeasurableSet.univ hs, map_apply' _ (by fun_prop) _ (hs.prod MeasurableSet.univ)]\n    congr with x\n    simp\n```",
+      "generated_completion": "```lean4\nlemma manual_setLIntegral_rnDerivAux (κ η : Kernel α γ) [IsFiniteKernel κ] [IsFiniteKernel η]\n    (a : α) {s : Set γ} (hs : MeasurableSet s) :\n    ∫⁻ x in s, ENNReal.ofReal (rnDerivAux κ (κ + η) a x) ∂(κ + η) a = κ a s := by\n  rw [rnDerivAux_eq]\n  <;> simp_all [set_lintegral_rnDeriv_eq_self]\n  <;> apply set_lintegral_congr_fun\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_congr\n  <;> simp_all [Measure.rnDeriv_eq_zero]\n  <;> apply Measure.measure_con",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 69,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Equiv Function Finset\nvariable {ι α β : Type*}\nnamespace Equiv.Perm\nsection cycleFactors\nsection CycleFactorsFinset\nvariable [DecidableEq α] [Fintype α] (f : Perm α)\nlemma manual_support_zpowers_of_mem_cycleFactorsFinset_le {g : Perm α}\n    {c : g.cycleFactorsFinset} (v : Subgroup.zpowers (c : Perm α)) :\n    (v : Perm α).support ≤ g.support := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_support_zpowers_of_mem_cycleFactorsFinset_le {g : Perm α}\n    {c : g.cycleFactorsFinset} (v : Subgroup.zpowers (c : Perm α)) :\n    (v : Perm α).support ≤ g.support := by\n  obtain ⟨m, hm⟩ := v.prop\n  simp only [← hm]\n  exact le_trans (support_zpow_le _ _) (mem_cycleFactorsFinset_support_le c.prop)\n```",
+      "generated_completion": "```lean4\nlemma manual_support_zpowers_of_mem_cycleFactorsFinset_le {g : Perm α}\n    {c : g.cycleFactorsFinset} (v : Subgroup.zpowers (c : Perm α)) :\n    (v : Perm α).support ≤ g.support := by\n  have h1 : (v : Perm α) ∈ g.cycleFactorsFinset := by\n    apply c.2\n    simp_all [Subgroup.mem_zpowers_iff]\n  exact?\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 70,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace Order\nsection krullDim\nvariable {α β : Type*}\nvariable [Preorder α] [Preorder β]\n\n/--\nThe Krull dimension is the supremum of the elements' coheights.\n\nThis version of the lemma assumes that `α` is nonempty. In this case, the coercion from `ℕ∞` to\n`WithBot ℕ∞` is on the outside of the right-hand side, which is usually more convenient.\n\nIf `α` were empty, then `krullDim α = ⊥`. See `krullDim_eq_iSup_coheight` for the more general\nversion, with the coercion under the supremum.\n-/\nlemma manual_krullDim_eq_iSup_coheight_of_nonempty [Nonempty α] :\n    krullDim α = ↑(⨆ (a : α), coheight a) := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_krullDim_eq_iSup_coheight_of_nonempty [Nonempty α] :\n    krullDim α = ↑(⨆ (a : α), coheight a) := by\n  simpa using krullDim_eq_iSup_height_of_nonempty (α := αᵒᵈ)\n```",
+      "generated_completion": "```lean4\nlemma manual_krullDim_eq_iSup_coheight_of_nonempty [Nonempty α] :\n    krullDim α = ↑(⨆ (a : α), coheight a) := by\n  rw [krullDim]\n  <;> congr\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg\n  <;> ext\n  <;> simp_all [Nat.cast_iSup]\n  <;> apply congrArg",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 71,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Real\nnoncomputable section\nnamespace Real\nnamespace Angle\ntheorem manual_toReal_nonneg_iff_sign_nonneg {θ : Angle} : 0 ≤ θ.toReal ↔ 0 ≤ θ.sign := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_toReal_nonneg_iff_sign_nonneg {θ : Angle} : 0 ≤ θ.toReal ↔ 0 ≤ θ.sign := by\n  rcases lt_trichotomy θ.toReal 0 with (h | h | h)\n  · refine ⟨fun hn => False.elim (h.not_le hn), fun hn => ?_⟩\n    rw [toReal_neg_iff_sign_neg.1 h] at hn\n    exact False.elim (hn.not_lt (by decide))\n  · simp [h, sign, ← sin_toReal]\n  · refine ⟨fun _ => ?_, fun _ => h.le⟩\n    rw [sign, ← sin_toReal, sign_nonneg_iff]\n    exact sin_nonneg_of_nonneg_of_le_pi h.le (toReal_le_pi θ)\n```",
+      "generated_completion": "```lean4\ntheorem manual_toReal_nonneg_iff_sign_nonneg {θ : Angle} : 0 ≤ θ.toReal ↔ 0 ≤ θ.sign := by\n  rw [← not_iff_not]\n  simp [not_le, not_le, toReal_neg, sign_neg]\n  <;>\n    by_cases h : θ.toReal = 0 <;>\n    by_cases h' : θ.sign = 0 <;>\n    simp_all [h, h']\n  <;>\n    linarith [pi_pos]\n  <;>\n    exact ⟨by linarith [pi_pos], by linarith [pi_pos]⟩\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 72,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function OrderDual\nopen FinsetInterval\nvariable {ι α : Type*} {a a₁ a₂ b b₁ b₂ c x : α}\nnamespace Finset\nsection LinearOrder\nvariable [LinearOrder α]\nsection LocallyFiniteOrder\nvariable [LocallyFiniteOrder α]\ntheorem manual_Ioo_filter_lt (a b c : α) : {x ∈ Ioo a b | x < c} = Ioo a (min b c) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_Ioo_filter_lt (a b c : α) : {x ∈ Ioo a b | x < c} = Ioo a (min b c) := by\n  ext\n  simp [and_assoc]\n```",
+      "generated_completion": "```lean4\ntheorem manual_Ioo_filter_lt (a b c : α) : {x ∈ Ioo a b | x < c} = Ioo a (min b c) := by\n  ext x\n  simp [and_assoc, and_comm, and_left_comm]\n  <;>\n    by_cases h : x < c <;>\n    by_cases h' : x < b <;>\n    by_cases h'' : x < a <;>\n    simp_all [lt_min_iff]\n  <;>\n    omega\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 73,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen List (Vector)\nopen Denumerable Encodable Function\nnamespace Primrec₂\nvariable {α : Type*} {β : Type*} {σ : Type*}\nvariable [Primcodable α] [Primcodable β] [Primcodable σ]\nopen Nat.Primrec\ntheorem manual_nat_iff {f : α → β → σ} : Primrec₂ f ↔ Nat.Primrec\n    (.unpaired fun m n => encode <| (@decode α _ m).bind fun a => (@decode β _ n).map (f a)) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_nat_iff {f : α → β → σ} : Primrec₂ f ↔ Nat.Primrec\n    (.unpaired fun m n => encode <| (@decode α _ m).bind fun a => (@decode β _ n).map (f a)) := by\n  have :\n    ∀ (a : Option α) (b : Option β),\n      Option.map (fun p : α × β => f p.1 p.2)\n          (Option.bind a fun a : α => Option.map (Prod.mk a) b) =\n        Option.bind a fun a => Option.map (f a) b := fun a b => by\n          cases a <;> cases b <;> rfl\n  simp [Primrec₂, Primrec, this]\n```",
+      "generated_completion": "```lean4\ntheorem manual_nat_iff {f : α → β → σ} : Primrec₂ f ↔ Nat.Primrec\n    (.unpaired fun m n => encode <| (@decode α _ m).bind fun a => (@decode β _ n).map (f a)) := by\n  simp [Primrec₂, Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff\n  <;> simp [Nat.Primrec]\n  <;> exact Primrec.nat_iff_nat_iff",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 74,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen OrderDual\nvariable {F α β γ δ : Type*}\nsection OrderIsoClass\nsection LE\nvariable [LE α] [LE β] [EquivLike F α β] [OrderIsoClass F α β]\ntheorem manual_map_inv_le_map_inv_iff (f : F) {a b : β} :\n    EquivLike.inv f b ≤ EquivLike.inv f a ↔ b ≤ a := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_map_inv_le_map_inv_iff (f : F) {a b : β} :\n    EquivLike.inv f b ≤ EquivLike.inv f a ↔ b ≤ a := by\n  simp\n```",
+      "generated_completion": "```lean4\ntheorem manual_map_inv_le_map_inv_iff (f : F) {a b : β} :\n    EquivLike.inv f b ≤ EquivLike.inv f a ↔ b ≤ a := by\n  rw [← map_le_map_iff f]\n  <;> simp\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 75,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen Function Cardinal Set Equiv Order\nopen scoped Cardinal InitialSeg\nuniverse u v w\nvariable {α : Type u} {β : Type v} {γ : Type w}\n  {r : α → α → Prop} {s : β → β → Prop} {t : γ → γ → Prop}\nnamespace Ordinal\ntheorem manual_type_fintype (r : α → α → Prop) [IsWellOrder α r] [Fintype α] :\n    type r = Fintype.card α := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_type_fintype (r : α → α → Prop) [IsWellOrder α r] [Fintype α] :\n    type r = Fintype.card α := by rw [← card_eq_nat, card_type, mk_fintype]\n```",
+      "generated_completion": "```lean4\ntheorem manual_type_fintype (r : α → α → Prop) [IsWellOrder α r] [Fintype α] :\n    type r = Fintype.card α := by\n  apply Eq.symm\n  apply Cardinal.lift_inj.1\n  apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [Cardinal.lift_id]\n  <;> apply?\n  <;> simp_all [",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 76,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace Polynomial.Chebyshev\nopen Polynomial\nvariable (R R' : Type*) [CommRing R] [CommRing R']\ntheorem manual_S_neg (n : ℤ) : S R (-n) = -S R (n - 2) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_S_neg (n : ℤ) : S R (-n) = -S R (n - 2) := by simpa [sub_sub] using S_neg_sub_one R (n - 1)\n```",
+      "generated_completion": "```lean4\ntheorem manual_S_neg (n : ℤ) : S R (-n) = -S R (n - 2) := by\n  simp_all [S, Finset.sum_range_succ, mul_sub, mul_one, sub_mul, one_mul, mul_assoc]\n  <;> ring_nf\n  <;> norm_cast\n  <;> simp_all [Finset.sum_range_succ, mul_sub, mul_one, sub_mul, one_mul, mul_assoc]\n  <;> ring_nf\n  <;> norm_cast\n  <;> linarith\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 77,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen AddMonoidAlgebra Finset\nopen Finsupp hiding single\nopen Function hiding Commute\nnamespace Polynomial\nuniverse u\nvariable {R : Type u} {a b : R} {m n : ℕ}\nsection Semiring\nvariable [Semiring R] {p q : R[X]}\ntheorem manual_monomial_one_right_eq_X_pow (n : ℕ) : monomial n (1 : R) = X ^ n := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_monomial_one_right_eq_X_pow (n : ℕ) : monomial n (1 : R) = X ^ n := by\n  induction n with\n  | zero => simp [monomial_zero_one]\n  | succ n ih => rw [pow_succ, ← ih, ← monomial_one_one_eq_X, monomial_mul_monomial, mul_one]\n```",
+      "generated_completion": "```lean4\ntheorem manual_monomial_one_right_eq_X_pow (n : ℕ) : monomial n (1 : R) = X ^ n := by\n  simp [X_pow_eq_monomial, mul_one, one_mul]\n  <;> congr\n  <;> funext\n  <;> simp [monomial]\n  <;> ring\n  <;> simp_all\n  <;> ring\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 78,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Filter Metric Set\nopen scoped ComplexConjugate Real Topology\nnamespace Complex\nvariable {a x z : ℂ}\nopen ComplexOrder\nlemma manual_arg_eq_zero_iff_zero_le {z : ℂ} : arg z = 0 ↔ 0 ≤ z := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_arg_eq_zero_iff_zero_le {z : ℂ} : arg z = 0 ↔ 0 ≤ z := by\n  rw [arg_eq_zero_iff, eq_comm, nonneg_iff]\n```",
+      "generated_completion": "```lean4\nlemma manual_arg_eq_zero_iff_zero_le {z : ℂ} : arg z = 0 ↔ 0 ≤ z := by\n  rw [← abs_mul_exp_arg_mul_I z, mul_comm]\n  simp [exp_zero, Complex.ofReal_zero, zero_mul, sub_zero, Complex.ofReal_one, mul_one,\n    Complex.ofReal_mul, Complex.ofReal_le_iff_le_of_nonneg]\n  <;>\n  simp_all [Complex.ofReal_nonneg]\n  <;>\n  aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 79,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nuniverse u v w x\nopen Filter Function Set Topology NNReal ENNReal Bornology\nvariable {α : Type u} {β : Type v} {γ : Type w} {ι : Type x}\nnamespace LocallyLipschitz\nvariable [PseudoEMetricSpace α] [PseudoEMetricSpace β] [PseudoEMetricSpace γ] {f : α → β}\n\n/-- A locally Lipschitz function is continuous. (The converse is false: for example,\n$x ↦ \\sqrt{x}$ is continuous, but not locally Lipschitz at 0.) -/\nprotected theorem manual_continuous {f : α → β} (hf : LocallyLipschitz f) : Continuous f := by\n  sorry\n```",
+      "gold_completion": "```lean4\nprotected theorem manual_continuous {f : α → β} (hf : LocallyLipschitz f) : Continuous f := by\n  rw [continuous_iff_continuousAt]\n  intro x\n  rcases (hf x) with ⟨K, t, ht, hK⟩\n  exact (hK.continuousOn).continuousAt ht\n```",
+      "generated_completion": "```lean4\nprotected theorem manual_continuous {f : α → β} (hf : LocallyLipschitz f) : Continuous f := by\n  refine' continuous_iff_continuousAt.2 fun x => _\n  rcases hf x with ⟨r, hr, c, hc, h⟩\n  exact h.continuousAt\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 80,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace List\nnamespace Chain'\nvariable {l : List Bool}\ntheorem manual_length_sub_one_le_two_mul_count_bool (hl : Chain' (· ≠ ·) l) (b : Bool) :\n    length l - 1 ≤ 2 * count b l := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_length_sub_one_le_two_mul_count_bool (hl : Chain' (· ≠ ·) l) (b : Bool) :\n    length l - 1 ≤ 2 * count b l := by\n  rw [hl.two_mul_count_bool_eq_ite]\n  split_ifs <;> simp [le_tsub_add, Nat.le_succ_of_le]\n```",
+      "generated_completion": "```lean4\ntheorem manual_length_sub_one_le_two_mul_count_bool (hl : Chain' (· ≠ ·) l) (b : Bool) :\n    length l - 1 ≤ 2 * count b l := by\n  induction' l with hd tl IH\n  · simp\n  · cases tl with\n      | nil =>\n        simp_all [Chain', count_cons]\n        <;> omega\n      | cons hd' tl =>\n        simp_all [Chain', count_cons]\n        <;> cases b <;> cases hd <;> cases hd' <;> simp_all [Nat.succ_le_iff]\n        <;> omega\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 81,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nvariable {R M : Type*} [CommRing R] [IsDomain R] [AddCommGroup M] [Module R M]\nlemma manual_rank_eq_zero_iff_isTorsion: Module.rank R M = 0 ↔ Module.IsTorsion R M := by\n  sorry\n```",
+      "gold_completion": "```lean4\nlemma manual_rank_eq_zero_iff_isTorsion: Module.rank R M = 0 ↔ Module.IsTorsion R M := by\n  rw [Module.IsTorsion, rank_eq_zero_iff]\n  simp [mem_nonZeroDivisors_iff_ne_zero]\n```",
+      "generated_completion": "```lean4\nlemma manual_rank_eq_zero_iff_isTorsion: Module.rank R M = 0 ↔ Module.IsTorsion R M := by\n  classical\n  rw [rank_zero_iff]\n  <;> simp [Module.IsTorsion, Function.Surjective]\n  <;> exact ⟨fun h m => ⟨0, by simp_all⟩, fun h => by aesop⟩\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 82,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen scoped Pointwise TensorProduct\nnamespace RingHom\nattribute [local instance] MvPolynomial.algebraMvPolynomial\n\n/-- If `R` is a ring, then `Rᵣ` is `R`-finitely-presented for any `r : R`. -/\ntheorem manual_finitePresentation_holdsForLocalizationAway :\n    HoldsForLocalizationAway @FinitePresentation := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_finitePresentation_holdsForLocalizationAway :\n    HoldsForLocalizationAway @FinitePresentation := by\n  introv R _\n  suffices Algebra.FinitePresentation R S by\n    rw [RingHom.FinitePresentation]\n    convert this; ext;\n    rw [Algebra.smul_def]; rfl\n  exact IsLocalization.Away.finitePresentation r\n```",
+      "generated_completion": "```lean4\ntheorem manual_finitePresentation_holdsForLocalizationAway :\n    HoldsForLocalizationAway @FinitePresentation := by\n  intro R _ r\n  apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;> simp_all [FinitePresentation]\n  <;> apply?\n  <;>",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 83,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Topology\nvariable {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z] (g : Y → Z)\n  (f : X → Y) (s : Set X) (t : Set Y)\ntheorem manual_isLocalHomeomorphOn_iff_isOpenEmbedding_restrict {f : X → Y} :\n    IsLocalHomeomorphOn f s ↔ ∀ x ∈ s, ∃ U ∈ 𝓝 x, IsOpenEmbedding (U.restrict f) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_isLocalHomeomorphOn_iff_isOpenEmbedding_restrict {f : X → Y} :\n    IsLocalHomeomorphOn f s ↔ ∀ x ∈ s, ∃ U ∈ 𝓝 x, IsOpenEmbedding (U.restrict f) := by\n  refine ⟨fun h x hx ↦ ?_, fun h x hx ↦ ?_⟩\n  · obtain ⟨e, hxe, rfl⟩ := h x hx\n    exact ⟨e.source, e.open_source.mem_nhds hxe, e.isOpenEmbedding_restrict⟩\n  · obtain ⟨U, hU, emb⟩ := h x hx\n    have : IsOpenEmbedding ((interior U).restrict f) := by\n      refine emb.comp ⟨.inclusion interior_subset, ?_⟩\n      rw [Set.range_inclusion]; exact isOpen_induced isOpen_interior\n    obtain ⟨cont, inj, openMap⟩ := isOpenEmbedding_iff_continuous_injective_isOpenMap.mp this\n    haveI : Nonempty X := ⟨x⟩\n    exact ⟨PartialHomeomorph.ofContinuousOpenRestrict\n      (Set.injOn_iff_injective.mpr inj).toPartialEquiv\n      (continuousOn_iff_continuous_restrict.mpr cont) openMap isOpen_interior,\n      mem_interior_iff_mem_nhds.mpr hU, rfl⟩\n```",
+      "generated_completion": "```lean4\ntheorem manual_isLocalHomeomorphOn_iff_isOpenEmbedding_restrict {f : X → Y} :\n    IsLocalHomeomorphOn f s ↔ ∀ x ∈ s, ∃ U ∈ 𝓝 x, IsOpenEmbedding (U.restrict f) := by\n  simp_rw [isLocalHomeomorphOn_iff_isOpenEmbedding_restrict]\n  <;> simp_rw [isOpenEmbedding_iff_continuous_injective_open]\n  <;> simp_all [continuous_subtype_val, SetCoe.forall]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 84,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen scoped ENNReal NNReal Topology\nopen Set MeasureTheory Measure Filter MeasurableSpace ENNReal Function\nvariable {R α β δ γ ι : Type*}\nnamespace MeasureTheory\nvariable {m0 : MeasurableSpace α} [MeasurableSpace β] [MeasurableSpace γ]\nvariable {μ μ₁ μ₂ μ₃ ν ν' ν₁ ν₂ : Measure α} {s s' t : Set α}\nnamespace Measure\nvariable (μ)\nvariable {μ}\ntheorem manual_restrict_apply_eq_zero (ht : MeasurableSet t) : μ.restrict s t = 0 ↔ μ (t ∩ s) = 0 := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_restrict_apply_eq_zero (ht : MeasurableSet t) : μ.restrict s t = 0 ↔ μ (t ∩ s) = 0 := by\n  rw [restrict_apply ht]\n```",
+      "generated_completion": "```lean4\ntheorem manual_restrict_apply_eq_zero (ht : MeasurableSet t) : μ.restrict s t = 0 ↔ μ (t ∩ s) = 0 := by\n  rw [Measure.restrict_apply ht]\n  <;> simp [Set.inter_comm]\n  <;> rfl\n  <;> simp [Set.inter_comm]\n  <;> rfl\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 85,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nuniverse v u\nopen CategoryTheory.Category\nopen CategoryTheory.Iso\nnamespace CategoryTheory\nopen MonoidalCategory\nnamespace MonoidalCategory\nvariable {C : Type u} [𝒞 : Category.{v} C] [MonoidalCategory C]\nvariable {W X Y Z : C}\nsection\ntheorem manual_pentagon_hom_inv_inv_inv_hom :\n    (α_ W X (Y ⊗ Z)).hom ≫ W ◁ (α_ X Y Z).inv ≫ (α_ W (X ⊗ Y) Z).inv =\n      (α_ (W ⊗ X) Y Z).inv ≫ (α_ W X Y).hom ▷ Z := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_pentagon_hom_inv_inv_inv_hom :\n    (α_ W X (Y ⊗ Z)).hom ≫ W ◁ (α_ X Y Z).inv ≫ (α_ W (X ⊗ Y) Z).inv =\n      (α_ (W ⊗ X) Y Z).inv ≫ (α_ W X Y).hom ▷ Z := by\n  rw [← cancel_epi (α_ W X (Y ⊗ Z)).inv, ← cancel_mono ((α_ W X Y).inv ▷ Z)]\n  simp\n```",
+      "generated_completion": "```lean4\ntheorem manual_pentagon_hom_inv_inv_inv_hom :\n    (α_ W X (Y ⊗ Z)).hom ≫ W ◁ (α_ X Y Z).inv ≫ (α_ W (X ⊗ Y) Z).inv =\n      (α_ (W ⊗ X) Y Z).inv ≫ (α_ W X Y).hom ▷ Z := by\n  rw [← cancel_epi (α_ (W ⊗ X) Y Z).hom]\n  simp [assoc, pentagon_assoc]\n  <;> aesop_cat\n  <;> simp_all [assoc, pentagon_assoc]\n  <;> aesop_cat\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 86,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen scoped Polynomial\nopen Polynomial\nnoncomputable section\nuniverse u v\nsection Ring\nvariable {R : Type u} {S : Type v} [CommRing R] [Ring S] {f : R[X]} [Algebra R S]\nnamespace IsAdjoinRoot\n\n/-- `repr` preserves zero, up to multiples of `f` -/\ntheorem manual_repr_zero_mem_span (h : IsAdjoinRoot S f) : h.repr 0 ∈ Ideal.span ({f} : Set R[X]) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_repr_zero_mem_span (h : IsAdjoinRoot S f) : h.repr 0 ∈ Ideal.span ({f} : Set R[X]) := by\n  rw [← h.ker_map, RingHom.mem_ker, h.map_repr]\n```",
+      "generated_completion": "```lean4\ntheorem manual_repr_zero_mem_span (h : IsAdjoinRoot S f) : h.repr 0 ∈ Ideal.span ({f} : Set R[X]) := by\n  rw [← h.ker_map, RingHom.mem_ker, map_repr]\n  <;> simp\n  <;> apply Ideal.subset_span\n  <;> simp\n  <;> apply Set.mem_singleton\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 87,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Set Filter TopologicalSpace Bornology\nopen scoped ENNReal NNReal Uniformity Topology\nuniverse u v\nvariable {α : Type u} {β : Type v} {ι : Type*}\nvariable [PseudoMetricSpace α]\nopen Metric\ntheorem Metric.manual_inseparable_iff {x y : α} : Inseparable x y ↔ dist x y = 0 := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem Metric.manual_inseparable_iff {x y : α} : Inseparable x y ↔ dist x y = 0 := by\n  rw [Metric.inseparable_iff_nndist, dist_nndist, NNReal.coe_eq_zero]\n```",
+      "generated_completion": "```lean4\ntheorem Metric.manual_inseparable_iff {x y : α} : Inseparable x y ↔ dist x y = 0 := by\n  simp [inseparable_iff_mem_closure, Metric.mem_closure_iff, dist_comm]\n  <;> constructor <;> intro h <;>\n    simp_all [dist_eq_zero]\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n  <;>\n    (try\n      {\n        have h' := h 0\n        simp_all [dist_eq_zero]\n      })\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 88,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nsection Ring\nnamespace Submodule\nvariable {R M : Type*} {r : R} {x y : M} [Ring R] [AddCommGroup M] [Module R M]\nvariable (p p' : Submodule R M)\nopen LinearMap QuotientAddGroup\nvariable {p}\nvariable (p)\nvariable {R₂ M₂ : Type*} [Ring R₂] [AddCommGroup M₂] [Module R₂ M₂] {τ₁₂ : R →+* R₂}\nvariable (q : Submodule R₂ M₂)\ntheorem manual_ker_liftQ_eq_bot (f : M →ₛₗ[τ₁₂] M₂) (h) (h' : ker f ≤ p) : ker (p.liftQ f h) = ⊥ := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_ker_liftQ_eq_bot (f : M →ₛₗ[τ₁₂] M₂) (h) (h' : ker f ≤ p) : ker (p.liftQ f h) = ⊥ := by\n  rw [ker_liftQ, le_antisymm h h', mkQ_map_self]\n```",
+      "generated_completion": "```lean4\ntheorem manual_ker_liftQ_eq_bot (f : M →ₛₗ[τ₁₂] M₂) (h) (h' : ker f ≤ p) : ker (p.liftQ f h) = ⊥ := by\n  rw [Submodule.eq_bot_iff]\n  intro x hx\n  -- We need to show that if x is in the kernel of p.liftQ f h, then x must be 0.\n  -- This is equivalent to showing that if p.liftQ f h x = 0, then x = 0.\n  have h₂ : x = 0 := by\n    -- Since x is in the kernel of p.liftQ f h, we have p.liftQ f h x = 0.\n    have h₃ : p.liftQ f h x = 0 := hx\n    -- By the definition of p.liftQ f h, this implies f x = 0.\n    have h₄ : f x = 0 := by\n      apply Submodule.Quotient.eq.1 h₃\n    -- Since ker f ≤ p, we have x ∈ ker f.\n    have h₅ : x ∈ ker f := by\n      simp_all [LinearMap.mem_ker]\n    -- Therefore, x = 0.\n    exact?\n  exact h₂\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 89,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen scoped Classical\nopen Topology ENNReal MeasureTheory NNReal\nopen Set Filter TopologicalSpace ENNReal EMetric MeasureTheory\nvariable {α β γ δ ε : Type*} {m : MeasurableSpace α} {μ ν : Measure α} [MeasurableSpace δ]\nvariable [NormedAddCommGroup β] [NormedAddCommGroup γ] [ENorm ε]\nnamespace MeasureTheory\nvariable (α β μ)\nvariable {α β μ}\nvariable [TopologicalSpace ε]\nvariable (α β μ)\nvariable {α β μ}\ntheorem manual_integrable_norm_iff {f : α → β} (hf : AEStronglyMeasurable f μ) :\n    Integrable (fun a => ‖f a‖) μ ↔ Integrable f μ := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_integrable_norm_iff {f : α → β} (hf : AEStronglyMeasurable f μ) :\n    Integrable (fun a => ‖f a‖) μ ↔ Integrable f μ := by\n  simp_rw [Integrable, and_iff_right hf, and_iff_right hf.norm, hasFiniteIntegral_norm_iff]\n```",
+      "generated_completion": "```lean4\ntheorem manual_integrable_norm_iff {f : α → β} (hf : AEStronglyMeasurable f μ) :\n    Integrable (fun a => ‖f a‖) μ ↔ Integrable f μ := by\n  simp_all [Integrable, HasFiniteIntegral, hf.norm]\n  <;>\n  exact ⟨fun h => ⟨hf, h⟩, fun h => h.2⟩\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  rfl\n  <;>\n  r",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 90,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace Stream'\nuniverse u v w\nnamespace Seq\nvariable {α : Type u} {β : Type v} {γ : Type w}\n\n/-- The statement of `length_le_iff` assumes that the sequence terminates. For a\nstatement of the where the sequence is not known to terminate see `length_le_iff'` -/\ntheorem manual_length_le_iff {s : Seq α} {n : ℕ} {h : s.Terminates} :\n    s.length h ≤ n ↔ s.TerminatedAt n := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_length_le_iff {s : Seq α} {n : ℕ} {h : s.Terminates} :\n    s.length h ≤ n ↔ s.TerminatedAt n := by\n  rw [← length_le_iff']; simp [h]\n```",
+      "generated_completion": "```lean4\ntheorem manual_length_le_iff {s : Seq α} {n : ℕ} {h : s.Terminates} :\n    s.length h ≤ n ↔ s.TerminatedAt n := by\n  rw [length, Part.get_mem]\n  <;> simp_all [Seq.TerminatedAt]\n  <;> exact?\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 91,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nuniverse u v w z\nvariable {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]\nvariable [Algebra R S] [Algebra R T]\nvariable {K L : Type*} [Field K] [Field L] [Algebra K L]\nvariable {ι κ : Type w} [Fintype ι]\nopen Module\nopen LinearMap (BilinForm)\nopen LinearMap\nopen Matrix\nopen scoped Matrix\nsection EqSumRoots\nopen Algebra Polynomial\nvariable {F : Type*} [Field F]\nvariable [Algebra K S] [Algebra K F]\nnamespace IntermediateField.AdjoinSimple\nopen IntermediateField\ntheorem manual_trace_gen_eq_sum_roots (x : L) (hf : (minpoly K x).Splits (algebraMap K F)) :\n    algebraMap K F (trace K K⟮x⟯ (AdjoinSimple.gen K x)) =\n      ((minpoly K x).aroots F).sum := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_trace_gen_eq_sum_roots (x : L) (hf : (minpoly K x).Splits (algebraMap K F)) :\n    algebraMap K F (trace K K⟮x⟯ (AdjoinSimple.gen K x)) =\n      ((minpoly K x).aroots F).sum := by\n  have injKxL := (algebraMap K⟮x⟯ L).injective\n  by_cases hx : IsIntegral K x; swap\n  · simp [minpoly.eq_zero hx, trace_gen_eq_zero hx, aroots_def]\n  rw [← adjoin.powerBasis_gen hx, (adjoin.powerBasis hx).trace_gen_eq_sum_roots] <;>\n    rw [adjoin.powerBasis_gen hx, ← minpoly.algebraMap_eq injKxL] <;>\n    try simp only [AdjoinSimple.algebraMap_gen _ _]\n  exact hf\n```",
+      "generated_completion": "```lean4\ntheorem manual_trace_gen_eq_sum_roots (x : L) (hf : (minpoly K x).Splits (algebraMap K F)) :\n    algebraMap K F (trace K K⟮x⟯ (AdjoinSimple.gen K x)) =\n      ((minpoly K x).aroots F).sum := by\n  rw [trace_gen_eq_sum_roots hf]\n  <;> simp_all [AdjoinSimple.gen]\n  <;> congr\n  <;> ext\n  <;> simp_all [minpoly_eq]\n  <;> rfl\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 92,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Finset Fintype Function SimpleGraph.Walk\nnamespace SimpleGraph\nvariable {α β : Type*} (G H : SimpleGraph α)\nsection NClique\nvariable {n : ℕ} {s : Finset α}\nvariable {G H} {a b c : α}\ntheorem manual_isNClique_zero : G.IsNClique 0 s ↔ s = ∅ := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_isNClique_zero : G.IsNClique 0 s ↔ s = ∅ := by\n  simp only [isNClique_iff, Finset.card_eq_zero, and_iff_right_iff_imp]; rintro rfl; simp\n```",
+      "generated_completion": "```lean4\ntheorem manual_isNClique_zero : G.IsNClique 0 s ↔ s = ∅ := by\n  simp [isNClique_iff, Finset.card_eq_zero, eq_comm]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 93,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Finset List Finsupp\nnamespace Nat\nvariable {a b m n p : ℕ}\ntheorem manual_factorization_eq_zero_iff_remainder {p r : ℕ} (i : ℕ) (pp : p.Prime) (hr0 : r ≠ 0) :\n    ¬p ∣ r ↔ (p * i + r).factorization p = 0 := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_factorization_eq_zero_iff_remainder {p r : ℕ} (i : ℕ) (pp : p.Prime) (hr0 : r ≠ 0) :\n    ¬p ∣ r ↔ (p * i + r).factorization p = 0 := by\n  refine ⟨factorization_eq_zero_of_remainder i, fun h => ?_⟩\n  rw [factorization_eq_zero_iff] at h\n  contrapose! h\n  refine ⟨pp, ?_, ?_⟩\n  · rwa [← Nat.dvd_add_iff_right (dvd_mul_right p i)]\n  · contrapose! hr0\n    exact (add_eq_zero.1 hr0).2\n```",
+      "generated_completion": "```lean4\ntheorem manual_factorization_eq_zero_iff_remainder {p r : ℕ} (i : ℕ) (pp : p.Prime) (hr0 : r ≠ 0) :\n    ¬p ∣ r ↔ (p * i + r).factorization p = 0 := by\n  have h₁ : p ∣ p * i + r ↔ p ∣ r := by\n    constructor\n    · intro h\n      rw [Nat.dvd_iff_mod_eq_zero] at h ⊢\n      simp [Nat.add_mod, Nat.mul_mod, Nat.mod_eq_of_lt pp.pos] at h ⊢\n      <;> omega\n    · intro h\n      rw [Nat.dvd_iff_mod_eq_zero] at h ⊢\n      simp [Nat.add_mod, Nat.mul_mod, Nat.mod_eq_of_lt pp.pos] at h ⊢\n      <;> omega\n  simp_all [Nat.factorization_eq_zero_iff, h₁]\n  <;> aesop\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 94,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Function ZMod\nnamespace ZMod\nvariable {m n : ℕ}\ntheorem manual_natCast_eq_natCast_iff (a b c : ℕ) : (a : ZMod c) = (b : ZMod c) ↔ a ≡ b [MOD c] := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_natCast_eq_natCast_iff (a b c : ℕ) : (a : ZMod c) = (b : ZMod c) ↔ a ≡ b [MOD c] := by\n  simpa [Int.natCast_modEq_iff] using ZMod.intCast_eq_intCast_iff a b c\n```",
+      "generated_completion": "```lean4\ntheorem manual_natCast_eq_natCast_iff (a b c : ℕ) : (a : ZMod c) = (b : ZMod c) ↔ a ≡ b [MOD c] := by\n  apply?\n  <;> simp_all [ZMod.nat_cast_eq_nat_cast_iff]\n  <;> rfl\n  <;> simp_all [Nat.ModEq]\n  <;> rfl\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 95,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen scoped Manifold\nopen Bundle Set Topology\nsection SpecificFunctions\nvariable {𝕜 : Type*} [NontriviallyNormedField 𝕜]\n  -- declare a charted space `M` over the pair `(E, H)`.\n  {E : Type*} [NormedAddCommGroup E]\n  [NormedSpace 𝕜 E] {H : Type*} [TopologicalSpace H] {I : ModelWithCorners 𝕜 E H} {M : Type*}\n  [TopologicalSpace M] [ChartedSpace H M]\n  -- declare a charted space `M'` over the pair `(E', H')`.\n  {E' : Type*} [NormedAddCommGroup E'] [NormedSpace 𝕜 E'] {H' : Type*} [TopologicalSpace H']\n  {I' : ModelWithCorners 𝕜 E' H'} {M' : Type*} [TopologicalSpace M'] [ChartedSpace H' M']\n  -- declare a charted space `M''` over the pair `(E'', H'')`.\n  {E'' : Type*} [NormedAddCommGroup E''] [NormedSpace 𝕜 E'']\n  {H'' : Type*} [TopologicalSpace H''] {I'' : ModelWithCorners 𝕜 E'' H''} {M'' : Type*}\n  [TopologicalSpace M''] [ChartedSpace H'' M'']\n  -- declare a charted space `N` over the pair `(F, G)`.\n  {F : Type*}\n  [NormedAddCommGroup F] [NormedSpace 𝕜 F] {G : Type*} [TopologicalSpace G]\n  {J : ModelWithCorners 𝕜 F G} {N : Type*} [TopologicalSpace N] [ChartedSpace G N]\n  -- declare a charted space `N'` over the pair `(F', G')`.\n  {F' : Type*}\n  [NormedAddCommGroup F'] [NormedSpace 𝕜 F'] {G' : Type*} [TopologicalSpace G']\n  {J' : ModelWithCorners 𝕜 F' G'} {N' : Type*} [TopologicalSpace N'] [ChartedSpace G' N']\n  -- F₁, F₂, F₃, F₄ are normed spaces\n  {F₁ : Type*}\n  [NormedAddCommGroup F₁] [NormedSpace 𝕜 F₁] {F₂ : Type*} [NormedAddCommGroup F₂]\n  [NormedSpace 𝕜 F₂] {F₃ : Type*} [NormedAddCommGroup F₃] [NormedSpace 𝕜 F₃] {F₄ : Type*}\n  [NormedAddCommGroup F₄] [NormedSpace 𝕜 F₄]\nvariable {s : Set M} {x : M}\nsection Const\nvariable {c : M'}\ntheorem manual_hasMFDerivAt_const (c : M') (x : M) :\n    HasMFDerivAt I I' (fun _ : M => c) x (0 : TangentSpace I x →L[𝕜] TangentSpace I' c) := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_hasMFDerivAt_const (c : M') (x : M) :\n    HasMFDerivAt I I' (fun _ : M => c) x (0 : TangentSpace I x →L[𝕜] TangentSpace I' c) := by\n  refine ⟨continuous_const.continuousAt, ?_⟩\n  simp only [writtenInExtChartAt, Function.comp_def, hasFDerivWithinAt_const]\n```",
+      "generated_completion": "```lean4\ntheorem manual_hasMFDerivAt_const (c : M') (x : M) :\n    HasMFDerivAt I I' (fun _ : M => c) x (0 : TangentSpace I x →L[𝕜] TangentSpace I' c) := by\n  have h1 : HasMFDerivAt I I' (fun _ : M => c) x (0 : TangentSpace I x →L[𝕜] TangentSpace I' c) := by\n    -- Use the fact that the derivative of a constant function is zero\n    have h1 : HasFDerivAt (fun _ : M => c) (0 : TangentSpace I x →L[𝕜] TangentSpace I' c) x := by\n      apply hasFDerivAt_const\n    exact h1.hasMFDerivAt\n  exact h1\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 96,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace Int\nvariable {m n a b c d : ℤ}\ntheorem manual_natCast_modEq_iff {a b n : ℕ} : a ≡ b [ZMOD n] ↔ a ≡ b [MOD n] := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_natCast_modEq_iff {a b n : ℕ} : a ≡ b [ZMOD n] ↔ a ≡ b [MOD n] := by\n  unfold ModEq Nat.ModEq; rw [← Int.ofNat_inj]; simp [natCast_mod]\n```",
+      "generated_completion": "```lean4\ntheorem manual_natCast_modEq_iff {a b n : ℕ} : a ≡ b [ZMOD n] ↔ a ≡ b [MOD n] := by\n  simp [Int.ModEq, Nat.ModEq]\n  <;> norm_cast\n  <;> rfl\n  <;> simp [Int.ModEq, Nat.ModEq]\n  <;> norm_cast\n  <;> rfl\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 97,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnoncomputable section\nopen scoped Topology Manifold\nopen Set Bundle ChartedSpace\nsection DerivativesProperties\nvariable\n  {𝕜 : Type*} [NontriviallyNormedField 𝕜]\n  {E : Type*} [NormedAddCommGroup E] [NormedSpace 𝕜 E]\n  {H : Type*} [TopologicalSpace H] (I : ModelWithCorners 𝕜 E H)\n  {M : Type*} [TopologicalSpace M] [ChartedSpace H M]\n  {E' : Type*} [NormedAddCommGroup E'] [NormedSpace 𝕜 E']\n  {H' : Type*} [TopologicalSpace H'] {I' : ModelWithCorners 𝕜 E' H'}\n  {M' : Type*} [TopologicalSpace M'] [ChartedSpace H' M']\n  {E'' : Type*} [NormedAddCommGroup E''] [NormedSpace 𝕜 E'']\n  {H'' : Type*} [TopologicalSpace H''] {I'' : ModelWithCorners 𝕜 E'' H''}\n  {M'' : Type*} [TopologicalSpace M''] [ChartedSpace H'' M'']\n  {f f₁ : M → M'} {x : M} {s t : Set M} {g : M' → M''} {u : Set M'}\nvariable {I}\nvariable {n : ℕ∞}\nvariable {f' f₀' f₁' : TangentSpace I x →L[𝕜] TangentSpace I' (f x)}\n  {g' : TangentSpace I' (f x) →L[𝕜] TangentSpace I'' (g (f x))}\ntheorem manual_mdifferentiableWithinAt_congr_set (h : s =ᶠ[𝓝 x] t) :\n    MDifferentiableWithinAt I I' f s x ↔ MDifferentiableWithinAt I I' f t x := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_mdifferentiableWithinAt_congr_set (h : s =ᶠ[𝓝 x] t) :\n    MDifferentiableWithinAt I I' f s x ↔ MDifferentiableWithinAt I I' f t x := by\n  simp only [mdifferentiableWithinAt_iff_exists_hasMFDerivWithinAt]\n  exact exists_congr fun _ => hasMFDerivWithinAt_congr_set h\n```",
+      "generated_completion": "```lean4\ntheorem manual_mdifferentiableWithinAt_congr_set (h : s =ᶠ[𝓝 x] t) :\n    MDifferentiableWithinAt I I' f s x ↔ MDifferentiableWithinAt I I' f t x := by\n  simp only [MDifferentiableWithinAt, mfderivWithin_congr_set h]\n  <;> simp [h.self_of_nhds]\n  <;> rfl\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 98,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nnamespace WittVector\nuniverse u\nvariable {p : ℕ} {R S : Type u} {idx : Type*} [CommRing R] [CommRing S]\nlocal notation \"𝕎\" => WittVector p\nopen MvPolynomial\nopen Function (uncurry)\nvariable (p)\nnoncomputable section\nvariable {p}\nsection ZeroOne\ntheorem manual_bind__onePoly_wittPolynomial [hp : Fact p.Prime] (n : ℕ) :\n    bind₁ onePoly (wittPolynomial p ℤ n) = 1 := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem manual_bind__onePoly_wittPolynomial [hp : Fact p.Prime] (n : ℕ) :\n    bind₁ onePoly (wittPolynomial p ℤ n) = 1 := by\n  rw [wittPolynomial_eq_sum_C_mul_X_pow, map_sum, Finset.sum_eq_single 0]\n  · simp only [onePoly, one_pow, one_mul, map_pow, C_1, pow_zero, bind₁_X_right, if_true,\n      eq_self_iff_true]\n  · intro i _hi hi0\n    simp only [onePoly, if_neg hi0, zero_pow (pow_ne_zero _ hp.1.ne_zero), mul_zero, map_pow,\n      bind₁_X_right, map_mul]\n  · simp\n```",
+      "generated_completion": "```lean4\ntheorem manual_bind__onePoly_wittPolynomial [hp : Fact p.Prime] (n : ℕ) :\n    bind₁ onePoly (wittPolynomial p ℤ n) = 1 := by\n  simp [onePoly, bind₁, wittPolynomial_eq_sum_C_mul_X_pow]\n  <;>\n  rw [sum_over_range]\n  <;>\n  simp [Finset.sum_range_succ, pow_add, pow_mul, mul_assoc, mul_comm, mul_left_comm]\n  <;>\n  ring_nf\n  <;>\n  norm_cast\n  <;>\n  simp [hp.out.ne_zero]\n  <;>\n  rfl\n```",
+      "exact_match": false,
+      "normalized_match": false
+    },
+    {
+      "index": 99,
+      "prompt": "Complete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Equiv Finset\nnamespace Equiv.Perm\nvariable {α : Type*}\nsection Disjoint\nvariable {f g h : Perm α}\ntheorem Disjoint.manual_symm : Disjoint f g → Disjoint g f := by\n  sorry\n```",
+      "gold_completion": "```lean4\ntheorem Disjoint.manual_symm : Disjoint f g → Disjoint g f := by simp only [Disjoint, or_comm, imp_self]\n```",
+      "generated_completion": "```lean4\ntheorem Disjoint.manual_symm : Disjoint f g → Disjoint g f := by\n  intro h\n  rw [disjoint_comm]\n  exact h.symm\n```",
+      "exact_match": false,
+      "normalized_match": false
+    }
+  ]
+}

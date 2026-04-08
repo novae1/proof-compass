@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -16,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from prompt_hints.prompt_config import DeepSeekProverV2HintNonCoTPromptConfig
-INPUT_PATH = ROOT / "mathlib_fine_tuning" / "data" / "raw" / "mathlib_standalone_theorems_validated.jsonl"
+INPUT_PATH = ROOT / "mathlib_fine_tuning" / "data" / "raw" / "mathlib_theorems_validated_tactic.jsonl"
 OUTPUT_DIR = ROOT / "mathlib_fine_tuning" / "data" / "processed"
 TRAIN_PATH = OUTPUT_DIR / "deepseek_noncot_tactic_1024_train.jsonl"
 VALID_PATH = OUTPUT_DIR / "deepseek_noncot_tactic_1024_valid.jsonl"
@@ -27,6 +28,7 @@ MAX_SEQ_LENGTH = 1024
 VALID_PERCENT = 2
 
 DECL_RE = re.compile(r"(?m)^\s*(?:(?:private|protected|nonrec)\s+)*(theorem|lemma)\b")
+END_LINE_RE = re.compile(r"^\s*end(?:\s+\S+)?\s*$")
 
 
 @dataclass
@@ -125,7 +127,7 @@ def _split_standalone_lean(text: str) -> tuple[str, str, str, str] | None:
         return None
 
     header = text[: decl_match.start()].rstrip()
-    theorem_text = text[decl_match.start() :].strip()
+    theorem_text = _strip_trailing_file_tail(text[decl_match.start() :].strip())
     assign_idx = _scan_outer_assign(theorem_text)
     if assign_idx is None:
         return None
@@ -138,6 +140,17 @@ def _split_standalone_lean(text: str) -> tuple[str, str, str, str] | None:
     theorem_sorry = theorem_prefix + " := by\n  sorry"
     kind = decl_match.group(1)
     return header, theorem_sorry, theorem_text, kind
+
+
+def _strip_trailing_file_tail(theorem_text: str) -> str:
+    lines = theorem_text.splitlines()
+    while lines and not lines[-1].strip():
+        lines.pop()
+    while lines and END_LINE_RE.match(lines[-1]):
+        lines.pop()
+        while lines and not lines[-1].strip():
+            lines.pop()
+    return "\n".join(lines).strip()
 
 
 def _build_prompt(header: str, theorem_sorry: str) -> str:
@@ -176,14 +189,27 @@ def _assign_split(theorem_text: str) -> str:
     return "valid" if bucket < VALID_PERCENT else "train"
 
 
-def main() -> int:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input-path", type=Path, default=INPUT_PATH)
+    parser.add_argument("--train-path", type=Path, default=TRAIN_PATH)
+    parser.add_argument("--valid-path", type=Path, default=VALID_PATH)
+    parser.add_argument("--summary-path", type=Path, default=SUMMARY_PATH)
+    parser.add_argument("--model-path", type=Path, default=MODEL_PATH)
+    return parser.parse_args()
 
-    tokenizer = AutoTokenizer.from_pretrained(str(MODEL_PATH), trust_remote_code=True)
+
+def main() -> int:
+    args = parse_args()
+    args.train_path.parent.mkdir(parents=True, exist_ok=True)
+    args.valid_path.parent.mkdir(parents=True, exist_ok=True)
+    args.summary_path.parent.mkdir(parents=True, exist_ok=True)
+
+    tokenizer = AutoTokenizer.from_pretrained(str(args.model_path), trust_remote_code=True)
 
     summary: dict[str, object] = {
-        "input_path": str(INPUT_PATH.relative_to(ROOT)),
-        "model_path": str(MODEL_PATH.relative_to(ROOT)),
+        "input_path": str(args.input_path.relative_to(ROOT)),
+        "model_path": str(args.model_path.relative_to(ROOT)),
         "max_seq_length": MAX_SEQ_LENGTH,
         "valid_percent": VALID_PERCENT,
         "input_rows": 0,
@@ -199,9 +225,9 @@ def main() -> int:
     retained_token_counts: list[int] = []
 
     with (
-        INPUT_PATH.open("r", encoding="utf-8") as src,
-        TRAIN_PATH.open("w", encoding="utf-8") as train_out,
-        VALID_PATH.open("w", encoding="utf-8") as valid_out,
+        args.input_path.open("r", encoding="utf-8") as src,
+        args.train_path.open("w", encoding="utf-8") as train_out,
+        args.valid_path.open("w", encoding="utf-8") as valid_out,
     ):
         for idx, line in enumerate(src, start=1):
             summary["input_rows"] = idx
@@ -271,14 +297,14 @@ def main() -> int:
             "max": max(retained_token_counts),
         }
 
-    SUMMARY_PATH.write_text(
+    args.summary_path.write_text(
         json.dumps(summary, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
 
-    print(f"wrote train={TRAIN_PATH.relative_to(ROOT)}")
-    print(f"wrote valid={VALID_PATH.relative_to(ROOT)}")
-    print(f"wrote summary={SUMMARY_PATH.relative_to(ROOT)}")
+    print(f"wrote train={args.train_path.relative_to(ROOT)}")
+    print(f"wrote valid={args.valid_path.relative_to(ROOT)}")
+    print(f"wrote summary={args.summary_path.relative_to(ROOT)}")
     return 0
 
 

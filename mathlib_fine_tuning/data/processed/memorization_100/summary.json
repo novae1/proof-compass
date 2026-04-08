@@ -1,0 +1,13 @@
+{
+  "source_train_path": "mathlib_fine_tuning/data/processed/deepseek_noncot_tactic_1024_train.jsonl",
+  "output_dir": "mathlib_fine_tuning/data/processed/memorization_100",
+  "sample_size": 100,
+  "seed": 42,
+  "train_rows": 100,
+  "valid_rows": 100,
+  "evaluation_policy": "in_sample_memorization",
+  "notes": [
+    "train.jsonl and valid.jsonl intentionally contain the same rows",
+    "this dataset is for the 100-example memorization experiment only"
+  ]
+}

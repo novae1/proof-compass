@@ -30,6 +30,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--valid-path", type=Path, default=DEFAULT_VALID)
     parser.add_argument("--model-path", type=Path, default=DEFAULT_MODEL)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--init-adapter-dir", type=Path, default=None)
     parser.add_argument("--max-seq-length", type=int, default=1024)
     parser.add_argument("--per-device-train-batch-size", type=int, default=2)
     parser.add_argument("--per-device-eval-batch-size", type=int, default=2)
@@ -40,6 +41,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--weight-decay", type=float, default=0.0)
     parser.add_argument("--logging-steps", type=int, default=10)
     parser.add_argument("--eval-steps", type=int, default=200)
+    parser.add_argument("--skip-eval-during-training", action="store_true")
     parser.add_argument("--max-steps", type=int, default=-1)
     parser.add_argument("--max-train-samples", type=int, default=None)
     parser.add_argument("--max-valid-samples", type=int, default=None)
@@ -74,7 +76,10 @@ def apply_smoke_defaults(args: argparse.Namespace) -> None:
 def ensure_prereqs(args: argparse.Namespace) -> None:
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is required for training.")
-    for path in [args.train_path, args.valid_path, args.model_path]:
+    required_paths = [args.train_path, args.valid_path, args.model_path]
+    if args.init_adapter_dir is not None:
+        required_paths.append(args.init_adapter_dir)
+    for path in required_paths:
         if not path.exists():
             raise FileNotFoundError(f"Required path not found: {path}")
 
@@ -141,12 +146,17 @@ def load_model_and_tokenizer(args: argparse.Namespace):
 
 def wrap_with_lora(model, args: argparse.Namespace):
     try:
-        from peft import LoraConfig, TaskType, get_peft_model
+        from peft import LoraConfig, PeftModel, TaskType, get_peft_model
     except ImportError as exc:
         raise ImportError(
             "peft is required for LoRA training. Install it with `pip install peft` "
             "or add it to the project environment."
         ) from exc
+
+    if args.init_adapter_dir is not None:
+        model = PeftModel.from_pretrained(model, str(args.init_adapter_dir), is_trainable=True)
+        model.print_trainable_parameters()
+        return model
 
     target_modules = [m.strip() for m in args.lora_target_modules.split(",") if m.strip()]
     lora_config = LoraConfig(
@@ -168,6 +178,7 @@ def write_config(args: argparse.Namespace, output_dir: Path, dataset_sizes: dict
     config["valid_path"] = str(args.valid_path)
     config["model_path"] = str(args.model_path)
     config["output_dir"] = str(args.output_dir)
+    config["init_adapter_dir"] = str(args.init_adapter_dir) if args.init_adapter_dir is not None else None
     config["dataset_sizes"] = dataset_sizes
     (output_dir / "train_config.json").write_text(
         json.dumps(config, indent=2, ensure_ascii=False) + "\n",
@@ -203,8 +214,8 @@ def main() -> int:
     training_args = TrainingArguments(
         output_dir=str(output_dir),
         do_train=True,
-        do_eval=True,
-        eval_strategy="steps",
+        do_eval=not args.skip_eval_during_training,
+        eval_strategy="no" if args.skip_eval_during_training else "steps",
         save_strategy="no",
         eval_steps=args.eval_steps,
         logging_steps=args.logging_steps,
@@ -231,7 +242,7 @@ def main() -> int:
         model=model,
         args=training_args,
         train_dataset=tokenized["train"],
-        eval_dataset=tokenized["valid"],
+        eval_dataset=tokenized["valid"] if not args.skip_eval_during_training else None,
         data_collator=collator,
         tokenizer=tokenizer,
     )
@@ -239,7 +250,7 @@ def main() -> int:
     train_result = trainer.train()
     trainer.save_model()
     metrics = train_result.metrics
-    eval_metrics = trainer.evaluate()
+    eval_metrics = trainer.evaluate(eval_dataset=tokenized["valid"])
 
     (output_dir / "train_metrics.json").write_text(
         json.dumps(metrics, indent=2, ensure_ascii=False) + "\n",
