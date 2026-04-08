@@ -1,0 +1,3095 @@
+{
+  "source_inference": "mathlib_fine_tuning/analysis/transfer_subset_5pct_eval100/base_inference.json",
+  "num_examples": 100,
+  "verified_count": 32,
+  "verified_rate": 0.32,
+  "exact_match_count": 0,
+  "exact_and_verified_count": 0,
+  "elapsed_seconds": 73.0078821182251,
+  "results": [
+    {
+      "index": 0,
+      "row_id": "a8fe601f28821a683264",
+      "name_qualified": "eq_iff_not_lt_of_le",
+      "module": "Mathlib.Order.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "failed to synthesize\n  LinearOrder α\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 28,
+            "line": 18
+          },
+          "pos": {
+            "column": 11,
+            "line": 18
+          },
+          "severity": "error"
+        },
+        {
+          "data": "tactic 'induction' failed, major premise type is not an inductive type \n  ?m.1123\ncase mpr\nα : Type u_2\ninst✝ : PartialOrder α\na b : α\nhab : a ≤ b\nh : ¬a < b\nh' : ¬a = b\nx✝ : ?m.1123\n⊢ False",
+          "endPos": {
+            "column": 39,
+            "line": 18
+          },
+          "pos": {
+            "column": 4,
+            "line": 18
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "row_id": "af4be9c2eaff09d9d498",
+      "name_qualified": "continuousOn_integral_of_compact_support",
+      "module": "Mathlib.MeasureTheory.Integral.SetIntegral",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 12,
+            "line": 9
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  TopologicalSpace Y\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 21,
+            "line": 19
+          },
+          "pos": {
+            "column": 10,
+            "line": 19
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  TopologicalSpace (X × Y)\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 63,
+            "line": 19
+          },
+          "pos": {
+            "column": 29,
+            "line": 19
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  OfNat E 0\nnumerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is\n  E\ndue to the absence of the instance above\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 46,
+            "line": 20
+          },
+          "pos": {
+            "column": 45,
+            "line": 20
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  NormedAddCommGroup E\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 39,
+            "line": 21
+          },
+          "pos": {
+            "column": 26,
+            "line": 21
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  TopologicalSpace X\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 42,
+            "line": 21
+          },
+          "pos": {
+            "column": 4,
+            "line": 21
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  TopologicalSpace Y\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 72,
+            "line": 18
+          },
+          "pos": {
+            "column": 45,
+            "line": 18
+          },
+          "severity": "error"
+        },
+        {
+          "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  ContinuousOn ?m.6316 ?m.6317\nY : Type u_2\nE : Type u_3\nX : Type u_5\ninst✝¹ : MeasurableSpace Y\nμ : Measure Y\nf : X → Y → E\ns : Set X\nk : Set Y\ninst✝ : IsFiniteMeasureOnCompacts μ\nhk hf : sorry\nhfs : ∀ (p : X) (x : Y), p ∈ s → x ∉ k → f p x = 0\n⊢ sorry",
+          "endPos": {
+            "column": 42,
+            "line": 22
+          },
+          "pos": {
+            "column": 6,
+            "line": 22
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "row_id": "dfd4c1c387234df0a912",
+      "name_qualified": "inv_antitoneOn_Ioi",
+      "module": "Mathlib.Algebra.Order.Field.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 3,
+      "row_id": "b51247891c3e068e0460",
+      "name_qualified": "Nat.smoothNumbersUpTo_subset_image",
+      "module": "Mathlib.NumberTheory.SmoothNumbers",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown identifier 'smoothNumbersUpTo_eq'",
+          "endPos": {
+            "column": 26,
+            "line": 11
+          },
+          "pos": {
+            "column": 6,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.628\nN k n : ℕ\nhn : n ∈ N.smoothNumbersUpTo k\n⊢ n ∈\n    Finset.image\n      (fun x =>\n        match x with\n        | (s, m) => m ^ 2 * s.prod id)\n      (k.primesBelow.powerset ×ˢ (Finset.range N.sqrt.succ).erase 0)",
+          "endPos": {
+            "column": 26,
+            "line": 11
+          },
+          "pos": {
+            "column": 6,
+            "line": 11
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "row_id": "1327bab195cbed5c6e00",
+      "name_qualified": "inv_neg''",
+      "module": "Mathlib.Algebra.Order.GroupWithZero.Unbundled",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 5,
+      "row_id": "1c5ff635cc721df3546e",
+      "name_qualified": "SimpleGraph.edgeFinset_bot",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 6,
+      "row_id": "be5fe3754fe5cf8f8f07",
+      "name_qualified": "_root_.MeasureTheory.Integrable.hasSum_intervalIntegral_comp_add_int",
+      "module": "Mathlib.MeasureTheory.Integral.IntervalIntegral",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 12,
+            "line": 7
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  SeminormedAddCommGroup E\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 25,
+            "line": 8
+          },
+          "pos": {
+            "column": 10,
+            "line": 8
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  ENorm E\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 103,
+            "line": 13
+          },
+          "pos": {
+            "column": 91,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  NormedAddCommGroup E\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 59,
+            "line": 14
+          },
+          "pos": {
+            "column": 25,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  NormedAddCommGroup E\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 70,
+            "line": 14
+          },
+          "pos": {
+            "column": 62,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  AddCommMonoid E\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 71,
+            "line": 14
+          },
+          "pos": {
+            "column": 4,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "unsolved goals\nhfi : sorry\n⊢ sorry",
+          "endPos": {
+            "column": 10,
+            "line": 22
+          },
+          "pos": {
+            "column": 75,
+            "line": 14
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "row_id": "9d7dd22936c1540a58f0",
+      "name_qualified": "minpoly.isIntegrallyClosed_dvd",
+      "module": "Mathlib.FieldTheory.Minpoly.IsIntegrallyClosed",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  X - C ?m.6330 ∣ ?m.6332\nR : Type u_1\nS : Type u_2\ninst✝⁶ : CommRing R\ninst✝⁵ : CommRing S\ninst✝⁴ : IsDomain R\ninst✝³ : Algebra R S\ninst✝² : IsDomain S\ninst✝¹ : NoZeroSMulDivisors R S\ninst✝ : IsIntegrallyClosed R\ns : S\nhs : IsIntegral R s\np : R[X]\nhp : (Polynomial.aeval s) p = 0\n⊢ minpoly R s ∣ p",
+          "endPos": {
+            "column": 20,
+            "line": 14
+          },
+          "pos": {
+            "column": 6,
+            "line": 14
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "row_id": "72afcbf627ed98d10079",
+      "name_qualified": "Polynomial.eq_prod_roots_of_splits_id",
+      "module": "Mathlib.Algebra.Polynomial.Splits",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unsolved goals\ncase h\nK : Type v\ninst✝ : Field K\np : K[X]\nhsplit : Splits (RingHom.id K) p\nh₂ : map (RingHom.id K) p = p\n⊢ C p.leadingCoeff * (Multiset.map (fun x => X - C x) p.roots).prod =\n    C p.leadingCoeff * C (Multiset.map (fun x => X - C x) p.roots).prod.leadingCoeff *\n      (Multiset.map (fun x => X - C x) (C p.leadingCoeff * (Multiset.map (fun x => X - C x) p.roots).prod).roots).prod",
+          "endPos": {
+            "column": 21,
+            "line": 20
+          },
+          "pos": {
+            "column": 74,
+            "line": 14
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "row_id": "602ed2f9c282a47022fd",
+      "name_qualified": "Nat.one_mem_properDivisors_iff_one_lt",
+      "module": "Mathlib.NumberTheory.Divisors",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 10,
+      "row_id": "13c8a3b98d6b328ef8e2",
+      "name_qualified": "Mathlib.Tactic.ComputeDegree.coeff_add_of_eq",
+      "module": "Mathlib.Tactic.ComputeDegree",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 11,
+      "row_id": "b3a9d85f6f2bae249e06",
+      "name_qualified": "DualNumber.isMaximal_span_singleton_eps",
+      "module": "Mathlib.RingTheory.DualNumber",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 12,
+      "row_id": "95105b99a3c85d1b9fcb",
+      "name_qualified": "ZMod.intCast_mod",
+      "module": "Mathlib.Data.ZMod.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "tactic 'rfl' failed, the left-hand side\n  ↑(a % ↑(b + 1))\nis not definitionally equal to the right-hand side\n  ↑a\ncase succ.h.h\na : ℤ\nb : ℕ\n⊢ ↑(a % ↑(b + 1)) = ↑a",
+          "endPos": {
+            "column": 7,
+            "line": 14
+          },
+          "pos": {
+            "column": 4,
+            "line": 14
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "row_id": "b9cf68a0457c791535fa",
+      "name_qualified": "AddChar.complexBasis_apply",
+      "module": "Mathlib.Analysis.Fourier.FiniteAbelian.PontryaginDuality",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 14,
+      "row_id": "fd651bc88028b9685931",
+      "name_qualified": "Finset.norm_prod_le",
+      "module": "Mathlib.Analysis.Normed.Field.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 15,
+      "row_id": "25fff553764425a993be",
+      "name_qualified": "ContDiffAt.analyticAt",
+      "module": "Mathlib.Analysis.Calculus.ContDiff.Defs",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 10,
+            "line": 8
+          },
+          "severity": "error"
+        },
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 53,
+            "line": 14
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "row_id": "365d2468838453fd4f9c",
+      "name_qualified": "hasSum_mellin_pi_mul_sq",
+      "module": "Mathlib.NumberTheory.LSeries.MellinEqDirichlet",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "linarith failed to find a contradiction\nι : Type u_1\ninst✝ : Countable ι\na : ι → ℂ\nr : ι → ℝ\nF : ℝ → ℂ\ns : ℂ\nhs : 0 < s.re\nhF :\n  ∀ (t : ℝ),\n    0 < t → Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2 * ↑t))) atTop (𝓝 (F t))\nh_sum : Summable fun i => Complex.abs (a i) / |r i| ^ s.re\nh1 : Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2))) atTop (𝓝 (F 1))\nh2 : Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2 * 2))) atTop (𝓝 (F 2))\nh3 : Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2 * 3))) atTop (𝓝 (F 3))\nh4 : Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2 * 4))) atTop (𝓝 (F 4))\nh5 : Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2 * 5))) atTop (𝓝 (F 5))\nh6 : Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2 * 6))) atTop (𝓝 (F 6))\nh7 : Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2 * 7))) atTop (𝓝 (F 7))\nh8 : Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2 * 8))) atTop (𝓝 (F 8))\nh9 : Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2 * 9))) atTop (𝓝 (F 9))\nh10 : Tendsto (fun s => ∑ x ∈ s, if r x = 0 then 0 else a x * cexp (-(↑π * ↑(r x) ^ 2 * 10))) atTop (𝓝 (F 10))\n⊢ False failed",
+          "endPos": {
+            "column": 14,
+            "line": 24
+          },
+          "pos": {
+            "column": 6,
+            "line": 24
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "row_id": "2ee5053499710029759b",
+      "name_qualified": "_root_.Monotone.measure_iInter",
+      "module": "Mathlib.MeasureTheory.Measure.MeasureSpace",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 18,
+      "row_id": "27beb47b8f381d220487",
+      "name_qualified": "LinearMap.toMatrix'_id",
+      "module": "Mathlib.LinearAlgebra.Matrix.ToLin",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 19,
+      "row_id": "36c9c775ae7d03bbb929",
+      "name_qualified": "MeasureTheory.setIntegral_prod",
+      "module": "Mathlib.MeasureTheory.Integral.Prod",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown identifier 'integral_prod_of_integrable'",
+          "endPos": {
+            "column": 41,
+            "line": 22
+          },
+          "pos": {
+            "column": 14,
+            "line": 22
+          },
+          "severity": "error"
+        },
+        {
+          "data": "simp_all made no progress",
+          "endPos": {
+            "column": 62,
+            "line": 22
+          },
+          "pos": {
+            "column": 2,
+            "line": 22
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "row_id": "7a23981c665cc7e95bbb",
+      "name_qualified": "tendsto_rpow_atTop_of_base_lt_one",
+      "module": "Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 35,
+            "line": 10
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "row_id": "edfe1e051a4cbde17e84",
+      "name_qualified": "IsEulerian.even_degree_iff",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Trails",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "invalid field 'two_mul_odd_degree_iff', the environment does not contain 'SimpleGraph.Walk.IsEulerian.two_mul_odd_degree_iff'\n  ht\nhas type\n  p.IsEulerian",
+          "endPos": {
+            "column": 70,
+            "line": 12
+          },
+          "pos": {
+            "column": 45,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field notation, type is not of the form (C ...) where C is a constant\n  ht\nhas type\n  ∀ e ∈ G.edgeSet, List.count e p.edges = 1",
+          "endPos": {
+            "column": 70,
+            "line": 12
+          },
+          "pos": {
+            "column": 45,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'two_mul_odd_degree_iff', the environment does not contain 'SimpleGraph.Walk.IsEulerian.two_mul_odd_degree_iff'\n  ht\nhas type\n  p.IsEulerian",
+          "endPos": {
+            "column": 70,
+            "line": 12
+          },
+          "pos": {
+            "column": 45,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field notation, type is not of the form (C ...) where C is a constant\n  ht\nhas type\n  ∀ e ∈ G.edgeSet, List.count e p.edges = 1",
+          "endPos": {
+            "column": 70,
+            "line": 12
+          },
+          "pos": {
+            "column": 45,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "aesop: failed to prove the goal after exhaustive search.",
+          "endPos": {
+            "column": 11,
+            "line": 13
+          },
+          "pos": {
+            "column": 6,
+            "line": 13
+          },
+          "severity": "warning"
+        },
+        {
+          "data": "aesop: failed to prove the goal after exhaustive search.",
+          "endPos": {
+            "column": 11,
+            "line": 13
+          },
+          "pos": {
+            "column": 6,
+            "line": 13
+          },
+          "severity": "warning"
+        },
+        {
+          "data": "unsolved goals\nV : Type u_1\nG : SimpleGraph V\ninst : DecidableEq V\nx u : V\ninst_1 : Fintype V\ninst_2 : DecidableRel G.Adj\np : G.Walk u u\nht : p.IsEulerian\n⊢ G.degree x % 2 = 0\n\ncase mp.left.h\nV : Type u_1\nG : SimpleGraph V\ninst : DecidableEq V\nx v : V\ninst_1 : Fintype V\ninst_2 : DecidableRel G.Adj\na : G.degree x % 2 = 0\np : G.Walk x v\nht : p.IsEulerian\nh : ¬x = v\n⊢ False\n\ncase mp.right.h\nV : Type u_1\nG : SimpleGraph V\ninst : DecidableEq V\nx u : V\ninst_1 : Fintype V\ninst_2 : DecidableRel G.Adj\na : G.degree x % 2 = 0\np : G.Walk u x\nht : p.IsEulerian\nh : ¬u = x\n⊢ False\n\ncase mpr\nV : Type u_1\nG : SimpleGraph V\ninst : DecidableEq V\nx u v : V\np : G.Walk u v\nht : p.IsEulerian\ninst_1 : Fintype V\ninst_2 : DecidableRel G.Adj\nh : ¬u = v\nleft : ¬x = u\nright : ¬x = v\n⊢ G.degree x % 2 = 0",
+          "endPos": {
+            "column": 11,
+            "line": 13
+          },
+          "pos": {
+            "column": 72,
+            "line": 9
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "row_id": "7b25e213bf407758d59c",
+      "name_qualified": "GroupWithZero.isOpen_singleton_zero",
+      "module": "Mathlib.Topology.Algebra.Monoid",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unsolved goals\nM : Type u_3\ninst✝⁴ : GroupWithZero M\ninst✝³ : TopologicalSpace M\ninst✝² : ContinuousMul M\ninst✝¹ : CompactSpace M\ninst✝ : T1Space M\n⊢ False",
+          "endPos": {
+            "column": 8,
+            "line": 13
+          },
+          "pos": {
+            "column": 28,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "type mismatch\n  IsOpen.preimage (Continuous.comp continuous_inv continuous_const) isOpen_compl_singleton\nhas type\n  IsOpen (((fun a => a⁻¹) ∘ fun x => ?m.4873) ⁻¹' {?m.4201}ᶜ) : Prop\nbut is expected to have type\n  IsOpen {1⁻¹} : Prop",
+          "endPos": {
+            "column": 78,
+            "line": 18
+          },
+          "pos": {
+            "column": 2,
+            "line": 18
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "row_id": "24ee3a47d2c49f09e8fd",
+      "name_qualified": "Nat.prime_of_fac_equiv_neg_one",
+      "module": "Mathlib.NumberTheory.Wilson",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "`ZMod.int_cast_eq_int_cast_iff` has been deprecated: use `ZMod.intCast_eq_intCast_iff` instead",
+          "endPos": {
+            "column": 43,
+            "line": 14
+          },
+          "pos": {
+            "column": 14,
+            "line": 14
+          },
+          "severity": "warning"
+        },
+        {
+          "data": "unsolved goals\nn : ℕ\nh : ↑(n - 1)! = -1\nh1 : ¬n = 1\nthis : Fact True\nh2 : ¬n = 0\n⊢ Prime n",
+          "endPos": {
+            "column": 7,
+            "line": 37
+          },
+          "pos": {
+            "column": 99,
+            "line": 9
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "row_id": "59f11a392f9aa10a179f",
+      "name_qualified": "Ordinal.iSup_eq_zero_iff",
+      "module": "Mathlib.SetTheory.Ordinal.Arithmetic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "failed to synthesize\n  CompleteLattice Ordinal.{u}\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 38,
+            "line": 14
+          },
+          "pos": {
+            "column": 27,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "application type mismatch\n  le_zero_iff.mp this\nargument\n  this\nhas type\n  f i ≤ @OfNat.ofNat Ordinal.{u} 0 (@Zero.toOfNat0 Ordinal.{u} zero) : Prop\nbut is expected to have type\n  ?m.533 ≤ @OfNat.ofNat ?m.524 0 (@Zero.toOfNat0 ?m.524 MulZeroClass.toZero) : Prop",
+          "endPos": {
+            "column": 28,
+            "line": 16
+          },
+          "pos": {
+            "column": 24,
+            "line": 16
+          },
+          "severity": "error"
+        },
+        {
+          "data": "unknown identifier 'iSup_eq_zero'",
+          "endPos": {
+            "column": 20,
+            "line": 18
+          },
+          "pos": {
+            "column": 8,
+            "line": 18
+          },
+          "severity": "error"
+        },
+        {
+          "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.817\ncase refine_2\nι : Type u_4\nf : ι → Ordinal.{u}\ninst✝ : Small.{u, u_4} ι\nh : ∀ (i : ι), f i = 0\n⊢ iSup f = 0",
+          "endPos": {
+            "column": 20,
+            "line": 18
+          },
+          "pos": {
+            "column": 8,
+            "line": 18
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "row_id": "43f2974c54bec4b1588b",
+      "name_qualified": "MvPolynomial.sumAlgEquiv_comp_rename_inr",
+      "module": "Mathlib.Algebra.MvPolynomial.Equiv",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "tactic 'rfl' failed, the left-hand side\n  coeff m✝ (coeff m✝¹ ((sumRingEquiv R S₁ S₂) (X (Sum.inr i✝))))\nis not definitionally equal to the right-hand side\n  coeff m✝ (coeff m✝¹ (C (X i✝)))\ncase hf.a.a\nR : Type u\nS₁ : Type v\nS₂ : Type w\ninst✝ : CommSemiring R\ni✝ : S₂\nm✝¹ : S₁ →₀ ℕ\nm✝ : S₂ →₀ ℕ\n⊢ coeff m✝ (coeff m✝¹ ((sumRingEquiv R S₁ S₂) (X (Sum.inr i✝)))) = coeff m✝ (coeff m✝¹ (C (X i✝)))",
+          "endPos": {
+            "column": 9,
+            "line": 21
+          },
+          "pos": {
+            "column": 6,
+            "line": 21
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "row_id": "60c90777d81db61109a3",
+      "name_qualified": "MvPolynomial.adjoin_range_X",
+      "module": "Mathlib.Algebra.MvPolynomial.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown constant 'Algebra.adjoin_range_X'",
+          "endPos": {
+            "column": 104,
+            "line": 20
+          },
+          "pos": {
+            "column": 82,
+            "line": 20
+          },
+          "severity": "error"
+        },
+        {
+          "data": "unknown constant 'Algebra.adjoin_range_X'",
+          "endPos": {
+            "column": 104,
+            "line": 20
+          },
+          "pos": {
+            "column": 82,
+            "line": 20
+          },
+          "severity": "error"
+        },
+        {
+          "data": "unknown constant 'Algebra.adjoin_range_X'",
+          "endPos": {
+            "column": 104,
+            "line": 20
+          },
+          "pos": {
+            "column": 82,
+            "line": 20
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "row_id": "0286b697f09866ff134e",
+      "name_qualified": "RCLike.wInner_cWeight_const_left",
+      "module": "Mathlib.Analysis.RCLike.Inner",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 14,
+            "line": 5
+          },
+          "severity": "error"
+        },
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 17,
+            "line": 7
+          },
+          "severity": "error"
+        },
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 32,
+            "line": 9
+          },
+          "severity": "error"
+        },
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 44,
+            "line": 11
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "row_id": "af5980ec4c33cd234284",
+      "name_qualified": "Matrix.charpoly.univ_coeff_eval₂Hom",
+      "module": "Mathlib.LinearAlgebra.Matrix.Charpoly.Univ",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  R : Type u_1\n  S : Type u_2\n  n : Type u_3\n  inst✝³ : CommRing R\n  inst✝² : CommRing S\n  inst✝¹ : Fintype n\n  inst✝ : DecidableEq n\n  f : R →+* S\n  M : n × n → S\n  i : ℕ\n  ⊢ (Finsupp.sum ((mvPolynomialX n n R).charmatrix.det.coeff i) fun s a => f a * ∏ a : n × n, M a ^ s a) =\n      (of (Function.curry M)).charmatrix.det.coeff i",
+          "endPos": {
+            "column": 11,
+            "line": 15
+          },
+          "pos": {
+            "column": 6,
+            "line": 15
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "row_id": "47085d39f4ef697923e4",
+      "name_qualified": "IsIntegral.mem_span_pow",
+      "module": "Mathlib.RingTheory.PowerBasis",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "`exact?` could not close the goal. Try `apply?` to see partial suggestions.",
+          "endPos": {
+            "column": 8,
+            "line": 14
+          },
+          "pos": {
+            "column": 2,
+            "line": 14
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "row_id": "840440d3439fcee0d48e",
+      "name_qualified": "Trivialization.coordChange_coordChange",
+      "module": "Mathlib.Topology.FiberBundle.Trivialization",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "invalid field 'coordChange_comp', the environment does not contain 'Trivialization.coordChange_comp'\n  e₂\nhas type\n  Trivialization F proj",
+          "endPos": {
+            "column": 25,
+            "line": 16
+          },
+          "pos": {
+            "column": 6,
+            "line": 16
+          },
+          "severity": "error"
+        },
+        {
+          "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.764\nB : Type u_1\nF : Type u_2\nZ : Type u_4\ninst✝² : TopologicalSpace B\ninst✝¹ : TopologicalSpace F\nproj : Z → B\ninst✝ : TopologicalSpace Z\ne₁ e₂ e₃ : Trivialization F proj\nb : B\nh₁ : b ∈ e₁.baseSet\nh₂ : b ∈ e₂.baseSet\nx : F\n⊢ e₂.coordChange e₃ b (e₁.coordChange e₂ b x) = e₁.coordChange e₃ b x",
+          "endPos": {
+            "column": 25,
+            "line": 16
+          },
+          "pos": {
+            "column": 6,
+            "line": 16
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "row_id": "408eb9548e0d019cca2c",
+      "name_qualified": "RingHom.IsIntegralElem.sub",
+      "module": "Mathlib.RingTheory.IntegralClosure.Algebra.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 32,
+      "row_id": "c5f72993153d3b24a890",
+      "name_qualified": "Real.lt_rpow_of_log_lt",
+      "module": "Mathlib.Analysis.SpecialFunctions.Pow.Real",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "invalid field notation, type is not of the form (C ...) where C is a constant\n  log_nonpos_iff\nhas type\n  0 < ?m.1188 → (log ?m.1188 ≤ 0 ↔ ?m.1188 ≤ 1)",
+          "endPos": {
+            "column": 80,
+            "line": 11
+          },
+          "pos": {
+            "column": 41,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to prove positivity/nonnegativity/nonzeroness",
+          "endPos": {
+            "column": 40,
+            "line": 16
+          },
+          "pos": {
+            "column": 30,
+            "line": 16
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "row_id": "036a9fbffc68220423b2",
+      "name_qualified": "Tendsto.isCompact_insert_range_of_cocompact",
+      "module": "Mathlib.Topology.Compactness.Compact",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 35,
+            "line": 11
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "row_id": "ed6ddb8bf1dadd3563e1",
+      "name_qualified": "CFC.rpow_algebraMap",
+      "module": "Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown identifier 'map_rpow_of_nonneg'",
+          "endPos": {
+            "column": 28,
+            "line": 11
+          },
+          "pos": {
+            "column": 10,
+            "line": 11
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "row_id": "9a9251f9a0062a07b03a",
+      "name_qualified": "Finsupp.domLCongr_single",
+      "module": "Mathlib.LinearAlgebra.Finsupp.LSum",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 36,
+      "row_id": "5e9a013d67898ff205fb",
+      "name_qualified": "Parallel.direction_eq",
+      "module": "Mathlib.LinearAlgebra.AffineSpace.AffineSubspace",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "rcases tactic failed: w✝ : V is not an inductive datatype",
+          "endPos": {
+            "column": 22,
+            "line": 14
+          },
+          "pos": {
+            "column": 17,
+            "line": 14
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "row_id": "b98f8ad1a5f1a38e5291",
+      "name_qualified": "CategoryTheory.PreGaloisCategory.isGalois_iff_pretransitive",
+      "module": "Mathlib.CategoryTheory.Galois.GaloisObjects",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 38,
+      "row_id": "87d1311cfc29f096834a",
+      "name_qualified": "HurwitzZeta.hurwitzZetaEven_one_sub_two_mul_nat",
+      "module": "Mathlib.NumberTheory.LSeries.HurwitzZetaValues",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown tactic",
+          "endPos": null,
+          "pos": {
+            "column": 7,
+            "line": 73
+          },
+          "severity": "error"
+        },
+        {
+          "data": "unsolved goals\nk : ℕ\nx : ℝ\nhk : ¬k = 0\nhx : 0 ≤ x ∧ x ≤ 1\n⊢ Function.update (fun s => completedHurwitzZetaEven (↑x) s * s.Gammaℝ⁻¹) 0\n        (if x ∈ AddSubgroup.zmultiples 1 then ↑(Rat.divInt (-1) 2) else 0) (1 - 2 * ↑k) *\n      (↑k * 2) =\n    -(Polynomial.aeval ↑x) (Polynomial.bernoulli (k * 2))",
+          "endPos": {
+            "column": 10,
+            "line": 73
+          },
+          "pos": {
+            "column": 91,
+            "line": 10
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "row_id": "3b5e4522ed5acd402042",
+      "name_qualified": "mfderiv_prod_left",
+      "module": "Mathlib.Geometry.Manifold.MFDeriv.SpecificFunctions",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 10,
+            "line": 7
+          },
+          "severity": "error"
+        },
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 30,
+            "line": 37
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  TopologicalSpace M\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 47,
+            "line": 36
+          },
+          "pos": {
+            "column": 4,
+            "line": 36
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "row_id": "1068c27acfb9eb26078b",
+      "name_qualified": "Matrix.inv_mulVec_eq_vec",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 41,
+      "row_id": "7656af2cf805221ba22c",
+      "name_qualified": "Filter.Tendsto.div",
+      "module": "Mathlib.Topology.Algebra.GroupWithZero",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 79,
+            "line": 9
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 42,
+      "row_id": "9b5ac06d9d414a855cf2",
+      "name_qualified": "denseRange_zsmul_iff_surjective",
+      "module": "Mathlib.Topology.Algebra.Order.Group",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown constant 'Set.range_zsmul'",
+          "endPos": {
+            "column": 23,
+            "line": 14
+          },
+          "pos": {
+            "column": 8,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "simp made no progress",
+          "endPos": {
+            "column": 43,
+            "line": 14
+          },
+          "pos": {
+            "column": 2,
+            "line": 14
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 43,
+      "row_id": "f82ef0675215798d592e",
+      "name_qualified": "exists_pos_lt_subset_ball",
+      "module": "Mathlib.Topology.MetricSpace.ProperSpace.Lemmas",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "application type mismatch\n  And.intro h₁\nargument\n  h₁\nhas type\n  0 < r' : Prop\nbut is expected to have type\n  r' ∈ Ioo 0 r : Prop",
+          "endPos": {
+            "column": 17,
+            "line": 11
+          },
+          "pos": {
+            "column": 15,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "data": "simp_all made no progress",
+          "endPos": {
+            "column": 41,
+            "line": 13
+          },
+          "pos": {
+            "column": 4,
+            "line": 13
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 44,
+      "row_id": "ebf89166db0646bc056e",
+      "name_qualified": "Cardinal.add_le_max",
+      "module": "Mathlib.SetTheory.Cardinal.Arithmetic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unsolved goals\ncase inl.inl.inr\na b : Cardinal.{u_1}\nh : a ≤ b\nh₁ : a ≤ ℵ₀\nh₂ : ℵ₀ ≤ b\n⊢ a + b ≤ b\n\ncase inr.inl.inr\na b : Cardinal.{u_1}\nh : b ≤ a\nh₁ : a ≤ ℵ₀\nh₂ : ℵ₀ ≤ b\n⊢ b ≤ ℵ₀",
+          "endPos": {
+            "column": 66,
+            "line": 18
+          },
+          "pos": {
+            "column": 73,
+            "line": 9
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 45,
+      "row_id": "f069e83b8bed8e2c3353",
+      "name_qualified": "SmoothBumpCovering.mem_extChartAt_source_of_eq_one",
+      "module": "Mathlib.Geometry.Manifold.PartitionOfUnity",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "failed to synthesize\n  Membership M M\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 22,
+            "line": 20
+          },
+          "pos": {
+            "column": 12,
+            "line": 20
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'mem_Icc', the environment does not contain 'SmoothBumpCovering.mem_Icc'\n  fs\nhas type\n  SmoothBumpCovering ι I M s",
+          "endPos": {
+            "column": 58,
+            "line": 27
+          },
+          "pos": {
+            "column": 44,
+            "line": 27
+          },
+          "severity": "error"
+        },
+        {
+          "data": "linarith failed to find a contradiction\nι : Type uι\nE : Type uE\ninst✝⁵ : NormedAddCommGroup E\ninst✝⁴ : NormedSpace ℝ E\nH : Type uH\ninst✝³ : TopologicalSpace H\nI : ModelWithCorners ℝ E H\nM : Type uM\ninst✝² : TopologicalSpace M\ninst✝¹ : ChartedSpace H M\ninst✝ : FiniteDimensional ℝ E\ns : Set M\nfs : SmoothBumpCovering ι I M s\ni : ι\nx : M\nh₉ : ↑(fs.toFun i) x = 1\n⊢ False failed",
+          "endPos": {
+            "column": 16,
+            "line": 33
+          },
+          "pos": {
+            "column": 8,
+            "line": 33
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  Membership M M\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 24,
+            "line": 35
+          },
+          "pos": {
+            "column": 14,
+            "line": 35
+          },
+          "severity": "error"
+        },
+        {
+          "data": "tactic 'apply' failed, failed to unify\n  ↑(extChartAt I (fs.c i)) ?x ∈ (extChartAt I (fs.c i)).target\nwith\n  x ∈ (extChartAt I (fs.c i)).source\nι : Type uι\nE : Type uE\ninst✝⁵ : NormedAddCommGroup E\ninst✝⁴ : NormedSpace ℝ E\nH : Type uH\ninst✝³ : TopologicalSpace H\nI : ModelWithCorners ℝ E H\nM : Type uM\ninst✝² : TopologicalSpace M\ninst✝¹ : ChartedSpace H M\ninst✝ : FiniteDimensional ℝ E\ns : Set M\nfs : SmoothBumpCovering ι I M s\ni : ι\nx : M\nh : ↑(fs.toFun i) x = 1\nh₁ h₃ : sorry\n⊢ x ∈ (extChartAt I (fs.c i)).source",
+          "endPos": {
+            "column": 42,
+            "line": 37
+          },
+          "pos": {
+            "column": 6,
+            "line": 37
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 46,
+      "row_id": "ee647b6504a3f08fa032",
+      "name_qualified": "PowerSeries.coeff_X_pow_self",
+      "module": "Mathlib.RingTheory.PowerSeries.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 47,
+      "row_id": "e35313e6bf9410143197",
+      "name_qualified": "CommGroup.toGroup_injective",
+      "module": "Mathlib.Algebra.Group.Ext",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 48,
+      "row_id": "5b170b9312f206f731c1",
+      "name_qualified": "measurable_const'",
+      "module": "Mathlib.MeasureTheory.MeasurableSpace.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown identifier 'measurable_congr'",
+          "endPos": {
+            "column": 22,
+            "line": 15
+          },
+          "pos": {
+            "column": 6,
+            "line": 15
+          },
+          "severity": "error"
+        },
+        {
+          "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.251\nα : Type u_1\nβ : Type u_2\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSpace β\nf : β → α\nhf : ∀ (x y : β), f x = f y\n⊢ Measurable f",
+          "endPos": {
+            "column": 3,
+            "line": 18
+          },
+          "pos": {
+            "column": 6,
+            "line": 15
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 49,
+      "row_id": "f428a7b6b2d73253b90b",
+      "name_qualified": "mem_span_insert_exchange",
+      "module": "Mathlib.LinearAlgebra.LinearIndependent",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "`exact?` could not close the goal. Try `apply?` to see partial suggestions.",
+          "endPos": {
+            "column": 8,
+            "line": 17
+          },
+          "pos": {
+            "column": 2,
+            "line": 17
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 50,
+      "row_id": "271156ac737079703911",
+      "name_qualified": "UpperHalfPlane.im_inv_neg_coe_pos",
+      "module": "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "failed to prove positivity/nonnegativity/nonzeroness",
+          "endPos": {
+            "column": 16,
+            "line": 13
+          },
+          "pos": {
+            "column": 6,
+            "line": 13
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 51,
+      "row_id": "f76a8d5cfe417772f0b4",
+      "name_qualified": "surjOn_Ico_of_monotone_surjective",
+      "module": "Mathlib.Order.Interval.Set.SurjOn",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "simp_all made no progress",
+          "endPos": {
+            "column": 64,
+            "line": 17
+          },
+          "pos": {
+            "column": 56,
+            "line": 17
+          },
+          "severity": "error"
+        },
+        {
+          "data": "simp_all made no progress",
+          "endPos": {
+            "column": 79,
+            "line": 17
+          },
+          "pos": {
+            "column": 71,
+            "line": 17
+          },
+          "severity": "error"
+        },
+        {
+          "data": "simp_all made no progress",
+          "endPos": {
+            "column": 62,
+            "line": 24
+          },
+          "pos": {
+            "column": 54,
+            "line": 24
+          },
+          "severity": "error"
+        },
+        {
+          "data": "simp_all made no progress",
+          "endPos": {
+            "column": 77,
+            "line": 24
+          },
+          "pos": {
+            "column": 69,
+            "line": 24
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 52,
+      "row_id": "da3b6e2ccedf41baca78",
+      "name_qualified": "SubMulAction.stabilizer_of_subMul",
+      "module": "Mathlib.GroupTheory.GroupAction.SubMulAction",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 53,
+      "row_id": "4bff85ba438f7d3c061f",
+      "name_qualified": "CochainComplex.HomComplex.Cochain.ofHoms_v",
+      "module": "Mathlib.Algebra.Homology.HomotopyCategory.HomComplex",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 54,
+      "row_id": "9e4aa8c63b6d2c20111e",
+      "name_qualified": "PowerSeries.coeff_X_pow",
+      "module": "Mathlib.RingTheory.PowerSeries.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 55,
+      "row_id": "676b80a0a07713d203df",
+      "name_qualified": "Set.subset_singleton_iff_eq",
+      "module": "Mathlib.Data.Set.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 56,
+      "row_id": "0c371290fc50e1929a0f",
+      "name_qualified": "List.map_permutations",
+      "module": "Mathlib.Data.List.Permutation",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "`List.map_bind` has been deprecated: use `List.map_flatMap` instead",
+          "endPos": {
+            "column": 30,
+            "line": 9
+          },
+          "pos": {
+            "column": 22,
+            "line": 9
+          },
+          "severity": "warning"
+        },
+        {
+          "data": "`List.bind_map` has been deprecated: use `List.flatMap_map` instead",
+          "endPos": {
+            "column": 40,
+            "line": 9
+          },
+          "pos": {
+            "column": 32,
+            "line": 9
+          },
+          "severity": "warning"
+        },
+        {
+          "data": "tactic 'rfl' failed, the left-hand side\n  map (map f) (ts.permutationsAux [])\nis not definitionally equal to the right-hand side\n  (map f ts).permutationsAux []\nα : Type u_1\nβ : Type u_2\nf : α → β\nts : List α\n⊢ map (map f) (ts.permutationsAux []) = (map f ts).permutationsAux []",
+          "endPos": {
+            "column": 9,
+            "line": 10
+          },
+          "pos": {
+            "column": 6,
+            "line": 10
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 57,
+      "row_id": "2aa03893d4e9d8e68944",
+      "name_qualified": "Finset.map_add_right_Ioc",
+      "module": "Mathlib.Algebra.Order.Interval.Finset",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 58,
+      "row_id": "0d6247bdc2bba8610d46",
+      "name_qualified": "mem_rootsOfUnity_prime_pow_mul_iff'",
+      "module": "Mathlib.RingTheory.RootsOfUnity.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown constant 'ExpChar.iff_def'",
+          "endPos": {
+            "column": 40,
+            "line": 17
+          },
+          "pos": {
+            "column": 25,
+            "line": 17
+          },
+          "severity": "error"
+        },
+        {
+          "data": "`exact?` could not close the goal. Try `apply?` to see partial suggestions.",
+          "endPos": {
+            "column": 10,
+            "line": 19
+          },
+          "pos": {
+            "column": 4,
+            "line": 19
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 59,
+      "row_id": "2063b25824fc7909a392",
+      "name_qualified": "pullback.mapDesc_comp",
+      "module": "Mathlib.CategoryTheory.Limits.Shapes.Pullback.HasPullback",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 60,
+      "row_id": "1c539e3fc17871b55781",
+      "name_qualified": "EReal.continuousAt_add_top_top",
+      "module": "Mathlib.Topology.Instances.EReal",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown identifier 'tendsto_nhds_top_of_eventually_nhds'",
+          "endPos": {
+            "column": 47,
+            "line": 13
+          },
+          "pos": {
+            "column": 12,
+            "line": 13
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 61,
+      "row_id": "d26264b887822af6dd4f",
+      "name_qualified": "MeasureTheory.trim_withDensity",
+      "module": "Mathlib.MeasureTheory.Measure.WithDensity",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown identifier 'withDensity_trim'",
+          "endPos": {
+            "column": 22,
+            "line": 12
+          },
+          "pos": {
+            "column": 6,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.196\nα : Type u_1\nm m0 : MeasurableSpace α\nμ : Measure α\nhm : m ≤ m0\nf : α → ℝ≥0∞\nhf : Measurable f\n⊢ (μ.trim hm).withDensity f = (μ.withDensity f).trim hm",
+          "endPos": {
+            "column": 25,
+            "line": 12
+          },
+          "pos": {
+            "column": 6,
+            "line": 12
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 62,
+      "row_id": "668afe327eec928e4ead",
+      "name_qualified": "Real.rpow_left_injOn",
+      "module": "Mathlib.Analysis.SpecialFunctions.Pow.Real",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown identifier 'rpow_inj'",
+          "endPos": {
+            "column": 20,
+            "line": 12
+          },
+          "pos": {
+            "column": 12,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "tactic 'aesop' failed, made no progress\nInitial goal:\n  x y₁ : ℝ\n  hy₁ : 0 ≤ y₁\n  y₂ : ℝ\n  hy₂ : 0 ≤ y₂\n  h : y₁ ^ x = y₂ ^ x\n  hx' : ¬x = 0\n  ⊢ y₁ = y₂",
+          "endPos": {
+            "column": 11,
+            "line": 13
+          },
+          "pos": {
+            "column": 6,
+            "line": 13
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 63,
+      "row_id": "c2cbb51f02c5bdcdca2f",
+      "name_qualified": "Nat.bit_val",
+      "module": "Mathlib.Data.Nat.BinaryRec",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown identifier 'bit0'",
+          "endPos": {
+            "column": 33,
+            "line": 7
+          },
+          "pos": {
+            "column": 29,
+            "line": 7
+          },
+          "severity": "error"
+        },
+        {
+          "data": "unknown identifier 'bit1'",
+          "endPos": {
+            "column": 39,
+            "line": 7
+          },
+          "pos": {
+            "column": 35,
+            "line": 7
+          },
+          "severity": "error"
+        },
+        {
+          "data": "unknown identifier 'bit0'",
+          "endPos": {
+            "column": 33,
+            "line": 7
+          },
+          "pos": {
+            "column": 29,
+            "line": 7
+          },
+          "severity": "error"
+        },
+        {
+          "data": "unknown identifier 'bit1'",
+          "endPos": {
+            "column": 39,
+            "line": 7
+          },
+          "pos": {
+            "column": 35,
+            "line": 7
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 64,
+      "row_id": "f6e377e310cc6c3052a5",
+      "name_qualified": "CategoryTheory.ShortComplex.SnakeInput.L₁_f_φ₁",
+      "module": "Mathlib.Algebra.Homology.ShortComplex.SnakeLemma",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "invalid field 'p', the environment does not contain 'CategoryTheory.ShortComplex.p'\n  S.L₀'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 28,
+            "line": 12
+          },
+          "pos": {
+            "column": 21,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  Mono S.φ₂\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 48,
+            "line": 12
+          },
+          "pos": {
+            "column": 32,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'p_f', the environment does not contain 'CategoryTheory.ShortComplex.p_f'\n  S.L₀'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 59,
+            "line": 12
+          },
+          "pos": {
+            "column": 50,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'p_f', the environment does not contain 'CategoryTheory.ShortComplex.p_f'\n  S.L₁'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 70,
+            "line": 12
+          },
+          "pos": {
+            "column": 61,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'f_g', the environment does not contain 'CategoryTheory.ShortComplex.f_g'\n  S.L₀'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 81,
+            "line": 12
+          },
+          "pos": {
+            "column": 72,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'f_g', the environment does not contain 'CategoryTheory.ShortComplex.f_g'\n  S.L₁'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 92,
+            "line": 12
+          },
+          "pos": {
+            "column": 83,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'p_f', the environment does not contain 'CategoryTheory.ShortComplex.p_f'\n  S.L₀'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 13,
+            "line": 13
+          },
+          "pos": {
+            "column": 4,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'p_f', the environment does not contain 'CategoryTheory.ShortComplex.p_f'\n  S.L₁'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 24,
+            "line": 13
+          },
+          "pos": {
+            "column": 15,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'f_g', the environment does not contain 'CategoryTheory.ShortComplex.f_g'\n  S.L₀'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 35,
+            "line": 13
+          },
+          "pos": {
+            "column": 26,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'f_g', the environment does not contain 'CategoryTheory.ShortComplex.f_g'\n  S.L₁'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 46,
+            "line": 13
+          },
+          "pos": {
+            "column": 37,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'p_f', the environment does not contain 'CategoryTheory.ShortComplex.p_f'\n  S.L₀'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 57,
+            "line": 13
+          },
+          "pos": {
+            "column": 48,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'p_f', the environment does not contain 'CategoryTheory.ShortComplex.p_f'\n  S.L₁'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 68,
+            "line": 13
+          },
+          "pos": {
+            "column": 59,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'f_g', the environment does not contain 'CategoryTheory.ShortComplex.f_g'\n  S.L₀'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 79,
+            "line": 13
+          },
+          "pos": {
+            "column": 70,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field 'f_g', the environment does not contain 'CategoryTheory.ShortComplex.f_g'\n  S.L₁'\nhas type\n  ShortComplex C",
+          "endPos": {
+            "column": 90,
+            "line": 13
+          },
+          "pos": {
+            "column": 81,
+            "line": 13
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 65,
+      "row_id": "0cf8adf7d0bebe4793b7",
+      "name_qualified": "UpperHalfPlane.smulAux'_im",
+      "module": "Mathlib.Analysis.Complex.UpperHalfPlane.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "simp made no progress",
+          "endPos": {
+            "column": 60,
+            "line": 12
+          },
+          "pos": {
+            "column": 6,
+            "line": 12
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 66,
+      "row_id": "d7720b5f77c56dc047b7",
+      "name_qualified": "Finset.nonMemberSubfamily_nonMemberSubfamily",
+      "module": "Mathlib.Combinatorics.SetFamily.Compression.Down",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 38,
+            "line": 3
+          },
+          "severity": "error"
+        },
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 5,
+            "line": 7
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 67,
+      "row_id": "a3fc8cfb5a48a4aac3af",
+      "name_qualified": "Finset.inv_subset_div_right",
+      "module": "Mathlib.Algebra.Group.Pointwise.Finset.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 68,
+      "row_id": "0a39cc34e7dadac0a7d5",
+      "name_qualified": "ProbabilityTheory.Kernel.setLIntegral_rnDerivAux",
+      "module": "Mathlib.Probability.Kernel.RadonNikodym",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown identifier 'rnDerivAux_eq'",
+          "endPos": {
+            "column": 19,
+            "line": 12
+          },
+          "pos": {
+            "column": 6,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "tactic 'rewrite' failed, equality or iff proof expected\n  ?m.545\nα : Type u_1\nγ : Type u_2\nmα : MeasurableSpace α\nmγ : MeasurableSpace γ\nhαγ : MeasurableSpace.CountableOrCountablyGenerated α γ\nκ η : Kernel α γ\ninst✝¹ : IsFiniteKernel κ\ninst✝ : IsFiniteKernel η\na : α\ns : Set γ\nhs : MeasurableSet s\n⊢ ∫⁻ (x : γ) in s, ENNReal.ofReal (κ.rnDerivAux (κ + η) a x) ∂(κ + η) a = (κ a) s",
+          "endPos": {
+            "column": 19,
+            "line": 12
+          },
+          "pos": {
+            "column": 6,
+            "line": 12
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 69,
+      "row_id": "eeef436ff7221f8fa2a2",
+      "name_qualified": "Equiv.Perm.support_zpowers_of_mem_cycleFactorsFinset_le",
+      "module": "Mathlib.GroupTheory.Perm.Cycle.Factors",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "tactic 'apply' failed, failed to unify\n  ↑c ∈ g.cycleFactorsFinset\nwith\n  ↑v ∈ g.cycleFactorsFinset\nα : Type u_2\ninst✝¹ : DecidableEq α\ninst✝ : Fintype α\ng : Perm α\nc : { x // x ∈ g.cycleFactorsFinset }\nv : ↥(Subgroup.zpowers ↑c)\n⊢ ↑v ∈ g.cycleFactorsFinset",
+          "endPos": {
+            "column": 13,
+            "line": 14
+          },
+          "pos": {
+            "column": 4,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "Try this: exact support_zpowers_of_mem_cycleFactorsFinset_le v",
+          "endPos": {
+            "column": 8,
+            "line": 16
+          },
+          "pos": {
+            "column": 2,
+            "line": 16
+          },
+          "severity": "info"
+        }
+      ]
+    },
+    {
+      "index": 70,
+      "row_id": "28da339826e94b9e5ed0",
+      "name_qualified": "Order.krullDim_eq_iSup_coheight_of_nonempty",
+      "module": "Mathlib.Order.KrullDimension",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown constant 'Nat.cast_iSup'",
+          "endPos": {
+            "column": 29,
+            "line": 21
+          },
+          "pos": {
+            "column": 16,
+            "line": 21
+          },
+          "severity": "error"
+        },
+        {
+          "data": "simp_all made no progress",
+          "endPos": {
+            "column": 30,
+            "line": 21
+          },
+          "pos": {
+            "column": 6,
+            "line": 21
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 71,
+      "row_id": "933773a11e414c5de4d8",
+      "name_qualified": "Real.Angle.toReal_nonneg_iff_sign_nonneg",
+      "module": "Mathlib.Analysis.SpecialFunctions.Trigonometric.Angle",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown identifier 'toReal_neg'",
+          "endPos": {
+            "column": 34,
+            "line": 10
+          },
+          "pos": {
+            "column": 24,
+            "line": 10
+          },
+          "severity": "error"
+        },
+        {
+          "data": "linarith failed to find a contradiction\ncase pos.a\nθ : Angle\nh : ¬θ = 0\nh' : θ.sign = 0\na✝ : 0 > θ.toReal\n⊢ False failed",
+          "endPos": {
+            "column": 21,
+            "line": 16
+          },
+          "pos": {
+            "column": 4,
+            "line": 16
+          },
+          "severity": "error"
+        },
+        {
+          "data": "linarith failed to find a contradiction\ncase neg\nθ : Angle\nh : ¬θ = 0\nh' : ¬θ.sign = 0\n⊢ False failed",
+          "endPos": {
+            "column": 21,
+            "line": 16
+          },
+          "pos": {
+            "column": 4,
+            "line": 16
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 72,
+      "row_id": "22e4ddf9f286733e502a",
+      "name_qualified": "Finset.Ioo_filter_lt",
+      "module": "Mathlib.Order.Interval.Finset.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 73,
+      "row_id": "2cc584e8e8b6f8b625fc",
+      "name_qualified": "Primrec₂.nat_iff",
+      "module": "Mathlib.Computability.Primrec",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "invalid field notation, type is not of the form (C ...) where C is a constant\n  Primrec\nhas type\n  (?m.4587 → ?m.4588) → Prop",
+          "endPos": {
+            "column": 35,
+            "line": 13
+          },
+          "pos": {
+            "column": 12,
+            "line": 13
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 74,
+      "row_id": "932878fdce08df703025",
+      "name_qualified": "map_inv_le_map_inv_iff",
+      "module": "Mathlib.Order.Hom.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 75,
+      "row_id": "d073a6873a6c683fa6f1",
+      "name_qualified": "Ordinal.type_fintype",
+      "module": "Mathlib.SetTheory.Ordinal.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unexpected token 'end'; expected ']'",
+          "endPos": {
+            "column": 3,
+            "line": 99
+          },
+          "pos": {
+            "column": 16,
+            "line": 98
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 76,
+      "row_id": "8380247a1030ca4ebd83",
+      "name_qualified": "Polynomial.Chebyshev.S_neg",
+      "module": "Mathlib.RingTheory.Polynomial.Chebyshev",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "simp_all made no progress",
+          "endPos": {
+            "column": 84,
+            "line": 8
+          },
+          "pos": {
+            "column": 2,
+            "line": 8
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 77,
+      "row_id": "d1d1f77f23ae92a15584",
+      "name_qualified": "Polynomial.monomial_one_right_eq_X_pow",
+      "module": "Mathlib.Algebra.Polynomial.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 78,
+      "row_id": "7e2662f51c9ff8f6970e",
+      "name_qualified": "Complex.arg_eq_zero_iff_zero_le",
+      "module": "Mathlib.Analysis.SpecialFunctions.Complex.Arg",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown constant 'Complex.ofReal_le_iff_le_of_nonneg'",
+          "endPos": {
+            "column": 58,
+            "line": 12
+          },
+          "pos": {
+            "column": 24,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "data": "simp made no progress",
+          "endPos": {
+            "column": 59,
+            "line": 12
+          },
+          "pos": {
+            "column": 2,
+            "line": 11
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 79,
+      "row_id": "67eb901c8ca9bed47aea",
+      "name_qualified": "LocallyLipschitz.continuous",
+      "module": "Mathlib.Topology.EMetricSpace.Lipschitz",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "rcases tactic failed: right✝ : ∀ ⦃x : α⦄,\n  x ∈ hr → ∀ ⦃y : α⦄, y ∈ hr → edist (f x) (f y) ≤ ↑r * edist x y is not an inductive datatype",
+          "endPos": {
+            "column": 36,
+            "line": 13
+          },
+          "pos": {
+            "column": 19,
+            "line": 13
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 80,
+      "row_id": "f5f5965b3f2346f54b1a",
+      "name_qualified": "List.Chain'.length_sub_one_le_two_mul_count_bool",
+      "module": "Mathlib.Data.Bool.Count",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b ≥ 0\n  a ≥ 0\n  a - 2*b ≥ 2\nwhere\n a := ↑tl.length\n b := ↑(count false tl)",
+          "endPos": {
+            "column": 17,
+            "line": 18
+          },
+          "pos": {
+            "column": 12,
+            "line": 18
+          },
+          "severity": "error"
+        },
+        {
+          "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b ≥ 0\n  a ≥ 0\n  a - 2*b ≥ 2\nwhere\n a := ↑tl.length\n b := ↑(count false tl)",
+          "endPos": {
+            "column": 17,
+            "line": 18
+          },
+          "pos": {
+            "column": 12,
+            "line": 18
+          },
+          "severity": "error"
+        },
+        {
+          "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b ≥ 0\n  a ≥ 0\n  a - 2*b ≥ 2\nwhere\n a := ↑tl.length\n b := ↑(count true tl)",
+          "endPos": {
+            "column": 17,
+            "line": 18
+          },
+          "pos": {
+            "column": 12,
+            "line": 18
+          },
+          "severity": "error"
+        },
+        {
+          "data": "omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b ≥ 0\n  a ≥ 0\n  a - 2*b ≥ 2\nwhere\n a := ↑tl.length\n b := ↑(count true tl)",
+          "endPos": {
+            "column": 17,
+            "line": 18
+          },
+          "pos": {
+            "column": 12,
+            "line": 18
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 81,
+      "row_id": "18b94aba81b86aeabca3",
+      "name_qualified": "rank_eq_zero_iff_isTorsion",
+      "module": "Mathlib.LinearAlgebra.Dimension.Torsion.Finite",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "failed to synthesize\n  NoZeroSMulDivisors R M\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 19,
+            "line": 7
+          },
+          "pos": {
+            "column": 6,
+            "line": 7
+          },
+          "severity": "error"
+        },
+        {
+          "data": "simp made no progress",
+          "endPos": {
+            "column": 50,
+            "line": 8
+          },
+          "pos": {
+            "column": 6,
+            "line": 8
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 82,
+      "row_id": "23fa14a6e3db11fdeeef",
+      "name_qualified": "RingHom.finitePresentation_holdsForLocalizationAway",
+      "module": "Mathlib.RingTheory.RingHom.FinitePresentation",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unexpected token 'end'; expected '[' or tactic",
+          "endPos": {
+            "column": 3,
+            "line": 111
+          },
+          "pos": {
+            "column": 5,
+            "line": 110
+          },
+          "severity": "error"
+        },
+        {
+          "data": "Try this: refine fun [CommRing S✝] [Algebra R S✝] r_1 [IsLocalization.Away r_1 S✝] => ?_",
+          "endPos": {
+            "column": 8,
+            "line": 11
+          },
+          "pos": {
+            "column": 2,
+            "line": 11
+          },
+          "severity": "info"
+        },
+        {
+          "data": "Try this: refine fun [CommRing S✝] [Algebra R S✝] r_1 [IsLocalization.Away r_1 S✝] => ?_",
+          "endPos": {
+            "column": 8,
+            "line": 11
+          },
+          "pos": {
+            "column": 2,
+            "line": 11
+          },
+          "severity": "info"
+        },
+        {
+          "data": "Try this: refine fun [CommRing S✝] [Algebra R S✝] r_1 [IsLocalization.Away r_1 S✝] => ?_",
+          "endPos": {
+            "column": 8,
+            "line": 11
+          },
+          "pos": {
+            "column": 2,
+            "line": 11
+          },
+          "severity": "info"
+        }
+      ]
+    },
+    {
+      "index": 83,
+      "row_id": "091faddb069e5c3d0a32",
+      "name_qualified": "isLocalHomeomorphOn_iff_isOpenEmbedding_restrict",
+      "module": "Mathlib.Topology.IsLocalHomeomorph",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 45,
+            "line": 8
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 84,
+      "row_id": "12158d4c63a506ae0d32",
+      "name_qualified": "MeasureTheory.Measure.restrict_apply_eq_zero",
+      "module": "Mathlib.MeasureTheory.Measure.Restrict",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 85,
+      "row_id": "60535288c244a6d29d2c",
+      "name_qualified": "CategoryTheory.MonoidalCategory.pentagon_hom_inv_inv_inv_hom",
+      "module": "Mathlib.CategoryTheory.Monoidal.Category",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 23,
+            "line": 9
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  Category.{?u.10831, ?u.37} C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 24,
+            "line": 14
+          },
+          "pos": {
+            "column": 4,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  Category.{?u.14739, ?u.37} C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 45,
+            "line": 14
+          },
+          "pos": {
+            "column": 31,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  MonoidalCategoryStruct C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 45,
+            "line": 14
+          },
+          "pos": {
+            "column": 27,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  Category.{?u.28375, ?u.37} C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 68,
+            "line": 14
+          },
+          "pos": {
+            "column": 48,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  CategoryStruct.{?u.28375, ?u.37} C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 68,
+            "line": 14
+          },
+          "pos": {
+            "column": 27,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  CategoryStruct.{?u.28375, ?u.37} C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 68,
+            "line": 14
+          },
+          "pos": {
+            "column": 4,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  MonoidalCategoryStruct C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 7,
+            "line": 14
+          },
+          "pos": {
+            "column": 5,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  MonoidalCategoryStruct C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 34,
+            "line": 14
+          },
+          "pos": {
+            "column": 32,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  MonoidalCategoryStruct C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 51,
+            "line": 14
+          },
+          "pos": {
+            "column": 49,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  MonoidalCategoryStruct (?m.46032 ⊗ ?m.46034 ⟶ ?m.46033 ⊗ ?m.46035)\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 9,
+            "line": 15
+          },
+          "pos": {
+            "column": 7,
+            "line": 15
+          },
+          "severity": "error"
+        },
+        {
+          "data": "ambiguous, possible interpretations \n  ?m.44496 ⊗ ?m.44866 : ?m.43518 ⊗ ?m.43520 ≅ ?m.43519 ⊗ ?m.43521\n  \n  ?m.47652 ⊗ ?m.49233 : ?m.46032 ⊗ ?m.46034 ⟶ ?m.46033 ⊗ ?m.46035",
+          "endPos": {
+            "column": 16,
+            "line": 15
+          },
+          "pos": {
+            "column": 11,
+            "line": 15
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  Category.{?u.135649, ?u.37} C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 43,
+            "line": 15
+          },
+          "pos": {
+            "column": 29,
+            "line": 15
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  MonoidalCategoryStruct C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 47,
+            "line": 15
+          },
+          "pos": {
+            "column": 29,
+            "line": 15
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  MonoidalCategoryStruct C\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 32,
+            "line": 15
+          },
+          "pos": {
+            "column": 30,
+            "line": 15
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 86,
+      "row_id": "f41838f184f492c2025f",
+      "name_qualified": "IsAdjoinRoot.repr_zero_mem_span",
+      "module": "Mathlib.RingTheory.IsAdjoinRoot",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 87,
+      "row_id": "ae33e11a89c6efc75779",
+      "name_qualified": "Metric.inseparable_iff",
+      "module": "Mathlib.Topology.MetricSpace.Pseudo.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "simp_all made no progress",
+          "endPos": {
+            "column": 27,
+            "line": 13
+          },
+          "pos": {
+            "column": 4,
+            "line": 13
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 88,
+      "row_id": "6ed417b57006f8fdc776",
+      "name_qualified": "Submodule.ker_liftQ_eq_bot",
+      "module": "Mathlib.LinearAlgebra.Quotient.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "application type mismatch\n  f x\nargument\n  x\nhas type\n  M ⧸ p : Type u_2\nbut is expected to have type\n  M : Type u_2",
+          "endPos": {
+            "column": 17,
+            "line": 22
+          },
+          "pos": {
+            "column": 16,
+            "line": 22
+          },
+          "severity": "error"
+        },
+        {
+          "data": "invalid field notation, type is not of the form (C ...) where C is a constant\n  Quotient.eq\nhas type\n  ∀ (p : Submodule ?m.29734 ?m.29735) {x y : ?m.29735}, Quotient.mk x = Quotient.mk y ↔ x - y ∈ p",
+          "endPos": {
+            "column": 38,
+            "line": 23
+          },
+          "pos": {
+            "column": 12,
+            "line": 23
+          },
+          "severity": "error"
+        },
+        {
+          "data": "failed to synthesize\n  Membership (M ⧸ p) (Submodule R M)\nAdditional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 23,
+            "line": 25
+          },
+          "pos": {
+            "column": 14,
+            "line": 25
+          },
+          "severity": "error"
+        },
+        {
+          "data": "unsolved goals\nR : Type u_1\nM : Type u_2\ninst✝⁵ : Ring R\ninst✝⁴ : AddCommGroup M\ninst✝³ : Module R M\np : Submodule R M\nR₂ : Type u_3\nM₂ : Type u_4\ninst✝² : Ring R₂\ninst✝¹ : AddCommGroup M₂\ninst✝ : Module R₂ M₂\nτ₁₂ : R →+* R₂\nf : M →ₛₗ[τ₁₂] M₂\nh : p ≤ ker f\nh' : ker f ≤ p\nx : M ⧸ p\nh₃ : (p.liftQ f h) x = 0\nh₄ : f sorry = 0\n⊢ sorry",
+          "endPos": {
+            "column": 34,
+            "line": 26
+          },
+          "pos": {
+            "column": 27,
+            "line": 25
+          },
+          "severity": "error"
+        },
+        {
+          "data": "`exact?` could not close the goal. Try `apply?` to see partial suggestions.",
+          "endPos": {
+            "column": 10,
+            "line": 28
+          },
+          "pos": {
+            "column": 4,
+            "line": 28
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 89,
+      "row_id": "ad03eb02785ecd50fbee",
+      "name_qualified": "MeasureTheory.integrable_norm_iff",
+      "module": "Mathlib.MeasureTheory.Function.L1Space",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "unknown tactic",
+          "endPos": null,
+          "pos": {
+            "column": 3,
+            "line": 222
+          },
+          "severity": "error"
+        },
+        {
+          "data": "application type mismatch\n  Exists.intro hf\nargument\n  hf\nhas type\n  AEStronglyMeasurable f μ : Prop\nbut is expected to have type\n  ℝ≥0 : Type",
+          "endPos": {
+            "column": 21,
+            "line": 20
+          },
+          "pos": {
+            "column": 19,
+            "line": 20
+          },
+          "severity": "error"
+        },
+        {
+          "data": "type mismatch\n  h.2\nhas type\n  h.1 ∈ ∫⁻ (a : α), ‖f a‖ₑ ∂μ ∧ ∀ a ∈ ⊤, h.1 < a : Prop\nbut is expected to have type\n  ∫⁻ (a : α), ‖‖f a‖‖ₑ ∂μ < ⊤ : Prop",
+          "endPos": {
+            "column": 39,
+            "line": 20
+          },
+          "pos": {
+            "column": 36,
+            "line": 20
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 90,
+      "row_id": "02928ca1779dd9587ced",
+      "name_qualified": "Stream'.Seq.length_le_iff",
+      "module": "Mathlib.Data.Seq.Seq",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "tactic 'rewrite' failed, equality or iff proof expected\n  Part.get ?m.66 ?h ∈ ?m.66\nα : Type u\ns : Seq α\nn : ℕ\nh : s.Terminates\n⊢ Nat.find h ≤ n ↔ s.TerminatedAt n",
+          "endPos": {
+            "column": 26,
+            "line": 12
+          },
+          "pos": {
+            "column": 14,
+            "line": 12
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 91,
+      "row_id": "ea70add580a22363dcc6",
+      "name_qualified": "IntermediateField.AdjoinSimple.trace_gen_eq_sum_roots",
+      "module": "Mathlib.RingTheory.Trace.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "tactic 'rewrite' failed, did not find instance of the pattern in the target expression\n  (algebraMap ?m.25177 ?m.25182) ((Algebra.trace ?m.25177 ↥?m.25177⟮?m.25196⟯) (gen ?m.25177 ?m.25196))\nK : Type u_4\nL : Type u_5\ninst✝⁴ : Field K\ninst✝³ : Field L\ninst✝² : Algebra K L\nF : Type u_6\ninst✝¹ : Field F\ninst✝ : Algebra K F\nx : L\nhf : Splits (algebraMap K F) (minpoly K x)\n⊢ (algebraMap K F) ((Algebra.trace K ↥K⟮x⟯) (gen K x)) = ((minpoly K x).aroots F).sum",
+          "endPos": {
+            "column": 31,
+            "line": 23
+          },
+          "pos": {
+            "column": 6,
+            "line": 23
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 92,
+      "row_id": "ed4d8f35dacd99a5bf8b",
+      "name_qualified": "SimpleGraph.isNClique_zero",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Clique",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 93,
+      "row_id": "7e0ce50b49ecef00e21a",
+      "name_qualified": "Nat.factorization_eq_zero_iff_remainder",
+      "module": "Mathlib.Data.Nat.Factorization.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 94,
+      "row_id": "2c603d8a7e64d3b8e066",
+      "name_qualified": "ZMod.natCast_eq_natCast_iff",
+      "module": "Mathlib.Data.ZMod.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 95,
+      "row_id": "89c71523d5e07327a0bb",
+      "name_qualified": "hasMFDerivAt_const",
+      "module": "Mathlib.Geometry.Manifold.MFDeriv.SpecificFunctions",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 10,
+            "line": 7
+          },
+          "severity": "error"
+        },
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 66,
+            "line": 37
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 96,
+      "row_id": "63fa80425d194a898710",
+      "name_qualified": "Int.natCast_modEq_iff",
+      "module": "Mathlib.Data.Int.ModEq",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": true,
+      "message": "Proof verified successfully"
+    },
+    {
+      "index": 97,
+      "row_id": "6fba13cc02883a3030cc",
+      "name_qualified": "mdifferentiableWithinAt_congr_set",
+      "module": "Mathlib.Geometry.Manifold.MFDeriv.Basic",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 3,
+            "line": 8
+          },
+          "severity": "error"
+        },
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 43,
+            "line": 21
+          },
+          "severity": "error"
+        },
+        {
+          "data": "expected token",
+          "endPos": null,
+          "pos": {
+            "column": 59,
+            "line": 24
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 98,
+      "row_id": "a2f1c954e7bec4afcbdc",
+      "name_qualified": "WittVector.bind₁_onePoly_wittPolynomial",
+      "module": "Mathlib.RingTheory.WittVector.IsPoly",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "tactic 'simp' failed, nested error:\nmaximum recursion depth has been reached\nuse `set_option maxRecDepth <num>` to increase limit\nuse `set_option diagnostics true` to get diagnostic information",
+          "endPos": {
+            "column": 58,
+            "line": 16
+          },
+          "pos": {
+            "column": 2,
+            "line": 16
+          },
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "index": 99,
+      "row_id": "f9fd5a822f0aa8d0e8c7",
+      "name_qualified": "Disjoint.symm",
+      "module": "Mathlib.GroupTheory.Perm.Support",
+      "exact_match": false,
+      "normalized_match": false,
+      "verified": false,
+      "message": [
+        {
+          "data": "type mismatch\n  symm h\nhas type\n  g.Disjoint f : Prop\nbut is expected to have type\n  f.Disjoint g : Prop",
+          "endPos": {
+            "column": 14,
+            "line": 12
+          },
+          "pos": {
+            "column": 2,
+            "line": 12
+          },
+          "severity": "error"
+        }
+      ]
+    }
+  ]
+}
