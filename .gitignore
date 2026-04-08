@@ -13,4 +13,6 @@ continuation_recovery/artifacts/
 mathlib_fine_tuning/processed/
 mathlib_fine_tuning/runs/
 mathlib_fine_tuning/data/raw/*.jsonl
+!mathlib_fine_tuning/data/raw/mathlib_theorems_validated_tactic.jsonl
+!mathlib_fine_tuning/data/raw/mathlib_theorems_validated_term.jsonl
 mathlib_fine_tuning/data/processed/*.jsonl
