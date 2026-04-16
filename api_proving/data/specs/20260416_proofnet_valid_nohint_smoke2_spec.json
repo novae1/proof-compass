@@ -1,0 +1,14 @@
+{
+  "problems": {
+    "exercise_1_13a": {
+      "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\nopen scoped BigOperators Topology",
+      "formal_statement": "theorem exercise_1_13a {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, (f z).re = c) :\n  f a = f b :=",
+      "theorem_hint": ""
+    },
+    "exercise_1_13c": {
+      "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology",
+      "formal_statement": "theorem exercise_1_13c {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, abs (f z) = c) :\n  f a = f b :=",
+      "theorem_hint": ""
+    }
+  }
+}
