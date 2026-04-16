@@ -1,0 +1,90 @@
+{
+  "nohint-smoke2/exercise_1_13a": {
+    "formal_statement": "theorem exercise_1_13a {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, (f z).re = c) :\n  f a = f b :=",
+    "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\nopen scoped BigOperators Topology",
+    "informal_statement": null,
+    "nl_proof": null,
+    "attempts": [
+      {
+        "success": false,
+        "raw_output": "=== PROMPT ===\nComplete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\nopen scoped BigOperators Topology\ntheorem exercise_1_13a {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, (f z).re = c) :\n  f a = f b :=\n```\n\n=== OUTPUT ===\n```lean\nby\n  rcases hc with ⟨c, hc⟩\n  have hfa : (f a).re = c := hc a a.property\n  have hfb : (f b).re = c := hc b b.property\n  have hre : (f a).re = (f b).re := by simpa [hfa, hfb]\n  exact (hf.const_of_real_eq _ _ hre)\n```",
+        "parsed_proof": "theorem exercise_1_13a {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, (f z).re = c) :\n  f a = f b :=",
+        "message": [
+          {
+            "data": "unexpected end of input",
+            "endPos": null,
+            "pos": {
+              "column": 14,
+              "line": 8
+            },
+            "severity": "error"
+          }
+        ],
+        "generation_time": 63.028305530548096,
+        "verification_time": 0.03423953056335449
+      },
+      {
+        "success": false,
+        "raw_output": "=== PROMPT ===\nComplete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\n\nopen scoped BigOperators Topology\ntheorem exercise_1_13a {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, (f z).re = c) :\n  f a = f b :=\n```\n\n=== OUTPUT ===\n```lean\nby\n  rcases hc with ⟨c, hc⟩\n  -- `hf.const_of_realPart_const` tells us that a holomorphic function whose\n  -- real part is constant on a connected open set is itself constant.\n  rcases hf.const_of_realPart_const (by\n    intro z hz; exact hc z hz) with ⟨w, hw⟩\n  simpa [hw a a.property, hw b b.property]```",
+        "parsed_proof": "theorem exercise_1_13a {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, (f z).re = c) :\n  f a = f b :=",
+        "message": [
+          {
+            "data": "unexpected end of input",
+            "endPos": null,
+            "pos": {
+              "column": 14,
+              "line": 8
+            },
+            "severity": "error"
+          }
+        ],
+        "generation_time": 20.19051766395569,
+        "verification_time": 0.03472495079040527
+      }
+    ]
+  },
+  "nohint-smoke2/exercise_1_13c": {
+    "formal_statement": "theorem exercise_1_13c {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, abs (f z) = c) :\n  f a = f b :=",
+    "header": "import Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology",
+    "informal_statement": null,
+    "nl_proof": null,
+    "attempts": [
+      {
+        "success": false,
+        "raw_output": "=== PROMPT ===\nComplete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\ntheorem exercise_1_13c {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, abs (f z) = c) :\n  f a = f b :=\n```\n\n=== OUTPUT ===\n```lean\nby\n  rcases hc with ⟨c, hc⟩\n  have hconst : IsConst f Ω :=\n    isConst_of_abs_eq hf h hc\n  rcases hconst with ⟨z₀, hz₀⟩\n  exact (hz₀ a a.property).trans (hz₀ b b.property).symm\n```",
+        "parsed_proof": "theorem exercise_1_13c {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, abs (f z) = c) :\n  f a = f b :=",
+        "message": [
+          {
+            "data": "unexpected end of input",
+            "endPos": null,
+            "pos": {
+              "column": 14,
+              "line": 6
+            },
+            "severity": "error"
+          }
+        ],
+        "generation_time": 15.930388450622559,
+        "verification_time": 0.04045248031616211
+      },
+      {
+        "success": false,
+        "raw_output": "=== PROMPT ===\nComplete the following Lean 4 code:\n\n```lean4\nimport Mathlib\n\nopen Complex Filter Function Metric Finset\nopen scoped BigOperators Topology\ntheorem exercise_1_13c {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, abs (f z) = c) :\n  f a = f b :=\n```\n\n=== OUTPUT ===\n```lean\nby\n  rcases hc with ⟨c, hc⟩\n  -- turn the statement about `abs` into one about `‖·‖`\n  have hnorm : ∀ z ∈ Ω, ‖f z‖ = c := by\n    intro z hz\n    simpa [Complex.abs_eq_norm] using hc z hz\n  -- a holomorphic function with constant norm is constant\n  have hconst : IsConst f Ω :=\n    isConst_of_norm_eq_const h hf hnorm\n  rcases hconst with ⟨c', hc'⟩\n  have ha' : f a = c' := by\n    have := hc' a a.property\n    simpa using this\n  have hb' : f b = c' := by\n    have := hc' b b.property\n    simpa using this\n  exact ha'.trans hb'.symm\n```",
+        "parsed_proof": "theorem exercise_1_13c {f : ℂ → ℂ} (Ω : Set ℂ) (a b : Ω) (h : IsOpen Ω)\n  (hf : DifferentiableOn ℂ f Ω) (hc : ∃ (c : ℝ), ∀ z ∈ Ω, abs (f z) = c) :\n  f a = f b :=",
+        "message": [
+          {
+            "data": "unexpected end of input",
+            "endPos": null,
+            "pos": {
+              "column": 14,
+              "line": 6
+            },
+            "severity": "error"
+          }
+        ],
+        "generation_time": 34.68241286277771,
+        "verification_time": 0.040305376052856445
+      }
+    ]
+  }
+}
