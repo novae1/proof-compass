@@ -204,9 +204,16 @@ def main() -> int:
 
     all_problem_keys = list_problem_keys(args.nohint_spec)
     forced = set(args.force_problems)
+    selected_problem_keys = all_problem_keys
+    if forced:
+        selected_problem_keys = [problem_key for problem_key in all_problem_keys if problem_key in forced]
+        missing = sorted(forced - set(selected_problem_keys))
+        if missing:
+            raise ValueError(f"Unknown ProofNet problem keys in --force-problems: {missing}")
+
     todo: list[str] = []
     skipped = 0
-    for problem_key in all_problem_keys:
+    for problem_key in selected_problem_keys:
         key = merged_key(args.condition, problem_key)
         if problem_key not in forced and is_solved(combined_payload.get(key)):
             skipped += 1
@@ -214,7 +221,7 @@ def main() -> int:
         todo.append(problem_key)
 
     print(f"condition: {args.condition}")
-    print(f"total problems: {len(all_problem_keys)}")
+    print(f"total problems: {len(selected_problem_keys)}")
     print(f"already solved/skipped: {skipped}")
     print(f"workers to launch: {len(todo)}")
 
@@ -270,9 +277,11 @@ def main() -> int:
         combined_payload=combined_payload,
     )
 
-    solved = sum(1 for key in all_problem_keys if is_solved(merged_payload.get(merged_key(args.condition, key))))
+    solved = sum(
+        1 for key in selected_problem_keys if is_solved(merged_payload.get(merged_key(args.condition, key)))
+    )
     print(f"merged output: {output_path}")
-    print(f"solved after merge: {solved}/{len(all_problem_keys)}")
+    print(f"solved after merge: {solved}/{len(selected_problem_keys)}")
     if failures:
         print("failed workers:")
         for problem_key, returncode in failures:
